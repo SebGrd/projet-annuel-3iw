@@ -3,3 +3,12 @@
 
 .idea/
 .idea/*
+
+db_data/
+db_data/*
+
+server/
+server/*
+
+site/
+site/*
