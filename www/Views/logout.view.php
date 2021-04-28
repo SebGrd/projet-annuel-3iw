@@ -1,3 +1,3 @@
 <section>
-	<h2>Vue logout</h2>
+	<h2>Logout view</h2>
 </section>

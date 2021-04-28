@@ -1,3 +1,3 @@
 <section>
-	<h2>Vue login</h2>
+	<h2>Login view</h2>
 </section>

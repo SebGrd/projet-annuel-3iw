@@ -1,11 +1,5 @@
 <section>
-	<h2>Welcome <?= $pseudo;?></h2>
-	<small>Vous avez <?= $age;?> ans et votre email c'est <?= $email ?></small>
+	<h2>Home view</h2>
+	<h3>Welcome <?= $username;?></h3>
+	<small>Age: <?= $age;?><br>Email: <?= $email ?></small>
 </section>
-
-
-
-
-<?php for ($i=0; $i < 10; $i++):?>
-	<b>test</b>
-<?php endfor;?>
