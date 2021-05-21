@@ -10,6 +10,8 @@ class View {
 	public function __construct( $view, $template = "front") {
 		$this->setTemplate($template);
 		$this->setView($view);
+		$this->assign('_', new Helpers());
+		$this->assign('formBuilder', new FormBuilder());
 	}
 
 	public function setTemplate($template) {

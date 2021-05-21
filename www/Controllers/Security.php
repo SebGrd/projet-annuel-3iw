@@ -47,7 +47,6 @@ class Security {
 		// $user->setPwd('janedoe');		
 		// $user->save();
 
-		// FIXME unloaded constants -> I added this line -> #1
 		$constantMaker = new ConstantMaker();
 
 		$user = new User();

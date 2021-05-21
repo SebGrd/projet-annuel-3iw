@@ -20,8 +20,6 @@ class ConstantMaker {
 		}
 
 		$this->defineConstants();
-		// FIXME remove this after fixing #1
-		var_dump($this->data);
 	}
 
 	public function defineConstants() {

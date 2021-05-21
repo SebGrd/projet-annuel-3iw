@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Core\View;
+use App\Core\Helpers;
 
 class Main {
 	public function default() {

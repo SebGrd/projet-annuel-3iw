@@ -8,7 +8,6 @@ class Database {
 
 	public function __construct() {
 		try {
-			// FIXME #1: SQLSTATE[HY000] [2002] Connection timed out
 			$this->pdo = new \PDO(DBDRIVER . ':dbname=' . DBNAME . ';host=' . DBHOST . ';port=' . DBPORT, DBUSER, DBPWD);
 
 			if (ENV == 'dev') {
