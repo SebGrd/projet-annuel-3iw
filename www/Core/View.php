@@ -2,63 +2,40 @@
 
 namespace App\Core;
 
-class View
-{
-
-
-	private $template; // back ou front
-	private $view; // home admin login et logout
+class View {
+	private $template;
+	private $view;
 	private $data = [];
 
-	public function __construct( $view, $template = "front" ){
-
+	public function __construct( $view, $template = "front") {
 		$this->setTemplate($template);
 		$this->setView($view);
-
+		$this->assign('_', new Helpers());
+		$this->assign('formBuilder', new FormBuilder());
 	}
 
-	public function setTemplate($template){
-		if(file_exists("Views/Templates/".$template.".tpl.php")){
+	public function setTemplate($template) {
+		if (file_exists("Views/Templates/".$template.".tpl.php")) {
 			$this->template = "Views/Templates/".$template.".tpl.php";
-		}else{
+		} else {
 			die("Erreur de template");
 		}
 	}
 
-	public function setView($view){
-		if(file_exists("Views/".$view.".view.php")){
+	public function setView($view) {
+		if (file_exists("Views/".$view.".view.php")) {
 			$this->view = "Views/".$view.".view.php";
-		}else{
+		} else {
 			die("Erreur de vue");
 		}
 	}
 
-	//$view->assign("pseudo", "Prof");
-	public function assign($key, $value){
+	public function assign($key, $value) {
 		$this->data[$key] = $value;
 	}
 
-
-	public function __destruct(){
-		//$this->data = ["pseudo"=>"Super Prof"] ==> $pseudo = "Super Prof"
-		/*
-		foreach ($this->data as $key => $value) {
-
-			// $key = "pseudo"
-			// $$key = $"pseudo" = $pseudo
-			$$key = $value;
-		}
-		*/
+	public function __destruct() {
 		extract($this->data);
-
 		include $this->template;
 	}
-
-
 }
-
-
-
-
-
-

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="FR">
+<html lang='en'>
 <head>
-	<meta charset="UTF-8">
-	<title>Template de BACK</title>
-	<meta name="description" content="ceci est la description de ma page">
+	<meta charset='UTF-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<meta name='description' content='page description'>
+	<title>Back template</title>
 </head>
 <body>
 	<header>
-		<h1>Template du back</h1>
+		<h1>Back template</h1>
 	</header>
 
-	<!-- intégration de la vue -->
-
+	<?php include $this->view ;?>
 </body>
 </html>

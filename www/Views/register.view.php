@@ -1,18 +1,15 @@
-<h2>S'inscrire</h2>
+<section>
+	<h2>Register view</h2>
+</section>
 
-<?php if(isset($errors)):?>
+<?php if (isset($errors)): ?>
+	<?php foreach ($errors as $error): ?>
+		<li style="color: red;">
+			<?=$error; ?>
+		</li>
+	<?php endforeach; ?>
+<?php endif; ?>
 
-<?php foreach ($errors as $error):?>
-	<li style="color:red"><?=$error;?></li>
-<?php endforeach;?>
-
-<?php endif;?>
-
-
-
-<?php App\Core\FormBuilder::render($form)?>
-
-
-<h2>Se connecter</h2>
-
-<?php App\Core\FormBuilder::render($formLogin)?>
+<div class="main">
+	<?php $formBuilder::render($form); ?>
+</div>

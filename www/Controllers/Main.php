@@ -1,23 +1,16 @@
 <?php
 
-namespace App\Controller;
-
+namespace App\Controllers;
 use App\Core\View;
+use App\Core\Helpers;
 
-class Main{
-
-
-	public function defaultAction(){
-		
-		$pseudo = "Super Prof"; //Plus tard on le récupèrera depuis la bdd
-
-		$view = new View("home");
-		$view->assign("pseudo", $pseudo);
-		$view->assign("age", 18);
-		$view->assign("email", "y.skrzypczyk@gmail.com");
-
-
+class Main {
+	public function default() {
+		// $a = explode('\\', __METHOD__);
+		// echo end($a).' called';
+		$view = new View('home');
+		$view->assign('username', 'John DOE');
+		$view->assign('age', 18);
+		$view->assign('email', 'john.doe@gmail.com');
 	}
-
-
 }

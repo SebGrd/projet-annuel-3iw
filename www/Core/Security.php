@@ -2,11 +2,8 @@
 
 namespace App\Core;
 
-class Security
-{
-
-	public function isConnected(){
+class Security {
+	public function isConnected() {
 		return true;
 	}
-
 }
