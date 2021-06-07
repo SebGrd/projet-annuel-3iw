@@ -2,7 +2,7 @@ version: '3'
 services:
   web:
     build: site
-    container_name: apache-3IW
+    container_name: apache-mvc
     ports :
      - "80:80"
     volumes:
@@ -19,7 +19,7 @@ services:
     ports :
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: mvcdocker2
+      MYSQL_DATABASE: pa-mvc
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: root
       MYSQL_PASSWORD: password
@@ -36,6 +36,3 @@ services:
       - 8888:80
     environment:
         - PMA_ARBITRARY=1
-
-      
-      

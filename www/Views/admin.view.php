@@ -1,3 +1,3 @@
 <section>
-	<h2>Vue admin</h2>
+	<h2>Admin view</h2>
 </section>

@@ -1,14 +1,3 @@
 .env
-.env.*
-
-.idea/
-.idea/*
-
-db_data/
-db_data/*
-
-server/
-server/*
-
-site/
-site/*
+.env.dev
+.env.prod
