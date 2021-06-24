@@ -1,6 +1,12 @@
 <section>
-	<h2>Register view</h2>
+	<h2>Register</h2>
 </section>
+
+<?php if (isset($success)): ?>
+	<li style="color: green;">
+		<?=$success; ?>
+	</li>
+<?php endif; ?>
 
 <?php if (isset($errors)): ?>
 	<?php foreach ($errors as $error): ?>
@@ -10,6 +16,4 @@
 	<?php endforeach; ?>
 <?php endif; ?>
 
-<div class="main">
-	<?php $formBuilder::render($form); ?>
-</div>
+<?php App\Core\FormBuilder::render($formRegister); ?>

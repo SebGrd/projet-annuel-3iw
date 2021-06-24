@@ -18,7 +18,7 @@ class ConstantMaker {
 			// .env.prod ou .env.dev
 			$this->parseEnv($this->envPath.'.'.$this->data['ENV']);
 		}
-
+		date_default_timezone_set( "Europe/Paris" );
 		$this->defineConstants();
 	}
 

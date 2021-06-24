@@ -7,7 +7,7 @@ class View {
 	private $view;
 	private $data = [];
 
-	public function __construct( $view, $template = "front") {
+	public function __construct($view, $template = "front") {
 		$this->setTemplate($template);
 		$this->setView($view);
 		$this->assign('_', new Helpers());
@@ -26,7 +26,7 @@ class View {
 		if (file_exists("Views/".$view.".view.php")) {
 			$this->view = "Views/".$view.".view.php";
 		} else {
-			die("Erreur de vue");
+			die("Erreur de vue, Page inexistante");
 		}
 	}
 

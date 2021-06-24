@@ -1,15 +1,15 @@
 <section>
-	<h2>Login view</h2>
+	<h2>Login</h2>
 </section>
 
 <?php if (isset($errors)): ?>
-	<?php foreach ($errors as $error): ?>
-		<li style="color: red;">
-			<?=$error; ?>
-		</li>
-	<?php endforeach; ?>
+
+<?php foreach ($errors as $error): ?>
+	<li style="color: red;">
+		<?=$error; ?>
+	</li>
+<?php endforeach; ?>
+
 <?php endif; ?>
 
-<div class="main">
-	<?php $formBuilder::render($formLogin); ?>
-</div>
+<?php App\Core\FormBuilder::render($formLogin); ?>

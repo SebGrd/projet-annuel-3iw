@@ -2,16 +2,26 @@
 
 namespace App;
 use App\Core\Router;
+use App\Core\Security;
 require 'Autoload.php';
+
+ini_set('display_errors', 1);
+
 Autoload::register();
+session_start();
 
 $uriExploded = explode('?', $_SERVER['REQUEST_URI']);
 $uri = $uriExploded[0];
+
+if (!Security::isConnected()) {
+	if ($uri !== "/login" && $uri !== "/register") {
+		header("location:login");
+	}
+}
+
 $router = new Router($uri);
 $c = $router->getController();
 $a = $router->getAction();
-
-// echo "Controller: ".$c."<br>Action: ".$a."<br><br>";
 
 if (file_exists("Controllers/$c.php")) {
 	include "Controllers/$c.php";

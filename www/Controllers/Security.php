@@ -16,77 +16,109 @@ class Security {
 	}
 
 	public function login() {
-		$a = explode('\\', __METHOD__);
-		echo end($a).' called';
-	}
-
-	public function register() {
-		// $a = explode('\\', __METHOD__);
-		// echo end($a).' called';
-
-		// $user = new User();
-		// $user->setFirstname('John');
-		// $user->setLastname('DOE');
-		// $user->setEmail('john.doe@gmail.com');
-		// $user->setPwd('johndoe');
-		// $user->setCountry('en');
-		// $user->save();
-
-		// $log = new Log();
-		// $log->user('john.doe@gmail.com');
-		// $log->date(time());
-		// $log->success(false);
-		// $log->save();
-
-		// $user = new User();
-		// print_r($user); // empty
-		// $user->setId(2); // populate object with user 
-		// print_r($user); // return user
-		// $user->setFirstname('Jane');
-		// $user->setEmail('jane.doe@gmail.com');
-		// $user->setPwd('janedoe');		
-		// $user->save();
-
 		$constantMaker = new ConstantMaker();
-
+		if (Secu::isConnected()) {
+			header("location:/");
+		}
 		$user = new User();
-		$view = new View('register');
+		$view = new View('login');
 
-		$form = $user->formRegister();
 		$formLogin = $user->formLogin();
 
 		if (!empty($_POST)) {
-			$errors = FormValidator::check($form, $_POST);
+			$errors = FormValidator::check($formLogin, $_POST);
 
 			if (empty($errors)) {
-				$user->setFirstname($_POST['firstname']);
-				$user->setLastname($_POST['lastname']);
-				$user->setEmail($_POST['email']);
-				$user->setPwd($_POST['pwd']);
-				$user->setCountry($_POST['country']);
-				$user->save();
+				$email=htmlspecialchars(strip_tags(strtolower($_POST['email'])));
+				$password = stripslashes($_POST['pwd']);
+				$hashed_password = crypt($password, '$5$rounds=6666$'.SALT.'$');
+				$FoundUser = $user->find(['email' => $email, 'pwd' => $hashed_password]);
+
+				if ($FoundUser['email'] && $FoundUser['isDeleted'] == false) {
+
+					echo '1';
+					$token = array(
+						"data" => array(
+							"id" => $FoundUser['id'],
+							"firstname" => $FoundUser['firstname'],
+							"lastname" => $FoundUser['lastname'],
+							"email" => $FoundUser['email'],
+							"role" => $FoundUser['role']
+						)
+				 	);
+					$jwt = Secu::createJwt($token);
+					setcookie(
+						"token",
+						$jwt,
+						time()+(3600*12),
+						"/"
+					);
+					header("location:/");
+				} else if ($user->getIsDeleted()) {
+					$view->assign('errors', ['Account has been deleted']);
+				} else {
+					$view->assign('errors', ['Email or password is incorrect']);
+				}
 			} else {
 				$view->assign('errors', $errors);
 			}
 		}
 
-		$view->assign('form', $form);
 		$view->assign('formLogin', $formLogin);
 	}
 
-	public function logout() {
-		// $a = explode('\\', __METHOD__);
-		// echo end($a).' called';
-		// echo '<br>';
-
-		$security = new Secu();
-
-		if ($security->isConnected()) {
-			echo 'Logged out!';
-			// TODO log out current user
-		} else {
-			echo 'Already logged out';
-			// TODO redirect to previous uri
+	public function register() {
+		$constantMaker = new ConstantMaker();
+		if (Secu::isConnected()) {
+			header("location:/");
 		}
+
+		$user = new User();
+		$view = new View('register');
+
+		$formRegister = $user->formRegister();
+
+		if (!empty($_POST)) {
+			$errors = FormValidator::check($formRegister, $_POST);
+
+			if (empty($errors)) {
+				$FoundUser = $user->find(['email' => $_POST['email']]);
+				if (!$FoundUser) {
+					$user->setFirstname($_POST['firstname']);
+					$user->setLastname($_POST['lastname']);
+					$user->setEmail($_POST['email']);
+					$user->setPwd($_POST['pwd']);
+					$user->setCountry($_POST['country']);
+					$user->save();
+					$view->assign('success', "Your account has been created successfully ! \n You will automatically be redirected to the login page in 5 seconds.");
+					// TODO redirect not working
+					// header("Refresh:5;location:login");
+					header("location:login");
+				} else {
+					$view->assign('errors', ['error' => 'Email is already registered']);
+				}
+			} else {
+				$view->assign('errors', $errors);
+			}
+		}
+
+		$view->assign('formRegister', $formRegister);
+	}
+
+	public function logout() {
+		if (isset($_COOKIE['token'])) {
+			unset($_COOKIE['token']); 
+			setcookie('token', null, -1, '/');
+		}
+		
+		// if (ini_get("session.use_cookies")) {
+		// 	$params = session_get_cookie_params();
+		// 	setcookie(session_name(), '', time() - 42000,
+		// 		$params["path"], $params["domain"],
+		// 		$params["secure"], $params["httponly"]
+		// 	);
+		// }
+		
+		header("location:login");
 	}
 }
