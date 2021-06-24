@@ -34,9 +34,8 @@ class Security {
 				$hashed_password = crypt($password, '$5$rounds=6666$'.SALT.'$');
 				$FoundUser = $user->find(['email' => $email, 'pwd' => $hashed_password]);
 
-				if ($FoundUser['email'] && $FoundUser['isDeleted'] == false) {
+				if ($FoundUser && $FoundUser['email'] && $FoundUser['isDeleted'] == false) {
 
-					echo '1';
 					$token = array(
 						"data" => array(
 							"id" => $FoundUser['id'],
@@ -84,10 +83,12 @@ class Security {
 			if (empty($errors)) {
 				$FoundUser = $user->find(['email' => $_POST['email']]);
 				if (!$FoundUser) {
+					$password = stripslashes($_POST['pwd']);
+					$hashed_password = crypt($password, '$5$rounds=6666$'.SALT.'$');
 					$user->setFirstname($_POST['firstname']);
 					$user->setLastname($_POST['lastname']);
 					$user->setEmail($_POST['email']);
-					$user->setPwd($_POST['pwd']);
+					$user->setPwd($hashed_password);
 					$user->setCountry($_POST['country']);
 					$user->save();
 					$view->assign('success', "Your account has been created successfully ! \n You will automatically be redirected to the login page in 5 seconds.");
