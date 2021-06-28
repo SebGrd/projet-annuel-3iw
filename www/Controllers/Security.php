@@ -130,7 +130,7 @@ class Security {
 
 			if (empty($errors)) {
 
-				$user->find(['email' => $_POST['email']], false);
+				$user->find(['email' => $_POST['email']]);
 
 				if ($user->getId()) {
 					$passwordResetToken = bin2hex(random_bytes(20));
@@ -142,7 +142,7 @@ class Security {
 					$subject = 'Réinitialisation de mot de passe';
 					$message = `Bonjour,\r\nVeuillez cliquez <a href="http://localhost:8888/forgot-password?token=$passwordResetToken">ici</a> pour changer de mot de passe.`;
 					$headers = array(
-						'From' => 'fnaderi@myges.fr',
+						'From' => 'hello@cms.fr',
 						'MIME-Version' =>  '1.0',
 						'Content-type' =>  'text/html; charset=iso-8859-1'
 					);
