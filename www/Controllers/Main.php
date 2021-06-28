@@ -3,10 +3,15 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Core\Helpers;
+use App\Core\Security;
 
 class Main {
-	public function default() {
-		$view = new View('home');
+	public function home() {
+		if (Security::isConnected()) {
+			$template = 'front';
+		}
+
+		$view = new View('home', $template ?? 'guest');
 		
 		$view->assign('username', 'toto');
 		$view->assign('age', 18);

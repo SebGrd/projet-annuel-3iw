@@ -10,14 +10,14 @@ class Security {
 			$jwt = new JwtHandler();
 			$data = $jwt->_jwt_decode_data(trim($_COOKIE["token"]));
 			if (is_object($data)) {
-                $_SESSION['userStore'] = $data->data;
-                return true;
+				$_SESSION['userStore'] = $data->data;
+				return true;
 			} else {
-                $_SESSION['userStore'] = null;
-                return false;
-            }
+				$_SESSION['userStore'] = null;
+				return false;
+			}
 		}
-        $_SESSION['userStore'] = null;
+			$_SESSION['userStore'] = null;
 		return false;
 	}
 

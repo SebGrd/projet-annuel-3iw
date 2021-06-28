@@ -13,6 +13,10 @@ class FormValidator {
 					strlen($data[$name]) < $configInput['minLength']) {
 					$errors[] = $configInput['error'];
 				}
+				if(!empty($configInput['confirm']) &&
+					($data[$name]) !== $data[$configInput['confirm']]) {
+					$errors[] = $configInput['error'];
+				}
 			}
 		} else {
 			$errors[] = 'Hacking detected';

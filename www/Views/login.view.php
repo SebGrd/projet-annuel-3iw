@@ -5,12 +5,12 @@
             <section class="auth__section">
                 <div class="auth__section__form">
                     <h2>Se connecter</h2>
-                    <?php App\Core\FormBuilder::render($formLogin); ?>
+                    <?php $_FB::render($form); ?>
                     <ul class="auth__section__form__list">
                         <?php if (isset($errors)): ?>
                             <?php foreach ($errors as $error): ?>
                                 <li style="color: red;">
-                                    <?=$error; ?>
+                                    <?= $error; ?>
                                 </li>
                             <?php endforeach; ?>
                         <?php endif; ?>

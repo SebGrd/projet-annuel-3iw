@@ -10,10 +10,6 @@ use App\Core\ConstantMaker;
 use App\Models\User;
 
 class Security {
-	public function default() {
-		$a = explode('\\', __METHOD__);
-		echo end($a).' called';
-	}
 
 	public function login() {
 		$constantMaker = new ConstantMaker();
@@ -23,26 +19,29 @@ class Security {
 		$user = new User();
 		$view = new View('login', 'blank');
 
-		$formLogin = $user->formLogin();
+		$form = $user->formLogin();
 
 		if (!empty($_POST)) {
-			$errors = FormValidator::check($formLogin, $_POST);
+			$errors = FormValidator::check($form, $_POST);
 
 			if (empty($errors)) {
-				$email=htmlspecialchars(strip_tags(strtolower($_POST['email'])));
+
+				$email = htmlspecialchars(strip_tags(strtolower($_POST['email'])));
+
 				$password = stripslashes($_POST['pwd']);
 				$hashed_password = crypt($password, '$5$rounds=6666$'.SALT.'$');
-				$FoundUser = $user->find(['email' => $email, 'pwd' => $hashed_password]);
 
-				if ($FoundUser && $FoundUser['email'] && $FoundUser['isDeleted'] == false) {
+				$user->find(['email' => $email, 'pwd' => $hashed_password]);
+
+				if ($user->getId() && $user->getIsDeleted() == false) {
 
 					$token = array(
 						"data" => array(
-							"id" => $FoundUser['id'],
-							"firstname" => $FoundUser['firstname'],
-							"lastname" => $FoundUser['lastname'],
-							"email" => $FoundUser['email'],
-							"role" => $FoundUser['role']
+							"id" => $user->getId(),
+							"firstname" => $user->getFirstName(),
+							"lastname" => $user->getLastName(),
+							"email" => $user->getEmail(),
+							"role" => $user->getRole(),
 						)
 				 	);
 					$jwt = Secu::createJwt($token);
@@ -63,7 +62,7 @@ class Security {
 			}
 		}
 
-		$view->assign('formLogin', $formLogin);
+		$view->assign('form', $form);
 	}
 
 	public function register() {
@@ -75,10 +74,10 @@ class Security {
 		$user = new User();
 		$view = new View('register', 'blank');
 
-		$formRegister = $user->formRegister();
+		$form = $user->formRegister();
 
 		if (!empty($_POST)) {
-			$errors = FormValidator::check($formRegister, $_POST);
+			$errors = FormValidator::check($form, $_POST);
 
 			if (empty($errors)) {
 				$FoundUser = $user->find(['email' => $_POST['email']]);
@@ -103,7 +102,7 @@ class Security {
 			}
 		}
 
-		$view->assign('formRegister', $formRegister);
+		$view->assign('form', $form);
 	}
 
 	public function logout() {
@@ -112,14 +111,81 @@ class Security {
 			setcookie('token', null, -1, '/');
 		}
 		
-		// if (ini_get("session.use_cookies")) {
-		// 	$params = session_get_cookie_params();
-		// 	setcookie(session_name(), '', time() - 42000,
-		// 		$params["path"], $params["domain"],
-		// 		$params["secure"], $params["httponly"]
-		// 	);
-		// }
-		
 		header("location:login");
+	}
+
+	public function resetPassword() {
+		$constantMaker = new ConstantMaker();
+		if (Secu::isConnected()) {
+			header("location:/");
+		}
+		$user = new User();
+		$view = new View('forgotPassword');
+
+		$formResetPassword = $user->formResetPassword();
+		$formNewPassword = $user->formNewPassword();
+		
+		if (!empty($_POST) && empty($_GET)) {
+			$errors = FormValidator::check($formResetPassword, $_POST);
+
+			if (empty($errors)) {
+
+				$user->find(['email' => $_POST['email']], false);
+
+				if ($user->getId()) {
+					$passwordResetToken = bin2hex(random_bytes(20));
+					$user->setPwdResetToken($passwordResetToken);
+					$user->save();
+
+					// Send email
+					$to = $_POST['email'];
+					$subject = 'Réinitialisation de mot de passe';
+					$message = `Bonjour,\r\nVeuillez cliquez <a href="http://localhost:8888/forgot-password?token=$passwordResetToken">ici</a> pour changer de mot de passe.`;
+					$headers = array(
+						'From' => 'fnaderi@myges.fr',
+						'MIME-Version' =>  '1.0',
+						'Content-type' =>  'text/html; charset=iso-8859-1'
+					);
+
+					mail($to, $subject, $message, $headers);
+
+					$view->assign('success', "Un email viens de vous être envoyé, cliquez sur le lien dans l'email pour réinitialiser votre mot de passe. \n vous pouvez fermer cette page.");
+				} else {
+					// On envoie le même message pour eviter le brute force pour trouver des emails existant.
+					$view->assign('success', "Un email viens de vous être envoyé, cliquez sur le lien dans l'email pour réinitialiser votre mot de passe. \n vous pouvez fermer cette page.");
+				}
+			} else {
+				$view->assign('errors', $errors);
+			}
+		}
+
+		if (!empty($_GET)) {
+			$token = htmlspecialchars(stripslashes($_GET['token']));
+
+			$user->find(['pwdResetToken' => $token]);
+
+			if ($user->getId()) {
+				if (!empty($_POST)) {
+					$errors = FormValidator::check($formNewPassword, $_POST);
+					if (empty($errors)) {
+						$password = stripslashes($_POST['pwd']);
+						$hashed_password = crypt($password, '$5$rounds=6666$'.SALT.'$');
+						$user->setPwd($hashed_password);
+						$user->setPwdResetToken('');
+						$user->save();
+						$view->assign('success', "Votre nouveau mot de passe a bien été enregistré, vous pouvez maintenant vous connecter avec.");
+					} else {
+						$view->assign('errors', $errors);
+					}
+				}
+			} else {
+				header('location:login');
+			}
+			
+			$view->assign('formNewPassword', $formNewPassword);
+		} else {
+			$view->assign('formResetPassword', $formResetPassword);
+		}
+
 	}
 }

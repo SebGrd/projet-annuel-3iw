@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-	<meta charset='UTF-8'>
-	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-	<meta name='description' content='page description'>
-    <link rel="stylesheet" href="/public/style/boostrip.css">
-    <link rel="stylesheet" href="/public/style/style.css">
+	<?= $_::render('style'); ?>
     <title>Front template</title>
 </head>
 <body>
-	<header>
-		<h1>Front template</h1>
-	</header>
+	<?= $_::render('header'); ?>
 
-	<?php include $this->view ;?>
+	<h1>Front template</h1>	
+
+	<main>
+		<?php include $this->view; ?>
+	</main>
+
+	<?= $_::render('scripts'); ?>
 </body>
 </html>
