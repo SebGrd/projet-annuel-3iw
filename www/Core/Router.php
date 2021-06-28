@@ -15,7 +15,10 @@ class Router {
 			//[/] => Array ( [controller] => Global [action] => default )
 			$this->routes = yaml_parse_file($this->routesPath);
 
-			if (!empty($this->routes[$this->uri]) && $this->routes[$this->uri]['controller'] && $this->routes[$this->uri]['action']) {
+			if (!empty($this->routes[$this->uri])
+					&& $this->routes[$this->uri]['controller']
+					&& $this->routes[$this->uri]['action']
+					&& $this->routes[$this->uri]['access']) {
 				$this->setController($this->routes[$this->uri]['controller']);
 				$this->setAction($this->routes[$this->uri]['action']);
 				$this->setAccess($this->routes[$this->uri]['access']);

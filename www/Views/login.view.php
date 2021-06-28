@@ -6,16 +6,19 @@
                 <div class="auth__section__form">
                     <h2>Se connecter</h2>
                     <?php $_FB::render($form); ?>
-                    <ul class="auth__section__form__list">
-                        <?php if (isset($errors)): ?>
+                                    
+                    <?php if (isset($errors)): ?>
+                        <ul class="auth__section__form__list">
                             <?php foreach ($errors as $error): ?>
                                 <li style="color: red;">
                                     <?= $error; ?>
                                 </li>
                             <?php endforeach; ?>
-                        <?php endif; ?>
-                    </ul>
+                        </ul>
+                    <?php endif; ?>
+
                     <a href="/register" class="auth__section__form__link">S'inscrire</a>
+                    <a href="/forgot-password" class="auth__section__form__link">Mot de passe oublié</a>
                 </div>
             </section>
         </div>

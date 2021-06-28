@@ -1,12 +1,7 @@
 /:
   controller: Main
   action: home
-  access: guest
-
-/admin:
-  controller: Admin
-  action: default
-  access: auth
+  access: guest;user;admin
 
 /register:
   controller: Security
@@ -18,12 +13,17 @@
   action: login
   access: guest
 
-/logout:
-  controller: Security
-  action: logout
-  access: auth
-
 /forgot-password:
   controller: Security
   action: resetPassword
   access: guest
+
+/logout:
+  controller: Security
+  action: logout
+  access: user;admin
+
+/admin:
+  controller: Admin
+  action: default
+  access: user;admin

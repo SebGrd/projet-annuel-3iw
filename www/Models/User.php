@@ -137,16 +137,16 @@ class User extends Database {
 	}
 
 	/**
-	 * @return int
+	 * @return string
 	 */
-	public function getRole(): int {
+	public function getRole(): string {
 		return $this->role;
 	}
 
 	/**
-	 * @param int $role
+	 * @param string $role
 	 */
-	public function setRole(int $role) {
+	public function setRole(string $role) {
 		$this->role = $role;
 	}
 
