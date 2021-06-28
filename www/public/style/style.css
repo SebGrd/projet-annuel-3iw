@@ -10,19 +10,6 @@ a {
   color: #001F8C;
   text-decoration: none;
 }
-a:before {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 1px;
-  background: #001F8C;
-  pointer-events: none;
-}
-a:hover:before {
-  height: 2px;
-}
 
 .form__field {
   margin-bottom: 1rem;
@@ -48,7 +35,7 @@ a:hover:before {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 .auth__section__form {
   margin-bottom: 16rem;
@@ -120,6 +107,9 @@ a:hover:before {
   font-size: 14px;
   font-family: "Roboto", sans-serif;
 }
+.header__menu {
+  position: relative;
+}
 .header__menu__list {
   display: flex;
   list-style: none;
@@ -162,11 +152,42 @@ a:hover:before {
 }
 .header__menu__list__item--profile__picture {
   margin: 0;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.header__menu__list__item--profile__picture:hover {
+  border: 1px solid white;
 }
 .header__menu__list__item--profile__picture img {
   border-radius: 50%;
   width: 50px;
   height: 50px;
+}
+.header__menu__popup-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  right: 0;
+  top: 55px;
+  padding: 0.5rem 1rem;
+  border: 1px solid #F2F2F2;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px -2px #bbbaba;
+}
+.header__menu__popup-menu--active {
+  display: block;
+}
+.header__menu__popup-menu__item {
+  margin-bottom: 0.2rem;
+}
+.header__menu__popup-menu__item__link--danger {
+  color: #C61A1A;
+}
+.header__menu__popup-menu__item__link--danger:before {
+  background: #C61A1A;
 }
 
 .menu {

@@ -48,6 +48,7 @@
     }
   }
   &__menu{
+    position: relative;
     &__list{
       display: flex;
       list-style: none;
@@ -91,10 +92,43 @@
           }
           &__picture{
             margin: 0;
+            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            &:hover{
+              border: 1px solid white;
+            }
             img{
               border-radius: 50%;
               width: 50px;
               height: 50px;
+            }
+          }
+        }
+      }
+    }
+    &__popup-menu{
+      &--active{
+        display: block;
+      }
+      display: none;
+      position: absolute;
+      background: white;
+      right: 0;
+      top: 55px;
+      padding: .5rem 1rem;
+      border: 1px solid $gray-200;
+      border-radius: 8px;
+      box-shadow: 2px 2px 6px -2px $gray-300;
+      &__item{
+        margin-bottom: .2rem;
+        &__link{
+          &--danger{
+            color: $danger;
+            &:before{
+              background: $danger;
             }
           }
         }
