@@ -1,7 +1,5 @@
-<!-- <?= $_::render('login'); ?> -->
+<title>Home</title>
 
 <section>
-	<h2>Home view</h2>
-	<h3>Welcome <?= $username;?></h3>
-	<small>Age: <?= $age;?><br>Email: <?= $email ?></small>
+	<h1>Home view</h1>
 </section>

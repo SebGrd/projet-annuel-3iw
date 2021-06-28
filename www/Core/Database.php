@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Models\User;
+
 class Database {
 	private $pdo;
 	private $table;
@@ -24,16 +26,18 @@ class Database {
 	}
 
 	public function populate($arr) {
-		$obj = get_class($this)();
-
 		foreach ($arr as $key => $value) {
-			$obj->$key = $value;
+			if (!in_array($key, ['pdo', 'table'])) {
+				$setter = 'set'.ucwords($key);
+				$this->$setter($arr[$key]);
+			} else if ($key === 'updateAt') {
+				$setter = 'set'.ucwords($key);
+				$this->$setter(date('Y-m-d h:i:s'));
+			}
 		}
-
-		return $obj;
 	}
 
-	public function find($props = [], $order = [], $return_type_array = true) {
+	public function find($props = [], $order = [], $return_type_array = false) {
 		$result = [];
 		$whereClause = '';
 		$whereConditions = [];
@@ -84,11 +88,43 @@ class Database {
 				implode(',:', array_keys($columns))
 				. ' );');
 
+			$query->execute($columns);
+
 		} else {
-			// TODO add UPDATE
+
+			$sql = 'UPDATE ' . strtolower($this->table) . ' SET ' . implode('=?,', array_keys($columns)) . '=? WHERE id=' . $this->getId();
+
+			$query = $this->pdo->prepare($sql)->execute(array_values($columns));
 		}
 
-		$query->execute($columns);
+	}
+
+	public function update(array $props, array $whereConditions, $return_type_array = true) {
+		$values = [];
+		$whereClause = [];
+		$whereProp = [];
+		
+		$query = "UPDATE " . strtolower($this->table) . " SET ";
+
+		if (!empty($props)) {
+			foreach ($props as $key => $value) {
+				$values = '`' . $key . '` = "' . $value . '"';
+			}
+
+			foreach ($whereConditions as $key => $value) {
+				$whereProp[] = '`' . $key . '` = "' . $value . '"';
+			}
+			$whereClause = ' WHERE ' . implode(' AND ', $whereProp);
+		}
+
+		$query = $this->pdo->query($query . $values . $whereClause);
+		$query->execute();
+		$data = $query->fetch(\PDO::FETCH_ASSOC);
+
+		if ($data) {
+			return $return_type_array ? $data : $this->populate($data);
+		}
+		return false;
 	}
 
 	// public function select(array $cols) {

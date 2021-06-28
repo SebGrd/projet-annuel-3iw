@@ -5,7 +5,7 @@
             <section class="auth__section">
                 <div class="auth__section__form">
                     <h2>S'inscrire</h2>
-                    <?php App\Core\FormBuilder::render($formRegister); ?>
+                    <?php App\Core\FormBuilder::render($form); ?>
                     <ul class="auth__section__form__list">
                         <?php if (isset($success)): ?>
                             <li style="color: green;">
@@ -26,4 +26,3 @@
         </div>
     </div>
 </main>
-
