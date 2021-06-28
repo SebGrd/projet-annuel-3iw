@@ -59,9 +59,15 @@ a:hover:before {
   max-width: 340px;
   font-size: 0.8rem;
 }
-.auth__section__form__link {
+.auth__section__form__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+.auth__section__form__links__link {
   display: inline-block;
-  margin: 1rem 0;
+  margin-bottom: 0.3rem;
 }
 
 .header {
