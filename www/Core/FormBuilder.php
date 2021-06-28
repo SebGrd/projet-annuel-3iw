@@ -29,7 +29,7 @@ class FormBuilder {
 
 	public static function renderInput($name, $configInput) {
 		return "<input 
-		    class='form__field__input'
+			class='form__field__input'
 			name='".$name."' 
 			type='".($configInput["type"]??"text")."'
 			id='".($configInput["id"]??"")."'
@@ -40,9 +40,9 @@ class FormBuilder {
 
 	public static function renderSelect($name, $configInput) {
 		$html = "<select 
-                    class='form__field__input'
-                    name='".$name."' id='".($configInput["id"]??"")."'
-					class='".($configInput["class"]??"")."'>";
+			class='form__field__input'
+			name='".$name."' id='".($configInput["id"]??"")."'
+			class='".($configInput["class"]??"")."'>";
 
 		foreach ($configInput["options"] as $key => $value) {
 			$html .= "<option value='".$key."'>".$value."</option>";

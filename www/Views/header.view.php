@@ -4,6 +4,10 @@
 			<li class="menu-main-item">
 				<a href="/" class="menu-main-item-link">Accueil</a>
 			</li>
+
+			<li class="menu-main-item">
+				<a href="/admin" class="menu-main-item-link">Admin</a>
+			</li>
 			
 			<li class="menu-main-item">
 				<a href="/login" class="menu-main-item-link">Connexion</a>

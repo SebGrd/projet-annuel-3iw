@@ -38,7 +38,6 @@ class Database {
 	}
 
 	public function find($props = [], $order = [], $return_type_array = false) {
-		$result = [];
 		$whereClause = '';
 		$whereConditions = [];
 		
@@ -99,41 +98,4 @@ class Database {
 
 	}
 
-	public function update(array $props, array $whereConditions, $return_type_array = true) {
-		$values = [];
-		$whereClause = [];
-		$whereProp = [];
-		
-		$query = "UPDATE " . strtolower($this->table) . " SET ";
-
-		if (!empty($props)) {
-			foreach ($props as $key => $value) {
-				$values = '`' . $key . '` = "' . $value . '"';
-			}
-
-			foreach ($whereConditions as $key => $value) {
-				$whereProp[] = '`' . $key . '` = "' . $value . '"';
-			}
-			$whereClause = ' WHERE ' . implode(' AND ', $whereProp);
-		}
-
-		$query = $this->pdo->query($query . $values . $whereClause);
-		$query->execute();
-		$data = $query->fetch(\PDO::FETCH_ASSOC);
-
-		if ($data) {
-			return $return_type_array ? $data : $this->populate($data);
-		}
-		return false;
-	}
-
-	// public function select(array $cols) {
-	// 	var_dump(array_keys($cols));
-	// 	echo('colmns' . $cols);
-	// 	$query = $this->pdo->prepare('SELECT FROM ' . strtolower($this->table) . ' (' .
-	// 	implode(',', array_keys($cols))
-	// 	. ');');
-	// 	echo('qry' . $query);
-	// 	$query->execute($cols);
-	// }
 }
