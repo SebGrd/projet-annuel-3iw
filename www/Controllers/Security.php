@@ -17,11 +17,11 @@ class Security {
 
 	public function login() {
 		$constantMaker = new ConstantMaker();
-		if (Secu::isConnected()) {
+        if (Secu::isConnected()) {
 			header("location:/");
 		}
 		$user = new User();
-		$view = new View('login');
+		$view = new View('login', 'blank');
 
 		$formLogin = $user->formLogin();
 
@@ -73,7 +73,7 @@ class Security {
 		}
 
 		$user = new User();
-		$view = new View('register');
+		$view = new View('register', 'blank');
 
 		$formRegister = $user->formRegister();
 

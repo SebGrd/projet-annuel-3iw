@@ -1,0 +1,21 @@
+.form{
+  &__field{
+    margin-bottom: 1rem;
+    &__label{
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: .2rem;
+    }
+    &__input{
+      padding: .3rem .5rem;
+      border-radius: 8px;
+      border: 1px solid $gray-300;
+      transition: border-color 175ms ease-in-out;
+      &:active,&:focus{
+        border-color: $primary;
+        outline: $primary;
+      }
+    }
+
+  }
+}

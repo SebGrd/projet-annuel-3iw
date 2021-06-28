@@ -1,0 +1,26 @@
+body{
+  font-family: 'Roboto', sans-serif;
+  color: $dark;
+}
+
+a{
+  display: inline-block;
+  position: relative;
+  color: $primary;
+  text-decoration: none;
+  &:before{
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    background: $primary;
+    pointer-events: none;
+  }
+  &:hover{
+    &:before{
+      height: 2px;
+    }
+  }
+}

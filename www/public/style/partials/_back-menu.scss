@@ -1,0 +1,60 @@
+.menu{
+  position: relative;
+  width: $menu-width;
+  background: $light;
+  height: 100vh;
+  padding-top: $header-padding;
+  &__section{
+    margin-top: 70px;
+    padding-left: 25px;
+    &:first-child{
+      margin-top: 35px;
+    }
+    &__title{
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 13px;
+    }
+    &__list{
+      list-style: none;
+      padding: 0;
+      &__item{
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        &__link{
+          display: flex;
+          align-items: center;
+          color: $dark;
+          text-decoration: none;
+          &:hover{
+            color: $primary;
+            svg{
+              fill: $primary;
+            }
+          }
+          &:before{
+            display: none;
+          }
+        }
+        &__icon{
+          margin-right: 25px;
+          svg{
+            width: 30px;
+            height: 30px;
+            fill: $dark;
+          }
+        }
+        &__text{
+          font-size: 18px;
+          font-weight: 500;
+        }
+      }
+    }
+    &--bottom{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
