@@ -5,8 +5,7 @@
             <section class="auth__section">
                 <div class="auth__section__form">
                     <h2>Se connecter</h2>
-                    <?php $_FB::render($form); ?>
-                                    
+
                     <?php if (isset($errors)): ?>
                         <ul class="auth__section__form__list">
                             <?php foreach ($errors as $error): ?>
@@ -16,9 +15,12 @@
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>
+                    <?php $_FB::render($form); ?>
 
-                    <a href="/register" class="auth__section__form__link">S'inscrire</a>
-                    <a href="/forgot-password" class="auth__section__form__link">Mot de passe oublié</a>
+                    <div class="auth__section__form__links">
+                        <a href="/register" class="auth__section__form__links__link">S'inscrire</a>
+                        <a href="/forgot-password" class="auth__section__form__links__link">Mot de passe oublié</a>
+                    </div>
                 </div>
             </section>
         </div>

@@ -120,7 +120,7 @@ class Security {
 			header("location:/");
 		}
 		$user = new User();
-		$view = new View('forgotPassword');
+		$view = new View('forgotPassword', 'blank');
 
 		$formResetPassword = $user->formResetPassword();
 		$formNewPassword = $user->formNewPassword();
