@@ -12,7 +12,9 @@
 <body>
 <header class="header" id="header">
     <section class="header__title">
-        <h1>Dashboard</h1>
+        <a href="/admin">
+            <h1>Dashboard</h1>
+        </a>
     </section>
     <section class="header__search">
         <div class="header__search__input">
@@ -52,10 +54,10 @@
             <ul class="menu__section__list">
                 <li class="menu__section__list__item">
                     <a href="" class="menu__section__list__item__link">
-                                 <span class="menu__section__list__item__icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path
-            d="M0 0h24v24H0z" fill="none"/><path
-            d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>                </span>
+                        <span class="menu__section__list__item__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px">
+                                <path d="M0 0h24v24H0z" fill="none"/><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>
+                        </span>
                         <span class="menu__section__list__item__text">Pages</span>
                     </a>
                 </li>
@@ -70,7 +72,7 @@
                     </a>
                 </li>
                 <li class="menu__section__list__item">
-                    <a href="" class="menu__section__list__item__link">
+                    <a href="/admin/menus" class="menu__section__list__item__link">
                               <span class="menu__section__list__item__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path
                                 d="M0 0h24v24H0z" fill="none"/><path
@@ -133,7 +135,7 @@
     </aside>
     <main>
         <?php include $this->view ;?>
-        <?php var_dump($_SESSION['userStore']);?>
+        <!-- <?php var_dump($_SESSION['userStore']);?> -->
     </main>
 </div>
 </body>

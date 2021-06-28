@@ -27,3 +27,8 @@
   controller: Admin
   action: default
   access: user;admin
+
+/admin/menus:
+  controller: Admin
+  action: menus
+  access: user;admin

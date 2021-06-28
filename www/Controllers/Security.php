@@ -13,7 +13,7 @@ class Security {
 
 	public function login() {
 		$constantMaker = new ConstantMaker();
-        if (Secu::isConnected()) {
+		if (Secu::isConnected()) {
 			header("location:/");
 		}
 		$user = new User();
