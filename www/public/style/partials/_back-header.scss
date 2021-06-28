@@ -1,0 +1,104 @@
+.header{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: $primary;
+  border-radius: 13px;
+  color: $white;
+  z-index: 5;
+  box-shadow: 0px 0px 13px 0px $primary;
+  &__title{
+    width: $menu-width;
+    h1{
+      color: $white;
+      font-weight: 500;
+      font-size: 28px;
+      margin: 0;
+    }
+  }
+  &__search{
+    flex: 1;
+    &__input{
+      display: inline-flex;
+      align-items: center;
+      border-bottom: 1px solid $white;
+      &__icon{
+        width: 24px;
+        height: 24px;
+      }
+      &__input{
+        background-color: transparent;
+        border: none;
+        width: 320px;
+        outline: none;
+        color: $white;
+        font-size: 18px;
+        &::placeholder{
+          color: $white;
+          opacity: 0.4;
+          font-size: 14px;
+          font-family: "Roboto", sans-serif;
+        }
+      }
+    }
+  }
+  &__menu{
+    &__list{
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      &__item{
+        display: flex;
+        align-items: center;
+        &--notifications{
+          &__button{
+            background: transparent;
+            border: none;
+            width: 25px;
+            height: 25px;
+            padding: 0;
+            cursor: pointer;
+            &__icon{
+              width: 25px;
+              height: 25px;
+            }
+          }
+        }
+        &--separator{
+          position: relative;
+          margin: 0 20px;
+          &:after{
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 1px;
+            height: 24px;
+            background: $white;
+            transform: translateY(-50%);
+          }
+        }
+        &--profile{
+          &__name{
+            font-size: 18px;
+            margin-right: 20px;
+          }
+          &__picture{
+            margin: 0;
+            img{
+              border-radius: 50%;
+              width: 50px;
+              height: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

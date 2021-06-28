@@ -4,7 +4,9 @@
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<meta name='description' content='page description'>
-	<title>Front template</title>
+    <link rel="stylesheet" href="/public/style/boostrip.css">
+    <link rel="stylesheet" href="/public/style/style.css">
+    <title>Front template</title>
 </head>
 <body>
 	<header>

@@ -153,8 +153,8 @@ class User extends Database {
 				'method'=>'POST',
 				'action'=>'',
 				'id'=>'form_register',
-				'class'=>'form_builder',
-				'submit'=>'Register'
+				'class'=>'form',
+				'submit'=>"S'inscrire"
 			],
 			'inputs'=>[
 				'firstname'=>[ 
@@ -236,11 +236,11 @@ class User extends Database {
 				'method'=>'POST',
 				'action'=>'',
 				'id'=>'form_login',
-				'class'=>'form_builder',
+				'class'=>'form',
 				'submit'=>'Se connecter'
 			],
 			'inputs'=>[
-				'email'=>[ 
+				'email'=>[
 					'type'=>'email',
 					'label'=>'Votre email',
 					'minLength'=>8,

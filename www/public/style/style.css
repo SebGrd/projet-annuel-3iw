@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+body {
+  font-family: "Roboto", sans-serif;
+  color: #313131;
+}
+
+a {
+  display: inline-block;
+  position: relative;
+  color: #001F8C;
+  text-decoration: none;
+}
+a:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  background: #001F8C;
+  pointer-events: none;
+}
+a:hover:before {
+  height: 2px;
+}
+
+.form__field {
+  margin-bottom: 1rem;
+}
+.form__field__label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+.form__field__input {
+  padding: 0.3rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #bbbaba;
+  transition: border-color 175ms ease-in-out;
+}
+.form__field__input:active, .form__field__input:focus {
+  border-color: #001F8C;
+  outline: #001F8C;
+}
+
+.auth__section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.auth__section__form {
+  margin-bottom: 16rem;
+  width: 350px;
+}
+.auth__section__form__list {
+  padding: 1rem;
+  max-width: 340px;
+  font-size: 0.8rem;
+}
+.auth__section__form__link {
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #001F8C;
+  border-radius: 13px;
+  color: #FFFFFF;
+  z-index: 5;
+  box-shadow: 0px 0px 13px 0px #001F8C;
+}
+.header__title {
+  width: 390px;
+}
+.header__title h1 {
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 28px;
+  margin: 0;
+}
+.header__search {
+  flex: 1;
+}
+.header__search__input {
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 1px solid #FFFFFF;
+}
+.header__search__input__icon {
+  width: 24px;
+  height: 24px;
+}
+.header__search__input__input {
+  background-color: transparent;
+  border: none;
+  width: 320px;
+  outline: none;
+  color: #FFFFFF;
+  font-size: 18px;
+}
+.header__search__input__input::placeholder {
+  color: #FFFFFF;
+  opacity: 0.4;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+}
+.header__menu__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.header__menu__list__item {
+  display: flex;
+  align-items: center;
+}
+.header__menu__list__item--notifications__button {
+  background: transparent;
+  border: none;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  cursor: pointer;
+}
+.header__menu__list__item--notifications__button__icon {
+  width: 25px;
+  height: 25px;
+}
+.header__menu__list__item--separator {
+  position: relative;
+  margin: 0 20px;
+}
+.header__menu__list__item--separator:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 1px;
+  height: 24px;
+  background: #FFFFFF;
+  transform: translateY(-50%);
+}
+.header__menu__list__item--profile__name {
+  font-size: 18px;
+  margin-right: 20px;
+}
+.header__menu__list__item--profile__picture {
+  margin: 0;
+}
+.header__menu__list__item--profile__picture img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.menu {
+  position: relative;
+  width: 390px;
+  background: #F3F6F6;
+  height: 100vh;
+  padding-top: 84px;
+}
+.menu__section {
+  margin-top: 70px;
+  padding-left: 25px;
+}
+.menu__section:first-child {
+  margin-top: 35px;
+}
+.menu__section__title {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 13px;
+}
+.menu__section__list {
+  list-style: none;
+  padding: 0;
+}
+.menu__section__list__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.menu__section__list__item__link {
+  display: flex;
+  align-items: center;
+  color: #313131;
+  text-decoration: none;
+}
+.menu__section__list__item__link:hover {
+  color: #001F8C;
+}
+.menu__section__list__item__link:hover svg {
+  fill: #001F8C;
+}
+.menu__section__list__item__link:before {
+  display: none;
+}
+.menu__section__list__item__icon {
+  margin-right: 25px;
+}
+.menu__section__list__item__icon svg {
+  width: 30px;
+  height: 30px;
+  fill: #313131;
+}
+.menu__section__list__item__text {
+  font-size: 18px;
+  font-weight: 500;
+}
+.menu__section--bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.page-wrapper {
+  display: flex;
+}
+.page-wrapper main {
+  padding-top: 84px;
+  flex: 1;
+}
+
+/*# sourceMappingURL=style.css.map */

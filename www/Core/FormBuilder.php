@@ -11,22 +11,25 @@ class FormBuilder {
 			action='".($form["config"]["action"]??"")."'>";
 
 		foreach ($form["inputs"] as $name => $configInput) {
-			$html .="<label for='".($configInput["id"]??"")."'>".($configInput["label"]??"")." </label>";
+		    $html .= "<div class='form__field'>";
+			$html .="<label class='form__field__label' for='".($configInput["id"]??"")."'>".($configInput["label"]??"")." </label>";
 
 			if($configInput["type"] == "select") {
 				$html .= self::renderSelect($name, $configInput);
 			} else {
 				$html .= self::renderInput($name, $configInput);
 			}
+			$html .= "</div>";
 		}
 
-		$html .= "<input type='submit' value=\"".($form["config"]["submit"]??"Valider")."\">";
+		$html .= "<input class='btn btn-primary' type='submit' value=\"".($form["config"]["submit"]??"Valider")."\">";
 		$html .= '</form>';
 		echo $html;
 	}
 
 	public static function renderInput($name, $configInput) {
 		return "<input 
+		    class='form__field__input'
 			name='".$name."' 
 			type='".($configInput["type"]??"text")."'
 			id='".($configInput["id"]??"")."'
@@ -36,14 +39,16 @@ class FormBuilder {
 	}
 
 	public static function renderSelect($name, $configInput) {
-		$html = "<select name='".$name."' id='".($configInput["id"]??"")."'
+		$html = "<select 
+                    class='form__field__input'
+                    name='".$name."' id='".($configInput["id"]??"")."'
 					class='".($configInput["class"]??"")."'>";
 
 		foreach ($configInput["options"] as $key => $value) {
 			$html .= "<option value='".$key."'>".$value."</option>";
 		}
 
-		$html .= "</select><br>";
+		$html .= "</select>";
 		return $html;
 	}
 }

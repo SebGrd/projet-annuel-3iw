@@ -3,7 +3,7 @@
   action: default
 
 /admin:
-  controller: Security
+  controller: Admin
   action: default
 
 /register:

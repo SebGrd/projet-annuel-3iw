@@ -1,0 +1,32 @@
+$blue: #001F8C;
+$light-blue: #097289;
+$green: #4EA526;
+$red: #C61A1A;
+$white: #FFFFFF;
+$black: #000000;
+$gray-100: #F3F6F6;
+$gray-200: #F2F2F2;
+$gray-300: #bbbaba;
+
+$primary: $blue;
+$success: $green;
+$danger: $red;
+$light: $gray-100;
+$dark: #313131;
+$info: $light-blue;
+
+
+
+$colors: (
+        'primary': $blue,
+        'success': $success,
+        'danger': $danger,
+        'light': $gray-100,
+        'dark': $dark,
+        'info': $light-blue,
+);
+
+
+
+$menu-width: 390px;
+$header-padding: 84px;
