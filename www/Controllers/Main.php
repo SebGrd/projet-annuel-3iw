@@ -11,7 +11,7 @@ class Main {
 			$template = 'front';
 		}
 
-		$view = new View('home', $template ?? 'guest');
+		$view = new View('home', $template ?? 'front');
 		
 		$view->assign('username', 'toto');
 		$view->assign('age', 18);
