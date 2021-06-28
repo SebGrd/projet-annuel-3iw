@@ -1,0 +1,22 @@
+.auth{
+  &__section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    &__form{
+      margin-bottom: 16rem;
+      width: 350px;
+      &__list{
+        padding: 1rem;
+        max-width: 340px;
+        font-size: .8rem;
+      }
+      &__link{
+        display: inline-block;
+        margin: 1rem 0;
+      }
+    }
+  }
+}
