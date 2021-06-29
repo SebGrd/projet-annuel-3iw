@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Models\User;
+
 class Database {
 	private $pdo;
 	private $table;
@@ -24,17 +26,18 @@ class Database {
 	}
 
 	public function populate($arr) {
-		$obj = get_class($this)();
-
 		foreach ($arr as $key => $value) {
-			$obj->$key = $value;
+			if (!in_array($key, ['pdo', 'table'])) {
+				$setter = 'set'.ucwords($key);
+				$this->$setter($arr[$key]);
+			} else if ($key === 'updateAt') {
+				$setter = 'set'.ucwords($key);
+				$this->$setter(date('Y-m-d h:i:s'));
+			}
 		}
-
-		return $obj;
 	}
 
-	public function find($props = [], $order = [], $return_type_array = true) {
-		$result = [];
+	public function find($props = [], $order = [], $return_type_array = false) {
 		$whereClause = '';
 		$whereConditions = [];
 		
@@ -84,20 +87,15 @@ class Database {
 				implode(',:', array_keys($columns))
 				. ' );');
 
+			$query->execute($columns);
+
 		} else {
-			// TODO add UPDATE
+
+			$sql = 'UPDATE ' . strtolower($this->table) . ' SET ' . implode('=?,', array_keys($columns)) . '=? WHERE id=' . $this->getId();
+
+			$query = $this->pdo->prepare($sql)->execute(array_values($columns));
 		}
 
-		$query->execute($columns);
 	}
 
-	// public function select(array $cols) {
-	// 	var_dump(array_keys($cols));
-	// 	echo('colmns' . $cols);
-	// 	$query = $this->pdo->prepare('SELECT FROM ' . strtolower($this->table) . ' (' .
-	// 	implode(',', array_keys($cols))
-	// 	. ');');
-	// 	echo('qry' . $query);
-	// 	$query->execute($cols);
-	// }
 }

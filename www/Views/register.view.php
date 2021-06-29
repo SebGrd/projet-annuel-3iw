@@ -5,7 +5,6 @@
             <section class="auth__section">
                 <div class="auth__section__form">
                     <h2>S'inscrire</h2>
-                    <?php App\Core\FormBuilder::render($formRegister); ?>
                     <ul class="auth__section__form__list">
                         <?php if (isset($success)): ?>
                             <li style="color: green;">
@@ -20,10 +19,10 @@
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </ul>
+                    <?php App\Core\FormBuilder::render($form); ?>
                     <a href="/login" class="auth__section__form__link">Se connecter</a>
                 </div>
             </section>
         </div>
     </div>
 </main>
-

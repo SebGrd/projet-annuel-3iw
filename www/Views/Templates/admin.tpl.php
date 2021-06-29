@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <!-- <?= $_::render('style'); ?> -->
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='description' content='cms restaurant'>
     <link rel="stylesheet" href="/public/style/boostrip.css">
     <link rel="stylesheet" href="/public/style/style.css">
+    <script src="/public/script/script.js" defer></script>
+    <title>Dashboard</title>
 </head>
 <body>
 <header class="header" id="header">
     <section class="header__title">
-        <h1>Dashboard</h1>
+        <a href="/admin">
+            <h1>Dashboard</h1>
+        </a>
     </section>
     <section class="header__search">
         <div class="header__search__input">
@@ -34,9 +40,21 @@
             <li class="header__menu__list__item header__menu__list__item--separator "></li>
             <li class="header__menu__list__item header__menu__list__item--profile ">
                 <span class="header__menu__list__item--profile__name"><?= $_SESSION['userStore']->firstname ?></span>
-                <figure class="header__menu__list__item--profile__picture">
+                <figure class="header__menu__list__item--profile__picture" id="pp-button">
                     <img src="https://picsum.photos/100/100.jpg" alt="">
                 </figure>
+                <ul class="header__menu__popup-menu" id="pp-menu">
+                    <li class="header__menu__popup-menu__item">
+                        <a href="/admin/my-profile" class="header__menu__popup-menu__item__link">
+                            Mon profil
+                        </a>
+                    </li>
+                    <li class="header__menu__popup-menu__item">
+                        <a href="/logout" class="header__menu__popup-menu__item__link header__menu__popup-menu__item__link--danger">
+                            Déconnexion
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
 
@@ -45,14 +63,14 @@
 <div class="page-wrapper">
     <aside class="menu">
         <section class="menu__section">
-            <span class="menu__section__title">Content</span>
+            <span class="menu__section__title">Contenu</span>
             <ul class="menu__section__list">
                 <li class="menu__section__list__item">
                     <a href="" class="menu__section__list__item__link">
-                                 <span class="menu__section__list__item__icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path
-            d="M0 0h24v24H0z" fill="none"/><path
-            d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>                </span>
+                        <span class="menu__section__list__item__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px">
+                                <path d="M0 0h24v24H0z" fill="none"/><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>
+                        </span>
                         <span class="menu__section__list__item__text">Pages</span>
                     </a>
                 </li>
@@ -63,11 +81,11 @@
                                 d="M0 0h24v24H0z" fill="none"/><path
                                 d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-8-15.03-8-15.03 0h15.03zM1.02 17h15v2h-15z"/></svg>
                 </span>
-                        <span class="menu__section__list__item__text">Products</span>
+                        <span class="menu__section__list__item__text">Produits</span>
                     </a>
                 </li>
                 <li class="menu__section__list__item">
-                    <a href="" class="menu__section__list__item__link">
+                    <a href="/admin/menus" class="menu__section__list__item__link">
                               <span class="menu__section__list__item__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path
                                 d="M0 0h24v24H0z" fill="none"/><path
@@ -130,7 +148,7 @@
     </aside>
     <main>
         <?php include $this->view ;?>
-        <?php var_dump($_SESSION['userStore']);?>
+        <!-- <?php var_dump($_SESSION['userStore']);?> -->
     </main>
 </div>
 </body>

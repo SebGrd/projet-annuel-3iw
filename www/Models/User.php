@@ -10,10 +10,13 @@ class User extends Database {
 	protected $lastname;
 	protected $email;
 	protected $pwd;
+	protected $pwdResetToken;
 	protected $country = 'fr';
 	protected $role = 0;
 	protected $status = 0;
 	protected $isDeleted = 0;
+	protected $createdAt = null;
+	protected $updatedAt = null;
 
 	public function __construct(){
 		parent::__construct();
@@ -134,17 +137,59 @@ class User extends Database {
 	}
 
 	/**
-	 * @return int
+	 * @return string
 	 */
-	public function getRole(): int {
+	public function getRole(): string {
 		return $this->role;
 	}
 
 	/**
-	 * @param int $role
+	 * @param string $role
 	 */
-	public function setRole(int $role) {
+	public function setRole(string $role) {
 		$this->role = $role;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPwdResetToken(): string {
+		return $this->pwdResetToken;
+	}
+
+	/**
+	 * @param string $pwdResetToken
+	 */
+	public function setPwdResetToken(string $pwdResetToken) {
+		$this->pwdResetToken = $pwdResetToken;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCreatedAt(): string {
+		return $this->createdAt;
+	}
+
+	/**
+	 * @param string $createdAt
+	 */
+	public function setCreatedAt(string $createdAt) {
+		$this->createdAt = $createdAt;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getUpdatedAt(): string {
+		return $this->updatedAt;
+	}
+
+	/**
+	 * @param string $updatedAt
+	 */
+	public function setUpdatedAt(string $updatedAt) {
+		$this->updatedAt = $updatedAt;
 	}
 
 	public function formRegister() {
@@ -259,6 +304,65 @@ class User extends Database {
 					'class'=>'form_input',
 					'placeholder'=>'',
 					'error'=>'Votre mot de passe doit faire au minimum 8 caractères',
+					'required'=>true
+				]
+			]
+		];
+	}
+
+	public function formResetPassword() {
+		return [
+			'config'=>[
+				'method'=>'POST',
+				'action'=>'',
+				'id'=>'form_reset_password',
+				'class'=>'form_builder',
+				'submit'=>'Obtenir un nouveau mot de passe'
+			],
+			'inputs'=>[
+				'email'=>[ 
+					'type'=>'email',
+					'label'=>'Votre email',
+					'minLength'=>8,
+					'maxLength'=>320,
+					'id'=>'email',
+					'class'=>'form_input',
+					'placeholder'=>'',
+					'error'=>'Votre email doit faire entre 8 et 320 caractères',
+					'required'=>true
+				]
+			]
+		];
+	}
+
+	public function formNewPassword() {
+		return [
+			'config'=>[
+				'method'=>'POST',
+				'action'=>'',
+				'id'=>'formNewPassword',
+				'class'=>'form_builder',
+				'submit'=>'Enregistrer'
+			],
+			'inputs'=>[
+				'pwd'=>[
+					'type'=>'password',
+					'label'=>'Votre nouveau mot de passe',
+					'minLength'=>8,
+					'id'=>'pwd',
+					'class'=>'form_input',
+					'placeholder'=>'',
+					'error'=>'Votre mot de passe doit faire au minimum 8 caractères',
+					'required'=>true
+				],
+				'pwdConfirm'=>[
+					'type'=>'password',
+					'label'=>'Confirmation du mot de passe',
+					'confirm'=>'pwd',
+					'id'=>'pwdConfirm',
+					'class'=>'form_input',
+					'placeholder'=>'',
+					'error'=>'Votre mot de mot de passe de confirmation ne correspond pas',
 					'required'=>true
 				]
 			]

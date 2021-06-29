@@ -28,11 +28,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `gojs_user` (
   `id` int(11) NOT NULL,
-  `firstname` varchar(55) CHARACTER SET latin1 NOT NULL,
-  `lastname` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `email` varchar(320) CHARACTER SET latin1 NOT NULL,
-  `pwd` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `country` char(2) CHARACTER SET latin1 NOT NULL DEFAULT 'fr',
+  `firstname` varchar(55) CHARACTER SET utf8_general_ci NOT NULL,
+  `lastname` varchar(255) CHARACTER SET utf8_general_ci NOT NULL,
+  `email` varchar(320) CHARACTER SET utf8_general_ci NOT NULL,
+  `pwd` varchar(255) CHARACTER SET utf8_general_ci NOT NULL,
+  `pwdResetToken` varchar(255) CHARACTER SET utf8_general_ci NULL,
+  `country` char(2) CHARACTER SET utf8_general_ci NOT NULL DEFAULT 'fr',
   `role` tinyint(4) NOT NULL DEFAULT 0,
   `isDeleted` tinyint(1) NOT NULL DEFAULT 0,
   `status` tinyint(4) NOT NULL DEFAULT 0,
@@ -62,3 +63,13 @@ ALTER TABLE `gojs_user`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `gojs_menu` ( 
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) NOT NULL,
+  `description` VARCHAR(255) NULL,
+  `image` VARCHAR(255) NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NULL,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
