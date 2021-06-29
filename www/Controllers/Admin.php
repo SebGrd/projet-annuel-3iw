@@ -7,6 +7,7 @@ use App\Core\Helpers;
 use App\Core\FormValidator;
 use App\Models\Menu;
 use App\Core\ConstantMaker;
+use App\Models\Page;
 
 
 class Admin
@@ -51,5 +52,25 @@ class Admin
 		}
 
 		$view->assign('form', $form);
+    }
+
+    public function pages() {
+        $constantMaker = new ConstantMaker();
+        $view = new View('adminPages', 'admin');
+        $page = new Page();
+        $pageForm = $page->formCreatePage();
+        $view->assign('pageForm', $pageForm);
+        if ($_POST){
+            $errors = FormValidator::check($pageForm, $_POST);
+            if (empty($errors)) {
+                $view->assign('debug', $page);
+                $page->setTitle($_POST['title']);
+                $page->setHtml($_POST['html']);
+                $page->setImage($_POST['title']);
+                $page->save();
+            } else {
+                $view->assign('errors', $errors);
+            }
+        }
     }
 }
