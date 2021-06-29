@@ -2,6 +2,7 @@
 body {
   font-family: "Roboto", sans-serif;
   color: #313131;
+  font-size: 16px;
 }
 
 a {
@@ -65,7 +66,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 30px;
+  padding: 0.5rem 2rem;
   background: #001F8C;
   border-radius: 13px;
   color: #FFFFFF;
@@ -78,7 +79,7 @@ a {
 .header__title h1 {
   color: #FFFFFF;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 1.5rem;
   margin: 0;
 }
 .header__search {
@@ -147,7 +148,6 @@ a {
   transform: translateY(-50%);
 }
 .header__menu__list__item--profile__name {
-  font-size: 18px;
   margin-right: 20px;
 }
 .header__menu__list__item--profile__picture {
@@ -172,16 +172,26 @@ a {
   background: white;
   right: 0;
   top: 55px;
-  padding: 0.5rem 1rem;
+  padding: 0;
+  list-style: none;
   border: 1px solid #F2F2F2;
   border-radius: 8px;
   box-shadow: 2px 2px 6px -2px #bbbaba;
+  overflow: hidden;
 }
 .header__menu__popup-menu--active {
   display: block;
 }
 .header__menu__popup-menu__item {
-  margin-bottom: 0.2rem;
+  height: auto;
+}
+.header__menu__popup-menu__item__link {
+  display: block;
+  padding: 0.3rem 1rem;
+  width: 100%;
+}
+.header__menu__popup-menu__item__link:hover {
+  background: #F2F2F2;
 }
 .header__menu__popup-menu__item__link--danger {
   color: #C61A1A;
@@ -195,7 +205,7 @@ a {
   width: 390px;
   background: #F3F6F6;
   height: 100vh;
-  padding-top: 84px;
+  padding-top: 68px;
 }
 .menu__section {
   margin-top: 70px;
@@ -255,7 +265,7 @@ a {
   display: flex;
 }
 .page-wrapper main {
-  padding-top: 84px;
+  padding-top: 68px;
   flex: 1;
 }
 
