@@ -22,7 +22,7 @@ class FormValidator {
 				}
 			}
 		} else {
-			$errors[] = 'Hacking detected';
+			$errors[] = 'Erreur inconnue';
 		}
 
 		return $errors;

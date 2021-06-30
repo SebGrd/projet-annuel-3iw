@@ -11,7 +11,6 @@ class User extends Database {
 	protected $email;
 	protected $pwd;
 	protected $pwdResetToken = '';
-	protected $country = 'fr';
 	protected $role = 'user';
 	protected $status = 0;
 	protected $isDeleted = 0;
@@ -92,20 +91,6 @@ class User extends Database {
 	 */
 	public function setPwd($pwd) {
 		$this->pwd = $pwd;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getCountry(): string {
-		return $this->country;
-	}
-
-	/**
-	 * @param string $country
-	 */
-	public function setCountry(string $country) {
-		$this->country = $country;
 	}
 
 	/**
@@ -254,23 +239,6 @@ class User extends Database {
 					'placeholder'=>'',
 					'error'=>'Les mot de passe ne correspondent pas',
 					'required'=>true
-				],
-				'country'=>[ 
-					'type'=>'select',
-					'label'=>'Votre pays',
-					'options' => [ 
-						'fr'=>'France',
-						'en'=>'Royaume-Uni',
-						'ru'=>'Russie',
-						'pl'=>'Pologne',
-					],
-					'minLength'=>2,
-					'maxLength'=>2,
-					'id'=>'country',
-					'class'=>'form_input',
-					'placeholder'=>'Exemple: fr',
-					'error'=>'Votre pays doit faire 2 caractères',
-					'required'=>false
 				]
 			]
 		];

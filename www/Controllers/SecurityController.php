@@ -27,7 +27,7 @@ class SecurityController {
 		$form = $user->formLogin();
 
 		// When form is submitted
-		if (isset($_POST)) {
+		if (!empty($_POST)) {
 			$errors = FormValidator::check($form, $_POST);
 
 			if (empty($errors)) {
@@ -68,9 +68,9 @@ class SecurityController {
 					header("location:/");
 
 				} else if ($user->getIsDeleted()) { // Reject if user is deleted
-					$view->assign('errors', ['Account has been deleted']);
+					$view->assign('errors', ['Ce compte à été définitivement supprimé']);
 				} else { // Reject if email or password is wrong, we don't say which one is wrong for security purposes
-					$view->assign('errors', ['Email or password is incorrect']);
+					$view->assign('errors', ['L\'email et/ou le mot de passe sont incorrects']);
 				}
 			} else { // Assign formValidator Errors if set
 				$view->assign('errors', $errors);
@@ -90,7 +90,7 @@ class SecurityController {
 
 		$form = $user->formRegister();
 
-		if (isset($_POST)) {
+		if (!empty($_POST)) {
 			$errors = FormValidator::check($form, $_POST);
 
 			if (empty($errors)) {
@@ -104,7 +104,6 @@ class SecurityController {
 					$user->setFirstname($_POST['firstname']);
 					$user->setLastname($_POST['lastname']);
 					$user->setEmail($_POST['email']);
-					$user->setCountry($_POST['country']);
 					$user->setUpdatedAt(date('Y-m-d H:i:s'));
 					// Save to database
 					$user->save();
@@ -143,7 +142,7 @@ class SecurityController {
 		$formResetPassword = $user->formResetPassword();
 		$formNewPassword = $user->formNewPassword();
 		
-		if (isset($_POST) && empty($_GET)) {
+		if (!empty($_POST) && empty($_GET)) {
 			$errors = FormValidator::check($formResetPassword, $_POST);
 
 			if (empty($errors)) {

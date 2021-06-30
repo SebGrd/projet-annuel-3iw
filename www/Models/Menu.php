@@ -162,7 +162,8 @@ class Menu extends Database {
 					'class'=>'form_input',
 					'placeholder'=>'',
 					'error'=>'Image invalide',
-					'required'=>false
+					'required'=>false,
+					'value'=>$this->image
 				]
 			]
 		];
