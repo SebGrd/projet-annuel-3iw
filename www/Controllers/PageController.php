@@ -20,7 +20,7 @@ class PageController
         $page = new Page();
         $pageForm = $page->formCreatePage();
         $view->assign('pageForm', $pageForm);
-        if ($_POST){
+        if (isset($_POST)){
             $errors = FormValidator::check($pageForm, $_POST);
             if (empty($errors)) {
                 $page->setTitle($_POST['title']);
