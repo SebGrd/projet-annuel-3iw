@@ -89,6 +89,7 @@ class Security {
 					$user->setEmail($_POST['email']);
 					$user->setPwd($hashed_password);
 					$user->setCountry($_POST['country']);
+					$user->setUpdatedAt(date('Y-m-d H:i:s'));
 					$user->save();
 					$view->assign('success', "Your account has been created successfully ! \n You will automatically be redirected to the login page in 5 seconds.");
 					// TODO redirect not working
