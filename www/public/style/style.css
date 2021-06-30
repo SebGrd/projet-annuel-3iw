@@ -2,6 +2,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   color: #313131;
+  font-size: 16px;
 }
 
 a {
@@ -111,7 +112,7 @@ a {
 .header__title h1 {
   color: #FFFFFF;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 1.5rem;
   margin: 0;
 }
 
@@ -227,7 +228,6 @@ a {
 }
 
 .header__menu__list__item--profile__name {
-  font-size: 18px;
   margin-right: 20px;
 }
 
@@ -284,7 +284,7 @@ a {
   width: 390px;
   background: #F3F6F6;
   height: 100vh;
-  padding-top: 84px;
+  padding-top: 68px;
 }
 
 .menu__section {
