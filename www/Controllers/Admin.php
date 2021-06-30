@@ -18,10 +18,13 @@ class Admin
 
     public function menus() {
 		$constantMaker = new ConstantMaker();
-        $view = new View('editMenus', 'admin');
+        $view = new View('menus', 'admin');
 		$menu = new Menu();
 
         $form = $menu->formMenu();
+        $allMenus = $menu->findAll([], [], true);
+
+        $view->assign('menus', $allMenus);
 
         if (!empty($_POST)) {
 			$errors = FormValidator::check($form, $_POST);
@@ -30,6 +33,7 @@ class Admin
                 $title = htmlspecialchars(strip_tags(strtolower($_POST['title'])));
                 $description = htmlspecialchars(strip_tags(strtolower($_POST['description'])));
     
+
                 $menu->find(['title' => $title]);
     
                 if ($menu->getId()) {

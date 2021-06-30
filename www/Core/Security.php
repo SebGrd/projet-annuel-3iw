@@ -38,7 +38,7 @@ class Security {
 
 	public static function isAuthorized(array $access) {
 
-		$role = (!is_null($_SESSION['userStore']) ? get_object_vars($_SESSION['userStore'])['role'] : 'guest');
+		$role = (isset($_SESSION['userStore']) ? get_object_vars($_SESSION['userStore'])['role'] : 'guest');
 		
 		return in_array($role, $access);
 	}

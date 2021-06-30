@@ -1,0 +1,27 @@
+.table{
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 8px;
+  border-color: $primary;
+  border: 1px solid $gray-300;
+  outline: $primary;
+  & thead{
+    & th{
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+  }
+  & tbody{
+    & tr:nth-child(even){
+      background-color: #f7f7f7;
+    }& td{
+      font-size: 0.9rem;
+      margin-bottom: .2rem;
+      border: 1px solid #ddd;
+      padding: 8px;
+    }& tr:hover{
+      background-color:rgb(227, 227, 227);
+    }
+  }
+}

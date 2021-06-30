@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Models\User;
+use App\Models\Menu;
 
 class Database {
 	private $pdo;
@@ -43,6 +44,7 @@ class Database {
 		
 		$orderClause = '';
 		$orderConditions = [];
+		$class = "App\Models\\" . $this->getClassName(get_class($this));
 		
 		$query = "SELECT * FROM " . strtolower($this->table);
 
@@ -65,6 +67,42 @@ class Database {
 		$query = $this->pdo->query($query . $whereClause . (!empty($order) ? $orderClause : ''));
 		$query->execute();
 		$data = $query->fetch(\PDO::FETCH_ASSOC);
+
+		if ($data) {
+			return $return_type_array ? $data : $this->populate($data);
+		}
+		return false;
+	}
+
+	public function findAll($props = [], $order = [], $return_type_array = false) {
+		$whereClause = '';
+		$whereConditions = [];
+		
+		$orderClause = '';
+		$orderConditions = [];
+		$class = "App\Models\\" . $this->getClassName(get_class($this));
+		
+		$query = "SELECT * FROM " . strtolower($this->table);
+
+		if (!empty($props)) {
+			foreach ($props as $key => $value) {
+				$whereConditions[] = '`' . $key . '` = "' . $value . '"';
+			}
+			
+			$whereClause = ' WHERE ' . implode(' AND ', $whereConditions);
+		}
+		
+		if (!empty($order) or !is_null($order)) {
+			foreach ($order as $key => $value) {
+				$orderConditions[] = "$key " . strtoupper($value);
+			}
+			
+			$orderClause = ' ORDER BY ' . implode(', ', $orderConditions);
+		}
+		
+		$query = $this->pdo->query($query . $whereClause . (!empty($order) ? $orderClause : ''));
+		$query->execute();
+		$data = $query->fetchAll(\PDO::FETCH_CLASS, $class);
 
 		if ($data) {
 			return $return_type_array ? $data : $this->populate($data);
@@ -97,5 +135,10 @@ class Database {
 		}
 
 	}
+
+	public static function getClassName($table) {
+    $path = explode('\\', $table);
+    return array_pop($path);
+}
 
 }

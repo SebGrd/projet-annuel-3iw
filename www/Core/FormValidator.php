@@ -8,7 +8,7 @@ class FormValidator {
 
 		if (count($data) == count($form['inputs'])) {
 			foreach ($form['inputs'] as $name => $configInput) {
-				if (!$configInput['required'] && strlen($data[$name]) == 0) {
+				if (!$configInput['required'] && strlen($data[$name]) == '') {
 					continue;
 				}
 				if (!empty($configInput['minLength']) &&

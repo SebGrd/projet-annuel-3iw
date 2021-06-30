@@ -10,13 +10,13 @@ class User extends Database {
 	protected $lastname;
 	protected $email;
 	protected $pwd;
-	protected $pwdResetToken;
+	protected $pwdResetToken = '';
 	protected $country = 'fr';
-	protected $role = 0;
+	protected $role = 'user';
 	protected $status = 0;
 	protected $isDeleted = 0;
-	protected $createdAt = null;
-	protected $updatedAt = null;
+	protected $createdAt;
+	protected $updatedAt;
 
 	public function __construct(){
 		parent::__construct();
@@ -252,7 +252,7 @@ class User extends Database {
 					'id'=>'pwdConfirm',
 					'class'=>'form_input',
 					'placeholder'=>'',
-					'error'=>'Votre mot de mot de passe de confirmation ne correspond pas',
+					'error'=>'Les mot de passe ne correspondent pas',
 					'required'=>true
 				],
 				'country'=>[ 
@@ -269,7 +269,8 @@ class User extends Database {
 					'id'=>'country',
 					'class'=>'form_input',
 					'placeholder'=>'Exemple: fr',
-					'error'=>'Votre pays doit faire 2 caractères'
+					'error'=>'Votre pays doit faire 2 caractères',
+					'required'=>false
 				]
 			]
 		];
