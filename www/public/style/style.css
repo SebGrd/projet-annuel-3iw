@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+.d-none {
+  display: none;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   color: #313131;
@@ -359,6 +363,53 @@ a {
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+.page-builder__tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #bbbaba;
+  margin-bottom: 0.2rem;
+  border-radius: 8px;
+}
+.page-builder__tools__list {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+.page-builder__tools__list__item {
+  margin-right: 0.3rem;
+}
+.page-builder__tools__list__item--end {
+  align-self: flex-end;
+}
+.page-builder__tools__list__item__tool {
+  border: 1px solid #bbbaba;
+  background: #F2F2F2;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.page-builder__tools__list__item__tool:hover {
+  background: #bbbaba;
+}
+.page-builder__editor__wysiwyg {
+  width: 100%;
+  min-height: 300px;
+  border-radius: 8px;
+  border: 1px solid #bbbaba;
+  padding: 0.6rem;
+}
+.page-builder__editor__html {
+  border-radius: 8px;
+  border: 1px solid #bbbaba;
+  padding: 0.6rem;
+  width: 100%;
 }
 
 .page-wrapper {
