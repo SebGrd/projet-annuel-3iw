@@ -1,3 +1,12 @@
+table.datatable.dataTable{
+  thead{
+    th{
+      text-align: left;
+      padding: 10px 18px 10px 8px;
+    }
+  }
+}
+
 .table_container {
   background-color: var(--light-grey, #F2F2F2);
   border-radius: 8px;

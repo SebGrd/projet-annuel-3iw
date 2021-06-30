@@ -145,6 +145,14 @@ class Database {
 
 	}
 
+	public function getColumns() {
+	    $query = $this->pdo->prepare("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME=?");
+	    $query->bindValue(1, strtolower($this->table));
+	    $query->execute();
+	    $columns = $query->fetchAll(\PDO::FETCH_ASSOC);
+	    return array_map(function ($col) { return $col['COLUMN_NAME']; }, $columns);
+    }
+
 	public static function getClassName($table) {
     $path = explode('\\', $table);
     return array_pop($path);
