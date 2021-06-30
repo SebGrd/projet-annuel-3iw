@@ -27,7 +27,7 @@ class SecurityController {
 		$form = $user->formLogin();
 
 		// When form is submitted
-		if (!empty($_POST)) {
+		if (!isset($_POST)) {
 			$errors = FormValidator::check($form, $_POST);
 
 			if (empty($errors)) {
@@ -90,7 +90,7 @@ class SecurityController {
 
 		$form = $user->formRegister();
 
-		if (!empty($_POST)) {
+		if (!isset($_POST)) {
 			$errors = FormValidator::check($form, $_POST);
 
 			if (empty($errors)) {
@@ -143,7 +143,7 @@ class SecurityController {
 		$formResetPassword = $user->formResetPassword();
 		$formNewPassword = $user->formNewPassword();
 		
-		if (!empty($_POST) && empty($_GET)) {
+		if (!isset($_POST) && empty($_GET)) {
 			$errors = FormValidator::check($formResetPassword, $_POST);
 
 			if (empty($errors)) {

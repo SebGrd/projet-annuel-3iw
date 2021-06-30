@@ -3,8 +3,8 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Core\FormValidator;
-use App\Models\Menu;
 use App\Core\ConstantMaker;
+use App\Models\Page;
 
 class AdminController
 {

@@ -67,3 +67,14 @@
   controller: ProductController
   action: deleteProduct
   access: admin
+
+# PageController Routes
+/admin/pages:
+  controller: PageController
+  action: pages
+  access: admin
+
+/admin/pages/new:
+  controller: PageController
+  action: newPage
+  access: admin

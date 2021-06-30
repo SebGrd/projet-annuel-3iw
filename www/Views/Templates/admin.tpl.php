@@ -7,6 +7,8 @@
     <meta name='description' content='cms restaurant'>
     <link rel="stylesheet" href="/public/style/boostrip.css">
     <link rel="stylesheet" href="/public/style/style.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="/public/script/script.js" defer></script>
     <title>Dashboard</title>
 </head>
@@ -66,7 +68,7 @@
             <span class="menu__section__title">Contenu</span>
             <ul class="menu__section__list">
                 <li class="menu__section__list__item">
-                    <a href="" class="menu__section__list__item__link">
+                    <a href="/admin/pages" class="menu__section__list__item__link">
                         <span class="menu__section__list__item__icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px">
                                 <path d="M0 0h24v24H0z" fill="none"/><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>
