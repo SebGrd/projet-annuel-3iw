@@ -38,3 +38,8 @@
   controller: Admin
   action: pages
   access: user;admin
+
+/admin/pages/new:
+  controller: Admin
+  action: newPage
+  access: user;admin

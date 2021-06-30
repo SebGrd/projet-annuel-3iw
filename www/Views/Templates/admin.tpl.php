@@ -7,6 +7,8 @@
     <meta name='description' content='cms restaurant'>
     <link rel="stylesheet" href="/public/style/boostrip.css">
     <link rel="stylesheet" href="/public/style/style.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="/public/script/script.js" defer></script>
     <title>Dashboard</title>
 </head>
