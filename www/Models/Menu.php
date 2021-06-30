@@ -9,7 +9,7 @@ class Menu extends Database {
 	protected $title;
 	protected $description;
 	protected $image;
-	protected $active;
+	protected $active = 1;
 	protected $createdAt;
 	protected $updatedAt;
 
@@ -139,7 +139,8 @@ class Menu extends Database {
 					'id'=>'title',
 					'class'=>'form_input',
 					'error'=>'Le nom du menu doit faire entre 2 et 50 caractères',
-					'required'=>true
+					'required'=>true,
+					'value'=>$this->title
 				],
 				'description'=>[ 
 					'type'=>'text',
@@ -149,7 +150,8 @@ class Menu extends Database {
 					'id'=>'description',
 					'class'=>'form_input',
 					'error'=>'La description du menu doit faire entre 2 et 255 caractères',
-					'required'=>false
+					'required'=>false,
+					'value'=>$this->description
 				],
 				'image'=>[
 					'type'=>'text',

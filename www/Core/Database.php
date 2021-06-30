@@ -36,6 +36,7 @@ class Database {
 				$this->$setter(date('Y-m-d h:i:s'));
 			}
 		}
+		return $this;
 	}
 
 	public function find($props = [], $order = [], $return_type_array = false) {
@@ -44,7 +45,6 @@ class Database {
 		
 		$orderClause = '';
 		$orderConditions = [];
-		$class = "App\Models\\" . $this->getClassName(get_class($this));
 		
 		$query = "SELECT * FROM " . strtolower($this->table);
 
@@ -115,23 +115,32 @@ class Database {
 			get_object_vars($this),
 			get_class_vars(get_class())
 		);
+		$params = [];
+		// initialize a string with `fieldname` = :placeholder pairs
+		$setStr = "";
 
 		// Insert if $id is null else update
 		if (is_null($this->getId())) {
 			$query = $this->pdo->prepare('INSERT INTO ' . strtolower($this->table) . ' (' .
-				implode(',', array_keys($columns))
-				. ') 
-				VALUES ( :' .
-				implode(',:', array_keys($columns))
-				. ' );');
-
+				implode(',', array_keys($columns)) . ') VALUES ( :' .
+				implode(',:', array_keys($columns)) . ' ); ');
+			
 			$query->execute($columns);
 
 		} else {
+			$setStr = [];
+			// loop over source data array
+			foreach (array_keys($columns) as $key)
+			{
+				if (isset($_POST[$key]) && $key != "id")
+				{
+					$setStr []= "`$key` = :$key";
+					$params[$key] = $columns[$key];
+				}
+			}
 
-			$sql = 'UPDATE ' . strtolower($this->table) . ' SET ' . implode('=?,', array_keys($columns)) . '=? WHERE id=' . $this->getId();
-
-			$query = $this->pdo->prepare($sql)->execute(array_values($columns));
+			$params['id'] = $this->getId();
+			$ok = $this->pdo->prepare("UPDATE " . strtolower($this->table) . " SET ".implode(",", $setStr)." WHERE id = :id")->execute($params);
 		}
 
 	}
@@ -139,6 +148,29 @@ class Database {
 	public static function getClassName($table) {
     $path = explode('\\', $table);
     return array_pop($path);
-}
+	}
+
+	public function delete($props = []) {
+		$whereClause = '';
+		$whereConditions = [];
+		
+		$query = "DELETE FROM " . strtolower($this->table);
+
+		if (!empty($props)) {
+			foreach ($props as $key => $value) {
+				$whereConditions[] = '`' . $key . '` = "' . $value . '"';
+			}
+			
+			$whereClause = ' WHERE ' . implode(' AND ', $whereConditions);
+		}
+		
+		$query = $this->pdo->query($query . $whereClause);
+		$data = $query->execute();
+
+		if ($data) {
+			return $data;
+		}
+		return false;
+	}
 
 }
