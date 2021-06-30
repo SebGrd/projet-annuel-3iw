@@ -23,11 +23,13 @@ class Router {
 				$this->setAction($this->routes[$this->uri]['action']);
 				$this->setAccess($this->routes[$this->uri]['access']);
 			} else {
-				die("404: Route $uri not found");
+				header('location:/404');
+				// die("404: Route $uri not found");
 				// TODO render error view
 			}
 		} else {
-			die("Routes file {$this->routesPath} not found");
+			header('location:/404');
+			// die("Routes file {$this->routesPath} not found");
 			// TODO render error view
 		}
 	}

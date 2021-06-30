@@ -25,10 +25,10 @@
                     <input disabled type="checkbox" id="scales" name="scales" <?= $m->getActive() ? 'checked' : '' ?> />
                   </td>
                   <td class="dt_header-cell">
-                  <button class="" type="button">
+                  <button class="" type="button" onclick="window.location.href='/admin/menus/edit?id=<?= $m->getId()?>'">
                       Editer
                   </button>
-                  <button class="" type="button">
+                  <button class="" type="button" onclick="window.location.href='/admin/menus/delete?id=<?= $m->getId()?>'">
                       Supprimer
                   </button>
                   </td>

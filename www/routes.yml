@@ -1,34 +1,69 @@
+# MainController Routes
 /:
-  controller: Main
+  controller: MainController
   action: home
   access: guest;user;admin
 
+/404:
+  controller: MainController
+  action: notFound
+  access: guest;user;admin
+
+# SecurityController Routes
 /register:
-  controller: Security
+  controller: SecurityController
   action: register
   access: guest
 
 /login:
-  controller: Security
+  controller: SecurityController
   action: login
   access: guest
 
 /forgot-password:
-  controller: Security
+  controller: SecurityController
   action: resetPassword
   access: guest
 
 /logout:
-  controller: Security
+  controller: SecurityController
   action: logout
   access: user;admin
 
+# AdminController Routes
 /admin:
-  controller: Admin
+  controller: AdminController
   action: default
-  access: user;admin
+  access: admin
 
+# MenuController Routes
 /admin/menus:
-  controller: Admin
-  action: menus
-  access: user;admin
+  controller: MenuController
+  action: default
+  access: admin
+
+/admin/menus/edit:
+  controller: MenuController
+  action: editMenu
+  access: admin
+
+/admin/menus/delete:
+  controller: MenuController
+  action: deleteMenu
+  access: admin
+
+# ProductController Routes
+/admin/products:
+  controller: ProductController
+  action: default
+  access: admin
+
+/admin/products/edit:
+  controller: ProductController
+  action: editProduct
+  access: admin
+
+/admin/products/delete:
+  controller: ProductController
+  action: deleteProduct
+  access: admin
