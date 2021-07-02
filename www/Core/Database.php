@@ -26,6 +26,10 @@ class Database {
 		$this->table = DBPREFIXE . end($getCalledClassExploded);
 	}
 
+	public function getModelName() {
+        $getCalledClassExploded = explode('\\', get_called_class());
+	    return strtolower(end($getCalledClassExploded));
+    }
 	public function populate($arr) {
 		foreach ($arr as $key => $value) {
 			if (!in_array($key, ['pdo', 'table'])) {
