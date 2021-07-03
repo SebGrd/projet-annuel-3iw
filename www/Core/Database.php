@@ -26,6 +26,10 @@ class Database {
 		$this->table = DBPREFIXE . end($getCalledClassExploded);
 	}
 
+	public function getModelName() {
+        $getCalledClassExploded = explode('\\', get_called_class());
+	    return strtolower(end($getCalledClassExploded));
+    }
 	public function populate($arr) {
 		foreach ($arr as $key => $value) {
 			if (!in_array($key, ['pdo', 'table'])) {
@@ -144,6 +148,14 @@ class Database {
 		}
 
 	}
+
+	public function getColumns() {
+	    $query = $this->pdo->prepare("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME=?");
+	    $query->bindValue(1, strtolower($this->table));
+	    $query->execute();
+	    $columns = $query->fetchAll(\PDO::FETCH_ASSOC);
+	    return array_map(function ($col) { return $col['COLUMN_NAME']; }, $columns);
+    }
 
 	public static function getClassName($table) {
     $path = explode('\\', $table);

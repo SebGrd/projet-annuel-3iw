@@ -78,3 +78,8 @@
   controller: PageController
   action: newPage
   access: admin
+
+/admin/page:
+  controller: PageController
+  action: editPage
+  access: admin

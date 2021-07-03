@@ -5,10 +5,10 @@ namespace App\Models;
 use App\Core\Database;
 
 class Page extends Database {
-    private $id = null;
-    protected $title;
-    protected $image;
-    protected $html;
+    public $id = null;
+    public $title;
+    public $image;
+    public $html;
 
     public function __construct(){
         parent::__construct();

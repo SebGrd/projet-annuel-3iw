@@ -12,7 +12,7 @@ if (document.getElementById('page-builder')){
     quill.on('text-change', function() {
         document.getElementById('html').value = quill.root.innerHTML;
     });
-
 }
 
+$('.datatable').DataTable();
 
