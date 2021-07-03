@@ -34,4 +34,9 @@ class PageController
             }
         }
     }
+
+    public function editPage(){
+        $constantMaker = new ConstantMaker();
+        $view = new View('adminPages', 'admin');
+    }
 }
