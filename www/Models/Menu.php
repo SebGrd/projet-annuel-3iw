@@ -6,18 +6,16 @@ use App\Core\Database;
 
 class Menu extends Database {
 	private $id = null;
-	protected $title;
-	protected $description;
-	protected $image;
+	protected $title = '';
+	protected $description = '';
+	protected $image = '';
 	protected $active = 1;
-	protected $createdAt;
-	protected $updatedAt;
+	protected $createdAt = '';
+	protected $updatedAt = '';
 
 	public function __construct(){
 		parent::__construct();
-		if ($this->createdAt === null) {
-			$this->createdAt = date('Y-m-d H:i:s');
-		}
+		$this->setCreatedAt($this->createdAt);
 		$this->setUpdatedAt();
 	}
 
@@ -128,7 +126,8 @@ class Menu extends Database {
 				'action'=>'',
 				'id'=>'form_menu',
 				'class'=>'form',
-				'submit'=>"Enregistrer"
+				'submit'=>'Enregistrer',
+				'enctype'=>'multipart/form-data'
 			],
 			'inputs'=>[
 				'title'=>[ 
@@ -154,11 +153,10 @@ class Menu extends Database {
 					'value'=>$this->description
 				],
 				'image'=>[
-					'type'=>'text',
+					'type'=>'file',
 					'label'=>'Image du menu',
-					'minLength'=>8,
-					'maxLength'=>320,
-					'id'=>'image',
+					'id'=>'imageToUpload',
+					'name'=>'imageToUpload',
 					'class'=>'form_input',
 					'placeholder'=>'',
 					'error'=>'Image invalide',

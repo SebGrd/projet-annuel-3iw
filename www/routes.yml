@@ -58,6 +58,11 @@
   action: default
   access: admin
 
+/admin/products/new:
+  controller: ProductController
+  action: newProduct
+  access: admin
+
 /admin/products/edit:
   controller: ProductController
   action: editProduct

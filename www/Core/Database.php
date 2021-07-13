@@ -144,7 +144,7 @@ class Database {
 			}
 
 			$params['id'] = $this->getId();
-			$ok = $this->pdo->prepare("UPDATE " . strtolower($this->table) . " SET ".implode(",", $setStr)." WHERE id = :id")->execute($params);
+			$this->pdo->prepare("UPDATE " . strtolower($this->table) . " SET ".implode(",", $setStr)." WHERE id = :id")->execute($params);
 		}
 
 	}

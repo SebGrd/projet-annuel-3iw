@@ -8,7 +8,7 @@
           <tr class="dt_header">
               <th class="dt_header-cell" role="columnheader" scope="col">Nom</th>
               <th class="dt_header-cell" role="columnheader" scope="col">Description</th>
-              <th class="dt_header-cell" role="columnheader" scope="col">Catégories</th>
+              <th class="dt_header-cell" role="columnheader" scope="col">Image</th>
               <th class="dt_header-cell" role="columnheader" scope="col">Actif</th>
               <th class="dt_header-cell" role="columnheader" scope="col">Actions</th>
           </tr>
@@ -20,7 +20,9 @@
                 <tr class="dt_row">
                   <td class="dt_header-cell"><?= $m->getTitle(); ?></td>
                   <td class="dt_header-cell"><?= $m->getDescription(); ?></td>
-                  <td class="dt_header-cell"></td>
+                  <td class="dt_header-cell">
+                    <image src="<?= $m->getImage(); ?>" />
+                  </td>
                   <td class="dt_header-cell dt_header-cell--center">
                     <input disabled type="checkbox" id="scales" name="scales" <?= $m->getActive() ? 'checked' : '' ?> />
                   </td>
@@ -39,7 +41,8 @@
           </tbody>
       </table>
   </div>
-
+  <br>
+  <br>
   <div class="col-md-3">
     <?php if (isset($success)): ?>
       <li style="color: green;">

@@ -14,11 +14,13 @@ class User extends Database {
 	protected $role = 'user';
 	protected $status = 0;
 	protected $isDeleted = 0;
-	protected $createdAt;
-	protected $updatedAt;
+	protected $createdAt = '';
+	protected $updatedAt = '';
 
 	public function __construct(){
 		parent::__construct();
+		$this->setCreatedAt($this->createdAt);
+		$this->setUpdatedAt();
 	}
 
 	/**
@@ -159,8 +161,8 @@ class User extends Database {
 	/**
 	 * @param string $createdAt
 	 */
-	public function setCreatedAt(string $createdAt) {
-		$this->createdAt = $createdAt;
+	public function setCreatedAt(string $date) {
+		$date ? $this->createdAt = $date : $this->createdAt = date('Y-m-d H:i:s');
 	}
 
 	/**
@@ -173,8 +175,8 @@ class User extends Database {
 	/**
 	 * @param string $updatedAt
 	 */
-	public function setUpdatedAt(string $updatedAt) {
-		$this->updatedAt = $updatedAt;
+	public function setUpdatedAt() {
+		$this->updatedAt = date('Y-m-d H:i:s');
 	}
 
 	public function formRegister() {

@@ -3,50 +3,40 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Core\FormValidator;
-use App\Models\Menu;
-use App\Core\Helpers;
+use App\Models\Product;
 use App\Core\ConstantMaker;
 
-class MenuController
+class ProductController
 {
     public function default() {
 		$constantMaker = new ConstantMaker();
-        $view = new View('menus', 'admin');
-		$menu = new Menu();
+        $view = new View('adminProducts', 'admin');
+		$menu = new Product();
 
-        $form = $menu->formMenu();
+        $form = $menu->formProduct();
 
         if (!empty($_POST)) {
 			$errors = FormValidator::check($form, $_POST);
             
 			if (empty($errors)) {
-                $title = htmlspecialchars(strip_tags($_POST['title']));
+                $name = htmlspecialchars(strip_tags($_POST['name']));
                 $description = htmlspecialchars(strip_tags($_POST['description']));
     
-                $menu->find(['title' => $title]);
+                $menu->find(['name' => $name]);
     
                 if ($menu->getId()) {
-                    $view->assign('errors', ['Le menu ' . $title . ' existe déjà']);
+                    $view->assign('errors', ['Le produit ' . $name . ' existe déjà']);
                 } else {
-
-                    $image = Helpers::upload('menus', $_FILES["imageToUpload"]);
-
-                    if (isset($image['error'])) {
-                        $view->assign('errors', [$image['error']]);
-                    } else {
-                        // Create and save the menu
-                        $menu->setTitle($title);
-                        $menu->setDescription($description);
-                        $menu->setImage($image !== false ? $image : null);
-                        $menu->save();
-                        $view->assign('success', 'Le menu ' . $title . ' a été créé');
-                    }
+                    // Create menu
+                    $menu->setName($name);
+                    $menu->setDescription($description);
+                    $menu->save();
+                    $view->assign('success', 'Le produit ' . $name . ' a été créé');
                 }
             } else {
                 $view->assign('errors', $errors);
             }
 		}
-
 
         $allMenus = $menu->findAll([], [], true);
         $view->assign('menus', $allMenus);
@@ -54,12 +44,12 @@ class MenuController
 		$view->assign('form', $form);
     }
 
-    public function editMenu() {
+    public function editProduct() {
 		$constantMaker = new ConstantMaker();
         $view = new View('editMenu', 'admin');
-		$menu = new Menu();
+		$menu = new Product();
 
-        if (empty($_GET['id'])) {
+        if ( empty( $_GET['id'] ) ) {
             // Redirect to page 404 if query is malformed
             header('Location:/404');
             die;
