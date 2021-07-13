@@ -20,6 +20,6 @@
     <?php endif; ?>
 
     <?php App\Core\FormBuilder::render($form); ?>
-    <button type="button" onclick="window.location.href='/admin/menus'">Retour</button>
+    <a type="button" href='/admin/menus'>Retour</a>
   </div>
 </main>

@@ -8,7 +8,8 @@ class FormBuilder {
 			method='".($form["config"]["method"]??"GET")."' 
 			id='".($form["config"]["id"]??"")."' 
 			class='".($form["config"]["class"]??"")."' 
-			action='".($form["config"]["action"]??"")."'>";
+			action='".($form["config"]["action"]??"")."'
+			enctype='".($form["config"]["enctype"]??"")."'>";
 
 		foreach ($form["inputs"] as $name => $configInput) {
 		    $html .= "<div class='form__field'>";
@@ -30,7 +31,7 @@ class FormBuilder {
 	public static function renderInput($name, $configInput) {
 		return "<input 
 			class='form__field__input'
-			name='".$name."' 
+			name='".($configInput["name"]??$name)."' 
 			type='".($configInput["type"]??"text")."'
 			id='".($configInput["id"]??"")."'
 			class='".($configInput["class"]??"")."'
