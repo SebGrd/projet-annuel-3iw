@@ -35,52 +35,78 @@ class Helpers {
 
 	/**
 	 * @param string $directory, name of the directory to store the files, if none given it will be uploaded to the root of uploads
-	 * @param array $file, pass in the file. ex: $_FILES["input name"]
-	 * @param array $allowTypes, pass in the authorized allowTypes. ex: ['pdf', 'png', 'jpeg'], by default it's 'jpg','png','jpeg','gif'
+	 * @param array $allowTypes, pass in the authorized allowTypes. ex: ['jpg' => 'image/jpeg'], by default it's 'jpg','png','jpeg','gif'
 	 * @return int|string|bool returns the user_id if upload is successfull, returns a string message if there is an error, returns false if no file is passed in.
 	 */
-	public static function upload(string $directory = '', array $file, array $allowTypes = ['jpg','png','jpeg','gif']) {
-		$statusMsg = '';
+	public static function upload(string $directory = '', array $allowTypes = ['jpg' => 'image/jpeg', 'png' => 'image/png', 'gif' => 'image/gif']) {
 		$path = 'uploads/' . $directory . '/';
 		if (!file_exists($path)) {
 			mkdir($path, 0777, true);
 		}
 		$targetDir = $path;
-		$fileName = basename($file["name"]);
+		$fileName = basename($_FILES['upfile']['tmp_name']);
 		$targetFilePath = $targetDir . date("Y-m-d_H:i:s") . "_" . $fileName;
-		$fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
-		if(!empty($file["name"])){
-			$image = new Image();
-
-			if (!file_exists($targetFilePath)) {
-				if(in_array($fileType, $allowTypes)){
-					// Upload file to the server
-					if(move_uploaded_file($file["tmp_name"], $targetFilePath)){
-						// Insert image file name with path into database
-						$image->setFile_name($targetFilePath);
-						$image->setUser_id(get_object_vars($_SESSION['userStore'])['id']);
-						$image->save();
-
-						$image->find(['file_name' => $targetFilePath]);
-
-						if($image->getId() !== null){
-							$statusMsg = "Le fichier <b>".$fileName. "</b> a bien été envoyé.";
-							return $image->getId();
-						}else{
-							$statusMsg = "Erreur lors de l'envoi du fichier, merci de réessayer.";
-						} 
-					}else{
-						$statusMsg = "Désolé, une erreur s'est produite lors du téléchargement du fichier.";
-					}
-				}else{
-					$statusMsg = "Seuls les formats suivant sont autorisés : " . implode(', ', $allowTypes);
-				}
-			}else{
-				$statusMsg = "Le fichier <b>".$fileName. "</b> existe déjà.";
-			}
-			return ['error' => $statusMsg];
+		// Undefined | Multiple Files | $_FILES Corruption Attack
+		// If this request falls under any of them, treat it invalid.
+		if (!isset($_FILES['upfile']['error']) ||
+			is_array($_FILES['upfile']['error'])
+		) {
+			return ['error' => "Paramètres invalides."];
 		}
-		return false;
+	
+		// Check $_FILES['upfile']['error'] value.
+		switch ($_FILES['upfile']['error']) {
+			case UPLOAD_ERR_OK:
+				break;
+			case UPLOAD_ERR_NO_FILE:
+				return ['error' => "Aucun fichier envoyé."];
+			case UPLOAD_ERR_INI_SIZE:
+			case UPLOAD_ERR_FORM_SIZE:
+				return ['error' => "Taille maximale dépassée."];
+			default:
+			return ['error' => "Erreur inconnue."];
+		}
+	
+		// You should also check filesize here.
+		if ($_FILES['upfile']['size'] > 1000000) {
+			return ['error' => "Taille maximale dépassée."];
+		}
+	
+		// DO NOT TRUST $_FILES['upfile']['mime'] VALUE !!
+		// Check MIME Type by yourself.
+		$finfo = new \finfo(FILEINFO_MIME_TYPE);
+		if (false === $ext = array_search(
+			$finfo->file($_FILES['upfile']['tmp_name']),
+			$allowTypes,
+			true )) {
+			return ['error' => "Format du fichier invalide."];
+		}
+	
+		// You should name it uniquely.
+		// DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
+		// On this example, obtain safe unique name from its binary data.
+		if (!move_uploaded_file(
+			$_FILES['upfile']['tmp_name'],
+			sprintf('./uploads/' . $directory . '/%s.%s',
+				date("Y-m-d_H:i:s") . "_" . $fileName,
+				$ext
+			)
+		)) {
+			return ['error' => "Désolé, une erreur s'est produite lors du téléchargement du fichier."];
+		}
+		$image = new Image();
+		// Insert image file name with path into database
+		$image->setFile_name($targetFilePath);
+		$image->setUser_id(get_object_vars($_SESSION['userStore'])['id']);
+		$image->save();
+
+		$image->find(['file_name' => $targetFilePath]);
+
+		if($image->getId() !== null){
+			return $image->getId();
+		}else{
+			return ['error' => "Erreur lors de l'envoi du fichier, merci de réessayer."];
+		}
 	}
 }

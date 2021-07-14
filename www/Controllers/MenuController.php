@@ -29,7 +29,7 @@ class MenuController
                     $view->assign('errors', ['Le menu ' . $title . ' existe déjà']);
                 } else {
 
-                    $image = Helpers::upload('menus', $_FILES["imageToUpload"]);
+                    $image = Helpers::upload('menus');
 
                     if (isset($image['error'])) {
                         $view->assign('errors', [$image['error']]);
