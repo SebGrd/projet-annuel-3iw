@@ -155,8 +155,8 @@ class Menu extends Database {
 				'image'=>[
 					'type'=>'file',
 					'label'=>'Image du menu',
-					'id'=>'imageToUpload',
-					'name'=>'imageToUpload',
+					'id'=>'upfile',
+					'name'=>'upfile',
 					'class'=>'form_input',
 					'placeholder'=>'',
 					'error'=>'Image invalide',
