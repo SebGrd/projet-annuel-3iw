@@ -87,7 +87,6 @@ class MenuController
             $title = htmlspecialchars(strip_tags($_POST['title']));
             $description = htmlspecialchars(strip_tags($_POST['description']));
 
-            // Update menu
             $image = Helpers::upload('menus');
 
             if (isset($image['error'])) {
