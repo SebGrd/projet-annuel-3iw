@@ -136,7 +136,7 @@ class Database {
 			// loop over source data array
 			foreach (array_keys($columns) as $key)
 			{
-				if (isset($_POST[$key]) && $key != "id")
+				if ($key != "id")
 				{
 					$setStr []= "`$key` = :$key";
 					$params[$key] = $columns[$key];

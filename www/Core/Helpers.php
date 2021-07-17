@@ -49,9 +49,11 @@ class Helpers {
 
 		// Undefined | Multiple Files | $_FILES Corruption Attack
 		// If this request falls under any of them, treat it invalid.
-		if (!isset($_FILES['upfile']['error']) ||
-			is_array($_FILES['upfile']['error'])
-		) {
+		if (!isset($_FILES['upfile']['error'])) {
+            return false;
+        }
+
+		if (is_array($_FILES['upfile']['error'])) {
 			return ['error' => "Paramètres invalides."];
 		}
 	
@@ -60,7 +62,7 @@ class Helpers {
 			case UPLOAD_ERR_OK:
 				break;
 			case UPLOAD_ERR_NO_FILE:
-				return ['error' => "Aucun fichier envoyé."];
+				return false;
 			case UPLOAD_ERR_INI_SIZE:
 			case UPLOAD_ERR_FORM_SIZE:
 				return ['error' => "Taille maximale dépassée."];

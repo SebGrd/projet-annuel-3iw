@@ -46,8 +46,8 @@ class ProductController
 
     public function editProduct() {
 		$constantMaker = new ConstantMaker();
-        $view = new View('editMenu', 'admin');
-		$menu = new Product();
+        $view = new View('editProduct', 'admin');
+		$product = new Product();
 
         if ( empty( $_GET['id'] ) ) {
             // Redirect to page 404 if query is malformed
@@ -59,14 +59,14 @@ class ProductController
 
         // Check if id is an integer
         if (ctype_digit($id)) {
-            $menu = $menu->find(['id' => $id]);
+            $product = $product->find(['id' => $id]);
         } else {
             // Redirect to page 404 if query is malformed
             header('Location:/404');
             die;
         }
 
-        if (!$menu) {
+        if (!$product) {
             // Redirect to page 404 if menu is not found
             header('Location:/404');
             die;
@@ -77,13 +77,13 @@ class ProductController
             $title = htmlspecialchars(strip_tags($_POST['title']));
             $description = htmlspecialchars(strip_tags($_POST['description']));
             // Update menu
-            $menu->setTitle($title);
-            $menu->setDescription($description);
+            $product->setTitle($title);
+            $product->setDescription($description);
         }
 
         $form = $menu->formMenu();
         // Assign menu object to the view
-        $view->assign('menu', $menu);
+        $view->assign('product', $menu);
         // Assign the form to the view
         $view->assign('form', $form);
 
@@ -92,16 +92,16 @@ class ProductController
             
 			if (empty($errors)) {
                 $menu->save();
-                $view->assign('success', 'Le menu ' . $title . ' a bien été mis à jour');
+                $view->assign('success', 'Le produit ' . $title . ' a bien été mis à jour');
             } else {
                 $view->assign('errors', $errors);
             }
 		}
     }
 
-    public function deleteMenu() {
+    public function deleteProduct() {
 		$constantMaker = new ConstantMaker();
-		$menu = new Menu();
+		$product = new Product();
 
         if ( empty( $_GET['id'] ) ) {
             // Redirect to page 404 if query is malformed
@@ -113,18 +113,18 @@ class ProductController
 
         // Check if id is an integer
         if (ctype_digit($id)) {
-            $menu = $menu->delete(['id' => $id]);
+            $product = $product->delete(['id' => $id]);
         } else {
             // Redirect to page 404 if query is malformed
             header('Location:/404');
             die;
         }
 
-        if (!$menu) {
-            // Redirect to page 404 if menu is not found
+        if (!$product) {
+            // Redirect to page 404 if product is not found
             header('Location:/404');
             die;
         }
-        header('Location:/admin/menus');
+        header('Location:/admin/products');
     }
 }

@@ -7,7 +7,7 @@ use App\Core\Database;
 class Image extends Database {
 	private $id = null;
 	protected $file_name = '';
-	protected $user_id = '';
+	protected $user_id = null;
 	protected $uploaded_on = '';
 
 	public function __construct(){

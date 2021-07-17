@@ -86,9 +86,17 @@ class MenuController
         
             $title = htmlspecialchars(strip_tags($_POST['title']));
             $description = htmlspecialchars(strip_tags($_POST['description']));
+
             // Update menu
-            $menu->setTitle($title);
-            $menu->setDescription($description);
+            $image = Helpers::upload('menus');
+
+            if (isset($image['error'])) {
+                $view->assign('errors', [$image['error']]);
+            } else {
+                $menu->setTitle($title);
+                $menu->setDescription($description);
+                $menu->setImage($image !== false ? $image : null);
+            }
         }
 
         $form = $menu->formMenu();
