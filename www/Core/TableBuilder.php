@@ -59,6 +59,10 @@ class TableBuilder
                         } else {
                             $html .= '<td></td>';
                         }
+                    } else if($title->getName() === 'createdAt' || $title->getName() === 'updatedAt') {
+                        $time = strtotime($row->{'get' . ucfirst($title->getName())}());
+                        $date = date('d/m/Y H:i', $time);
+                        $html .= '<td>' . $date . '</td>';
                     } else {
                         $html .= '<td>' . $row->{'get' . ucfirst($title->getName())}() . '</td>';
                     }
