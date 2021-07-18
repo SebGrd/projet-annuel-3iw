@@ -24,7 +24,7 @@ class Security {
 	public static function createJwt(array $data) {
 		$jwt = new JwtHandler();
 		$token = $jwt->_jwt_encode_data(
-			'http://localhost/',
+			$_SERVER['HTTP_HOST'],
 			$data
 		);
 		return $token;

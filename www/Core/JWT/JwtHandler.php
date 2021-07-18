@@ -30,8 +30,8 @@ class JwtHandler {
     date_default_timezone_set('Europe/Paris');
     $this->issuedAt = time();
     
-    // Token Validity (3600 second = 1hr) total 12h
-    $this->expire = $this->issuedAt + (3600 * 12);
+    // Token Validity (3600 second = 1hr) total 24h
+    $this->expire = $this->issuedAt + (3600 * 24);
 
     // Set your secret or signature
     $this->jwt_secrect = "Groupe69_Secret_Signature";  

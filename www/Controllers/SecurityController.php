@@ -108,11 +108,11 @@ class SecurityController {
 					$user->setUpdatedAt(date('Y-m-d H:i:s'));
 					// Save to database
 					$user->save();
-					$view->assign('success', "Your account has been created successfully ! \n You will automatically be redirected to the login page in 5 seconds.");
+					$view->assign('success', "Votre compte a été créé avec succès ! \n Vous pouvez désormais vous connecter.");
 
-					header("location:login"); // Todo redirect after 5 seconds
+					header( "Refresh:5; url=http://" . $_SERVER['HTTP_HOST'] . "/login", true, 303);
 				} else { // Reject if email is registered
-					$view->assign('errors', ['error' => 'Email is already registered']);
+					$view->assign('errors', ['error' => 'Cet email est déjà inscrit']);
 				}
 			} else {
 				$view->assign('errors', $errors);
@@ -127,7 +127,6 @@ class SecurityController {
 			unset($_COOKIE['token']); 
 			setcookie('token', null, -1, '/');
 		}
-		
 		header("location:login");
 	}
 
@@ -150,7 +149,12 @@ class SecurityController {
 				$user->find(['email' => $_POST['email']]);
 
 				if ($user->getId()) {
-					$passwordResetToken = bin2hex(random_bytes(20));
+					$token = array(
+						"data" => array(
+							"email" => $user->getEmail()
+						)
+				 	);
+					$passwordResetToken = Security::createJwt($token);
 					$user->setPwdResetToken($passwordResetToken);
 					$user->save();
 
@@ -167,7 +171,7 @@ class SecurityController {
 						$view->assign('success', "Un email viens de vous être envoyé, cliquez sur le lien dans l'email pour réinitialiser votre mot de passe. \n vous pouvez fermer cette page.");
 					}
 				} else {
-					// On envoie le même message pour eviter le brute force pour trouver des emails existant.
+					// On renvoie le même message pour eviter le brut force permettant de trouver des emails enregistré.
 					$view->assign('success', "Un email viens de vous être envoyé, cliquez sur le lien dans l'email pour réinitialiser votre mot de passe. \n vous pouvez fermer cette page.");
 				}
 			} else {
@@ -177,8 +181,10 @@ class SecurityController {
 
 		if (!empty($_GET)) {
 			$token = htmlspecialchars(stripslashes($_GET['token']));
-
-			$user->find(['pwdResetToken' => $token]);
+			$decoded_token = Security::decodeJwt($token);
+			if (is_object($decoded_token)) {
+				$user->find(['pwdResetToken' => $token]);
+			}
 
 			if ($user->getId()) {
 				if (!empty($_POST)) {
@@ -189,7 +195,8 @@ class SecurityController {
 						$user->setPwd($hashed_password);
 						$user->setPwdResetToken('');
 						$user->save();
-						$view->assign('success', "Votre nouveau mot de passe a bien été enregistré, vous pouvez maintenant vous connecter avec.");
+						$view->assign('success', "Votre nouveau mot de passe a bien été enregistré, vous allez être redirigé sur la page de connexion dans quelques instants.");
+						header( "Refresh:5; url=http://" . $_SERVER['HTTP_HOST'] . "/login", true, 303);
 					} else {
 						$view->assign('errors', $errors);
 					}
