@@ -1,4 +1,4 @@
-<main class="admin_view">
+<div class="">
   <section>
     <h2>Edition du produit : <?= $product->getName() ?></h2>
   </section>
@@ -25,4 +25,4 @@
     <?php App\Core\FormBuilder::render($form); ?>
     <a type="button" href='/admin/products'>Retour</a>
   </div>
-</main>
+</div>

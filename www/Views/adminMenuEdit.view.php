@@ -1,9 +1,8 @@
-<main class="admin_view">
+<div class="">
   <section>
     <h2>Edition du menu : <?= $menu->getTitle() ?></h2>
   </section>
-
-  <div class="col-md-3">
+  <div>
     <?php if (isset($success)): ?>
       <li style="color: green;">
         <?= $success; ?>
@@ -25,4 +24,4 @@
     <?php App\Core\FormBuilder::render($form); ?>
     <a type="button" href='/admin/menus'>Retour</a>
   </div>
-</main>
+</div>
