@@ -23,6 +23,9 @@
                         <?php endforeach; ?>
                     <?php endif; ?>
                     <?php App\Core\FormBuilder::render($formResetPassword ?? $formNewPassword); ?>
+                    <div class="auth__section__form__links">
+                        <a href="/login" class="auth__section__form__links__link">Se connecter</a>
+                    </div>
 
                 </div>
             </section>
