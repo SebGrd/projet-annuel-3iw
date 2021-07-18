@@ -6,7 +6,7 @@ use App\Core\Security;
 use App\Core\View;
 use App\Core\FormValidator;
 use App\Core\ConstantMaker;
-
+use App\Core\Helpers;
 use App\Models\User;
 
 class SecurityController {
@@ -155,18 +155,17 @@ class SecurityController {
 					$user->save();
 
 					// Send email
-					$to = $_POST['email'];
+					$from = ['email' => 'hello@cms.fr', 'name' => 'Hello CMS'];
+					$to = ['email' => $_POST['email'], 'name' => ''];
 					$subject = 'Réinitialisation de mot de passe';
-					$message = `Bonjour,\r\nVeuillez cliquez <a href="http://localhost:8888/forgot-password?token=$passwordResetToken">ici</a> pour changer de mot de passe.`;
-					$headers = array(
-						'From' => 'hello@cms.fr',
-						'MIME-Version' =>  '1.0',
-						'Content-type' =>  'text/html; charset=iso-8859-1'
-					);
+					$link = 'http://localhost:8888/forgot-password?token=' . $passwordResetToken;
 
-					mail($to, $subject, $message, $headers);
-
-					$view->assign('success', "Un email viens de vous être envoyé, cliquez sur le lien dans l'email pour réinitialiser votre mot de passe. \n vous pouvez fermer cette page.");
+					$email = Helpers::mailer($from, $to, $subject, ['[appName]', '[email]', '[link]'], [APPNAME, $to['email'], $link], true, 'forgotPassword');
+					if ($email['error']) {
+						$view->assign('errors', [$email['error_message']]);
+					} else {
+						$view->assign('success', "Un email viens de vous être envoyé, cliquez sur le lien dans l'email pour réinitialiser votre mot de passe. \n vous pouvez fermer cette page.");
+					}
 				} else {
 					// On envoie le même message pour eviter le brute force pour trouver des emails existant.
 					$view->assign('success', "Un email viens de vous être envoyé, cliquez sur le lien dans l'email pour réinitialiser votre mot de passe. \n vous pouvez fermer cette page.");
