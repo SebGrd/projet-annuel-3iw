@@ -145,11 +145,11 @@ class Helpers {
 		$mail->isSMTP();
 		$mail->CharSet = 'UTF-8';
 		$mail->Encoding = 'base64';
-		$mail->Host = 'smtp.mailtrap.io';
 		$mail->SMTPAuth = true;
-		$mail->Port = 2525;
-		$mail->Username = '284d91196cb5cc';
-		$mail->Password = '85b4ead9a4bda2';
+		$mail->Host = MAIL_HOST;
+		$mail->Port = MAIL_PORT;
+		$mail->Username = MAIL_USERNAME;
+		$mail->Password = MAIL_PASSWORD;
 		$mail->SMTPSecure = 'tls';
 		$mail->isHTML($isHTML);
 

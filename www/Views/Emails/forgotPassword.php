@@ -78,7 +78,7 @@ a[x-apple-data-detectors] {
                   <td class="es-m-p0r es-m-p20b" valign="top" align="center" style="padding:0;Margin:0;width:270px"> 
                    <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
                      <tr> 
-                      <td align="left" style="padding:20px;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Montserrat, sans-serif;line-height:52px;color:#333333;font-size:26px">[appName]</p></td> 
+                      <td align="left" style="padding:20px;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Montserrat, sans-serif;line-height:52px;color:#333333;font-size:26px">[appname]</p></td> 
                      </tr> 
                    </table></td> 
                  </tr> 
@@ -130,7 +130,7 @@ a[x-apple-data-detectors] {
                        </table></td> 
                      </tr> 
                      <tr> 
-                      <td align="left" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Montserrat, sans-serif;line-height:21px;color:#333333;font-size:14px">Pour info : vous avez 24 heures pour choisir votre mot de passe. Après cela, vous devrez en demander un nouveau.<br><br>Vous n'avez pas demandé de nouveau mot de passe ? Vous pouvez ignorer cet e-mail.<br><br>— L'équipe [appName]</p></td> 
+                      <td align="left" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Montserrat, sans-serif;line-height:21px;color:#333333;font-size:14px">Pour info : vous avez 24 heures pour choisir votre mot de passe. Après cela, vous devrez en demander un nouveau.<br><br>Vous n'avez pas demandé de nouveau mot de passe ? Vous pouvez ignorer cet e-mail.<br><br>— L'équipe [appname]</p></td> 
                      </tr> 
                    </table></td> 
                  </tr> 

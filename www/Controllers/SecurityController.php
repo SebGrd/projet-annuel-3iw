@@ -109,6 +109,16 @@ class SecurityController {
 					// Save to database
 					$user->save();
 					$view->assign('success', "Votre compte a été créé avec succès ! \n Vous pouvez désormais vous connecter.");
+					// Send email
+					$from = ['email' => MAIL_SENDER, 'name' => MAIL_NAME];
+					$to = ['email' => $_POST['email'], 'name' => $_POST['firstname']];
+					$subject = APPNAME . ' Création de votre compte';
+					$link = 'http://' . $_SERVER['HTTP_HOST'];
+
+					$email = Helpers::mailer($from, $to, $subject, ['[appname]', '[firstname]', '[email]', '[link]'], [APPNAME, $_POST['firstname'], $to['email'], $link], true, 'registered');
+					if ($email['error']) {
+						$view->assign('errors', [$email['error_message']]);
+					}
 
 					header( "Refresh:5; url=http://" . $_SERVER['HTTP_HOST'] . "/login", true, 303);
 				} else { // Reject if email is registered
@@ -159,12 +169,12 @@ class SecurityController {
 					$user->save();
 
 					// Send email
-					$from = ['email' => 'hello@cms.fr', 'name' => 'Hello CMS'];
+					$from = ['email' => MAIL_SENDER, 'name' => MAIL_NAME];
 					$to = ['email' => $_POST['email'], 'name' => ''];
 					$subject = 'Réinitialisation de mot de passe';
 					$link = 'http://localhost:8888/forgot-password?token=' . $passwordResetToken;
 
-					$email = Helpers::mailer($from, $to, $subject, ['[appName]', '[email]', '[link]'], [APPNAME, $to['email'], $link], true, 'forgotPassword');
+					$email = Helpers::mailer($from, $to, $subject, ['[appname]', '[email]', '[link]'], [APPNAME, $to['email'], $link], true, 'forgotPassword');
 					if ($email['error']) {
 						$view->assign('errors', [$email['error_message']]);
 					} else {
