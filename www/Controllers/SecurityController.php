@@ -11,10 +11,12 @@ use App\Models\User;
 
 class SecurityController {
 
-	public function login() {
+	public function __construct() {
 		// Initialize the constants
 		$constantMaker = new ConstantMaker();
+	}
 
+	public function login() {
 		if (Security::isConnected()) {
 			header("location:/");
 		}
@@ -80,7 +82,6 @@ class SecurityController {
 	}
 
 	public function register() {
-		$constantMaker = new ConstantMaker();
 		if (Security::isConnected()) {
 			header("location:/");
 		}
@@ -131,7 +132,6 @@ class SecurityController {
 	}
 
 	public function resetPassword() {
-		$constantMaker = new ConstantMaker();
 		if (Security::isConnected()) {
 			header("location:/");
 		}

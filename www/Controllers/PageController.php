@@ -8,14 +8,16 @@ use App\Models\Page;
 
 class PageController
 {
+    public function __construct() {
+		$constantMaker = new ConstantMaker();
+    }
+
     public function pages() {
-        $constantMaker = new ConstantMaker();
         $view = new View('adminPages', 'admin');
         $page = new Page();
     }
 
     public function newPage() {
-        $constantMaker = new ConstantMaker();
         $view = new View('adminPagesNew', 'admin');
         $page = new Page();
         $pageForm = $page->formCreatePage();
@@ -36,7 +38,6 @@ class PageController
     }
 
     public function editPage(){
-        $constantMaker = new ConstantMaker();
         $view = new View('adminPages', 'admin');
     }
 }

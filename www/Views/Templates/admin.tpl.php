@@ -80,7 +80,7 @@
                     </a>
                 </li>
                 <li class="menu__section__list__item">
-                    <a href="" class="menu__section__list__item__link">
+                    <a href="/admin/products" class="menu__section__list__item__link">
                            <span class="menu__section__list__item__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path
                                 d="M0 0h24v24H0z" fill="none"/><path

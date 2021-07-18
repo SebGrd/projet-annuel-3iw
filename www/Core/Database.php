@@ -27,9 +27,10 @@ class Database {
 	}
 
 	public function getModelName() {
-        $getCalledClassExploded = explode('\\', get_called_class());
-	    return strtolower(end($getCalledClassExploded));
-    }
+			$getCalledClassExploded = explode('\\', get_called_class());
+		return strtolower(end($getCalledClassExploded));
+	}
+
 	public function populate($arr) {
 		foreach ($arr as $key => $value) {
 			if (!in_array($key, ['pdo', 'table'])) {

@@ -42,14 +42,14 @@
   action: default
   access: admin
 
-/admin/menus/edit:
+/admin/menu/new:
   controller: MenuController
-  action: editMenu
+  action: createMenu
   access: admin
 
-/admin/menus/delete:
+/admin/menu:
   controller: MenuController
-  action: deleteMenu
+  action: editMenu
   access: admin
 
 # ProductController Routes
@@ -58,19 +58,14 @@
   action: default
   access: admin
 
-/admin/products/new:
+/admin/product/new:
   controller: ProductController
   action: newProduct
   access: admin
 
-/admin/products/edit:
+/admin/product:
   controller: ProductController
   action: editProduct
-  access: admin
-
-/admin/products/delete:
-  controller: ProductController
-  action: deleteProduct
   access: admin
 
 # PageController Routes
@@ -79,7 +74,7 @@
   action: pages
   access: admin
 
-/admin/pages/new:
+/admin/page/new:
   controller: PageController
   action: newPage
   access: admin

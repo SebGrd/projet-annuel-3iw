@@ -39,6 +39,17 @@ class Helpers {
 	 * @return int|string|bool returns the user_id if upload is successfull, returns a string message if there is an error, returns false if no file is passed in.
 	 */
 	public static function upload(string $directory = '', array $allowTypes = ['jpg' => 'image/jpeg', 'png' => 'image/png', 'gif' => 'image/gif']) {
+		
+		// Undefined | Multiple Files | $_FILES Corruption Attack
+		// If this request falls under any of them, treat it invalid.
+		if (!isset($_FILES['upfile']['error'])) {
+			return false;
+		}
+		
+		if (is_array($_FILES['upfile']['error'])) {
+			return ['error' => "Paramètres invalides."];
+		}
+
 		$path = 'uploads/' . $directory . '/';
 		if (!file_exists($path)) {
 			mkdir($path, 0777, true);
@@ -46,16 +57,6 @@ class Helpers {
 		$targetDir = $path;
 		$fileName = basename($_FILES['upfile']['tmp_name']);
 		$targetFilePath = $targetDir . date("Y-m-d_H:i:s") . "_" . $fileName;
-
-		// Undefined | Multiple Files | $_FILES Corruption Attack
-		// If this request falls under any of them, treat it invalid.
-		if (!isset($_FILES['upfile']['error'])) {
-            return false;
-        }
-
-		if (is_array($_FILES['upfile']['error'])) {
-			return ['error' => "Paramètres invalides."];
-		}
 	
 		// Check $_FILES['upfile']['error'] value.
 		switch ($_FILES['upfile']['error']) {
@@ -98,17 +99,43 @@ class Helpers {
 			return ['error' => "Désolé, une erreur s'est produite lors du téléchargement du fichier."];
 		}
 		$image = new Image();
+		$url = $targetFilePath . '.' . $ext;
 		// Insert image file name with path into database
-		$image->setFile_name($targetFilePath);
+		$image->setFile_name($url);
 		$image->setUser_id(get_object_vars($_SESSION['userStore'])['id']);
 		$image->save();
 
-		$image->find(['file_name' => $targetFilePath]);
+		$image->find(['file_name' => $url]);
 
 		if($image->getId() !== null){
 			return $image->getId();
 		}else{
 			return ['error' => "Erreur lors de l'envoi du fichier, merci de réessayer."];
 		}
+	}
+
+	// This function takes the last comma or dot (if any) to make a clean float, ignoring thousand separator, currency or any other letter :
+	public static function tofloat($num) {
+		$dotPos = strrpos($num, '.');
+		$commaPos = strrpos($num, ',');
+		$sep = (($dotPos > $commaPos) && $dotPos) ? $dotPos :
+			((($commaPos > $dotPos) && $commaPos) ? $commaPos : false);
+
+		if (!$sep) {
+			return floatval(preg_replace("/[^0-9]/", "", $num));
+		}
+
+		return floatval(
+			preg_replace("/[^0-9]/", "", substr($num, 0, $sep)) . '.' .
+			preg_replace("/[^0-9]/", "", substr($num, $sep+1, strlen($num)))
+		);
+	}
+
+	public static function getImageUrl(int $image_id) {
+		$id = htmlspecialchars( strip_tags( $image_id ) );
+		$image = new Image();
+		$image->find(['id' => $id]);
+		$url = $image !== null ? $image->getFile_name() : '';
+		return $url;
 	}
 }

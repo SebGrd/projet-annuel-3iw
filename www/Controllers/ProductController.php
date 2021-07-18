@@ -5,15 +5,24 @@ use App\Core\View;
 use App\Core\FormValidator;
 use App\Models\Product;
 use App\Core\ConstantMaker;
+use App\Core\Helpers;
 
 class ProductController
 {
-    public function default() {
+    public function __construct() {
 		$constantMaker = new ConstantMaker();
+    }
+
+    public function default() {
         $view = new View('adminProducts', 'admin');
 		$menu = new Product();
+    }
 
-        $form = $menu->formProduct();
+    public function newProduct() {
+        $view = new View('adminProductsNew', 'admin');
+		$product = new Product();
+
+        $form = $product->formProduct();
 
         if (!empty($_POST)) {
 			$errors = FormValidator::check($form, $_POST);
@@ -21,110 +30,106 @@ class ProductController
 			if (empty($errors)) {
                 $name = htmlspecialchars(strip_tags($_POST['name']));
                 $description = htmlspecialchars(strip_tags($_POST['description']));
+                $quantity = htmlspecialchars(strip_tags($_POST['quantity']));
+                $price = Helpers::tofloat(htmlspecialchars(strip_tags($_POST['price'])));
     
-                $menu->find(['name' => $name]);
+                $product->find(['name' => $name]);
     
-                if ($menu->getId()) {
+                if ($product->getId()) {
                     $view->assign('errors', ['Le produit ' . $name . ' existe déjà']);
                 } else {
-                    // Create menu
-                    $menu->setName($name);
-                    $menu->setDescription($description);
-                    $menu->save();
-                    $view->assign('success', 'Le produit ' . $name . ' a été créé');
+
+                    $image = Helpers::upload('products');
+    
+                    if (isset($image['error'])) {
+                        $view->assign('errors', [$image['error']]);
+                    } else {
+                        $product->setName($name);
+                        $product->setDescription($description);
+                        $product->setQuantity($quantity);
+                        $product->setPrice($price);
+                        $product->setImage($image !== false ? $image : null);
+                        $product->save();
+                        $view->assign('success', 'Le produit ' . $name . ' a été créé');
+                    }
                 }
             } else {
                 $view->assign('errors', $errors);
             }
 		}
 
-        $allMenus = $menu->findAll([], [], true);
-        $view->assign('menus', $allMenus);
-
 		$view->assign('form', $form);
     }
 
     public function editProduct() {
-		$constantMaker = new ConstantMaker();
-        $view = new View('editProduct', 'admin');
+        $view = new View('adminProductEdit', 'admin');
 		$product = new Product();
+        $id = htmlspecialchars( strip_tags( $_GET['id'] ) );
 
         if ( empty( $_GET['id'] ) ) {
             // Redirect to page 404 if query is malformed
             header('Location:/404');
             die;
-        }
+        } else if (isset($_GET['id']) && isset($_GET['action'])) {
+            // Delete if action delete is send with id
 
-        $id = htmlspecialchars( strip_tags( $_GET['id'] ) );
-
-        // Check if id is an integer
-        if (ctype_digit($id)) {
-            $product = $product->find(['id' => $id]);
-        } else {
-            // Redirect to page 404 if query is malformed
-            header('Location:/404');
-            die;
-        }
-
-        if (!$product) {
-            // Redirect to page 404 if menu is not found
-            header('Location:/404');
-            die;
-        }
-
-        if (!empty($_POST)) {
-        
-            $title = htmlspecialchars(strip_tags($_POST['title']));
-            $description = htmlspecialchars(strip_tags($_POST['description']));
-            // Update menu
-            $product->setTitle($title);
-            $product->setDescription($description);
-        }
-
-        $form = $menu->formMenu();
-        // Assign menu object to the view
-        $view->assign('product', $menu);
-        // Assign the form to the view
-        $view->assign('form', $form);
-
-        if (!empty($_POST)) {
-			$errors = FormValidator::check($form, $_POST);
-            
-			if (empty($errors)) {
-                $menu->save();
-                $view->assign('success', 'Le produit ' . $title . ' a bien été mis à jour');
+            if (ctype_digit($id)) {
+                $product = $product->delete(['id' => $id]);
+                header('Location:/admin/products');
             } else {
-                $view->assign('errors', $errors);
+                // Redirect to page 404 if query is malformed
+                header('Location:/404');
+                die;
             }
-		}
-    }
-
-    public function deleteProduct() {
-		$constantMaker = new ConstantMaker();
-		$product = new Product();
-
-        if ( empty( $_GET['id'] ) ) {
-            // Redirect to page 404 if query is malformed
-            header('Location:/404');
-            die;
-        }
-
-        $id = htmlspecialchars( strip_tags( $_GET['id'] ) );
-
-        // Check if id is an integer
-        if (ctype_digit($id)) {
-            $product = $product->delete(['id' => $id]);
         } else {
-            // Redirect to page 404 if query is malformed
-            header('Location:/404');
-            die;
-        }
+            // Check if id is an integer
+            if (ctype_digit($id)) {
+                $product = $product->find(['id' => $id]);
+            } else {
+                // Redirect to page 404 if query is malformed
+                header('Location:/404');
+                die;
+            }
 
-        if (!$product) {
-            // Redirect to page 404 if product is not found
-            header('Location:/404');
-            die;
+            if (!$product) {
+                // Redirect to page 404 if product is not found
+                header('Location:/404');
+                die;
+            }
+
+            if (!empty($_POST)) {
+                $name = htmlspecialchars(strip_tags($_POST['name']));
+                $description = htmlspecialchars(strip_tags($_POST['description']));
+                $quantity = htmlspecialchars(strip_tags($_POST['quantity']));
+                $price = Helpers::tofloat(htmlspecialchars(strip_tags($_POST['price'])));
+                $image = Helpers::upload('products');
+    
+                if (isset($image['error'])) {
+                    $view->assign('errors', [$image['error']]);
+                } else {
+                    $product->setName($name);
+                    $product->setDescription($description);
+                    $product->setQuantity($quantity);
+                    $product->setPrice($price);
+                    $product->setImage($image !== false ? $image : null);
+                    $product->setDescription($description);
+                }
+            }
+
+            $view->assign('product', $product);
+            $form = $product->formProduct();
+            $view->assign('form', $form);
+
+            if (!empty($_POST)) {
+                $errors = FormValidator::check($form, $_POST);
+                
+                if (empty($errors)) {
+                    $product->save();
+                    $view->assign('success', 'Le produit ' . $name . ' a bien été mis à jour');
+                } else {
+                    $view->assign('errors', $errors);
+                }
+            }
         }
-        header('Location:/admin/products');
     }
 }
