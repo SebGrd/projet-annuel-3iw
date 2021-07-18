@@ -10,8 +10,7 @@ class Product extends Database {
 	protected $description = '';
 	protected $quantity = 0;
 	protected $price = 0;
-	protected $image = '';
-	protected $active = 1;
+	protected $image = null;
 	protected $createdAt = '';
 	protected $updatedAt = '';
 
@@ -89,8 +88,8 @@ class Product extends Database {
 	/**
 	 * @param mixed $image
 	 */
-	public function setPrice($image) {
-		$this->image = $image;
+	public function setPrice($price) {
+		$this->price = $price;
 	}
 
 	/**
@@ -101,24 +100,10 @@ class Product extends Database {
 	}
 
 	/**
-	 * @param mixed $active
+	 * @param mixed $image
 	 */
-	public function setImage($active) {
-		$this->active = $active;
-	}
-
-	/**
-	 * @return mixed
-	 */
-	public function getActive() {
-		return $this->active;
-	}
-
-	/**
-	 * @param mixed $active
-	 */
-	public function setActive($active) {
-		$this->active = $active;
+	public function setImage($image) {
+		$this->image = $image;
 	}
 
 	/**
@@ -156,7 +141,8 @@ class Product extends Database {
 				'action'=>'',
 				'id'=>'form_product',
 				'class'=>'form',
-				'submit'=>"Enregistrer"
+				'submit'=>"Enregistrer",
+				'enctype'=>'multipart/form-data'
 			],
 			'inputs'=>[
 				'name'=>[
@@ -167,7 +153,8 @@ class Product extends Database {
 					'id'=>'name',
 					'class'=>'form_input',
 					'error'=>'Le nom du produit doit faire entre 2 et 50 caractères',
-					'required'=>true
+					'required'=>true,
+					'value'=>$this->name
 				],
 				'description'=>[
 					'type'=>'text',
@@ -177,7 +164,8 @@ class Product extends Database {
 					'id'=>'description',
 					'class'=>'form_input',
 					'error'=>'La description du produit doit faire entre 2 et 255 caractères',
-					'required'=>false
+					'required'=>false,
+					'value'=>$this->description
 				],
 				'quantity'=>[
 					'type'=>'numeric',
@@ -187,7 +175,8 @@ class Product extends Database {
 					'id'=>'quantity',
 					'class'=>'form_input',
 					'error'=>'La quantité disponible du produit doit être un entier positif',
-					'required'=>false
+					'required'=>false,
+					'value'=>$this->quantity
 				],
 				'price'=>[
 					'type'=>'decimal',
@@ -196,17 +185,21 @@ class Product extends Database {
 					'max'=>100000.00,
 					'id'=>'price',
 					'class'=>'form_input',
-					'error'=>'Le prix du produit doit être une décimale positive',
-					'required'=>false
+					'error'=>'Le prix du produit doit être une décimale',
+					'required'=>false,
+					'value'=>$this->price
 				],
 				'image'=>[
-					'type'=>'text',
+					'type'=>'file',
 					'label'=>'Image du produit',
-					'id'=>'image',
+					'id'=>'upfile',
+					'name'=>'upfile',
 					'class'=>'form_input',
-					'error'=>'Image error',
-					'required'=>false
-				],
+					'placeholder'=>'',
+					'error'=>'Image invalide',
+					'required'=>false,
+					'value'=>$this->image
+				]
 			]
 		];
 	}

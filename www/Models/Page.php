@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Core\Database;
 
 class Page extends Database {
-    public $id = null;
+    private $id = null;
     public $title;
     public $image;
     public $html;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Core\Helpers;
 namespace App\Core;
 
 class FormValidator {
@@ -33,6 +34,16 @@ class FormValidator {
 				}
 				if (!empty($configInput['confirm']) &&
 					($data[$name]) !== $data[$configInput['confirm']]) {
+					$errors[] = $configInput['error'];
+				}
+				if (!empty($configInput['type']) &&
+				$configInput['type'] === 'numeric' &&
+				(!is_numeric($data[$name]) || abs($data[$name]) > $data[$name])) {
+					$errors[] = $configInput['error'];
+				}
+				if (!empty($configInput['type']) &&
+				$configInput['type'] === 'decimal' &&
+				!is_numeric(Helpers::tofloat($data[$name]))) {
 					$errors[] = $configInput['error'];
 				}
 			}
