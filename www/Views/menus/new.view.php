@@ -1,6 +1,6 @@
-<main class="admin_view">
+<div class="admin_view">
   <section>
-    <h2>Edition du menu : <?= $menu->getTitle() ?></h2>
+    <h2>Créer un menu</h2>
   </section>
 
   <div class="col-md-3">
@@ -19,10 +19,7 @@
       </ul>
     <?php endif; ?>
 
-    <?php if($menu->getImage() !== null): ?>
-      <img src="../<?= App\Core\Helpers::getImageUrl($menu->getImage()) ?>" style="max-width: 100%; max-height: 150px;">
-    <?php endif; ?>
     <?php App\Core\FormBuilder::render($form); ?>
     <a type="button" href='/admin/menus'>Retour</a>
   </div>
-</main>
+</div>

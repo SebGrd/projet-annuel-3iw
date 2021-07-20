@@ -11,11 +11,11 @@ class FormBuilder {
 			action='".($form["config"]["action"]??"")."'
 			enctype='".($form["config"]["enctype"]??"")."'>";
 
-		foreach ($form["inputs"] as $name => $configInput) {
+		foreach ($form['inputs'] as $name => $configInput) {
 		    $html .= "<div class='form__field'>";
-			$html .="<label class='form__field__label' for='".($configInput["id"]??"")."'>".($configInput["label"]??"")." </label>";
+			$html .= "<label class='form__field__label' for='".($configInput["id"]??"")."'>".($configInput["label"]??"")." </label>";
 
-			if($configInput["type"] == "select") {
+			if ($configInput["type"] == "select"){
 				$html .= self::renderSelect($name, $configInput);
 			} else {
 				$html .= self::renderInput($name, $configInput);

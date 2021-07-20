@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Core\Database;
+use App\Core\Helpers;
 
 class Product extends Database {
 	private $id = null;
@@ -10,7 +11,7 @@ class Product extends Database {
 	protected $description = '';
 	protected $quantity = 0;
 	protected $price = 0;
-	protected $image = null;
+	protected $image = 1;
 	protected $createdAt = '';
 	protected $updatedAt = '';
 
@@ -134,7 +135,7 @@ class Product extends Database {
 		$this->updatedAt = date('Y-m-d H:i:s');
 	}
 
-	public function formProduct() {
+	public function formProduct($product = null) {
 		return [
 			'config'=>[
 				'method'=>'POST',
@@ -195,10 +196,8 @@ class Product extends Database {
 					'id'=>'upfile',
 					'name'=>'upfile',
 					'class'=>'form_input',
-					'placeholder'=>'',
 					'error'=>'Image invalide',
-					'required'=>false,
-					'value'=>$this->image
+					'required'=>false
 				]
 			]
 		];

@@ -40,7 +40,7 @@ class TableBuilder
         foreach ($titles as $title) {
             $html .= "<th>" . ucfirst($title->getName()) . "</th>";
         }
-        $html .= '<th style="width:120px">Edit</th>';
+        $html .= '<th style="width:120px">Actions</th>';
         $html .= '</tr></thead>';
         return $html;
     }

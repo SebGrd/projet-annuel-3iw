@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-	<?= $_::render('style'); ?>
+	<?= $_::render('incl.style'); ?>
     <title>Front template</title>
 </head>
 <body>
-	<?= $_::render('header'); ?>
+	<?= $_::render('incl.header'); ?>
 
 	<h1>Front template</h1>	
 
@@ -13,6 +13,6 @@
 		<?php include $this->view; ?>
 	</main>
 
-	<?= $_::render('scripts'); ?>
+	<?= $_::render('incl.scripts'); ?>
 </body>
 </html>

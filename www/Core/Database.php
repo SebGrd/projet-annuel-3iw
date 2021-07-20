@@ -23,7 +23,7 @@ class Database {
 		}
 
 		$getCalledClassExploded = explode('\\', get_called_class());
-		$this->table = DBPREFIXE . end($getCalledClassExploded);
+		$this->table = strtolower(DBPREFIXE . end($getCalledClassExploded));
 	}
 
 	public function getModelName() {
@@ -51,11 +51,11 @@ class Database {
 		$orderClause = '';
 		$orderConditions = [];
 		
-		$query = "SELECT * FROM " . strtolower($this->table);
+		$query = "SELECT * FROM $this->table";
 
 		if (!empty($props)) {
 			foreach ($props as $key => $value) {
-				$whereConditions[] = '`' . $key . '` = "' . $value . '"';
+				$whereConditions[] = "`$key` = '$value'";
 			}
 			
 			$whereClause = ' WHERE ' . implode(' AND ', $whereConditions);
@@ -73,9 +73,7 @@ class Database {
 		$query->execute();
 		$data = $query->fetch(\PDO::FETCH_ASSOC);
 
-		if ($data) {
-			return $return_type_array ? $data : $this->populate($data);
-		}
+		if ($data) { return $return_type_array ? $data : $this->populate($data); }
 		return false;
 	}
 
@@ -91,7 +89,7 @@ class Database {
 
 		if (!empty($props)) {
 			foreach ($props as $key => $value) {
-				$whereConditions[] = '`' . $key . '` = "' . $value . '"';
+				$whereConditions[] = "`$key` = '$value'";
 			}
 			
 			$whereClause = ' WHERE ' . implode(' AND ', $whereConditions);
@@ -109,20 +107,20 @@ class Database {
 		$query->execute();
 		$data = $query->fetchAll(\PDO::FETCH_CLASS, $class);
 
-		if ($data) {
-			return $return_type_array ? $data : $this->populate($data);
-		}
+		if ($data) { return $return_type_array ? $data : $this->populate($data); }
 		return false;
 	}
 
 	public function save() {
+		// Exclude the parent properties (pdo, table) and get the child properties
 		$columns = array_diff_key(
 			get_object_vars($this),
 			get_class_vars(get_class())
 		);
+
+		// Initialize a string with `fieldname` = :placeholder pairs
+		$setStr = '';
 		$params = [];
-		// initialize a string with `fieldname` = :placeholder pairs
-		$setStr = "";
 
 		// Insert if $id is null else update
 		if (is_null($this->getId())) {
@@ -134,18 +132,24 @@ class Database {
 
 		} else {
 			$setStr = [];
-			// loop over source data array
-			foreach (array_keys($columns) as $key)
-			{
-				if ($key != "id")
-				{
+			
+			// Loop over source data array
+			foreach (array_keys($columns) as $key) {
+				// If the value is set and is not the id
+				if ($key != 'id') {
 					$setStr []= "`$key` = :$key";
 					$params[$key] = $columns[$key];
 				}
 			}
 
+			// Transform ['a=b', 'c=d'] into 'a=b, c=d'
+			$setStr = implode(', ', $setStr);
+
+			// Update row with the object ID
 			$params['id'] = $this->getId();
-			$this->pdo->prepare("UPDATE " . strtolower($this->table) . " SET ".implode(",", $setStr)." WHERE id = :id")->execute($params);
+			$this->pdo->prepare("UPDATE " . strtolower($this->table) . " SET $setStr WHERE id = :id")->execute($params);
+
+			// TODO remove? $_SESSION['userStore'] = $this->find(['id' => $this->getId()]);
 		}
 
 	}
@@ -159,19 +163,19 @@ class Database {
     }
 
 	public static function getClassName($table) {
-    $path = explode('\\', $table);
-    return array_pop($path);
+		$path = explode('\\', $table);
+		return array_pop($path);
 	}
 
 	public function delete($props = []) {
 		$whereClause = '';
 		$whereConditions = [];
 		
-		$query = "DELETE FROM " . strtolower($this->table);
+		$query = "DELETE FROM $this->table";
 
 		if (!empty($props)) {
 			foreach ($props as $key => $value) {
-				$whereConditions[] = '`' . $key . '` = "' . $value . '"';
+				$whereConditions[] = "`$key` = '$value'";
 			}
 			
 			$whereClause = ' WHERE ' . implode(' AND ', $whereConditions);
@@ -180,10 +184,7 @@ class Database {
 		$query = $this->pdo->query($query . $whereClause);
 		$data = $query->execute();
 
-		if ($data) {
-			return $data;
-		}
+		if ($data) { return $data; }
 		return false;
 	}
-
 }

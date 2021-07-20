@@ -13,13 +13,13 @@ class MenuController
 		$constantMaker = new ConstantMaker();
     }
 
-    public function default() {
-        $view = new View('adminMenus', 'admin');
+    public function main() {
+        $view = new View('menus.main', 'admin');
 		$menu = new Menu();
     }
 
-    public function createMenu() {
-        $view = new View('adminMenuNew', 'admin');
+    public function newMenu() {
+        $view = new View('menus.new', 'admin');
 		$menu = new Menu();
         $form = $menu->formMenu();
 
@@ -33,9 +33,8 @@ class MenuController
                 $menu->find(['title' => $title]);
     
                 if ($menu->getId()) {
-                    $view->assign('errors', ['Le menu ' . $title . ' existe déjà']);
+                    $view->assign('errors', ["Le menu $title existe déjà"]);
                 } else {
-
                     $image = Helpers::upload('menus');
 
                     if (isset($image['error'])) {
@@ -46,7 +45,9 @@ class MenuController
                         $menu->setDescription($description);
                         $menu->setImage($image !== false ? $image : null);
                         $menu->save();
-                        $view->assign('success', 'Le menu ' . $title . ' a été créé');
+                        $view->assign('success', "Le menu $title a été créé");
+
+    					Message::add('NEW_MENU_SUCCESS');
                     }
                 }
             } else {
@@ -58,23 +59,29 @@ class MenuController
     }
 
     public function editMenu() {
-        $view = new View('adminMenuEdit', 'admin');
+        $view = new View('menus.edit', 'admin');
 		$menu = new Menu();
-        $id = htmlspecialchars( strip_tags( $_GET['id'] ) );
 
         if (empty($_GET['id'])) {
             // Redirect to page 404 if query is malformed
-            header('Location:/404');
+            header('location: /404');
+            die;
+        }
+
+        $id = htmlspecialchars(strip_tags($_GET['id']));
+
+        if (empty($_GET['id'])) {
+            // Redirect to page 404 if query is malformed
+            header('location: /404');
             die;
         } else if (isset($_GET['id']) && isset($_GET['action'])) {
             // Delete if action delete is send with id
-
             if (ctype_digit($id)) {
                 $menu = $menu->delete(['id' => $id]);
-                header('Location:/admin/menus');
+                header('location: /admin/menus');
             } else {
                 // Redirect to page 404 if query is malformed
-                header('Location:/404');
+                header('location: /404');
                 die;
             }
         } else {
@@ -84,18 +91,17 @@ class MenuController
                 $menu = $menu->find(['id' => $id]);
             } else {
                 // Redirect to page 404 if query is malformed
-                header('Location:/404');
+                header('location: /404');
                 die;
             }
     
             if (!$menu) {
                 // Redirect to page 404 if menu is not found
-                header('Location:/404');
+                header('location: /404');
                 die;
             }
     
             if (!empty($_POST)) {
-            
                 $title = htmlspecialchars(strip_tags($_POST['title']));
                 $description = htmlspecialchars(strip_tags($_POST['description']));
     
@@ -122,7 +128,7 @@ class MenuController
             
 			if (empty($errors)) {
                 $menu->save();
-                $view->assign('success', 'Le menu ' . $title . ' a bien été mis à jour');
+                $view->assign('success', "Le menu $title a bien été mis à jour");
             } else {
                 $view->assign('errors', $errors);
             }
@@ -134,15 +140,15 @@ class MenuController
 
         if (empty($_GET['id'])) {
             // Redirect to page 404 if query is malformed
-            header('Location:/404');
+            header('location: /404');
             die;
-        }
+        } 
 
         if (!$menu) {
             // Redirect to page 404 if menu is not found
-            header('Location:/404');
+            header('location: /404');
             die;
         }
-        header('Location:/admin/menus');
+        header('location: /admin/menus');
     }
 }

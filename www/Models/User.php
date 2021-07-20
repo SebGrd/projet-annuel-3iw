@@ -17,7 +17,7 @@ class User extends Database {
 	protected $createdAt = '';
 	protected $updatedAt = '';
 
-	public function __construct(){
+	public function __construct() {
 		parent::__construct();
 		$this->setCreatedAt($this->createdAt);
 		$this->setUpdatedAt();
@@ -191,7 +191,7 @@ class User extends Database {
 			'inputs'=>[
 				'firstname'=>[ 
 					'type'=>'text',
-					'label'=>'Votre prénom',
+					'label'=>'Prénom',
 					'minLength'=>2,
 					'maxLength'=>55,
 					'id'=>'firstname',
@@ -202,7 +202,7 @@ class User extends Database {
 				],
 				'lastname'=>[ 
 					'type'=>'text',
-					'label'=>'Votre nom',
+					'label'=>'Nom',
 					'minLength'=>2,
 					'maxLength'=>255,
 					'id'=>'lastname',
@@ -213,7 +213,7 @@ class User extends Database {
 				],
 				'email'=>[ 
 					'type'=>'email',
-					'label'=>'Votre email',
+					'label'=>'Email',
 					'minLength'=>8,
 					'maxLength'=>320,
 					'id'=>'email',
@@ -224,7 +224,7 @@ class User extends Database {
 				],
 				'pwd'=>[ 
 					'type'=>'password',
-					'label'=>'Votre mot de passe',
+					'label'=>'Mot de passe',
 					'minLength'=>8,
 					'id'=>'pwd',
 					'class'=>'form_input',
@@ -258,7 +258,7 @@ class User extends Database {
 			'inputs'=>[
 				'email'=>[
 					'type'=>'email',
-					'label'=>'Votre email',
+					'label'=>'Email',
 					'minLength'=>8,
 					'maxLength'=>320,
 					'id'=>'email',
@@ -269,7 +269,7 @@ class User extends Database {
 				],
 				'pwd'=>[ 
 					'type'=>'password',
-					'label'=>'Votre mot de passe',
+					'label'=>'Mot de passe',
 					'minLength'=>8,
 					'id'=>'pwd',
 					'class'=>'form_input',
@@ -293,7 +293,7 @@ class User extends Database {
 			'inputs'=>[
 				'email'=>[ 
 					'type'=>'email',
-					'label'=>'Votre email',
+					'label'=>'Email',
 					'minLength'=>8,
 					'maxLength'=>320,
 					'id'=>'email',
@@ -318,7 +318,7 @@ class User extends Database {
 			'inputs'=>[
 				'pwd'=>[
 					'type'=>'password',
-					'label'=>'Votre nouveau mot de passe',
+					'label'=>'Nouveau mot de passe',
 					'minLength'=>8,
 					'id'=>'pwd',
 					'class'=>'form_input',
@@ -329,6 +329,76 @@ class User extends Database {
 				'pwdConfirm'=>[
 					'type'=>'password',
 					'label'=>'Confirmation du mot de passe',
+					'confirm'=>'pwd',
+					'id'=>'pwdConfirm',
+					'class'=>'form_input',
+					'placeholder'=>'',
+					'error'=>'Votre mot de mot de passe de confirmation ne correspond pas',
+					'required'=>true
+				]
+			]
+		];
+	}
+
+	public function formEditProfile() {
+		return [
+			'config'=>[
+				'method'=>'POST',
+				'action'=>'',
+				'id'=>'formProfile',
+				'class'=>'form_builder',
+				'submit'=>'Enregistrer'
+			],
+			'inputs'=>[
+				'firstname'=>[ 
+					'type'=>'text',
+					'label'=>'Prénom',
+					'minLength'=>2,
+					'maxLength'=>55,
+					'id'=>'firstname',
+					'class'=>'form_input',
+					'placeholder'=>'Ex : John',
+					'error'=>'Votre prénom doit faire entre 2 et 55 caractères',
+					'value'=>$_SESSION['userStore']->firstname ?? '',
+					'required'=>true
+				],
+				'lastname'=>[ 
+					'type'=>'text',
+					'label'=>'Nom de famille',
+					'minLength'=>2,
+					'maxLength'=>255,
+					'id'=>'lastname',
+					'class'=>'form_input',
+					'placeholder'=>'Ex : DOE',
+					'error'=>'Votre nom de famille doit faire entre 2 et 255 caractères',
+					'value'=>$_SESSION['userStore']->lastname ?? '',
+					'required'=>true
+				],
+				'email'=>[ 
+					'type'=>'email',
+					'label'=>'Email',
+					'minLength'=>8,
+					'maxLength'=>320,
+					'id'=>'email',
+					'class'=>'form_input',
+					'placeholder'=>'Ex : john.doe@gmail.com',
+					'value'=>$_SESSION['userStore']->email ?? '',
+					'error'=>'Votre email doit faire entre 8 et 320 caractères',
+					'required'=>true
+				],
+				'pwd'=>[
+					'type'=>'password',
+					'label'=>'Mot de passe',
+					'minLength'=>8,
+					'id'=>'pwd',
+					'class'=>'form_input',
+					'placeholder'=>'',
+					'error'=>'Votre mot de passe doit faire au minimum 8 caractères',
+					'required'=>true
+				],
+				'pwdConfirm'=>[ 
+					'type'=>'password',
+					'label'=>'Confirmation',
 					'confirm'=>'pwd',
 					'id'=>'pwdConfirm',
 					'class'=>'form_input',

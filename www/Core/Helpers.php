@@ -10,16 +10,17 @@ class Helpers {
 		return mb_strtoupper(trim($lastname));
 	}
 
-	public static function render($view) {
+	public static function render($view, $data = []) {
+		// Transform dot notation to path
 		$view = str_replace('.', '/', $view);
-		include "Views/$view.view.php";
-		// $view = new View($view, $template ?? 'front');
-	}
 
-	public static function v($view) {
-		$view = str_replace('.', '/', $view);
-		// include "Views/$view.view.php";
-		$view = new View($view, $template ?? 'front');
+		// Load variables
+		$arr = View::GLOBALS;
+		extract($data);
+		extract($arr);
+
+		// Render the view
+		include "Views/$view.view.php";
 	}
 
 	public static function dump($dump) {

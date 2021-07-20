@@ -2,6 +2,7 @@
 .env.dev
 .env.prod
 
+/.vscode
 /server/apache_log/*
 /db_data
 /.idea

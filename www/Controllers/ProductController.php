@@ -13,13 +13,13 @@ class ProductController
 		$constantMaker = new ConstantMaker();
     }
 
-    public function default() {
-        $view = new View('adminProducts', 'admin');
+    public function main() {
+        $view = new View('products.main', 'admin');
 		$menu = new Product();
     }
 
     public function newProduct() {
-        $view = new View('adminProductsNew', 'admin');
+        $view = new View('products.new', 'admin');
 		$product = new Product();
 
         $form = $product->formProduct();
@@ -62,9 +62,12 @@ class ProductController
     }
 
     public function editProduct() {
-        $view = new View('adminProductEdit', 'admin');
+        $view = new View('products.edit', 'admin');
 		$product = new Product();
         $id = htmlspecialchars( strip_tags( $_GET['id'] ) );
+
+        // $form = $product->formProduct();
+        // $view->assign('form', $form);
 
         if ( empty( $_GET['id'] ) ) {
             // Redirect to page 404 if query is malformed
@@ -85,6 +88,9 @@ class ProductController
             // Check if id is an integer
             if (ctype_digit($id)) {
                 $product = $product->find(['id' => $id]);
+
+                $form = $product->formProduct();
+                $view->assign('form', $form);
             } else {
                 // Redirect to page 404 if query is malformed
                 header('Location:/404');
@@ -92,7 +98,7 @@ class ProductController
             }
 
             if (!$product) {
-                // Redirect to page 404 if product is not found
+                  // Redirect to page 404 if product is not found
                 header('Location:/404');
                 die;
             }
@@ -112,20 +118,17 @@ class ProductController
                     $product->setQuantity($quantity);
                     $product->setPrice($price);
                     $product->setImage($image !== false ? $image : null);
-                    $product->setDescription($description);
                 }
             }
 
             $view->assign('product', $product);
-            $form = $product->formProduct();
-            $view->assign('form', $form);
 
             if (!empty($_POST)) {
                 $errors = FormValidator::check($form, $_POST);
                 
                 if (empty($errors)) {
                     $product->save();
-                    $view->assign('success', 'Le produit ' . $name . ' a bien été mis à jour');
+                    $view->assign('success', "Le produit $name a bien été mis à jour");
                 } else {
                     $view->assign('errors', $errors);
                 }

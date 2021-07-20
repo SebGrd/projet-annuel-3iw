@@ -6,27 +6,45 @@ class View {
 	private $template;
 	private $view;
 	private $data = [];
+	const GLOBALS = [
+		'_title' => 'CMS',
+		'_' => Helpers::class,
+		'_S' => Security::class,
+		'_V' => View::class,
+		'_FB' => FormBuilder::class,
+		'_TB' => TableBuilder::class,
+		'_SS' => Session::class,
+		'_M' => Message::class
+	];
 
 	public function __construct($view, $template = 'front') {
+		$view = str_replace('.', '/', $view);
 		$this->setTemplate($template);
 		$this->setView($view);
-		$this->assign('_title', 'CMS');
-		$this->assign('_', new Helpers());
-		$this->assign('_FB', new FormBuilder());
-		$this->assign('_S', 'security');
+
+		foreach (View::GLOBALS as $key => $value) {
+			$this->assign($key, $value);
+		}
+
+		// $this->assign('_title', 'CMS');
+		// $this->assign('_', Helpers::class);
+		// $this->assign('_V', View::class);
+		// $this->assign('_FB', FormBuilder::class);
+		// $this->assign('_S', Session::class);
+		// $this->assign('_M', Message::class);
 	}
 
 	public function setTemplate($template) {
-		if (file_exists("Views/Templates/".$template.".tpl.php")) {
-			$this->template = "Views/Templates/".$template.".tpl.php";
+		if (file_exists("Views/Templates/$template.tpl.php")) {
+			$this->template = "Views/Templates/$template.tpl.php";
 		} else {
 			die("404: File $template.tpl.php not found");
 		}
 	}
 
 	public function setView($view) {
-		if (file_exists("Views/".$view.".view.php")) {
-			$this->view = "Views/".$view.".view.php";
+		if (file_exists("Views/$view.view.php")) {
+			$this->view = "Views/$view.view.php";
 		} else {
 			die("404: View $view.view.php not found");
 		}
