@@ -57,7 +57,7 @@ class Helpers {
 		}
 		$targetDir = $path;
 		$fileName = basename($_FILES['upfile']['tmp_name']);
-		$targetFilePath = $targetDir . date("Y-m-d_H:i:s") . "_" . $fileName;
+		$targetFilePath = $targetDir . date("Y-m-d_H-i-s") . "_" . $fileName;
 	
 		// Check $_FILES['upfile']['error'] value.
 		switch ($_FILES['upfile']['error']) {
@@ -93,7 +93,7 @@ class Helpers {
 		if (!move_uploaded_file(
 			$_FILES['upfile']['tmp_name'],
 			sprintf('./uploads/' . $directory . '/%s.%s',
-				date("Y-m-d_H:i:s") . "_" . $fileName,
+				date("Y-m-d_H-i-s") . "_" . $fileName,
 				$ext
 			)
 		)) {

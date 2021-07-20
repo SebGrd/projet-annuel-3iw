@@ -1,38 +1,66 @@
-version: '3'
+version: '3.0'
 services:
   web:
     build: site
+    hostname: localhost
     container_name: apache-mvc
     ports :
-     - "80:80"
+      - 80:80
     volumes:
-     - ./www:/var/www/html/
-     - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
-     - ./server/apache2.conf:/etc/apache2/apache2.conf
-     - ./server/php.ini:/usr/local/etc/php/php.ini
+      - ./www:/var/www/html/
+      - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./server/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./server/apache2.conf:/etc/apache2/apache2.conf
+      - ./server/php.ini:/usr/local/etc/php/php.ini
+      - ./server/apache_log:/var/log/apache2
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
     depends_on:
-     - database
+      - database
+    networks:
+      - backend
 
   database:
-    image: mysql:5.7
+    image: mysql:5.7.27
     container_name: mysql-mvc
     ports :
-      - "3306:3306"
+      - "3308:3306"
     environment:
-      MYSQL_DATABASE: pa-mvc
+      MYSQL_DATABASE: cms
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: root
       MYSQL_PASSWORD: password
     volumes:
       - ./db_data:/var/lib/mysql
     restart: always
+    networks:
+      - backend
+      - other
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+    image: phpmyadmin:latest
     container_name: phpmyadmin-mvc
+    restart: always
     depends_on:
       - database
     ports:
       - 8888:80
+      - 8889:443
     environment:
-        - PMA_ARBITRARY=1
+      - PMA_ARBITRARY=1
+      - PHP_UPLOAD_MAX_FILESIZE=100MB
+      - PMA_HOST=mysql-mvc
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+    networks:
+      - other
+
+volumes:
+  certbot-etc:
+  certbot-var:
+
+networks:
+  backend:
+    driver: bridge
+  other:
+    driver: bridge
