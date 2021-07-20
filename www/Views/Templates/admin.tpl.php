@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- <?= $_::render('style'); ?> -->
+    <!-- <?= $_::render('incl.style'); ?> -->
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta name='description' content='cms restaurant'>
@@ -44,13 +44,13 @@
             </li>
             <li class="header__menu__list__item header__menu__list__item--separator "></li>
             <li class="header__menu__list__item header__menu__list__item--profile ">
-                <span class="header__menu__list__item--profile__name"><?= $_SESSION['userStore']->firstname ?></span>
+                <span class="header__menu__list__item--profile__name"><?= $_SESSION['userStore']->firstname ?? '' ?></span>
                 <figure class="header__menu__list__item--profile__picture" id="pp-button">
                     <img src="https://picsum.photos/100/100.jpg" alt="">
                 </figure>
                 <ul class="header__menu__popup-menu" id="pp-menu">
                     <li class="header__menu__popup-menu__item">
-                        <a href="/admin/my-profile" class="header__menu__popup-menu__item__link">
+                        <a href="/admin/profile" class="header__menu__popup-menu__item__link">
                             Mon profil
                         </a>
                     </li>
@@ -153,7 +153,6 @@
     </aside>
     <main>
         <?php include $this->view ;?>
-        <!-- <?php var_dump($_SESSION['userStore']);?> -->
     </main>
 </div>
 </body>

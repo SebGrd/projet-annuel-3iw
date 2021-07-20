@@ -1,4 +1,4 @@
-# MainController Routes
+# MainController routes
 /:
   controller: MainController
   action: home
@@ -9,7 +9,7 @@
   action: notFound
   access: guest;user;admin
 
-# SecurityController Routes
+# SecurityController routes
 /register:
   controller: SecurityController
   action: register
@@ -20,31 +20,41 @@
   action: login
   access: guest
 
-/forgot-password:
-  controller: SecurityController
-  action: resetPassword
-  access: guest
-
 /logout:
   controller: SecurityController
   action: logout
   access: user;admin
 
-# AdminController Routes
+/forgot-password:
+  controller: SecurityController
+  action: resetPassword
+  access: guest
+
+/profile:
+  controller: SecurityController
+  action: profile
+  access: user
+
+# AdminController routes
 /admin:
   controller: AdminController
-  action: default
+  action: main
   access: admin
 
-# MenuController Routes
+/admin/profile:
+  controller: SecurityController
+  action: profile
+  access: admin
+
+# MenuController routes
 /admin/menus:
   controller: MenuController
-  action: default
+  action: main
   access: admin
 
 /admin/menu/new:
   controller: MenuController
-  action: createMenu
+  action: newMenu
   access: admin
 
 /admin/menu:
@@ -52,10 +62,15 @@
   action: editMenu
   access: admin
 
-# ProductController Routes
+/menu:
+  controller: MenuController
+  action: show
+  access: guest;user;admin
+
+# ProductController routes
 /admin/products:
   controller: ProductController
-  action: default
+  action: main
   access: admin
 
 /admin/product/new:
@@ -68,10 +83,15 @@
   action: editProduct
   access: admin
 
-# PageController Routes
+/product:
+  controller: PageController
+  action: show
+  access: guest;user;admin
+
+# PageController routes
 /admin/pages:
   controller: PageController
-  action: pages
+  action: main
   access: admin
 
 /admin/page/new:
@@ -83,3 +103,8 @@
   controller: PageController
   action: editPage
   access: admin
+
+/page:
+  controller: PageController
+  action: show
+  access: guest;user;admin

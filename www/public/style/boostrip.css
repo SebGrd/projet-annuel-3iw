@@ -8,6 +8,38 @@ body {
   font-family: sans-serif;
 }
 
+.text-primary {
+  color: #001F8C;
+}
+
+.text-secondary {
+  color: #7c7c81;
+}
+
+.text-dark {
+  color: #313131;
+}
+
+.text-light {
+  color: white;
+}
+
+.text-info {
+  color: #42c8cb;
+}
+
+.text-success {
+  color: #4EA526;
+}
+
+.text-warning {
+  color: #d6a204;
+}
+
+.text-danger {
+  color: #C61A1A;
+}
+
 .bg-primary {
   background: #001F8C;
 }

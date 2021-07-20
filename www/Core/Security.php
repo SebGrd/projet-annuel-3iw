@@ -4,11 +4,10 @@ namespace App\Core;
 use App\Core\JWT\JwtHandler;
 
 class Security {
-
 	public static function isConnected() {
-		if (isset($_COOKIE["token"])) {
+		if (isset($_COOKIE['token'])) {
 			$jwt = new JwtHandler();
-			$data = $jwt->_jwt_decode_data(trim($_COOKIE["token"]));
+			$data = $jwt->_jwt_decode_data(trim($_COOKIE['token']));
 			if (is_object($data)) {
 				$_SESSION['userStore'] = $data->data;
 				return true;
@@ -19,6 +18,10 @@ class Security {
 		}
 			$_SESSION['userStore'] = null;
 		return false;
+	}
+
+	public static function isAdmin() {
+		return self::isConnected() && $_SESSION['userStore']->role == 'admin';
 	}
 
 	public static function createJwt(array $data) {
@@ -37,9 +40,7 @@ class Security {
 	}
 
 	public static function isAuthorized(array $access) {
-
-		$role = (isset($_SESSION['userStore']) ? get_object_vars($_SESSION['userStore'])['role'] : 'guest');
-		
+		$role = (isset($_SESSION['userStore']) ? get_object_vars($_SESSION['userStore'])['role'] : 'guest');		
 		return in_array($role, $access);
 	}
 }
