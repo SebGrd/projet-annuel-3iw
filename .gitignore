@@ -1,3 +1,6 @@
 .env
 .env.dev
 .env.prod
+./server/apache_log
+./db_data
+./.idea

@@ -132,15 +132,11 @@ class MenuController
     public function deleteMenu() {
 		$menu = new Menu();
 
-        if ( empty( $_GET['id'] ) ) {
+        if (empty($_GET['id'])) {
             // Redirect to page 404 if query is malformed
             header('Location:/404');
             die;
         }
-
-
-        // Check if id is an integer
-
 
         if (!$menu) {
             // Redirect to page 404 if menu is not found

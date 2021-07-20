@@ -1,0 +1,205 @@
+[Tue Jul 20 14:18:58.928207 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 14:18:58.929046 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 14:19:53.977273 2021] [php7:notice] [pid 19] [client 172.24.0.1:62570] PHP Notice:  Trying to get property 'firstname' of non-object in /var/www/html/Views/Templates/admin.tpl.php on line 47, referer: http://127.0.0.1/
+[Tue Jul 20 14:23:23.511648 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 14:23:29.920910 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 14:23:29.922429 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 14:24:29.202182 2021] [mpm_prefork:error] [pid 1] AH00161: server reached MaxRequestWorkers setting, consider raising the MaxRequestWorkers setting
+[Tue Jul 20 14:29:19.287495 2021] [proxy_http:error] [pid 21] (70007)The timeout specified has expired: [client 127.0.0.1:51838] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:29:19.288322 2021] [proxy:error] [pid 21] [client 127.0.0.1:51838] AH00898: Error reading from remote server returned by /admin/pages
+[Tue Jul 20 14:29:19.287487 2021] [proxy_http:error] [pid 18] (70007)The timeout specified has expired: [client 172.24.0.1:62650] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:29:19.290122 2021] [proxy:error] [pid 18] [client 172.24.0.1:62650] AH00898: Error reading from remote server returned by /admin/pages
+[Tue Jul 20 14:29:19.341448 2021] [proxy_http:error] [pid 22] (70007)The timeout specified has expired: [client 127.0.0.1:51840] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:29:19.343055 2021] [proxy:error] [pid 22] [client 127.0.0.1:51840] AH00898: Error reading from remote server returned by /admin/pages
+[Tue Jul 20 14:29:19.805448 2021] [proxy_http:error] [pid 23] (70007)The timeout specified has expired: [client 127.0.0.1:51842] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:29:19.806544 2021] [proxy:error] [pid 23] [client 127.0.0.1:51842] AH00898: Error reading from remote server returned by /admin/pages
+[Tue Jul 20 14:29:20.386295 2021] [proxy_http:error] [pid 18] (104)Connection reset by peer: [client 172.24.0.1:62650] AH01102: error reading status line from remote server 127.0.0.1:80, referer: http://127.0.0.1/admin/pages
+[Tue Jul 20 14:29:20.386349 2021] [proxy_http:error] [pid 23] (104)Connection reset by peer: [client 127.0.0.1:52136] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:29:20.387915 2021] [proxy:error] [pid 23] [client 127.0.0.1:52136] AH00898: Error reading from remote server returned by /admin/pages
+[Tue Jul 20 14:29:20.386533 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 14:29:26.713669 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 14:29:26.714704 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 14:30:38.011194 2021] [mpm_prefork:error] [pid 1] AH00161: server reached MaxRequestWorkers setting, consider raising the MaxRequestWorkers setting
+[Tue Jul 20 14:35:27.958472 2021] [proxy_http:error] [pid 21] (70007)The timeout specified has expired: [client 127.0.0.1:52154] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:27.960229 2021] [proxy:error] [pid 21] [client 127.0.0.1:52154] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:28.000107 2021] [proxy_http:error] [pid 22] (70007)The timeout specified has expired: [client 127.0.0.1:52156] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:28.001599 2021] [proxy:error] [pid 22] [client 127.0.0.1:52156] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:28.539435 2021] [proxy_http:error] [pid 23] (70007)The timeout specified has expired: [client 127.0.0.1:52158] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:28.540685 2021] [proxy:error] [pid 23] [client 127.0.0.1:52158] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:29.580083 2021] [proxy_http:error] [pid 25] (70007)The timeout specified has expired: [client 127.0.0.1:52162] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:29.581783 2021] [proxy:error] [pid 25] [client 127.0.0.1:52162] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:29.580096 2021] [proxy_http:error] [pid 24] (70007)The timeout specified has expired: [client 127.0.0.1:52160] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:29.584040 2021] [proxy:error] [pid 24] [client 127.0.0.1:52160] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:30.547311 2021] [proxy_http:error] [pid 29] (70007)The timeout specified has expired: [client 127.0.0.1:52170] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:30.548357 2021] [proxy:error] [pid 29] [client 127.0.0.1:52170] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:31.617334 2021] [proxy_http:error] [pid 34] (70007)The timeout specified has expired: [client 127.0.0.1:52182] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:31.618540 2021] [proxy:error] [pid 34] [client 127.0.0.1:52182] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:31.618063 2021] [proxy_http:error] [pid 33] (70007)The timeout specified has expired: [client 127.0.0.1:52178] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:31.620182 2021] [proxy:error] [pid 33] [client 127.0.0.1:52178] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:31.618104 2021] [proxy_http:error] [pid 37] (70007)The timeout specified has expired: [client 127.0.0.1:52184] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:31.622512 2021] [proxy:error] [pid 37] [client 127.0.0.1:52184] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:31.619292 2021] [proxy_http:error] [pid 36] (70007)The timeout specified has expired: [client 127.0.0.1:52186] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:31.624142 2021] [proxy:error] [pid 36] [client 127.0.0.1:52186] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:31.620489 2021] [proxy_http:error] [pid 30] (70007)The timeout specified has expired: [client 127.0.0.1:52172] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:31.625460 2021] [proxy:error] [pid 30] [client 127.0.0.1:52172] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:32.566322 2021] [proxy_http:error] [pid 40] (70007)The timeout specified has expired: [client 127.0.0.1:52192] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:32.567688 2021] [proxy:error] [pid 40] [client 127.0.0.1:52192] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:32.566448 2021] [proxy_http:error] [pid 44] (70007)The timeout specified has expired: [client 127.0.0.1:52198] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:32.570570 2021] [proxy:error] [pid 44] [client 127.0.0.1:52198] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:32.566512 2021] [proxy_http:error] [pid 52] (70007)The timeout specified has expired: [client 127.0.0.1:52214] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:32.572463 2021] [proxy:error] [pid 52] [client 127.0.0.1:52214] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:32.591258 2021] [proxy_http:error] [pid 48] (70007)The timeout specified has expired: [client 127.0.0.1:52216] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:32.592587 2021] [proxy:error] [pid 48] [client 127.0.0.1:52216] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:32.636319 2021] [proxy_http:error] [pid 53] (70007)The timeout specified has expired: [client 127.0.0.1:52218] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:32.637343 2021] [proxy:error] [pid 53] [client 127.0.0.1:52218] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:33.560260 2021] [proxy_http:error] [pid 54] (70007)The timeout specified has expired: [client 127.0.0.1:52220] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:33.561286 2021] [proxy:error] [pid 54] [client 127.0.0.1:52220] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:33.571777 2021] [proxy_http:error] [pid 55] (70007)The timeout specified has expired: [client 127.0.0.1:52222] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:33.572620 2021] [proxy:error] [pid 55] [client 127.0.0.1:52222] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:33.571792 2021] [proxy_http:error] [pid 65] (70007)The timeout specified has expired: [client 127.0.0.1:52242] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:33.574052 2021] [proxy:error] [pid 65] [client 127.0.0.1:52242] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:33.571873 2021] [proxy_http:error] [pid 61] (70007)The timeout specified has expired: [client 127.0.0.1:52232] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:33.575866 2021] [proxy:error] [pid 61] [client 127.0.0.1:52232] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:33.591185 2021] [proxy_http:error] [pid 70] (70007)The timeout specified has expired: [client 127.0.0.1:52250] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:33.591851 2021] [proxy:error] [pid 70] [client 127.0.0.1:52250] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:33.591284 2021] [proxy_http:error] [pid 77] (70007)The timeout specified has expired: [client 127.0.0.1:52264] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:33.593461 2021] [proxy:error] [pid 77] [client 127.0.0.1:52264] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:33.591340 2021] [proxy_http:error] [pid 79] (70007)The timeout specified has expired: [client 127.0.0.1:52268] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:33.594463 2021] [proxy:error] [pid 79] [client 127.0.0.1:52268] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:33.591386 2021] [proxy_http:error] [pid 80] (70007)The timeout specified has expired: [client 127.0.0.1:52276] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:33.596076 2021] [proxy:error] [pid 80] [client 127.0.0.1:52276] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:33.660325 2021] [proxy_http:error] [pid 85] (70007)The timeout specified has expired: [client 127.0.0.1:52282] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:33.661394 2021] [proxy:error] [pid 85] [client 127.0.0.1:52282] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:34.591510 2021] [proxy_http:error] [pid 93] (70007)The timeout specified has expired: [client 127.0.0.1:52298] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:34.594462 2021] [proxy:error] [pid 93] [client 127.0.0.1:52298] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:34.591510 2021] [proxy_http:error] [pid 89] (70007)The timeout specified has expired: [client 127.0.0.1:52290] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:34.597497 2021] [proxy:error] [pid 89] [client 127.0.0.1:52290] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:34.641137 2021] [proxy_http:error] [pid 106] (70007)The timeout specified has expired: [client 127.0.0.1:52324] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:34.642321 2021] [proxy:error] [pid 106] [client 127.0.0.1:52324] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:34.641137 2021] [proxy_http:error] [pid 104] (70007)The timeout specified has expired: [client 127.0.0.1:52320] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:34.641273 2021] [proxy_http:error] [pid 98] (70007)The timeout specified has expired: [client 127.0.0.1:52308] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:34.645121 2021] [proxy:error] [pid 98] [client 127.0.0.1:52308] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:34.644414 2021] [proxy:error] [pid 104] [client 127.0.0.1:52320] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:34.659196 2021] [proxy_http:error] [pid 109] (70007)The timeout specified has expired: [client 127.0.0.1:52330] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:34.660419 2021] [proxy:error] [pid 109] [client 127.0.0.1:52330] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:34.659334 2021] [proxy_http:error] [pid 111] (70007)The timeout specified has expired: [client 127.0.0.1:52334] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:34.662157 2021] [proxy:error] [pid 111] [client 127.0.0.1:52334] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:34.672519 2021] [proxy_http:error] [pid 113] (70007)The timeout specified has expired: [client 127.0.0.1:52338] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:34.674592 2021] [proxy:error] [pid 113] [client 127.0.0.1:52338] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:34.672660 2021] [proxy_http:error] [pid 115] (70007)The timeout specified has expired: [client 127.0.0.1:52342] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:34.677137 2021] [proxy:error] [pid 115] [client 127.0.0.1:52342] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:34.708352 2021] [proxy_http:error] [pid 116] (70007)The timeout specified has expired: [client 127.0.0.1:52344] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:34.709848 2021] [proxy:error] [pid 116] [client 127.0.0.1:52344] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:34.709103 2021] [proxy_http:error] [pid 117] (70007)The timeout specified has expired: [client 127.0.0.1:52346] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:34.711768 2021] [proxy:error] [pid 117] [client 127.0.0.1:52346] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:35.642784 2021] [proxy_http:error] [pid 118] (70007)The timeout specified has expired: [client 127.0.0.1:52348] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:35.644024 2021] [proxy:error] [pid 118] [client 127.0.0.1:52348] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:35.642873 2021] [proxy_http:error] [pid 127] (70007)The timeout specified has expired: [client 127.0.0.1:52366] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:35.645516 2021] [proxy:error] [pid 127] [client 127.0.0.1:52366] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:35.642932 2021] [proxy_http:error] [pid 129] (70007)The timeout specified has expired: [client 127.0.0.1:52370] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:35.643073 2021] [proxy_http:error] [pid 133] (70007)The timeout specified has expired: [client 127.0.0.1:52378] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:35.647922 2021] [proxy:error] [pid 133] [client 127.0.0.1:52378] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:35.643132 2021] [proxy_http:error] [pid 142] (70007)The timeout specified has expired: [client 127.0.0.1:52396] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:35.650077 2021] [proxy:error] [pid 142] [client 127.0.0.1:52396] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:35.643188 2021] [proxy_http:error] [pid 144] (70007)The timeout specified has expired: [client 127.0.0.1:52400] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:35.651932 2021] [proxy:error] [pid 144] [client 127.0.0.1:52400] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:35.643245 2021] [proxy_http:error] [pid 146] (70007)The timeout specified has expired: [client 127.0.0.1:52404] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:35.653650 2021] [proxy:error] [pid 146] [client 127.0.0.1:52404] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:35.646671 2021] [proxy:error] [pid 129] [client 127.0.0.1:52370] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:35.689346 2021] [proxy_http:error] [pid 149] (70007)The timeout specified has expired: [client 127.0.0.1:52410] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:35.690461 2021] [proxy:error] [pid 149] [client 127.0.0.1:52410] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:35.691095 2021] [proxy_http:error] [pid 147] (70007)The timeout specified has expired: [client 127.0.0.1:52406] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:35.691762 2021] [proxy:error] [pid 147] [client 127.0.0.1:52406] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:36.653478 2021] [proxy_http:error] [pid 150] (70007)The timeout specified has expired: [client 127.0.0.1:52412] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:36.653599 2021] [proxy_http:error] [pid 156] (70007)The timeout specified has expired: [client 127.0.0.1:52424] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:36.655620 2021] [proxy:error] [pid 156] [client 127.0.0.1:52424] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:36.653672 2021] [proxy_http:error] [pid 160] (70007)The timeout specified has expired: [client 127.0.0.1:52432] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:36.658151 2021] [proxy:error] [pid 160] [client 127.0.0.1:52432] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:36.654803 2021] [proxy:error] [pid 150] [client 127.0.0.1:52412] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:36.662208 2021] [proxy_http:error] [pid 161] (70007)The timeout specified has expired: [client 127.0.0.1:52434] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:36.664269 2021] [proxy:error] [pid 161] [client 127.0.0.1:52434] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:36.662313 2021] [proxy_http:error] [pid 166] (70007)The timeout specified has expired: [client 127.0.0.1:52444] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:36.666495 2021] [proxy:error] [pid 166] [client 127.0.0.1:52444] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:36.662487 2021] [proxy_http:error] [pid 164] (70007)The timeout specified has expired: [client 127.0.0.1:52440] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:36.669408 2021] [proxy:error] [pid 164] [client 127.0.0.1:52440] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:36.666855 2021] [proxy_http:error] [pid 163] (70007)The timeout specified has expired: [client 127.0.0.1:52438] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:36.672072 2021] [proxy:error] [pid 163] [client 127.0.0.1:52438] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:36.666941 2021] [proxy_http:error] [pid 167] (70007)The timeout specified has expired: [client 127.0.0.1:52446] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:36.674679 2021] [proxy:error] [pid 167] [client 127.0.0.1:52446] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:39.002364 2021] [proxy_http:error] [pid 166] (104)Connection reset by peer: [client 127.0.0.1:52444] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:39.002596 2021] [proxy_http:error] [pid 164] (104)Connection reset by peer: [client 127.0.0.1:52554] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:39.005882 2021] [proxy:error] [pid 164] [client 127.0.0.1:52554] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:39.002620 2021] [proxy_http:error] [pid 163] (104)Connection reset by peer: [client 127.0.0.1:52438] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:39.002670 2021] [proxy_http:error] [pid 167] (104)Connection reset by peer: [client 127.0.0.1:52558] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:39.010211 2021] [proxy:error] [pid 167] [client 127.0.0.1:52558] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:39.003103 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 14:35:39.006850 2021] [proxy_http:error] [pid 165] (20014)Internal error (specific information not available): [client 127.0.0.1:52552] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:39.014437 2021] [proxy:error] [pid 165] [client 127.0.0.1:52552] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:39.021759 2021] [proxy_http:error] [pid 162] (20014)Internal error (specific information not available): [client 127.0.0.1:52556] AH01102: error reading status line from remote server 127.0.0.1:80
+[Tue Jul 20 14:35:39.027812 2021] [proxy:error] [pid 162] [client 127.0.0.1:52556] AH00898: Error reading from remote server returned by /
+[Tue Jul 20 14:35:45.920207 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 14:35:45.921376 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 14:36:45.361092 2021] [php7:notice] [pid 23] [client 172.24.0.1:63428] PHP Notice:  Trying to get property 'firstname' of non-object in /var/www/html/Views/Templates/admin.tpl.php on line 47, referer: http://127.0.0.1/
+[Tue Jul 20 14:39:19.183423 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 14:39:25.732864 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 14:39:25.733615 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 14:40:37.554216 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 14:40:44.558879 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 14:40:44.559763 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 14:42:05.043311 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 14:42:12.321115 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 14:42:12.322187 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 14:46:23.561264 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 14:46:35.484382 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 14:46:35.485641 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 14:47:19.176619 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 14:47:25.564606 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 14:47:25.565257 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 14:48:01.520879 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 14:48:07.314533 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 14:48:07.315341 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 14:50:45.762986 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 14:52:41.005166 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 14:52:41.006170 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:02:05.199488 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:03:52.647712 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:03:52.648638 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:05:00.590829 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:05:07.090064 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:05:07.090810 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:07:16.361905 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:07:23.146846 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:07:23.147925 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:08:49.453048 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:08:55.802139 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:08:55.802804 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:09:59.322027 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:10:42.554868 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:10:42.555801 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:11:21.896238 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:11:30.081132 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:11:30.081964 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:12:06.734132 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:12:13.768021 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:12:13.769027 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:16:49.891773 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:17:37.869317 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:17:37.870282 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:21:34.276327 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:22:01.669996 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:22:01.672416 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:22:35.025112 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:23:43.674454 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:23:43.675434 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:28:24.309669 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:29:07.077893 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:29:07.078716 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:30:33.532832 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:30:40.673772 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:30:40.674997 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:32:34.711624 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:32:41.115912 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:32:41.117573 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 20 15:39:30.305138 2021] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Jul 20 15:39:37.202928 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.21 configured -- resuming normal operations
+[Tue Jul 20 15:39:37.204355 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
