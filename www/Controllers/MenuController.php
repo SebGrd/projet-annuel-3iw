@@ -12,10 +12,6 @@ use App\Models\Menu;
 
 class MenuController
 {
-    public function __construct() {
-		$constantMaker = new ConstantMaker();
-    }
-
     public function main() {
         $view = new View('menus.main', 'admin');
 		$menu = new Menu();

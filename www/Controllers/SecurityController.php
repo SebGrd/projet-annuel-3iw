@@ -2,14 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Core\ConstantMaker;
 use App\Core\FormValidator;
 use App\Core\Helpers;
 use App\Core\Message;
 use App\Core\Security;
 use App\Core\Session;
 use App\Core\View;
-
 use App\Models\User;
 
 class SecurityController {

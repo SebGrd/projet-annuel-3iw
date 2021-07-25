@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Core\Database;
-use App\Core\Helpers;
 
 class Product extends Database {
 	private $id = null;
@@ -11,7 +10,9 @@ class Product extends Database {
 	protected $description = '';
 	protected $quantity = 0;
 	protected $price = 0;
+	protected $rrp = 0;
 	protected $image = 1;
+	protected $menu_id = null;
 	protected $createdAt = '';
 	protected $updatedAt = '';
 
@@ -98,6 +99,20 @@ class Product extends Database {
 	/**
 	 * @return mixed
 	 */
+	public function getRrp() {
+		return $this->rrp;
+	}
+
+	/**
+	 * @param mixed $rrp (retail price, change this for sale on the product)
+	 */
+	public function setRrp($rrp) {
+		$this->rrp = $rrp;
+	}
+
+	/**
+	 * @return mixed
+	 */
 	public function getImage() {
 		return $this->image;
 	}
@@ -107,6 +122,20 @@ class Product extends Database {
 	 */
 	public function setImage($image) {
 		$this->image = $image;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getMenuId() {
+		return $this->menu_id;
+	}
+
+	/**
+	 * @param mixed $menu_id
+	 */
+	public function setMenuId($menu_id) {
+		$this->menu_id = $menu_id;
 	}
 
 	/**

@@ -8,12 +8,12 @@ class TableBuilder
      * @param $class // Model
      * @param array $excludeList Array of excluding titles
      */
-    public static function render($class, array $excludeList = [])
+    public static function render($class, array $excludeList = [], $orderBy = [])
     {
         // Initialize the model class
         $instance = new $class();
         // Select all data from database
-        $data = $instance->findAll([], [], true);
+        $data = $instance->findAll([], $orderBy, true);
         // Create a reflection Class to get protected and private properties
         $reflect = new \ReflectionClass($instance);
         $props = $reflect->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_PROTECTED );

@@ -115,7 +115,7 @@
       "4": {
         "name": "createdAt",
         "type": "datetime",
-        "extra": "NOT NULL"
+        "extra": "NOT NULL.DEFAULT current_timestamp"
       },
       "5": {
         "name": "updatedAt",
@@ -155,7 +155,7 @@
       "4": {
         "name": "createdAt",
         "type": "datetime",
-        "extra": "NOT NULL"
+        "extra": "NOT NULL.DEFAULT current_timestamp"
       },
       "5": {
         "name": "updatedAt",
@@ -180,37 +180,142 @@
       "1": {
         "name": "price",
         "type": "decimal(6,2)",
-        "extra": "NULL.DEFAULT '0'"
+        "extra": "NOT NULL"
       },
       "2": {
+        "name": "rrp",
+        "type": "decimal(6,2)",
+        "extra": "NULL.DEFAULT '0'"
+      },
+      "3": {
         "name": "image",
         "type": "int",
         "extra": "NULL.DEFAULT NULL"
       },
-      "3": {
+      "4": {
+        "name": "menu_id",
+        "type": "int",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "5": {
         "name": "description",
         "type": "varchar(255)",
         "extra": "NULL.DEFAULT NULL"
       },
-      "4": {
+      "6": {
         "name": "name",
         "type": "varchar(100)",
         "extra": "NOT NULL"
       },
-      "5": {
+      "7": {
         "name": "quantity",
         "type": "int",
         "extra": "NOT NULL.DEFAULT '0'"
       },
-      "6": {
+      "8": {
         "name": "createdAt",
         "type": "datetime",
-        "extra": "NOT NULL"
+        "extra": "NOT NULL.DEFAULT current_timestamp"
       },
-      "7": {
+      "9": {
         "name": "updatedAt",
         "type": "datetime",
         "extra": "NULL.DEFAULT NULL"
+      }
+    }
+  },
+  {
+    "name": "order",
+    "fields": {
+      "0": {
+        "name": "id",
+        "type": "int",
+        "extra": "PRIMARY KEY.NOT NULL.AUTO_INCREMENT"
+      },
+      "1": {
+        "name": "status",
+        "type": "int",
+        "extra": "NOT NULL.DEFAULT '0'"
+      },
+      "2": {
+        "name": "total_price",
+        "type": "decimal(6,2)",
+        "extra": "NOT NULL.DEFAULT '0'"
+      },
+      "3": {
+        "name": "product_count",
+        "type": "int",
+        "extra": "NOT NULL.DEFAULT '0'"
+      },
+      "4": {
+        "name": "user_id",
+        "type": "int",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "5": {
+        "name": "createdAt",
+        "type": "datetime",
+        "extra": "NOT NULL.DEFAULT current_timestamp"
+      },
+      "6": {
+        "name": "updatedAt",
+        "type": "datetime",
+        "extra": "NULL.DEFAULT NULL"
+      }
+    }
+  },
+  {
+    "name": "address",
+    "fields": {
+      "0": {
+        "name": "id",
+        "type": "int",
+        "extra": "PRIMARY KEY.NOT NULL.AUTO_INCREMENT"
+      },
+      "1": {
+        "name": "name",
+        "type": "varchar(255)",
+        "extra": "NOT NULL"
+      },
+      "2": {
+        "name": "address",
+        "type": "varchar(255)",
+        "extra": "NOT NULL"
+      },
+      "3": {
+        "name": "address2",
+        "type": "varchar(255)",
+        "extra": "NULL.DEFAULT ''"
+      },
+      "4": {
+        "name": "user_id",
+        "type": "int",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "5": {
+        "name": "district",
+        "type": "varchar(100)",
+        "extra": "NULL.DEFAULT ''"
+      },
+      "6": {
+        "name": "city",
+        "type": "varchar(255)",
+        "extra": "NOT NULL"
+      },
+      "7": {
+        "name": "postal_code",
+        "type": "varchar(16)",
+        "extra": "NOT NULL"
+      },
+      "8": {
+        "name": "phone",
+        "type": "int",
+        "extra": "NOT NULL"
+      },
+      "9": {
+        "name": "updatedAt",
+        "type": "datetime",
+        "extra": "NULL.DEFAULT current_timestamp"
       }
     }
   }

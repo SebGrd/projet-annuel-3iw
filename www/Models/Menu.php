@@ -9,9 +9,9 @@ class Menu extends Database {
 	protected $title = '';
 	protected $description = '';
 	protected $image = '';
-	protected $active = 1;
 	protected $createdAt = '';
 	protected $updatedAt = '';
+	protected $active = 1;
 
 	public function __construct(){
 		parent::__construct();

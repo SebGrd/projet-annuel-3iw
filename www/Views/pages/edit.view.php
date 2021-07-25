@@ -1,11 +1,11 @@
-<div class="container" id="page-builder">
-    <section>
-		<a href="/admin/pages" class="btn btn-dark">Annuler</a>
-		<h2>Modification de la page "<?= $page->getTitle()?>"</h2>
-	</section>
+<div id="page-builder">
+    <h2>Edition de la page <?= $page->getTitle()?></h2>
+    <div>
+        <a href="/admin/pages" class="btn btn-dark">Retour</a>
+    </div>
     
     <!-- Show messages -->
-	<?= $_::render('incl.message', ['msgs' => ['edit_page_success', 'edit_page_error'], 'errs' => $errors ?? []]) ?>
+	<?= $_::render('incl.message', ['msgs' => ['EDIT_PAGE_SUCCESS', 'EDIT_PAGE_ERROR'], 'errs' => $errors ?? []]); ?>
     
     <div class="row">
         <div class="col-18">

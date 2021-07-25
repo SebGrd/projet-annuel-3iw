@@ -112,10 +112,6 @@ class Page extends Database {
 		$this->updatedAt = date('Y-m-d H:i:s');
 	}
 
-    public function unset($attr) {
-        unset($this->$attr);
-    }
-    
 	/**
 	 * @return int
 	 */
@@ -168,6 +164,56 @@ class Page extends Database {
                     'class'=>'form_input',
                     'error'=>'Image invalide',
                     'required'=>false
+                ],
+            ]
+        ];
+    }
+    public function formPageEdit() {
+        return [
+            'config'=>[
+                'method'=>'POST',
+                'action'=>'',
+                'id'=>'form_create_page',
+                'class'=>'form',
+                'submit'=>"Mettre à jour"
+            ],
+            'inputs'=>[
+                'title'=>[
+                    'type'=>'text',
+                    'label'=>'Titre de la page',
+                    'minLength'=>2,
+                    'maxLength'=>55,
+                    'id'=>'title',
+                    'class'=>'form_input',
+                    'error'=>'Le titre de la page doit faire entre 2 et 55 caractères',
+                    'required'=>true,
+					'value'=>$this->title
+                ],
+                'html'=>[
+                    'type'=>'hidden',
+                    'minLength'=>0,
+                    'id'=>'html',
+                    'class'=>'form_input d-none',
+                    'error'=>'Erreur',
+                    'required'=>true,
+					'value'=>$this->html
+                ],
+                'image'=>[
+                    'type'=>'file',
+                    'label'=>'Image à la une',
+                    'id'=>'upfile',
+                    'name'=>'upfile',
+                    'class'=>'form_input',
+                    'error'=>'Image invalide',
+                    'required'=>false
+                ],
+                'active'=>[
+                    'type'=>'checkbox',
+                    'label'=>'Actif',
+                    'id'=>'active',
+                    'class'=>'form_input',
+                    'required'=>false,
+                    'value'=>$this->active,
                 ],
             ]
         ];
