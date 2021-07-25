@@ -31,7 +31,7 @@ class PageController
 
 			if (empty($errors)) {
                 $title = htmlspecialchars(strip_tags($_POST['title']));
-                $html = htmlspecialchars(strip_tags($_POST['html']));
+                $html = htmlentities($_POST['html']);
 
                 $page->find(['title' => $title]);
     
@@ -151,6 +151,9 @@ class PageController
 			// Check if id is an integer
 			if (ctype_digit($id)) {
 				$page = $page->find(['id' => $id]);
+				if ($page->getActive() !== 1 && $_SESSION['userStore']->role !== 'admin') {
+					header('Location:/404');
+				}
 			} else {
 				// Redirect to page 404 if query is malformed
 				header('Location:/404');

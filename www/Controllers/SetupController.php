@@ -173,10 +173,10 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'dbname',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Le nom de la base de données que vous souhaitez utiliser.',
           'error'=>'Le nom de la base de données obligatoire',
-          'value'=>"",
+          'value'=>'',
           'required'=>true
         ],
         'username'=>[ 
@@ -185,7 +185,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'username',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Votre identifiant.',
           'error'=>'Identifiant obligatoire',
           'required'=>true
@@ -196,7 +196,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'password',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Votre mot de passe.',
           'error'=>'Mot de passe obligatoire',
           'required'=>true
@@ -207,7 +207,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'dbhost',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Url de la base de données, si localhost ne fonctionne pas.',
           'error'=>'Adresse hôte obligatoire',
           'required'=>true
@@ -218,7 +218,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>5,
           'id'=>'dbport',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Port de la base de données, par défaut 3306.',
           'value'=>'3306',
           'error'=>'Adresse hôte obligatoire',
@@ -230,7 +230,7 @@ class SetupController {
           'minLength'=>1,
           'maxLength'=>20,
           'id'=>'prefix',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Si vous souhaitez lancer plusieurs instances sur la même base de données, changez le préfix.',
           'error'=>'Adresse hôte obligatoire',
           'value'=>'gojs_',
@@ -256,7 +256,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'smtpHost',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Url du serveur SMTP que vous souhaitez utiliser.',
           'error'=>'Url du serveur SMTP obligatoire',
           'value'=>"",
@@ -268,7 +268,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>5,
           'id'=>'smtpPort',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Port du serveur SMTP.',
           'error'=>'Port SMTP obligatoire',
           'required'=>true
@@ -279,7 +279,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'username',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Votre identifiant.',
           'error'=>'Identifiant obligatoire',
           'required'=>true
@@ -290,7 +290,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'password',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Votre mot de passe.',
           'error'=>'Mot de passe obligatoire',
           'required'=>true
@@ -301,7 +301,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'email',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Votre email.',
           'error'=>'Email obligatoire',
           'required'=>true
@@ -312,7 +312,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'name',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Nom affiché.',
           'error'=>'Nom obligatoire',
           'required'=>true
@@ -321,7 +321,7 @@ class SetupController {
           'type'=>'select',
           'label'=>'Utiliser TLS ou SSL (optionnel)',
           'id'=>'secure',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'options'=>['aucun', 'tls', 'ssl'],
           'error'=>'Port SMTP obligatoire',
           'required'=>true
@@ -346,10 +346,10 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'siteTitle',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'',
           'error'=>'Titre obligatoire.',
-          'value'=>"",
+          'value'=>'',
           'required'=>true
         ],
         'firstname'=>[
@@ -358,10 +358,10 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'firstname',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'',
           'error'=>'Prénom obligatoire.',
-          'value'=>"",
+          'value'=>'',
           'required'=>true
         ],
         'lastname'=>[
@@ -370,10 +370,10 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'lastname',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'',
           'error'=>'Nom obligatoire.',
-          'value'=>"",
+          'value'=>'',
           'required'=>true
         ],
         'email'=>[
@@ -382,7 +382,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'email',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Votre email.',
           'error'=>'Email obligatoire',
           'required'=>true
@@ -393,7 +393,7 @@ class SetupController {
           'minLength'=>2,
           'maxLength'=>255,
           'id'=>'password',
-          'class'=>'form_input w-2',
+          'class'=>'form_input w-75',
           'placeholder'=>'Votre mot de passe.',
           'error'=>'Mot de passe obligatoire',
           'required'=>true
@@ -402,7 +402,8 @@ class SetupController {
           'type'=>'checkbox',
           'name'=>'indexVisibility',
           'label'=>'Visibilité des moteurs de recherche',
-          'class'=>'form_input'
+          'class'=>'form_input',
+          'value'=>1,
         ],
       ]
     ];

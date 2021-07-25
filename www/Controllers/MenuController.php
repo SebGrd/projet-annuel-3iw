@@ -48,8 +48,6 @@ class MenuController
                         $menu->setDescription($description);
                         $menu->setImage($image !== false ? $image : null);
                         $menu->save();
-                        $view->assign('success', "Le menu $title a été créé");
-
     					Message::add('NEW_MENU_SUCCESS');
                     }
                 }
@@ -131,8 +129,6 @@ class MenuController
             
 			if (empty($errors)) {
                 $menu->save();
-                $view->assign('success', "Le menu $title a bien été mis à jour");
-
                 Message::add('EDIT_MENU_SUCCESS');
             } else {
                 $view->assign('errors', $errors);

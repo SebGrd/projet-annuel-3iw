@@ -37,7 +37,7 @@
 		
 		<ul class="menu-main">
 			<!-- Show edit page link if the route is a page -->
-			<?php if (explode('?', $_R::getCurrentRoute())[0] === '/page'): ?>
+			<?php if ($_S::isAdmin() && explode('?', $_R::getCurrentRoute())[0] === '/page'): ?>
 				<li class="menu-main-item">	
 					<a href="/admin<?= $_R::getCurrentRoute() ?>" class="menu-main-item-link">Modifier</a>
 				</li>

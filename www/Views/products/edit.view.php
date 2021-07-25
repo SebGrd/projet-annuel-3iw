@@ -7,8 +7,6 @@
 	<!-- Show messages -->
 	<?= $_::render('incl.message', ['msgs' => ['edit_product_success', 'edit_product_error'], 'errs' => $errors ?? []]); ?>
 
-	<?= print_r($_SESSION); ?>
-
 	<?php if($product->getImage() !== null): ?>
 		<img src="../<?= $_::getImageUrl($product->getImage()) ?>" style="max-width: 100%; max-height: 150px;">
 	<?php endif; ?>

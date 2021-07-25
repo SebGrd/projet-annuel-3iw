@@ -65,7 +65,7 @@ class Helpers {
 		}
 		
 		if (is_array($_FILES['upfile']['error'])) {
-			return ['error' => "Paramètres invalides."];
+			return ['error' => 'Paramètres invalides.'];
 		}
 
 		$path = 'uploads/' . $directory . '/';
