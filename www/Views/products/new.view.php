@@ -1,25 +1,15 @@
 <div class="container" id="page-builder">
-    <h2>Nouveau produit</h2>
-    <a href="/admin/products" class="btn btn-dark">Retour</a>
-    </br>
-    </br>
-    <?php if (isset($success)): ?>
-      <li style="color: green;">
-        <?= $success; ?>
-      </li>
-    <?php endif; ?>
-    <?php if (isset($errors)): ?>
-      <ul class="auth__section__form__list">
-        <?php foreach ($errors as $error): ?>
-          <li style="color: red;">
-            <?= $error; ?>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-    <?php endif; ?>
-    <div class="row">
-        <div class="col-6">
-            <?php App\Core\FormBuilder::render($form); ?>
-        </div>
-    </div>
+	<section>
+		<a href="/admin/products" class="btn btn-dark">Annuler</a>
+		<h2>Créer un nouveau produit</h2>
+	</section>
+	
+	<!-- Show messages -->
+	<?= $_::render('incl.message', ['msgs' => ['edit_page_success', 'edit_page_error'], 'errs' => $errors ?? []]); ?>
+
+	<div class="row">
+		<div class="col-6">
+			<?php $_FB::render($form); ?>
+		</div>
+	</div>
 </div>

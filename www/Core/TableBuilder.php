@@ -24,9 +24,10 @@ class TableBuilder
             if (in_array($prop->getName() , $excludeList)) {
                 continue;
             }
+
             array_push($rows, $prop);
         }
-
+        
         $html = '<table class="datatable">';
         $html .= self::generateHeader($rows);
         $html .= self::generateRows($data, $rows, $instance->getModelName());

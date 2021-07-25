@@ -1,8 +1,8 @@
-<div id="page-builder">
-    <h2>Nouvelle page</h2>
-    <div>
-        <a href="/admin/pages" class="btn btn-dark">Retour</a>
-    </div>
+<div class="container" id="page-builder">
+	<section>
+		<a href="/admin/pages" class="btn btn-dark">Annuler</a>
+		<h2>Créer une nouvelle page</h2>
+	</section>
 
     <!-- Show messages -->
 	<?= $_::render('incl.message', ['msgs' => ['PAGE_SUCCESS', 'PAGE_ERROR'], 'errs' => $errors ?? []]); ?>

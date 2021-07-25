@@ -25,14 +25,30 @@ class Helpers {
 
 	public static function dump($dump) {
 		echo '<pre>' . print_r($dump) . '</pre>';
+		// TODO flex table
 	}
 	
 	public static function err($errors) {
-		$var = '';
+		$var = '<ul>';
 		foreach ($errors as $error) {
 			$var .= "<li style='color: red;'>$error</li>";
 		}
-		return $var;
+		return $var . '</ul>';
+	}
+
+	public static function str_contains(string $haystack, string $needle): bool
+    {
+        return '' === $needle || false !== strpos($haystack, $needle);
+    }
+
+	// Function to clean input
+	public static function clean($input, $isHtml = false) {
+		// $input = trim($input);
+		$input = stripslashes($input);
+		$input = htmlspecialchars($input);
+		$input = $isHtml ? htmlspecialchars($input) :
+			trim(stripslashes($input));
+		return $input;
 	}
 
 	/**
@@ -49,7 +65,7 @@ class Helpers {
 		}
 		
 		if (is_array($_FILES['upfile']['error'])) {
-			return ['error' => "Paramètres invalides."];
+			return ['error' => 'Paramètres invalides.'];
 		}
 
 		$path = 'uploads/' . $directory . '/';

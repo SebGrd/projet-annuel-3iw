@@ -1,0 +1,38 @@
+/** @format */
+
+/// # Functions
+/// Remove the unit of a length
+/// @param {Number} $num - Unitless number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($num) {
+	@if type-of($num) == 'number' and not unitless($num) {
+		@return $num / ($num * 0 + 1);
+	}
+
+	@return $num;
+	// strip-unit(5) => 5
+	// strip-unit(12px) => 12
+}
+
+
+/// Add an unit of a length
+/// @param {Number} $num - Unitless number that will take the unit
+/// @param {Number} $unit - Number that we'll use unit
+/// @return {Number} - Unitless number
+@function change-unit($num, $unit) {
+	@if type-of($num) == 'number' {
+		@if unitless($num) and not unitless($unit) {
+			@return $num * ($unit * 0 + 1);
+		}
+
+		@if unitless($unit) and not unitless($num) {
+			@return strip-unit($num);
+		}
+	}
+
+	@return $num;
+	// change-unit(5, *px) => 5px
+	// change-unit(12px, *em) => 12em
+	// change-unit(15rem, 10) => 15
+	// change-unit(auto, *) => auto
+}

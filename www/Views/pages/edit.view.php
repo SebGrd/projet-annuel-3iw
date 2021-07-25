@@ -12,7 +12,7 @@
             <h3>Editeur de page</h3>
             <div class="page-builder">
                 <div id="editor">
-                  <?= $page->getHTML()?>
+                  <?= html_entity_decode($page->getHTML()) ?>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
                 <img src="../<?= $_::getImageUrl($page->getImage()) ?>" style="max-width: 100%; max-height: 150px;">
             <?php endif; ?>
 
-            <?php $_FB::render($form); ?>
-        </div>
-    </div>
+			<?php $_FB::render($form); ?>
+		</div>
+	</div>
 </div>

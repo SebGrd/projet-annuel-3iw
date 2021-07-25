@@ -9,6 +9,7 @@ class View {
 	const GLOBALS = [
 		'_title' => 'CMS',
 		'_' => Helpers::class,
+		'_R' => Router::class,
 		'_S' => Security::class,
 		'_V' => View::class,
 		'_FB' => FormBuilder::class,
