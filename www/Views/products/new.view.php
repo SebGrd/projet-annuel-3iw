@@ -1,7 +1,7 @@
 <div class="container" id="page-builder">
 	<section>
 		<a href="/admin/products" class="btn btn-dark">Annuler</a>
-		<h2>Nouveau produit</h2>
+		<h2>Créer un nouveau produit</h2>
 	</section>
 	
 	<!-- Show messages -->

@@ -86,6 +86,7 @@ class Router {
 			} else {
 				(new MainController)->notFound("Route <b><code>$uri</code></b> introuvable");
 			}
+
 		} else {
 			(new MainController)->notFound("Fichier <b><code>{$this->routesPath}</code></b> introuvable dans la racine");
 		}
@@ -110,6 +111,12 @@ class Router {
 					$authorized = Security::isAuthorized($roles);
 
 					if (!$authorized) { header('location: /login'); }
+
+					if (!defined('SETUP_TERMINATED') && $this->uri !== '/setup') {
+						header('location:setup', 303);
+					} else if (defined('SETUP_TERMINATED')) {
+						if (SETUP_TERMINATED !== 'true' && $this->uri !== '/setup') header('location:setup', 303);
+					}
 
 					$cObjet->$a();
 				} else {

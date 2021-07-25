@@ -15,8 +15,10 @@ class Menu extends Database {
 
 	public function __construct(){
 		parent::__construct();
-		$this->setCreatedAt($this->createdAt);
-		$this->setUpdatedAt();
+		if ($this->id == null) {
+			$this->setCreatedAt();
+		}
+	$this->setUpdatedAt();
 	}
 
 	/**
@@ -101,8 +103,8 @@ class Menu extends Database {
 	/**
 	 * @param string $createdAt
 	 */
-	public function setCreatedAt($date) {
-		$date ? $this->createdAt = $date : $this->createdAt = date('Y-m-d H:i:s');
+	public function setCreatedAt() {
+		$this->createdAt = date('Y-m-d H:i:s');
 	}
 
 	/**

@@ -11,12 +11,15 @@ class Page extends Database {
     protected $html = '';
     protected $createdAt = '';
 	protected $updatedAt = '';
+	protected $active = 1;
 
-    public function __construct(){
-        parent::__construct();
-		$this->setCreatedAt($this->createdAt);
-		$this->setUpdatedAt();
-    }
+	public function __construct(){
+		parent::__construct();
+		if ($this->id == null) {
+			$this->setCreatedAt();
+		}
+	$this->setUpdatedAt();
+	}
 
     /**
      * @return mixed
@@ -91,8 +94,8 @@ class Page extends Database {
     /**
 	 * @param mixed $createdAt
 	 */
-	public function setCreatedAt($date) {
-		$date ? $this->createdAt = $date : $this->createdAt = date('Y-m-d H:i:s');
+	public function setCreatedAt() {
+		$this->createdAt = date('Y-m-d H:i:s');
 	}
 
 	/**
@@ -112,6 +115,20 @@ class Page extends Database {
     public function unset($attr) {
         unset($this->$attr);
     }
+    
+	/**
+	 * @return int
+	 */
+	public function getActive() {
+		return $this->active;
+	}
+
+	/**
+	 * @param int $active
+	 */
+	public function setActive($active) {
+		$this->active = $active;
+	}
 
     public function formPage() {
         return [
@@ -140,8 +157,8 @@ class Page extends Database {
                     'id'=>'html',
                     'class'=>'form_input d-none',
                     'error'=>'Erreur',
-                    'required'=>false,
-					'value'=>htmlspecialchars($this->html)
+                    'required'=>true,
+					'value'=>$this->html
                 ],
                 'image'=>[
                     'type'=>'file',
@@ -151,6 +168,56 @@ class Page extends Database {
                     'class'=>'form_input',
                     'error'=>'Image invalide',
                     'required'=>false
+                ],
+            ]
+        ];
+    }
+    public function formPageEdit() {
+        return [
+            'config'=>[
+                'method'=>'POST',
+                'action'=>'',
+                'id'=>'form_create_page',
+                'class'=>'form',
+                'submit'=>"Mettre à jour"
+            ],
+            'inputs'=>[
+                'title'=>[
+                    'type'=>'text',
+                    'label'=>'Titre de la page',
+                    'minLength'=>2,
+                    'maxLength'=>55,
+                    'id'=>'title',
+                    'class'=>'form_input',
+                    'error'=>'Le titre de la page doit faire entre 2 et 55 caractères',
+                    'required'=>true,
+					'value'=>$this->title
+                ],
+                'html'=>[
+                    'type'=>'hidden',
+                    'minLength'=>0,
+                    'id'=>'html',
+                    'class'=>'form_input d-none',
+                    'error'=>'Erreur',
+                    'required'=>true,
+					'value'=>$this->html
+                ],
+                'image'=>[
+                    'type'=>'file',
+                    'label'=>'Image à la une',
+                    'id'=>'upfile',
+                    'name'=>'upfile',
+                    'class'=>'form_input',
+                    'error'=>'Image invalide',
+                    'required'=>false
+                ],
+                'active'=>[
+                    'type'=>'checkbox',
+                    'label'=>'Actif',
+                    'id'=>'active',
+                    'class'=>'form_input',
+                    'required'=>false,
+                    'value'=>$this->active,
                 ],
             ]
         ];

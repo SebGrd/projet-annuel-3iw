@@ -1,0 +1,217 @@
+[
+  {
+    "name": "image",
+    "fields": {
+      "0": {
+        "name": "id",
+        "type": "int",
+        "extra": "PRIMARY KEY.NOT NULL.AUTO_INCREMENT"
+      },
+      "1": {
+        "name": "file_name",
+        "type": "varchar(255)",
+        "extra": "NOT NULL"
+      },
+      "2": {
+        "name": "user_id",
+        "type": "int",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "3": {
+        "name": "createdAt",
+        "type": "datetime",
+        "extra": "NOT NULL.DEFAULT current_timestamp"
+      }
+    }
+  },
+  {
+    "name": "user",
+    "fields": {
+      "0": {
+        "name": "id",
+        "type": "int",
+        "extra": "PRIMARY KEY.NOT NULL.AUTO_INCREMENT"
+      },
+      "1": {
+        "name": "firstname",
+        "type": "varchar(80)",
+        "extra": "NOT NULL"
+      },
+      "2": {
+        "name": "lastname",
+        "type": "varchar(255)",
+        "extra": "NOT NULL"
+      },
+      "3": {
+        "name": "email",
+        "type": "varchar(255)",
+        "extra": "NOT NULL"
+      },
+      "4": {
+        "name": "pwd",
+        "type": "varchar(255)",
+        "extra": "NOT NULL"
+      },
+      "5": {
+        "name": "role",
+        "type": "varchar(255)",
+        "extra": "NOT NULL.DEFAULT 'user'"
+      },
+      "6": {
+        "name": "isDeleted",
+        "type": "boolean",
+        "extra": "NOT NULL.DEFAULT '0'"
+      },
+      "7": {
+        "name": "status",
+        "type": "boolean",
+        "extra": "NOT NULL.DEFAULT '0'"
+      },
+      "8": {
+        "name": "createdAt",
+        "type": "datetime",
+        "extra": "NOT NULL.DEFAULT current_timestamp"
+      },
+      "9": {
+        "name": "updatedAt",
+        "type": "datetime",
+        "extra": "NOT NULL.DEFAULT current_timestamp"
+      },
+      "10": {
+        "name": "pwdResetToken",
+        "type": "varchar(255)",
+        "extra": "NOT NULL"
+      },
+      "11": {
+        "name": "avatar",
+        "type": "int",
+        "extra": "NULL.DEFAULT NULL"
+      }
+    }
+  },
+  {
+    "name": "menu",
+    "fields": {
+      "0": {
+        "name": "id",
+        "type": "int",
+        "extra": "PRIMARY KEY.NOT NULL.AUTO_INCREMENT"
+      },
+      "1": {
+        "name": "title",
+        "type": "varchar(100)",
+        "extra": "NOT NULL"
+      },
+      "2": {
+        "name": "description",
+        "type": "varchar(255)",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "3": {
+        "name": "image",
+        "type": "int",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "4": {
+        "name": "createdAt",
+        "type": "datetime",
+        "extra": "NOT NULL"
+      },
+      "5": {
+        "name": "updatedAt",
+        "type": "datetime",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "6": {
+        "name": "active",
+        "type": "boolean",
+        "extra": "NOT NULL.DEFAULT '1'"
+      }
+    }
+  },
+  {
+    "name": "page",
+    "fields": {
+      "0": {
+        "name": "id",
+        "type": "int",
+        "extra": "PRIMARY KEY.NOT NULL.AUTO_INCREMENT"
+      },
+      "1": {
+        "name": "title",
+        "type": "varchar(100)",
+        "extra": "NOT NULL"
+      },
+      "2": {
+        "name": "html",
+        "type": "longtext",
+        "extra": "NOT NULL"
+      },
+      "3": {
+        "name": "image",
+        "type": "int",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "4": {
+        "name": "createdAt",
+        "type": "datetime",
+        "extra": "NOT NULL"
+      },
+      "5": {
+        "name": "updatedAt",
+        "type": "datetime",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "6": {
+        "name": "active",
+        "type": "boolean",
+        "extra": "NOT NULL.DEFAULT '1'"
+      }
+    }
+  },
+  {
+    "name": "product",
+    "fields": {
+      "0": {
+        "name": "id",
+        "type": "int",
+        "extra": "PRIMARY KEY.NOT NULL.AUTO_INCREMENT"
+      },
+      "1": {
+        "name": "price",
+        "type": "decimal(6,2)",
+        "extra": "NULL.DEFAULT '0'"
+      },
+      "2": {
+        "name": "image",
+        "type": "int",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "3": {
+        "name": "description",
+        "type": "varchar(255)",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "4": {
+        "name": "name",
+        "type": "varchar(100)",
+        "extra": "NOT NULL"
+      },
+      "5": {
+        "name": "quantity",
+        "type": "int",
+        "extra": "NOT NULL.DEFAULT '0'"
+      },
+      "6": {
+        "name": "createdAt",
+        "type": "datetime",
+        "extra": "NOT NULL"
+      },
+      "7": {
+        "name": "updatedAt",
+        "type": "datetime",
+        "extra": "NULL.DEFAULT NULL"
+      }
+    }
+  }
+]

@@ -108,3 +108,9 @@
   controller: PageController
   action: show
   access: guest;user;admin
+
+# Setup Page
+/setup:
+  controller: SetupController
+  action: default
+  access: guest

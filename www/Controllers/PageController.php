@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Core\View;
 use App\Core\FormValidator;
 use App\Core\ConstantMaker;
 use App\Core\Helpers;
 use App\Models\Page;
+use App\Core\Message;
 
 class PageController
 {
@@ -26,15 +28,32 @@ class PageController
 
 		if (!empty($_POST)) {
 			$errors = FormValidator::check($pageForm, $_POST);
+
 			if (empty($errors)) {
-				$page->setTitle($_POST['title']);
-				$page->setHtml($_POST['html']);
-				$page->setImage($_POST['title']);
-				$page->save();
-				header('Location: /admin/pages');
-			} else {
-				$view->assign('errors', $errors);
-			}
+                $title = htmlspecialchars(strip_tags($_POST['title']));
+                $html = htmlspecialchars(strip_tags($_POST['html']));
+
+                $page->find(['title' => $title]);
+    
+                if ($page->getId()) {
+                    $view->assign('errors', ['La page ' . $title . ' existe déjà.']);
+                } else {
+                    $image = Helpers::upload('products');
+    
+                    if (isset($image['error'])) {
+                        $view->assign('errors', [$image['error']]);
+                    } else {
+                        $page->setTitle($title);
+                        $page->setHtml($html);
+                        $page->setImage($image !== false ? $image : null);
+                        $page->save();
+                        Message::add('NEW_PAGE_SUCCESS');
+                    }
+                }
+            } else {
+                $view->assign('errors', $errors);
+                Message::add('NEW_PAGE_ERROR');
+            }
 		}
 	}
 
@@ -74,13 +93,11 @@ class PageController
 				die;
 			}
 
-			$form = $page->formPage();
-			$view->assign('form', $form);
-
 			if (!empty($_POST)) {
 				$title = htmlspecialchars(strip_tags($_POST['title']));
-				$image = Helpers::upload('pages');
 				$html = htmlentities($_POST['html']);
+                $active = isset($_POST['active']) && htmlspecialchars(strip_tags($_POST['active'])) === 'on' ? 1 : 0;
+				$image = Helpers::upload('pages');
 	
 				if (isset($image['error'])) {
 					$view->assign('errors', [$image['error']]);
@@ -88,21 +105,25 @@ class PageController
 					$page->setTitle($title);
 					$page->setImage($image !== false ? $image : null);
 					$page->setHtml($html);
+                    $page->setActive($active);
 				}
 			}
 
+			$form = $page->formPageEdit();
 			$view->assign('page', $page);
+			$view->assign('form', $form);
 
 			if (!empty($_POST)) {
-				$errors = FormValidator::check($form, $_POST);
-				
-				if (empty($errors)) {
-					$page->save();
-					$view->assign('success', "Le produit $title a bien été mis à jour");
-				} else {
-					$view->assign('errors', $errors);
-				}
-			}
+                $errors = FormValidator::check($form, $_POST);
+                
+                if (empty($errors)) {
+                    $page->save();
+                    Message::add('EDIT_PAGE_SUCCESS');
+                } else {
+                    $view->assign('errors', $errors);
+                    Message::add('EDIT_PAGE_ERROR');
+                }
+            }
 		}
 	}
 
