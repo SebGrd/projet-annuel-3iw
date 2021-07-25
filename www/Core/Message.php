@@ -32,11 +32,11 @@ class Message {
 			'type' => 'danger'
 		],
 		// PAGE
-		'PAGE_SUCCESS' => [
+		'NEW_PAGE_SUCCESS' => [
 			'text' => 'Création de la page réussie !',
 			'type' => 'success'
 		],
-		'PAGE_ERROR' => [
+		'NEW_PAGE_ERROR' => [
 			'text' => 'Création de la page échouée !',
 			'type' => 'danger'
 		],
@@ -49,11 +49,11 @@ class Message {
 			'type' => 'danger'
 		],
 		// MENU
-		'MENU_SUCCESS' => [
+		'NEW_MENU_SUCCESS' => [
 			'text' => 'Création du menu réussie !',
 			'type' => 'success'
 		],
-		'MENU_ERROR' => [
+		'NEW_MENU_ERROR' => [
 			'text' => 'Création du menu échouée !',
 			'type' => 'danger'
 		],
@@ -66,11 +66,11 @@ class Message {
 			'type' => 'danger'
 		],
 		// PRODUCT
-		'PRODUCT_SUCCESS' => [
+		'NEW_PRODUCT_SUCCESS' => [
 			'text' => 'Création du produit réussie !',
 			'type' => 'success'
 		],
-		'PRODUCT_ERROR' => [
+		'NEW_PRODUCT_ERROR' => [
 			'text' => 'Création du produit échouée !',
 			'type' => 'danger'
 		],

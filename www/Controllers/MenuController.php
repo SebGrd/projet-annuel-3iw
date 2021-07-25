@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Controllers;
-use App\Core\View;
-use App\Core\FormValidator;
-use App\Models\Menu;
-use App\Core\Helpers;
+
 use App\Core\ConstantMaker;
+use App\Core\FormValidator;
+use App\Core\Helpers;
+use App\Core\Message;
+use App\Core\Session;
+use App\Core\View;
+use App\Models\Menu;
 
 class MenuController
 {
@@ -129,6 +132,8 @@ class MenuController
 			if (empty($errors)) {
                 $menu->save();
                 $view->assign('success', "Le menu $title a bien été mis à jour");
+
+                Message::add('EDIT_MENU_SUCCESS');
             } else {
                 $view->assign('errors', $errors);
             }

@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 
-use App\Core\Security;
-use App\Core\View;
-use App\Core\Message;
-use App\Core\Session;
-use App\Core\FormValidator;
 use App\Core\ConstantMaker;
+use App\Core\FormValidator;
 use App\Core\Helpers;
+use App\Core\Message;
+use App\Core\Security;
+use App\Core\Session;
+use App\Core\View;
 
 use App\Controllers\SecurityController;
 
@@ -275,7 +275,6 @@ class SecurityController {
 	 * Show a user's profile
 	 **/ 
 	public function profile() {
-		$constantMaker = new ConstantMaker();
 		$user = new User();
 		$view = new View('profile', Security::isAdmin() ? 'admin' : 'front');
 
@@ -294,6 +293,7 @@ class SecurityController {
 					$user->setLastname($_POST['lastname']);
 					$user->setEmail($_POST['email']);
 					$user->setPwd($hashed_password);
+					$user->setRole($role);
 					$user->save();
 
 					Message::add('EDIT_PROFILE_SUCCESS');

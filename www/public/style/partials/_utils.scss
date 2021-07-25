@@ -1,20 +1,276 @@
-.d-none{
-  display: none;
+/** @format */
+
+.btn.btn-icon-small {
+	padding: 0 0.3rem;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.flex{
-  display: flex;
-}
-.justify-between{
-  justify-content: space-between;
-}
-.align-center{
-  align-items: center;
+// Transition: ease-in-out 0.15s;
+
+.pp-btn {
+	&  ~ .pp-menu {
+		opacity: 0;
+	}
+
+	&:hover  ~ .pp-menu, &:focus  ~ .pp-menu {
+		opacity: 1;
+	}
 }
 
-.btn.btn-icon-small{
-  padding: 0 .3rem;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+* {
+	transition: all .2s ease-in-out;
+}
+
+.btn.btn-icon-small.show {
+	opacity: 1;
+}
+
+/* 1 - LAYOUT (position + display + flex + alignment */
+$values: absolute, fixed, relative, static, sticky;
+
+@each $value in $values {
+	.#{$value} {
+		position: $value;
+	}
+}
+
+// Display
+.d-block, .active {
+	display: block;
+}
+
+.d-none, .hidden {
+	display: none;
+}
+
+.flex {
+	display: flex;
+}
+
+// Flex
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+.flex-nowrap {
+	flex-wrap: nowrap;
+}
+
+.flex-reverse {
+	flex-wrap: wrap-reverse;
+}
+
+.flex-row {
+	flex-direction: row;
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.justify-around {
+	justify-content: space-around;
+}
+
+// Alignment
+.text-center {
+	text-align: center;
+}
+
+.align-center {
+	align-items: center;
+}
+
+// Coordinates (top, right, bottom, left)
+$value: 0;
+$values: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto;
+
+@each $value in $values {
+	.xy-#{$value} {
+		@extend .x-#{$value}, .y-#{$value};
+	}
+
+	.x-#{$value} {
+		@extend .r-#{$value}, .l-#{$value};
+	}
+
+	.y-#{$value} {
+		@extend .t-#{$value}, .b-#{$value};
+	}
+
+	.t-#{$value} {
+		top: change-unit($value, 1rem);
+	}
+
+	.r-#{$value} {
+		right: change-unit($value, 1rem);
+	}
+
+	.b-#{$value} {
+		bottom: change-unit($value, 1rem);
+	}
+
+	.l-#{$value} {
+		left: change-unit($value, 1rem);
+	}
+}
+
+/* 2 - DIMENSIONS (width + height) */
+$values: 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, auto;
+
+@each $value in $values {
+	.h-#{$value} {
+		height: change-unit($value, 1%);
+	}
+
+	.min-h-#{$value} {
+		min-height: change-unit($value, 1%);
+	}
+
+	.max-h-#{$value} {
+		max-height: change-unit($value, 1%);
+	}
+
+	.w-#{$value} {
+		width: change-unit($value, 1%);
+	}
+
+	.min-w-#{$value} {
+		min-width: change-unit($value, 1%);
+	}
+
+	.max-h-#{$value} {
+		max-width: change-unit($value, 1%);
+	}
+
+	// Increment the value
+	$value: $value + 10;
+}
+
+.h-full {
+	height: 100vh;
+}
+
+.w-full {
+	width: 100vw;
+}
+
+.h-max {
+	height: max-content;
+}
+
+.w-max {
+	width: max-content;
+}
+
+/* 3 - SPACING (padding + margin) */
+$values: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto;
+
+@each $value in $values {
+	// Padding
+	.p-#{$value} {
+		padding: change-unit($value, 1rem);
+	}
+
+	.px-#{$value} {
+		@extend .pr-#{$value}, .pl-#{$value};
+	}
+
+	.py-#{$value} {
+		@extend .pt-#{$value}, .pb-#{$value};
+	}
+
+	.pt-#{$value} {
+		padding-top: change-unit($value, 1rem);
+	}
+
+	.pr-#{$value} {
+		padding-right: change-unit($value, 1rem);
+	}
+
+	.pb-#{$value} {
+		padding-bottom: change-unit($value, 1rem);
+	}
+
+	.pl-#{$value} {
+		padding-left: change-unit($value, 1rem);
+	}
+
+	// Margin
+	.m-#{$value} {
+		margin: change-unit($value, 1rem);
+	}
+
+	.mx-#{$value} {
+		@extend .mr-#{$value}, .ml-#{$value};
+	}
+
+	.my-#{$value} {
+		@extend .mt-#{$value}, .mb-#{$value};
+	}
+
+	.mt-#{$value} {
+		margin-top: change-unit($value, 1rem);
+	}
+
+	.mr-#{$value} {
+		margin-right: change-unit($value, 1rem);
+	}
+
+	.mb-#{$value} {
+		margin-bottom: change-unit($value, 1rem);
+	}
+
+	.ml-#{$value} {
+		margin-left: change-unit($value, 1rem);
+	}
+}
+
+/* 4 - BORDER */
+// From 0px to 50px every 1px
+$value: 0;
+$maxValue: 20;
+
+@while $value <= $maxValue {
+	// Padding
+	.b-#{$value} {
+		border: change-unit($value, 1px);
+	}
+
+	.bx-#{$value} {
+		@extend .br-#{$value}, .bl-#{$value};
+	}
+
+	.by-#{$value} {
+		@extend .bt-#{$value}, .bb-#{$value};
+	}
+
+	.bt-#{$value} {
+		border-top: change-unit($value, 1px);
+	}
+
+	.br-#{$value} {
+		border-right: change-unit($value, 1px);
+	}
+
+	.bb-#{$value} {
+		border-bottom: change-unit($value, 1px);
+	}
+
+	.bl-#{$value} {
+		border-left: change-unit($value, 1px);
+	}
+
+	// Increment the value
+	$value: $value + 1;
 }

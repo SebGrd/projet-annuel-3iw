@@ -128,6 +128,7 @@ class Database {
 				implode(',', array_keys($columns)) . ') VALUES ( :' .
 				implode(',:', array_keys($columns)) . ' ); ');
 			
+			print_r($columns);
 			$query->execute($columns);
 
 		} else {

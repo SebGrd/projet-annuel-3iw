@@ -8,6 +8,7 @@
 				<!-- Show it then unset it right after so it disappears after a refresh -->
 				<?= $_SS::flash($msg)['text']; ?>
 			</li>
+			
 			<?php unset($msgs[$msg]); ?>
 		<?php endif; ?>
 	<?php endforeach; ?>

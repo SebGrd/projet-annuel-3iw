@@ -1,9 +1,15 @@
 <main class="auth">
-    <div class="row">
-        <div class="col-14 bg-primary"></div>
-        <div class="col-10">
-            <section class="auth__section">
-                <div class="auth__section__form">
+    <div class="row h-full w-full">
+        <div class="col-14 row bg-primary text-light flex flex-wrap flex-col justify-center">
+            <h1 class="text-center text-light">Connexion</h1>
+            <p class="text-center text-light">
+                Connectez-vous à votre compte pour accéder à votre espace personnel.
+            </p>
+        </div>
+        
+        <div class="col-10 flex flex-col justify-center">
+            <section class="flex flex-col align-center">
+                <div class="flex flex-col justify-center">
                     <h2>Se connecter</h2>
 
                     <!-- Show messages -->
@@ -20,4 +26,3 @@
         </div>
     </div>
 </main>
-

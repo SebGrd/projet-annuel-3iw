@@ -85,7 +85,7 @@ class Page extends Database {
      */
     public function getCreatedAt()
     {
-        return $this->html;
+        return $this->createdAt;
     }
 
     /**
@@ -109,6 +109,10 @@ class Page extends Database {
 		$this->updatedAt = date('Y-m-d H:i:s');
 	}
 
+    public function unset($attr) {
+        unset($this->$attr);
+    }
+
     public function formPage() {
         return [
             'config'=>[
@@ -116,7 +120,7 @@ class Page extends Database {
                 'action'=>'',
                 'id'=>'form_create_page',
                 'class'=>'form',
-                'submit'=>"Ajouter"
+                'submit'=>'Enregistrer'
             ],
             'inputs'=>[
                 'title'=>[
@@ -137,7 +141,7 @@ class Page extends Database {
                     'class'=>'form_input d-none',
                     'error'=>'Erreur',
                     'required'=>false,
-					'value'=>$this->html
+					'value'=>htmlspecialchars($this->html)
                 ],
                 'image'=>[
                     'type'=>'file',
