@@ -402,7 +402,8 @@ class SetupController {
           'type'=>'checkbox',
           'name'=>'indexVisibility',
           'label'=>'Visibilité des moteurs de recherche',
-          'class'=>'form_input'
+          'class'=>'form_input',
+          'value'=>'1'
         ],
       ]
     ];

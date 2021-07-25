@@ -109,6 +109,12 @@
   action: show
   access: guest;user;admin
 
+# OrderController routes
+/admin/orders:
+  controller: OrderController
+  action: main
+  access: admin
+
 # Setup Page
 /setup:
   controller: SetupController

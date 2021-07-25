@@ -204,10 +204,14 @@ class Database {
 			foreach ($tableFields as $field) {
 				array_push($fields, "`" . $field['name'] . "` " . strtoupper($field['type']) . " " . implode(" ", explode('.', $field['extra'])));
 			}
-			$sql = "CREATE TABLE IF NOT EXISTS `". DBPREFIXE . strtolower($tableName) ."` ("
-			. implode(", ", $fields) . ")";
-			$query = $this->pdo->query($sql);
-			$query->execute();
+			try {
+				$sql = "CREATE TABLE IF NOT EXISTS `". DBPREFIXE . strtolower($tableName) ."` ("
+				. implode(", ", $fields) . ")";
+				$query = $this->pdo->query($sql);
+				$query->execute();
+			} catch (\PDOException $e) {
+				print_r('Erreur lors de la création des tables, ' . $e->getMessage());
+			}
 		}
 	}
 
