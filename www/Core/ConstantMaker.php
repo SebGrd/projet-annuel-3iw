@@ -32,8 +32,6 @@ class ConstantMaker {
 		$key = str_replace(' ', '_', mb_strtoupper(trim($key)));
 		if (!defined($key)) {
 			define($key, $value);
-		} else {
-			die("Constant $key already exists");
 		}
 	}
 

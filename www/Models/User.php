@@ -16,11 +16,14 @@ class User extends Database {
 	protected $isDeleted = 0;
 	protected $createdAt = '';
 	protected $updatedAt = '';
+	protected $avatar = null;
 
-	public function __construct() {
+	public function __construct(){
 		parent::__construct();
-		$this->setCreatedAt($this->createdAt);
-		$this->setUpdatedAt();
+		if ($this->id == null) {
+			$this->setCreatedAt();
+		}
+	$this->setUpdatedAt();
 	}
 
 	/**
@@ -161,8 +164,8 @@ class User extends Database {
 	/**
 	 * @param string $createdAt
 	 */
-	public function setCreatedAt(string $date) {
-		$date ? $this->createdAt = $date : $this->createdAt = date('Y-m-d H:i:s');
+	public function setCreatedAt() {
+		$this->createdAt = date('Y-m-d H:i:s');
 	}
 
 	/**
@@ -177,6 +180,20 @@ class User extends Database {
 	 */
 	public function setUpdatedAt() {
 		$this->updatedAt = date('Y-m-d H:i:s');
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getAvatar(): string {
+		return $this->avatar;
+	}
+
+	/**
+	 * @param int $avatar
+	 */
+	public function setAvatar($avatar) {
+		$this->avatar = $avatar;
 	}
 
 	public function formRegister() {

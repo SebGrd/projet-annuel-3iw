@@ -12,11 +12,13 @@ class FormBuilder {
 			enctype='".($form["config"]["enctype"]??"")."'>";
 
 		foreach ($form['inputs'] as $name => $configInput) {
-		    $html .= "<div class='form__field'>";
+			$html .= "<div class='form__field'>";
 			$html .= "<label class='form__field__label' for='".($configInput["id"]??"")."'>".($configInput["label"]??"")." </label>";
 
 			if ($configInput["type"] == "select"){
 				$html .= self::renderSelect($name, $configInput);
+			} else if ($configInput["type"] == "checkbox") {
+				$html .= self::renderCheckbox($name, $configInput);
 			} else {
 				$html .= self::renderInput($name, $configInput);
 			}
@@ -30,11 +32,10 @@ class FormBuilder {
 
 	public static function renderInput($name, $configInput) {
 		return "<input 
-			class='form__field__input'
 			name='".($configInput["name"]??$name)."' 
 			type='".($configInput["type"]??"text")."'
 			id='".($configInput["id"]??"")."'
-			class='".($configInput["class"]??"")."'
+			class='form__field__input ".($configInput["class"]??"")."'
 			placeholder='".($configInput["placeholder"]??"")."'
 			value='".($configInput["value"]??"")."'
 			".(!empty($configInput["required"])?"required='required'":"")."><br>";
@@ -42,9 +43,8 @@ class FormBuilder {
 
 	public static function renderSelect($name, $configInput) {
 		$html = "<select 
-			class='form__field__input'
 			name='".$name."' id='".($configInput["id"]??"")."'
-			class='".($configInput["class"]??"")."'>";
+			class='form__field__input ".($configInput["class"]??"")."'>";
 
 		foreach ($configInput["options"] as $key => $value) {
 			$html .= "<option value='".$key."'>".$value."</option>";
@@ -52,5 +52,13 @@ class FormBuilder {
 
 		$html .= "</select>";
 		return $html;
+	}
+
+	public static function renderCheckbox($name, $configInput) {
+		return "<input 
+			name='".($configInput["name"]??$name)."'
+			type='".($configInput["type"]??"text")."'
+			".($configInput["value"] === 1 ? "checked" : "")." 
+			class='form__field__input ".($configInput["class"]??"")."'><br>";
 	}
 }

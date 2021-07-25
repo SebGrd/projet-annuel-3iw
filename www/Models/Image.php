@@ -8,11 +8,13 @@ class Image extends Database {
 	private $id = null;
 	protected $file_name = '';
 	protected $user_id = null;
-	protected $uploaded_on = '';
+	protected $createdAt = '';
 
 	public function __construct(){
 		parent::__construct();
-		$this->setUploaded_on();
+		if ($this->id == null) {
+			$this->setCreatedAt();
+		}
 	}
 
 	/**
@@ -62,15 +64,15 @@ class Image extends Database {
 	/**
 	 * @return string
 	 */
-	public function getUploaded_on(): string {
-		return $this->uploaded_on;
+	public function getCreatedAt(): string {
+		return $this->CreatedAt;
 	}
 
 	/**
-	 * @param string $uploaded_on
+	 * @param string $CreatedAt
 	 */
-	public function setUploaded_on() {
-		$this->uploaded_on = date('Y-m-d H:i:s');
+	public function setCreatedAt() {
+		$this->CreatedAt = date('Y-m-d H:i:s');
 	}
 
 }

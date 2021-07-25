@@ -540,4 +540,19 @@ div.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   height: 50px;
 }
 
+.w-1 {
+  width: 100%;
+}
+
+.w-2 {
+  width: 75%;
+}
+.w-3 {
+  width: 50%;
+}
+.w-4 {
+  width: 25%;
+}
+
+
 /*# sourceMappingURL=style.css.map */

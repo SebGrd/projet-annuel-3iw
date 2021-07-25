@@ -1,6 +1,6 @@
 <div class="container" id="page-builder">
     <h2>Nouveau produit</h2>
-    <a href="/admin/products" class="btn btn-dark">Annuler</a>
+    <a href="/admin/products" class="btn btn-dark">Retour</a>
     </br>
     </br>
     <?php if (isset($success)): ?>

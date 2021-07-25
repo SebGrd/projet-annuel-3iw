@@ -5,30 +5,15 @@ namespace App\Controllers;
 use App\Core\Security;
 use App\Core\View;
 use App\Core\Message;
-use App\Core\Session;
 use App\Core\FormValidator;
-use App\Core\ConstantMaker;
 use App\Core\Helpers;
-
-use App\Controllers\SecurityController;
 
 use App\Models\User;
 
-// 
 class SecurityController {
-	/**
-	 * Constructor
-	 *
-	 * Initialize constants
-	 **/
-	public function __construct() {
-		$constantMaker = new ConstantMaker();
-	}
 
 	/**
 	 * Login method
-	 *
-	 * Log a user in
 	 **/
 	public function login() {
 		// Redirect to home if already logged in
@@ -124,7 +109,7 @@ class SecurityController {
 			if (empty($errors)) {
 				$foundUser = $user->find(['email' => $_POST['email']]);
 				if (!$foundUser) {
-					$password = stripslashes($_POST['pwd']);
+					$password = htmlspecialchars(stripslashes($_POST['pwd']));
 					$hashed_password = crypt($password, '$5$rounds=6666$'.SALT.'$');
 
 					// Set all the properties of user object
@@ -132,7 +117,6 @@ class SecurityController {
 					$user->setLastname($_POST['lastname']);
 					$user->setEmail($_POST['email']);
 					$user->setPwd($hashed_password);
-					$user->setUpdatedAt(date('Y-m-d H:i:s'));
 
 					// Save to database
 					$user->save();
@@ -275,19 +259,18 @@ class SecurityController {
 	 * Show a user's profile
 	 **/ 
 	public function profile() {
-		$constantMaker = new ConstantMaker();
 		$user = new User();
 		$view = new View('profile', Security::isAdmin() ? 'admin' : 'front');
 
-        $form = $user->formEditProfile();
+			$form = $user->formEditProfile();
         
-        if (!empty($_POST)) {
-            $errors = FormValidator::check($form, $_POST);
+			if (!empty($_POST)) {
+					$errors = FormValidator::check($form, $_POST);
             
 			if (empty($errors)) {                
-                $user->setId($_SESSION['userStore']->id);
+				$user->setId($_SESSION['userStore']->id);
 
-                if ($user->getId()) {
+				if ($user->getId()) {
 					$password = stripslashes($_POST['pwd']);
 					$hashed_password = crypt($password, '$5$rounds=6666$'.SALT.'$');
 					$user->setFirstname($_POST['firstname']);
@@ -302,7 +285,7 @@ class SecurityController {
 
 					unset($_SESSION['userStore']);
 					$_SESSION['userStore'] = $data;
-					SecurityController::logout(1);
+					$this->logout(1);
 				} else {
 					Message::add('EDIT_PROFILE_ERROR');
 					$view->assign('errors', ['error' => 'Unexpected error']);
@@ -316,6 +299,6 @@ class SecurityController {
 		$data = $_SESSION['userStore'];
 
 		$view->assign('form', $form);
-        $view->assign('user', (object) $data);
+			$view->assign('user', (object) $data);
     }
 }

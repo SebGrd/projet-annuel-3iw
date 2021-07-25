@@ -5,12 +5,12 @@ use App\Core\View;
 use App\Core\FormValidator;
 use App\Models\Menu;
 use App\Core\Helpers;
-use App\Core\ConstantMaker;
+use App\Core\Message;
 
 class MenuController
 {
     public function __construct() {
-		$constantMaker = new ConstantMaker();
+		
     }
 
     public function main() {
