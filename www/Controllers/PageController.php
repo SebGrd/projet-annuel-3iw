@@ -119,4 +119,44 @@ class PageController
             }
         }
     }
+
+    public function show() {
+		$view = new View('pages.show', 'front');
+		$page = new Page();
+		$id = htmlspecialchars( strip_tags( $_GET['id'] ) );
+
+		if ( empty( $_GET['id'] ) ) {
+			// Redirect to page 404 if query is malformed
+			header('Location:/404');
+			die;
+		} else if (isset($_GET['id']) && isset($_GET['action'])) {
+			// Delete if action delete is send with id
+
+			if (ctype_digit($id)) {
+				$page = $page->delete(['id' => $id]);
+				header('Location:/admin/pages');
+			} else {
+				// Redirect to page 404 if query is malformed
+				header('Location:/404');
+				die;
+			}
+		} else {
+			// Check if id is an integer
+			if (ctype_digit($id)) {
+				$page = $page->find(['id' => $id]);
+			} else {
+				// Redirect to page 404 if query is malformed
+				header('Location:/404');
+				die;
+			}
+
+			if (!$page) {
+				// Redirect to page 404 if page is not found
+				header('Location:/404');
+				die;
+			}
+
+			$view->assign('page', $page);
+		}
+	}
 }

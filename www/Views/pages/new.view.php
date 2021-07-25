@@ -1,4 +1,4 @@
-<div class="container" id="page-builder">
+<div id="page-builder">
 	<section>
 		<a href="/admin/pages" class="btn btn-dark">Annuler</a>
 		<h2>Créer une nouvelle page</h2>
