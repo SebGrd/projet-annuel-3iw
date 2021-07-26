@@ -6,3 +6,6 @@
 /server/apache_log/*
 /db_data
 /.idea
+docker-compose.backup.yml
+.docker-compose.yml.swp
+docker-compose.yml
