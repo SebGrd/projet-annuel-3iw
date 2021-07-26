@@ -4,4 +4,6 @@
   </div>
 
     <?php $_TB::render(\App\Models\Order::class, ['user_id'], ['createdAt'=>'DESC']) ?>
+
+    <a href="/order"></a>
 </div>

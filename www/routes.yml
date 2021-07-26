@@ -115,6 +115,11 @@
   action: main
   access: admin
 
+/order:
+  controller: OrderController
+  action: newOrder
+  access: user;admin
+
 # Setup Page
 /setup:
   controller: SetupController

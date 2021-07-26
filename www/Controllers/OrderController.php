@@ -15,24 +15,34 @@ class OrderController
 		$order = new Order();
     }
 
-    public function getAllOrders() {
-        $view = new View('orders.main', 'admin');
-		$order = new Order();
-        $db = new Database();
+    // public function getAllOrders() {
+    //     $view = new View('orders.main', 'admin');
+	// 	$order = new Order();
+    //     $db = new Database();
 
-        $stmt = $db->pdo->prepare('SELECT * FROM order ORDER BY createdAt DESC');
-        $stmt->execute();
-        // Fetch the products from the database and return the result as an Array
-        $products = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        return $products;
-    }
+    //     $stmt = $db->pdo->prepare('SELECT * FROM order ORDER BY createdAt DESC');
+    //     $stmt->execute();
+    //     // Fetch the products from the database and return the result as an Array
+    //     $products = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    //     return $products;
+    // }
 
     public function newOrder() {
 		$order = new Order();
 
         if (!empty($_POST)) {
 
-            $title = htmlspecialchars(strip_tags($_POST['products']));
+            $products = (array) $_POST['products'];
+
+            foreach ($products as $product) {
+                $product = new Product();
+            }
+            $status = 0;
+            $total_price = 0;
+            $product_count = 0;
+            $user_id = null;
+            $createdAt = '';
+            $updatedAt = '';
 
             $order->find(['title' => $title]);
 

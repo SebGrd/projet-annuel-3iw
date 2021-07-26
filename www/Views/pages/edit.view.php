@@ -1,8 +1,8 @@
 <div id="page-builder">
-    <h2>Edition de la page <?= $page->getTitle()?></h2>
     <div>
         <a href="/admin/pages" class="btn btn-dark">Retour</a>
     </div>
+    <h2>Modification de la page <?= $page->getTitle()?></h2>
     
     <!-- Show messages -->
 	<?= $_::render('incl.message', ['msgs' => ['EDIT_PAGE_SUCCESS', 'EDIT_PAGE_ERROR'], 'errs' => $errors ?? []]); ?>
