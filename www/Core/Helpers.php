@@ -114,7 +114,7 @@ class Helpers {
 				$ext
 			)
 		)) {
-			return ['error' => "Désolé, une erreur s'est produite lors du téléchargement du fichier."];
+			return ['error' => "Une erreur s'est produite lors du téléchargement du fichier."];
 		}
 		$image = new Image();
 		$url = $targetFilePath . '.' . $ext;

@@ -126,7 +126,7 @@ class Database {
 			$query = $this->pdo->prepare('INSERT INTO ' . strtolower($this->table) . ' (' .
 				implode(',', array_keys($columns)) . ') VALUES ( :' .
 				implode(',:', array_keys($columns)) . ' ); ');
-			
+
 			$query->execute($columns);
 
 		} else {
@@ -267,75 +267,4 @@ class Database {
 		$json = json_decode($str, true);
 		return $json;
 	}
-
-	// public function saveTableToJSON(array $table) {
-	// 	$file = dirname(__DIR__, 1) . '/tables.json';
-
-	// 	if ($this->checkIfFileTablesExist()) {
-	// 		$fp = fopen($file, 'w+');
-	// 		fwrite($fp, json_encode($table));
-	// 		fclose($fp);
-	// 	}
-	// }
-
-	// public function formTables() {
-	// 	return [
-	// 		'config'=>[
-	// 			'method'=>'POST',
-	// 			'action'=>'',
-	// 			'id'=>'formTables',
-	// 			'class'=>'form_builder',
-	// 			'submit'=>'Enregistrer'
-	// 		],
-	// 		'inputs'=>[
-	// 			'name'=>[
-	// 				'type'=>'text',
-	// 				'label'=>'Nom du champ',
-	// 				'minLength'=>2,
-	// 				'maxLength'=>255,
-	// 				'id'=>'name',
-	// 				'class'=>'form_input',
-	// 				'error'=>'Le nom du champ doit faire entre 2 et 255 caractères',
-	// 				'required'=>true
-	// 			],
-	// 			'type'=>[ 
-	// 				'type'=>'select',
-	// 				'label'=>'Type',
-	// 				'id'=>'type',
-	// 				'class'=>'form_input',
-	// 				'options'=>['INT', 'VARCHAR', 'TEXT', 'DATE', 'DATETIME', 'TIMESTAMP', 'FLOAT', 'DOUBLE', 'LONGTEXT'],
-	// 				'placeholder'=>'Séléctionnez un type',
-	// 				'error'=>'Un type est obligatoire',
-	// 				'required'=>true
-	// 			],
-	// 			'extra_options'=>[
-	// 				'type'=>'select',
-	// 				'label'=>'Taille/Valeurs',
-	// 				'id'=>'extra_options',
-	// 				'class'=>'form_input',
-	// 				'options'=>['1', '2'],
-	// 				'placeholder'=>'Séléctionnez un ou plusieurs paramètres',
-	// 				'required'=>false
-	// 			],
-	// 			'extra'=>[
-	// 				'type'=>'text',
-	// 				'label'=>'Paramètres',
-	// 				'id'=>'extra',
-	// 				'class'=>'form_input',
-	// 				'options'=>['PRIMARY KEY', 'NULL', 'NOT NULL', '', ''],
-	// 				'placeholder'=>'Entrez la valeur par défaut',
-	// 				'required'=>false
-	// 			],
-	// 			'default'=>[
-	// 				'type'=>'text',
-	// 				'label'=>'Valeur par défaut',
-	// 				'id'=>'default',
-	// 				'class'=>'form_input',
-	// 				'options'=>['PRIMARY KEY', 'NULL', 'NOT NULL', '', ''],
-	// 				'placeholder'=>'Entrez la valeur par défaut',
-	// 				'required'=>false
-	// 			]
-	// 		]
-	// 	];
-	// }
 }

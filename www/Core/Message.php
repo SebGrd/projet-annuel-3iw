@@ -24,7 +24,7 @@ class Message {
 		],
 		// PROFILE
 		'EDIT_PROFILE_SUCCESS' => [
-			'text' => 'Modification du profil réussie !<br>Redirection vers la page de connexion.',
+			'text' => 'Modification du profil réussi !<br>Redirection vers la page de connexion.',
 			'type' => 'success'
 		],
 		'EDIT_PROFILE_ERROR' => [
@@ -50,7 +50,7 @@ class Message {
 		],
 		// MENU
 		'NEW_MENU_SUCCESS' => [
-			'text' => 'Création du menu réussie !',
+			'text' => 'Création du menu réussi !',
 			'type' => 'success'
 		],
 		'NEW_MENU_ERROR' => [
@@ -58,7 +58,7 @@ class Message {
 			'type' => 'danger'
 		],
 		'EDIT_MENU_SUCCESS' => [
-			'text' => 'Modification du menu réussie !',
+			'text' => 'Modification du menu réussi !',
 			'type' => 'success'
 		],
 		'EDIT_MENU_ERROR' => [
@@ -67,7 +67,7 @@ class Message {
 		],
 		// PRODUCT
 		'NEW_PRODUCT_SUCCESS' => [
-			'text' => 'Création du produit réussie !',
+			'text' => 'Création du produit réussi !',
 			'type' => 'success'
 		],
 		'NEW_PRODUCT_ERROR' => [
@@ -75,17 +75,37 @@ class Message {
 			'type' => 'danger'
 		],
 		'EDIT_PRODUCT_SUCCESS' => [
-			'text' => 'Modification du produit réussie !',
+			'text' => 'Modification du produit réussi !',
 			'type' => 'success'
 		],
 		'EDIT_PRODUCT_ERROR' => [
 			'text' => 'Modification du produit échouée !',
 			'type' => 'danger'
-		]
+		],
+		'CREATE_USER_SUCCESS' => [
+			'text' => 'Création de l\'utilisateur réussi !',
+			'type' => 'success'
+		],
+		'CREATE_USER_ERROR' => [
+			'text' => 'Création de l\'utilisateur échouée !',
+			'type' => 'danger'
+		],
+		'EDIT_USER_SUCCESS' => [
+			'text' => 'Mise à jour de l\'utilisateur réussi !',
+			'type' => 'success'
+		],
+		'EDIT_USER_ERROR' => [
+			'text' => 'Mise à jour de l\'utilisateur échouée !',
+			'type' => 'danger'
+		],
+		'UPLOAD_FILE_ERROR' => [
+			'text' => 'Upload de l\'image échouée !',
+			'type' => 'danger'
+		],
 	];
 
 	public static function add(string $code): void {
-		$name = strtolower($code);
+		$name = strtoupper($code);
 		// If the message code exists
 		if (isset(self::CODES[$code])) {
 			// Extract it after storing it in a variable (or else an error occurs)

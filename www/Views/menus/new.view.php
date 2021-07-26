@@ -5,7 +5,7 @@
 	</section>
 
 	<!-- Show messages -->
-	<?= $_::render('incl.message', ['msgs' => ['menu_success', 'menu_error'], 'errs' => $errors ?? []]); ?>
+	<?= $_::render('incl.message', ['msgs' => ['MENU_SUCCESS', 'MENU_ERROR'], 'errs' => $errors ?? []]); ?>
 
 	<div class="row">
 		<div class="col-md-3">

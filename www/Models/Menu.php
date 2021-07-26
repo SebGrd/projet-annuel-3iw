@@ -18,7 +18,7 @@ class Menu extends Database {
 		if ($this->id == null) {
 			$this->setCreatedAt();
 		}
-	$this->setUpdatedAt();
+		$this->setUpdatedAt();
 	}
 
 	/**
@@ -33,8 +33,6 @@ class Menu extends Database {
 	 */
 	public function setId($id) {
 		$this->id = $id;
-		// double action de peupler l'objet avec ce qu'il y a en bdd
-		// https://www.php.net/manual/fr/pdostatement.fetch.php
 	}
 
 	/**
@@ -96,7 +94,7 @@ class Menu extends Database {
 	/**
 	 * @return string
 	 */
-	public function getCreatedAt(): string {
+	public function getCreatedAt() {
 		return $this->createdAt;
 	}
 
@@ -110,7 +108,7 @@ class Menu extends Database {
 	/**
 	 * @return string
 	 */
-	public function getUpdatedAt(): string {
+	public function getUpdatedAt() {
 		return $this->updatedAt;
 	}
 

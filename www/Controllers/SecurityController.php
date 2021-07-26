@@ -49,8 +49,8 @@ class SecurityController {
 					$token = array(
 						'data' => array(
 							'id' => $user->getId(),
-							'firstname' => $user->getFirstName(),
-							'lastname' => $user->getLastName(),
+							'firstname' => $user->getFirstname(),
+							'lastname' => $user->getLastname(),
 							'email' => $user->getEmail(),
 							'role' => $user->getRole()
 						)
@@ -265,7 +265,7 @@ class SecurityController {
 			$form = $user->formEditProfile();
         
 			if (!empty($_POST)) {
-					$errors = FormValidator::check($form, $_POST);
+				$errors = FormValidator::check($form, $_POST);
             
 			if (empty($errors)) {                
 				$user->setId($_SESSION['userStore']->id);
@@ -277,7 +277,6 @@ class SecurityController {
 					$user->setLastname($_POST['lastname']);
 					$user->setEmail($_POST['email']);
 					$user->setPwd($hashed_password);
-					$user->setRole($role);
 					$user->save();
 
 					Message::add('EDIT_PROFILE_SUCCESS');
@@ -292,7 +291,7 @@ class SecurityController {
 					$view->assign('errors', ['error' => 'Unexpected error']);
 				}
 			} else {
-					Message::add('EDIT_PROFILE_ERROR');
+				Message::add('EDIT_PROFILE_ERROR');
 				$view->assign('errors', $errors);
 			}
 		}
@@ -300,6 +299,6 @@ class SecurityController {
 		$data = $_SESSION['userStore'];
 
 		$view->assign('form', $form);
-			$view->assign('user', (object) $data);
-    }
+		$view->assign('user', (object) $data);
+	}
 }

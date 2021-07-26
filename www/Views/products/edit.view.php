@@ -5,7 +5,7 @@
 	</section>
 	
 	<!-- Show messages -->
-	<?= $_::render('incl.message', ['msgs' => ['edit_product_success', 'edit_product_error'], 'errs' => $errors ?? []]); ?>
+	<?= $_::render('incl.message', ['msgs' => ['EDIT_PRODUCT_SUCCESS', 'EDIT_PRODUCT_ERROR'], 'errs' => $errors ?? []]); ?>
 
 	<?php if($product->getImage() !== null): ?>
 		<img src="../<?= $_::getImageUrl($product->getImage()) ?>" style="max-width: 100%; max-height: 150px;">

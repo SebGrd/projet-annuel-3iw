@@ -6,6 +6,7 @@ use App\Core\Database;
 
 class User extends Database {
 	private $id = null;
+	protected $avatar = null;
 	protected $firstname;
 	protected $lastname;
 	protected $email;
@@ -16,7 +17,6 @@ class User extends Database {
 	protected $isDeleted = 0;
 	protected $createdAt = '';
 	protected $updatedAt = '';
-	protected $avatar = null;
 
 	public function __construct(){
 		parent::__construct();
@@ -183,14 +183,14 @@ class User extends Database {
 	}
 
 	/**
-	 * @return int
+	 * @return mixed
 	 */
-	public function getAvatar(): string {
+	public function getAvatar() {
 		return $this->avatar;
 	}
 
 	/**
-	 * @param int $avatar
+	 * @param mixed $avatar
 	 */
 	public function setAvatar($avatar) {
 		$this->avatar = $avatar;
@@ -422,6 +422,160 @@ class User extends Database {
 					'placeholder'=>'',
 					'error'=>'Votre mot de mot de passe de confirmation ne correspond pas',
 					'required'=>true
+				]
+			]
+		];
+	}
+
+	public function formCreateUser() {
+		return [
+			'config'=>[
+				'method'=>'POST',
+				'action'=>'',
+				'id'=>'form_register',
+				'class'=>'form',
+				'submit'=>'Enregistrer',
+				'enctype'=>'multipart/form-data'
+			],
+			'inputs'=>[
+				'firstname'=>[
+					'type'=>'text',
+					'label'=>'Prénom',
+					'minLength'=>2,
+					'maxLength'=>55,
+					'id'=>'firstname',
+					'class'=>'form_input',
+					'placeholder'=>'John',
+					'error'=>'Le prénom doit faire entre 2 et 55 caractères.',
+					'required'=>true
+				],
+				'lastname'=>[ 
+					'type'=>'text',
+					'label'=>'Nom',
+					'minLength'=>2,
+					'maxLength'=>255,
+					'id'=>'lastname',
+					'class'=>'form_input',
+					'placeholder'=>'Doe',
+					'error'=>'Le nom doit faire entre 2 et 255 caractères.',
+					'required'=>true
+				],
+				'email'=>[ 
+					'type'=>'email',
+					'label'=>'Email',
+					'minLength'=>8,
+					'maxLength'=>320,
+					'id'=>'email',
+					'class'=>'form_input',
+					'placeholder'=>'john.doe@gmail.com',
+					'error'=>'L\'email doit faire entre 8 et 320 caractères.',
+					'required'=>true
+				],
+				'pwd'=>[ 
+					'type'=>'password',
+					'label'=>'Mot de passe',
+					'minLength'=>8,
+					'id'=>'pwd',
+					'class'=>'form_input',
+					'placeholder'=>'',
+					'error'=>'Le mot de passe doit faire au minimum 8 caractères.',
+					'required'=>true
+				],
+				'pwdConfirm'=>[
+					'type'=>'password',
+					'label'=>'Confirmation',
+					'confirm'=>'pwd',
+					'id'=>'pwdConfirm',
+					'class'=>'form_input',
+					'placeholder'=>'',
+					'error'=>'Les mot de passe ne correspondent pas.',
+					'required'=>true
+				],
+				'role'=>[
+					'type'=>'select',
+					'label'=>'Role',
+					'id'=>'role',
+					'class'=>'form_input',
+					'options'=>['Utilisateur', 'Administrateur'],
+					'required'=>true
+				],
+				'image'=>[
+					'type'=>'file',
+					'label'=>'Avatar',
+					'id'=>'upfile',
+					'name'=>'upfile',
+					'class'=>'form_input',
+					'error'=>'Image invalide',
+					'required'=>false
+				]
+			]
+		];
+	}
+
+	public function formEditUser() {
+		return [
+			'config'=>[
+				'method'=>'POST',
+				'action'=>'',
+				'id'=>'form_register',
+				'class'=>'form',
+				'submit'=>'Enregistrer',
+				'enctype'=>'multipart/form-data'
+			],
+			'inputs'=>[
+				'firstname'=>[
+					'type'=>'text',
+					'label'=>'Prénom',
+					'minLength'=>2,
+					'maxLength'=>55,
+					'id'=>'firstname',
+					'class'=>'form_input',
+					'placeholder'=>'John',
+					'error'=>'Le prénom doit faire entre 2 et 55 caractères.',
+					'required'=>true,
+					'value'=>$this->getFirstname()
+				],
+				'lastname'=>[ 
+					'type'=>'text',
+					'label'=>'Nom',
+					'minLength'=>2,
+					'maxLength'=>255,
+					'id'=>'lastname',
+					'class'=>'form_input',
+					'placeholder'=>'Doe',
+					'error'=>'Le nom doit faire entre 2 et 255 caractères.',
+					'required'=>true,
+					'value'=>$this->getLastname()
+				],
+				'email'=>[ 
+					'type'=>'email',
+					'label'=>'Email',
+					'minLength'=>8,
+					'maxLength'=>320,
+					'id'=>'email',
+					'class'=>'form_input',
+					'placeholder'=>'john.doe@gmail.com',
+					'error'=>'L\'email doit faire entre 8 et 320 caractères.',
+					'required'=>true,
+					'value'=>$this->getEmail()
+				],
+				'role'=>[
+					'type'=>'select',
+					'label'=>'Role',
+					'id'=>'role',
+					'class'=>'form_input',
+					'options'=>['Utilisateur', 'Administrateur'],
+					'required'=>true,
+					'value'=>$this->getRole() === 'user' ? 0 : 1
+				],
+				'avatar'=>[
+					'type'=>'file',
+					'label'=>'Avatar',
+					'id'=>'upfile',
+					'name'=>'upfile',
+					'class'=>'form_input',
+					'error'=>'Image invalide',
+					'required'=>false
 				]
 			]
 		];

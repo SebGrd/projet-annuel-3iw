@@ -9,6 +9,12 @@
   action: notFound
   access: guest;user;admin
 
+# Setup Page
+/setup:
+  controller: SetupController
+  action: default
+  access: guest
+
 # SecurityController routes
 /register:
   controller: SecurityController
@@ -120,8 +126,18 @@
   action: newOrder
   access: user;admin
 
-# Setup Page
-/setup:
-  controller: SetupController
-  action: default
-  access: guest
+# UserController routes
+/admin/users:
+  controller: UserController
+  action: main
+  access: admin
+
+/admin/user/new:
+  controller: UserController
+  action: newUser
+  access: admin
+
+/admin/user:
+  controller: UserController
+  action: editUser
+  access: admin

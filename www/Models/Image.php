@@ -65,14 +65,14 @@ class Image extends Database {
 	 * @return string
 	 */
 	public function getCreatedAt(): string {
-		return $this->CreatedAt;
+		return $this->createdAt;
 	}
 
 	/**
-	 * @param string $CreatedAt
+	 * @param string $createdAt
 	 */
 	public function setCreatedAt() {
-		$this->CreatedAt = date('Y-m-d H:i:s');
+		$this->createdAt = date('Y-m-d H:i:s');
 	}
 
 }

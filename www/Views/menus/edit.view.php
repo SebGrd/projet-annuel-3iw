@@ -6,7 +6,7 @@
 
 	<div class="col-md-3">
 		<!-- Show messages -->
-		<?= $_::render('incl.message', ['msgs' => ['edit_menu_success', 'edit_menu_error'], 'errs' => $errors ?? []]); ?>
+		<?= $_::render('incl.message', ['msgs' => ['EDIT_MENU_SUCCESS', 'EDIT_MENU_ERROR'], 'errs' => $errors ?? []]); ?>
 
 		<?php if($menu->getImage() !== null): ?>
 			<img src="../<?= $_::getImageUrl($menu->getImage()) ?>" style="max-width: 100%; max-height: 150px;">
