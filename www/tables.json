@@ -318,5 +318,25 @@
         "extra": "NULL.DEFAULT current_timestamp"
       }
     }
+  },
+  {
+    "name": "product_order",
+    "fields": {
+      "0": {
+        "name": "id",
+        "type": "int",
+        "extra": "PRIMARY KEY.NOT NULL.AUTO_INCREMENT"
+      },
+      "1": {
+        "name": "order_id",
+        "type": "int",
+        "extra": "NOT NULL"
+      },
+      "2": {
+        "name": "product_id",
+        "type": "int",
+        "extra": "NOT NULL"
+      }
+    }
   }
 ]

@@ -3,7 +3,7 @@ services:
   web:
     build: site
     container_name: apache-mvc
-    restart: always
+    restart: unless-stopped
     ports :
       - 80:80
     volumes:
@@ -21,16 +21,16 @@ services:
   database:
     image: mysql:8.0
     container_name: mysql-mvc
+    restart: unless-stopped
     ports :
       - "3308:3306"
     environment:
       MYSQL_DATABASE: cms
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: groupe69
       MYSQL_USER: cms
-      MYSQL_PASSWORD: password
+      MYSQL_PASSWORD: groupe69
     volumes:
       - ./db_data:/var/lib/mysql
-    restart: always
     networks:
       - backend
       - other
@@ -38,7 +38,7 @@ services:
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: phpmyadmin-mvc
-    restart: always
+    restart: unless-stopped
     depends_on:
       - database
     ports:
@@ -46,9 +46,9 @@ services:
     environment:
       - PMA_ARBITRARY=1
       - PHP_UPLOAD_MAX_FILESIZE=100MB
-      - PMA_HOST=mysql-mvc
+      - PMA_HOST=database
       - PMA_USER=cms
-      - PMA_PASSWORD=password
+      - PMA_PASSWORD=groupe69
     networks:
       - other
 

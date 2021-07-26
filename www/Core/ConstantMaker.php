@@ -41,8 +41,6 @@ class ConstantMaker {
 			if (!empty($handle)) {
 				while (!feof($handle)) {
 					$line = trim(fgets($handle));
-					// $line = DBHOST=database #ceci est un commentaire
-					// $data["DBHOST"]="database";
 					preg_match('/([^=]*)=([^#]*)/', $line, $results);
 					if (!empty($results[1]) && !empty($results[2])) {
 						$this->data[$results[1]] = trim($results[2]);
