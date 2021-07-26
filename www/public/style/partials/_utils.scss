@@ -7,19 +7,20 @@
 	align-items: center;
 }
 
-// Transition: ease-in-out 0.15s;
-
 .pp-btn {
 	&  ~ .pp-menu {
 		opacity: 0;
+		visibility: hidden;
+		@extend .transition;
 	}
 
 	&:hover  ~ .pp-menu, &:focus  ~ .pp-menu {
 		opacity: 1;
+		visibility: visible;
 	}
 }
 
-* {
+.transition {
 	transition: all .2s ease-in-out;
 }
 
@@ -237,40 +238,96 @@ $values: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto;
 }
 
 /* 4 - BORDER */
-// From 0px to 50px every 1px
 $value: 0;
 $maxValue: 20;
 
 @while $value <= $maxValue {
-	// Padding
-	.b-#{$value} {
-		border: change-unit($value, 1px);
+	// Border
+	@each $name, $color in $colors {
+		.b-#{$value}-#{$name} {
+			border: $value * 1px solid $color;
+		}
+
+		.bx-#{$value}-#{$name} {
+			@extend .br-#{$value}-#{$name}, .bl-#{$value}-#{$name};
+		}
+
+		.by-#{$value}-#{$name} {
+			@extend .bt-#{$value}-#{$name}, .bb-#{$value}-#{$name};
+		}
+
+		.bt-#{$value}-#{$name} {
+			border-top: $value * 1px solid $color;
+		}
+
+		.br-#{$value}-#{$name} {
+			border-right: $value * 1px solid $color;
+		}
+
+		.bb-#{$value}-#{$name} {
+			border-bottom: $value * 1px solid $color;
+		}
+
+		.bl-#{$value}-#{$name} {
+			border-left: $value * 1px solid $color;
+		}
 	}
 
-	.bx-#{$value} {
-		@extend .br-#{$value}, .bl-#{$value};
+	// Border radius
+	.brd-#{$value} {
+		border-radius: $value * 1px;
 	}
 
-	.by-#{$value} {
-		@extend .bt-#{$value}, .bb-#{$value};
+	.brdt-#{$value} {
+		@extend .brd-tl-#{$value}, .brd-tr-#{$value};
 	}
 
-	.bt-#{$value} {
-		border-top: change-unit($value, 1px);
+	.brdr-#{$value} {
+		@extend .brd-tr-#{$value}, .brd-br-#{$value};
 	}
 
-	.br-#{$value} {
-		border-right: change-unit($value, 1px);
+	.brdb-#{$value} {
+		@extend .brd-br-#{$value}, .brd-bl-#{$value};
 	}
 
-	.bb-#{$value} {
-		border-bottom: change-unit($value, 1px);
+	.brdl-#{$value} {
+		@extend .brd-bl-#{$value}, .brd-tl-#{$value};
 	}
 
-	.bl-#{$value} {
-		border-left: change-unit($value, 1px);
+	.brd-tl-#{$value} {
+		border-top-left-radius: $value * 1px;
+	}
+
+	.brd-tr-#{$value} {
+		border-top-right-radius: $value * 1px;
+	}
+
+	.brd-br-#{$value} {
+		border-bottom-right-radius: $value * 1px;
+	}
+
+	.brd-bl-#{$value} {
+		border-bottom-left-radius: $value * 1px;
 	}
 
 	// Increment the value
 	$value: $value + 1;
+}
+
+/* 5 - OTHERS */
+.ov-h {
+	overflow: hidden;
+}
+
+.ov-v {
+	overflow: visible;
+}
+
+.list-none {
+	list-style: none;
+
+}
+
+.box-shadow {
+	box-shadow: 2px 2px 6px -2px $gray-600;
 }

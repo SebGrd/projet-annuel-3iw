@@ -18,40 +18,41 @@
 </head>
 
 <body>
-    <header class="header" id="header">
-        <section class="header__title">
-            <a href="/admin">
-                <h1>Dashboard</h1>
-            </a>
-        </section>
+<header class="header" id="header">
+    <section class="header__title">
+        <a href="/admin">
+            <h1>Dashboard</h1>
+        </a>
+    </section>
 
-        <section class="header__search">
-            <div class="header__search__input">
-                <svg class="header__search__input__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
-                    <path d="M0 0h24v24H0z" fill="none" />
-                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-                </svg>
+    <section class="header__search">
+        <div class="header__search__input">
+            <svg class="header__search__input__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                 width="18px" height="18px">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
 
-                <input class="header__search__input__input" type="text" placeholder="Search">
-            </div>
-        </section>
+            <input class="header__search__input__input" type="text" placeholder="Search">
+        </div>
+    </section>
 
-        <section class="header__menu">
-            <ul class="header__menu__list">
-                <li class="header__menu__list__item header__menu__list__item--notifications">
-                    <button class="pp-btn header__menu__list__item--notifications__button" data-pp-menu="pp-menu-1">
-                        <svg class="header__menu__list__item--notifications__button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
-                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
-                        </svg>
-                    </button>
+    <section class="header__menu">
+        <ul class="header__menu__list">
+            <li class="header__menu__list__item header__menu__list__item--notifications">
+                <button class="pp-btn header__menu__list__item--notifications__button" data-pp-menu="pp-menu-1">
+                    <svg class="header__menu__list__item--notifications__button__icon"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                    </svg>
+                </button>
 
-                    <!-- <ul class="header__menu__popup-menu text-center" id="pp-menu-1"> -->
-                    <ul class="pp-menu absolute bg-light t-4 r-0 p-1 text-center" id="pp-menu-1">
-                        <!-- list-style: none; -->
-                        <!-- Show messages -->
-
-                        <?php
-                        $msgs = array_filter($_SESSION, function ($key) {
+                <!-- <ul class="header__menu__popup-menu text-center" id="pp-menu-1"> -->
+                <ul class="pp-menu absolute bg-light t-4 r-0 p-1 brd-8 box-shadow ov-h list-none text-center">
+                    <!-- Show messages -->
+                       
+                    <?php
+                        $msgs = array_filter($_SESSION, function($key) {
                             return \App\Core\Helpers::str_contains($key, 'success') || \App\Core\Helpers::str_contains($key, 'error');
                         }, ARRAY_FILTER_USE_KEY);
                         $msgs = array_keys($msgs);
@@ -62,17 +63,17 @@
                 </li>
 
                 <li class="header__menu__list__item header__menu__list__item--separator"></li>
-
-                <li class="header__menu__list__item header__menu__list__item--profile ">
+            
+                <li class="header__menu__list__item header__menu__list__item--profile">
                     <span class="header__menu__list__item--profile__name">
-                        <?= $_SESSION['userStore']->firstname ?? '' ?>
+                        <?= $user->firstname ?? '' ?>
                     </span>
-
-                    <figure class="header__menu__list__item--profile__picture pp-btn" data-pp-menu="pp-menu-2">
+                    
+                    <figure class="pp-btn header__menu__list__item--profile__picture">
                         <img src="https://picsum.photos/100/100.jpg" alt="">
                     </figure>
 
-                    <ul class="header__menu__popup-menu" id="pp-menu-2">
+                    <ul class="pp-menu absolute bg-light t-4 r-0 p-1 brd-8 box-shadow ov-h list-none text-center">
                         <li class="header__menu__popup-menu__item">
                             <a href="/admin/profile" class="header__menu__popup-menu__item__link">
                                 Mon profil
@@ -107,6 +108,7 @@
                             <span class="menu__section__list__item__text">Pages</span>
                         </a>
                     </li>
+
                     <li class="menu__section__list__item">
                         <a href="/admin/products" class="menu__section__list__item__link">
                             <span class="menu__section__list__item__icon">
@@ -118,6 +120,7 @@
                             <span class="menu__section__list__item__text">Produits</span>
                         </a>
                     </li>
+
                     <li class="menu__section__list__item">
                         <a href="/admin/menus" class="menu__section__list__item__link">
                             <span class="menu__section__list__item__icon">
@@ -131,6 +134,7 @@
                     </li>
                 </ul>
             </section>
+
             <section class="menu__section">
                 <span class="menu__section__title">Data</span>
                 <ul class="menu__section__list">
@@ -189,6 +193,7 @@
                     </li>
                 </ul>
             </section>
+
             <section class="menu__section menu__section--bottom">
                 <ul class="menu__section__list">
                     <li class="menu__section__list__item">
@@ -207,10 +212,10 @@
                 </ul>
             </section>
         </aside>
+
         <main>
             <?php include $this->view; ?>
         </main>
     </div>
 </body>
-
 </html>

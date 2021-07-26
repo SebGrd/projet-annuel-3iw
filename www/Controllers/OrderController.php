@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Models\Order;
+use App\Core\Helpers;
 use App\Core\Message;
 
 class OrderController
@@ -19,9 +20,9 @@ class OrderController
 
     //     $stmt = $db->pdo->prepare('SELECT * FROM order ORDER BY createdAt DESC');
     //     $stmt->execute();
-    //     // Fetch the products from the database and return the result as an Array
-    //     $products = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    //     return $products;
+    //     // Fetch the orders from the database and return the result as an Array
+    //     $orders = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    //     return $orders;
     // }
 
     public function newOrder() {

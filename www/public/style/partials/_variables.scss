@@ -1,32 +1,59 @@
-$blue: #001F8C;
-$light-blue: #097289;
-$green: #4EA526;
-$red: #C61A1A;
-$white: #FFFFFF;
-$black: #000000;
-$gray-100: #F3F6F6;
+$gray-100: #F7F7F7;
 $gray-200: #F2F2F2;
-$gray-300: #bbbaba;
+$gray-300: #E5E5E5;
+$gray-400: #D9D9D9;
+$gray-500: #C9C9C9;
+$gray-600: #B4B4B4;
+$gray-700: #A1A1A1;
+$gray-800: #8D8D8D;
+$gray-900: #737373;
 
-$primary: $blue;
-$success: $green;
-$danger: $red;
-$light: $gray-100;
+$primary: #001F8C;
+$secondary: #7c7c81;
+$success: #4EA526;
+$info: #42c8cb;
+$warning: #d6a204;
+$danger: #C61A1A;
+$light: #F7F7F7;
 $dark: #313131;
-$info: $light-blue;
 
+// $primary: #00897B;
+// $secondary: #00AEEF;
+// $success: #8DC63F;
+// $info: #00B0FF;
+// $warning: #FFD700;
+// $danger: #F44336;
+// $light: #FFFFFF;
+// $dark: #000000;
 
+$primary2: #001a78;
+$secondary2: #727277;
+$success2: #469422;
+$info2: #36c0c3;
+$warning2: #c29304;
+$danger2: #C61A1A;
+$light2: #F7F7F7;
+$dark2: #272727;
 
-$colors: (
-        'primary': $blue,
-        'success': $success,
-        'danger': $danger,
-        'light': $gray-100,
-        'dark': $dark,
-        'info': $light-blue,
-);
-
-
+// Name, color, hover color
+$colors:
+	'primary' $primary $primary2,
+	'secondary' $secondary $secondary2,
+	'success' $success $success2,
+	'info' $info $info2,
+	'warning' $warning $warning2,
+	'danger' $danger $danger2,
+	'light' $light $light2,
+	'dark' $dark $dark2;
 
 $menu-width: 390px;
 $header-padding: 68px;
+
+$breakpoints:
+	'xs' 0px,
+	'sm' 480px,
+	'md' 768px,
+	'lg' 992px,
+	'xl' 1200px;
+
+$cols: 24;

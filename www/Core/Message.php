@@ -24,7 +24,7 @@ class Message {
 		],
 		// PROFILE
 		'EDIT_PROFILE_SUCCESS' => [
-			'text' => 'Modification du profil réussi !<br>Redirection vers la page de connexion.',
+			'text' => 'Modification du profil réussie !<br>Redirection vers la page de connexion.',
 			'type' => 'success'
 		],
 		'EDIT_PROFILE_ERROR' => [
@@ -50,7 +50,7 @@ class Message {
 		],
 		// MENU
 		'NEW_MENU_SUCCESS' => [
-			'text' => 'Création du menu réussi !',
+			'text' => 'Création du menu réussie !',
 			'type' => 'success'
 		],
 		'NEW_MENU_ERROR' => [
@@ -58,7 +58,7 @@ class Message {
 			'type' => 'danger'
 		],
 		'EDIT_MENU_SUCCESS' => [
-			'text' => 'Modification du menu réussi !',
+			'text' => 'Modification du menu réussie !',
 			'type' => 'success'
 		],
 		'EDIT_MENU_ERROR' => [
@@ -67,7 +67,7 @@ class Message {
 		],
 		// PRODUCT
 		'NEW_PRODUCT_SUCCESS' => [
-			'text' => 'Création du produit réussi !',
+			'text' => 'Création du produit réussie !',
 			'type' => 'success'
 		],
 		'NEW_PRODUCT_ERROR' => [
@@ -75,7 +75,7 @@ class Message {
 			'type' => 'danger'
 		],
 		'EDIT_PRODUCT_SUCCESS' => [
-			'text' => 'Modification du produit réussi !',
+			'text' => 'Modification du produit réussie !',
 			'type' => 'success'
 		],
 		'EDIT_PRODUCT_ERROR' => [
@@ -83,7 +83,7 @@ class Message {
 			'type' => 'danger'
 		],
 		'CREATE_USER_SUCCESS' => [
-			'text' => 'Création de l\'utilisateur réussi !',
+			'text' => 'Création de l\'utilisateur réussie !',
 			'type' => 'success'
 		],
 		'CREATE_USER_ERROR' => [
@@ -91,7 +91,7 @@ class Message {
 			'type' => 'danger'
 		],
 		'EDIT_USER_SUCCESS' => [
-			'text' => 'Mise à jour de l\'utilisateur réussi !',
+			'text' => 'Mise à jour de l\'utilisateur réussie !',
 			'type' => 'success'
 		],
 		'EDIT_USER_ERROR' => [

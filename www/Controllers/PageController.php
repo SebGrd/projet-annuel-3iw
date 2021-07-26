@@ -39,12 +39,12 @@ class PageController
                         $page->setHtml($html);
                         $page->setImage($image !== false ? $image : null);
                         $page->save();
-                        Message::add('PAGE_SUCCESS');
+                        Message::add('NEW_PAGE_SUCCESS');
                     }
                 }
             } else {
                 $view->assign('errors', $errors);
-                Message::add('PAGE_ERROR');
+                Message::add('NEW_PAGE_ERROR');
             }
         }
 

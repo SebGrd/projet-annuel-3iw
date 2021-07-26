@@ -27,12 +27,7 @@ class View {
 			$this->assign($key, $value);
 		}
 
-		// $this->assign('_title', 'CMS');
-		// $this->assign('_', Helpers::class);
-		// $this->assign('_V', View::class);
-		// $this->assign('_FB', FormBuilder::class);
-		// $this->assign('_S', Session::class);
-		// $this->assign('_M', Message::class);
+		$this->assign('user', $_SESSION['userStore']);
 	}
 
 	public function setTemplate($template) {

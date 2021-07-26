@@ -1,4 +1,4 @@
-<main class="auth h-full">
+<main class="auth">
     <div class="row h-full w-full">
         <div class="col-14 row bg-primary text-light flex flex-wrap flex-col justify-center">
             <h1 class="text-center text-light">Connexion</h1>

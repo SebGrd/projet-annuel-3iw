@@ -1,0 +1,139 @@
+/** @format */
+
+@import 'partials/variables';
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	color: $dark;
+	font-family: sans-serif;
+}
+
+// Text and background colors
+@each $name, $color in $colors {
+	.text-#{$name} {
+		color: $color;
+	}
+
+	.bg-#{$name} {
+		background-color: $color;
+	}
+}
+
+.btn,
+.icon-btn {
+	display: inline-block;
+	padding: 5px 12px;
+	background: $light;
+	border: 1px solid $primary;
+	border-radius: 6px;
+	color: $dark;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 200ms ease-in-out;
+}
+
+.btn:hover,
+.icon-btn:hover {
+	background: $gray-200;
+}
+
+.icon-btn {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	width: 31px;
+	height: 31px;
+}
+
+.icon-btn svg {
+	fill: $light;
+}
+
+// Buttons and on hover colors
+@each $name, $bgColor, $bgColor2 in $colors {
+	$text: $light;
+
+	// If the background color is white, use black instead
+	@if $bgColor == $light {
+		$text: $dark;
+	}
+
+	.btn.btn-#{$name},
+	.btn-#{$name}.icon-btn {
+		background: $bgColor;
+		border: 1px solid $bgColor;
+		color: $text;
+		box-shadow: 0 1px 4px 0 $bgColor;
+	}
+
+	.btn.btn-#{$name}:hover,
+	.btn-#{$name}.icon-btn:hover {
+		background: $bgColor2;
+		box-shadow: 0 1px 4px 0 $bgColor2;
+	}
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -7.5px;
+	margin-right: -7.5px;
+	width: 100%;
+}
+
+.row.no-gutter {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.row.no-gutter > * {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* COLUMNS & BREAKPOINTS */
+.col {
+	flex: 0 0 auto;
+	padding-left: 7.5px;
+	padding-right: 7.5px;
+}
+
+$col: 1;
+@while $col <= $cols {
+	.col-#{$col} {
+		flex: 0 0 100% / $cols * $col;
+		max-width: 100% / $cols * $col;
+		padding-left: 7.5px;
+		padding-right: 7.5px;
+	}
+
+	// Increment the value
+	$col: $col + 1;
+}
+
+@each $size, $value in $breakpoints {
+	@media screen and (min-width: $value) {
+		$col: 1;
+
+		@while $col <= $cols {
+			.col-#{$size}-#{$col} {
+				flex: 0 0 100% / $cols * $col;
+				max-width: 100% / $cols * $col;
+				padding-left: 7.5px;
+				padding-right: 7.5px;
+			}
+
+			// Increment the value
+			$col: $col + 1;
+		}
+	}
+}
+
+/*# sourceMappingURL=boostrip.css.map */
