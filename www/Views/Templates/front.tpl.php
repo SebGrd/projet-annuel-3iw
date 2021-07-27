@@ -10,6 +10,6 @@
     <main>
         <?php include $this->view; ?>
     </main>
-    <?= $_::render('incl.scripts'); ?>
+    <?= $_::render('incl.scripts-front'); ?>
 </body>
 </html>
