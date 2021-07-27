@@ -17,16 +17,13 @@ html, body {
   visibility: hidden;
   right: auto;
 }
-
-.pp-btn:hover > .pp-menu,
-.pp-btn:hover ~ .pp-menu {
+.pp-btn:hover > .pp-menu, .pp-btn:hover ~ .pp-menu {
   opacity: 1;
   visibility: visible;
 }
 
 .transition, .pp-btn > .pp-menu, .pp-btn ~ .pp-menu {
-  -webkit-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn.btn-icon-small.show {
@@ -676,8 +673,6 @@ html, body {
 }
 
 .h-max, html, body {
-  height: -webkit-max-content;
-  height: -moz-max-content;
   height: max-content;
 }
 
@@ -5033,8 +5028,7 @@ html, body {
 }
 
 .box-shadow {
-  -webkit-box-shadow: 2px 2px 6px -2px #B4B4B4;
-          box-shadow: 2px 2px 6px -2px #B4B4B4;
+  box-shadow: 2px 2px 6px -2px #B4B4B4;
 }
 
 .rtl {

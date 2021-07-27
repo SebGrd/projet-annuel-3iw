@@ -3,9 +3,11 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Core\FormValidator;
+use App\Models\Menu;
 use App\Models\Page;
 use App\Core\Helpers;
 use App\Core\Message;
+use App\Models\Product;
 
 class PageController
 {
@@ -165,6 +167,9 @@ class PageController
 
 	public function products() {
         $view = new View('products', 'front');
-        $view->assign('products', [1, 2, 3]);
+        $product = new Product();
+        $menu = new Menu();
+        $view->assign('products', $product->findAll([], [], true));
+        $view->assign('menus', $menu->findAll([], [], true));
     }
 }
