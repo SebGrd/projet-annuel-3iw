@@ -76,6 +76,10 @@ body {
   background-color: #313131;
 }
 
+.text-muted {
+  opacity: .5;
+}
+
 .btn,
 .icon-btn {
   display: inline-block;

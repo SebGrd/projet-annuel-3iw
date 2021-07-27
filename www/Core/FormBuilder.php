@@ -25,7 +25,7 @@ class FormBuilder {
 			$html .= "</div>";
 		}
 
-		$html .= "<input class='btn btn-primary' type='submit' value=\"".($form["config"]["submit"]??"Valider")."\">";
+		$html .= "<input class='btn btn-primary w-100' type='submit' value=\"".($form["config"]["submit"]??"Valider")."\">";
 		$html .= '</form>';
 		echo $html;
 	}

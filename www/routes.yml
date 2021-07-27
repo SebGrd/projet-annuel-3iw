@@ -1,143 +1,190 @@
 # MainController routes
 /:
+  title: Accueil
   controller: MainController
   action: home
   access: guest;user;admin
 
 /404:
+  title: Page introuvable
   controller: MainController
   action: notFound
   access: guest;user;admin
 
 # Setup Page
 /setup:
+  title: Installation
   controller: SetupController
   action: default
   access: guest
 
 # SecurityController routes
 /register:
+  title: Inscription
   controller: SecurityController
   action: register
   access: guest
 
 /login:
+  title: Connexion
   controller: SecurityController
   action: login
   access: guest
 
 /logout:
+  title: Déconnexion
   controller: SecurityController
   action: logout
   access: user;admin
 
 /forgot-password:
+  title: Mot de passe oublié
   controller: SecurityController
   action: resetPassword
   access: guest
 
 /profile:
+  title: Profil
   controller: SecurityController
   action: profile
   access: user
 
 # AdminController routes
 /admin:
+  title: Dashboard
   controller: AdminController
   action: main
   access: admin
 
 /admin/profile:
+  title: Profil
   controller: SecurityController
   action: profile
   access: admin
 
 # MenuController routes
 /admin/menus:
+  title: Liste des menus
   controller: MenuController
   action: main
   access: admin
 
 /admin/menu/new:
+  title: Nouveau menu
   controller: MenuController
   action: newMenu
   access: admin
 
 /admin/menu:
+  title: Modification du menu
   controller: MenuController
   action: editMenu
   access: admin
 
 /menu:
+  title: Menu
   controller: MenuController
   action: show
   access: guest;user;admin
 
 # ProductController routes
 /admin/products:
+  title: Liste des produits
   controller: ProductController
   action: main
   access: admin
 
 /admin/product/new:
+  title: Nouveau produit
   controller: ProductController
   action: newProduct
   access: admin
 
 /admin/product:
+  title: Modification du produit
   controller: ProductController
   action: editProduct
   access: admin
 
 /product:
+  title: Produit
   controller: PageController
   action: show
   access: guest;user;admin
 
 # PageController routes
 /admin/pages:
+  title: Liste des pages
   controller: PageController
   action: main
   access: admin
 
 /admin/page/new:
+  title: Nouvelle page
   controller: PageController
   action: newPage
   access: admin
 
 /admin/page:
+  title: Modification de la page
   controller: PageController
   action: editPage
   access: admin
 
 /page:
+  title: Page
   controller: PageController
   action: show
   access: guest;user;admin
 
 # OrderController routes
 /admin/orders:
+  title: Liste des commandes
   controller: OrderController
   action: main
   access: admin
 
 /order:
+  title: Commande
   controller: OrderController
   action: newOrder
   access: user;admin
 
 # UserController routes
 /admin/users:
+  title: Liste des utilisateurs
   controller: UserController
   action: main
   access: admin
 
 /admin/user/new:
+  title: Nouvel utilisateur
   controller: UserController
   action: newUser
   access: admin
 
 /admin/user:
+  title: Modification de l'utilisateur
   controller: UserController
   action: editUser
+  access: admin
+
+# Other routes
+/admin/stats:
+  title: Statistiques
+  controller: StatsController
+  action: main
+  access: admin
+
+/admin/settings:
+  title: Paramètres
+  controller: SettingsController
+  action: main
+  access: admin
+
+# Other routes
+/admin/search:
+  title: Résultats de recherche
+  controller: SearchController
+  action: main
   access: admin

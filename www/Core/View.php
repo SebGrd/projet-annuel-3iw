@@ -27,7 +27,7 @@ class View {
 			$this->assign($key, $value);
 		}
 
-		$this->assign('user', $_SESSION['userStore']);
+		$this->assign('user', $_SESSION['userStore'] ?? []);
 	}
 
 	public function setTemplate($template) {

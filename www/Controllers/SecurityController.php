@@ -260,7 +260,7 @@ class SecurityController {
 	 **/ 
 	public function profile() {
 		$user = new User();
-		$view = new View('profile', Security::isAdmin() ? 'admin' : 'front');
+		$view = new View('profile', 'blank');
 
 			$form = $user->formEditProfile();
         
@@ -271,19 +271,19 @@ class SecurityController {
 				$user->setId($_SESSION['userStore']->id);
 
 				if ($user->getId()) {
+					$data = $user->find(['id' => $user->getId(), 'isDeleted' => 0], ['id' => 'ASC'], true);
+
 					$password = stripslashes($_POST['pwd']);
 					$hashed_password = crypt($password, '$5$rounds=6666$'.SALT.'$');
 					$user->setFirstname($_POST['firstname']);
 					$user->setLastname($_POST['lastname']);
 					$user->setEmail($_POST['email']);
 					$user->setPwd($hashed_password);
+					$user->setRole($data['role']);
 					$user->save();
 
 					Message::add('EDIT_PROFILE_SUCCESS');
 
-					$data = $user->find(['id' => $user->getId(), 'isDeleted' => 0], ['id' => 'ASC'], true);
-
-					unset($_SESSION['userStore']);
 					$_SESSION['userStore'] = $data;
 					$this->logout(1);
 				} else {

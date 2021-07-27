@@ -23,12 +23,12 @@ class PageController
             $errors = FormValidator::check($pageForm, $_POST);
             if (empty($errors)) {
                 $title = htmlspecialchars(strip_tags($_POST['title']));
-                $html = htmlspecialchars(strip_tags($_POST['html']));
+                $html = htmlentities($_POST['html']);
 
                 $page->find(['title' => $title]);
     
                 if ($page->getId()) {
-                    $view->assign('errors', ['La page ' . $title . ' existe déjà.']);
+                    $view->assign('errors', ["La page $title existe déjà."]);
                 } else {
                     $image = Helpers::upload('products');
     
@@ -39,7 +39,9 @@ class PageController
                         $page->setHtml($html);
                         $page->setImage($image !== false ? $image : null);
                         $page->save();
+                        
                         Message::add('NEW_PAGE_SUCCESS');
+                        header('location: /admin/pages');
                     }
                 }
             } else {
@@ -112,6 +114,7 @@ class PageController
                 if (empty($errors)) {
                     $page->save();
                     Message::add('EDIT_PAGE_SUCCESS');
+                    header('location: /admin/pages');
                 } else {
                     $view->assign('errors', $errors);
                     Message::add('EDIT_PAGE_ERROR');

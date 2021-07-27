@@ -1,6 +1,10 @@
 /** @format */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
 /** @format */
+html, body {
+  overflow: hidden;
+}
+
 .btn.btn-icon-small {
   padding: 0 0.3rem;
   display: -webkit-inline-box;
@@ -14,17 +18,19 @@
           align-items: center;
 }
 
-.pp-btn ~ .pp-menu {
+.pp-btn > .pp-menu, .pp-btn ~ .pp-menu {
   opacity: 0;
   visibility: hidden;
+  right: auto;
 }
 
-.pp-btn:hover ~ .pp-menu, .pp-btn:focus ~ .pp-menu {
+.pp-btn:hover > .pp-menu,
+.pp-btn:hover ~ .pp-menu {
   opacity: 1;
   visibility: visible;
 }
 
-.transition, .pp-btn ~ .pp-menu {
+.transition, .pp-btn > .pp-menu, .pp-btn ~ .pp-menu {
   -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
@@ -694,7 +700,7 @@
   width: 100vw;
 }
 
-.h-max {
+.h-max, html, body {
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
@@ -5049,6 +5055,19 @@
 }
 
 /* 5 - OTHERS */
+.list-none {
+  list-style: none;
+}
+
+.box-shadow {
+  -webkit-box-shadow: 2px 2px 6px -2px #B4B4B4;
+          box-shadow: 2px 2px 6px -2px #B4B4B4;
+}
+
+.rtl {
+  direction: rtl;
+}
+
 .ov-h {
   overflow: hidden;
 }
@@ -5057,13 +5076,28 @@
   overflow: visible;
 }
 
-.list-none {
-  list-style: none;
+.x-scroll, .scroll {
+  overflow-x: scroll;
 }
 
-.box-shadow {
-  -webkit-box-shadow: 2px 2px 6px -2px #B4B4B4;
-          box-shadow: 2px 2px 6px -2px #B4B4B4;
+.y-scroll, .scroll {
+  overflow-y: scroll;
+}
+
+.x-scroll-auto {
+  overflow-x: auto;
+}
+
+.y-scroll-auto {
+  overflow-y: auto;
+}
+
+.x-resize, .resize {
+  resize: horizontal;
+}
+
+.y-resize, .resize {
+  resize: horizontal;
 }
 
 html, body {
@@ -5126,7 +5160,7 @@ a {
 }
 
 .auth__section__form__list {
-  padding: 1rem;
+  padding: 0;
   max-width: 340px;
   font-size: .8rem;
 }
@@ -5174,7 +5208,7 @@ a {
 }
 
 .header__title {
-  width: 390px;
+  width: 300px;
 }
 
 .header__title h1 {
@@ -5361,7 +5395,7 @@ a {
 
 .menu {
   position: relative;
-  width: 390px;
+  width: 300px;
   background: #F7F7F7;
   height: 100vh;
   padding-top: 68px;

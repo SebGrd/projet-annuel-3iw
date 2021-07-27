@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="fr">
 <head>
 	<?= $_::render('incl.style'); ?>
-    <title>Front template</title>
+	<?= $_::render('incl.scripts'); ?>
+    <title><?= $_SESSION['title'] ?></title>
 </head>
+
 <body>
 	<?= $_::render('incl.header'); ?>
 

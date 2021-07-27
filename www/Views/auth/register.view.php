@@ -9,14 +9,21 @@
 
         <div class="col-10 flex flex-col justify-center">
             <section class="flex flex-col align-center">
-                <div class="flex flex-col justify-center">
+                <div class="flex flex-col justify-center align-center w-100">
                     <h2>S'inscrire</h2>
 
                     <!-- Show messages -->
                     <?= $_::render('incl.message', ['msgs' => ['register_error'], 'errs' => $errors ?? []]); ?>
 
                     <?= $_FB::render($form); ?>
-                    <a href="/login" class="auth__section__form__link">Se connecter</a>
+
+                    <div class="flex flex-col w-100 align-center mt-1">
+                        <a href="/login" class="col auth__section__form__link">Se connecter</a>
+                    </div>
+
+                    <div class="flex flex-col w-100 align-center mt-1">
+                        <a href="/" class="col-12 btn btn-secondary auth__section__form__links__link">Retour à la page d'accueil</a>
+                    </div>
                 </div>
             </section>
         </div>
