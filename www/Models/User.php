@@ -213,7 +213,7 @@ class User extends Database {
 					'maxLength'=>55,
 					'id'=>'firstname',
 					'class'=>'form_input',
-					'placeholder'=>'Exemple: Yves',
+					'placeholder'=>'Ex : John',
 					'error'=>'Votre prénom doit faire entre 2 et 55 caractères',
 					'required'=>true
 				],
@@ -224,7 +224,7 @@ class User extends Database {
 					'maxLength'=>255,
 					'id'=>'lastname',
 					'class'=>'form_input',
-					'placeholder'=>'Exemple: SKRZYPCZYK',
+					'placeholder'=>'Ex : DOE',
 					'error'=>'Votre nom doit faire entre 2 et 255 caractères',
 					'required'=>true
 				],
@@ -235,7 +235,7 @@ class User extends Database {
 					'maxLength'=>320,
 					'id'=>'email',
 					'class'=>'form_input',
-					'placeholder'=>'Exemple: nom@gmail.com',
+					'placeholder'=>'Ex : john.doe@gmail.com',
 					'error'=>'Votre email doit faire entre 8 et 320 caractères',
 					'required'=>true
 				],
@@ -280,7 +280,7 @@ class User extends Database {
 					'maxLength'=>320,
 					'id'=>'email',
 					'class'=>'form_input',
-					'placeholder'=>'Exemple: nom@gmail.com',
+					'placeholder'=>'Ex : john.doe@gmail.com',
 					'error'=>'Votre email doit faire entre 8 et 320 caractères',
 					'required'=>true
 				],

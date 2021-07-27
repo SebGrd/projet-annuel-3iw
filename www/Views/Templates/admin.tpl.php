@@ -1,65 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <!-- <?= $_::render('incl.style'); ?> -->
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <meta name='description' content='cms restaurant'>
-    <link rel="stylesheet" href="/public/style/boostrip.css">
-    <link rel="stylesheet" href="/public/style/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <script src="/public/script/script.js" defer></script>
-    <title>Dashboard</title>
+    <?= $_::render('incl.style'); ?>
+	<?= $_::render('incl.scripts'); ?>
+    <title><?= $_SESSION['title'] ?></title>
 </head>
 
 <body>
-<header class="header" id="header">
-    <section class="header__title">
-        <a href="/admin">
-            <h1>Dashboard</h1>
-        </a>
-    </section>
+    <header class="header" id="header">
+        <section class="header__title mr-1">
+            <a href="/admin">
+                <h1>Admin</h1>
+            </a>
+        </section>
 
-    <section class="header__search">
-        <div class="header__search__input">
-            <svg class="header__search__input__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
-                 width="18px" height="18px">
-                <path d="M0 0h24v24H0z" fill="none"/>
-                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-            </svg>
+        <section class="header__search">
+            <div class="header__search__input">
+                <svg class="header__search__input__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"
+                    width="18px" height="18px">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
 
-            <input class="header__search__input__input" type="text" placeholder="Search">
-        </div>
-    </section>
+                <input class="header__search__input__input" type="text" placeholder="Search">
+            </div>
+        </section>
 
-    <section class="header__menu">
-        <ul class="header__menu__list">
-            <li class="header__menu__list__item header__menu__list__item--notifications">
-                <button class="pp-btn header__menu__list__item--notifications__button" data-pp-menu="pp-menu-1">
-                    <svg class="header__menu__list__item--notifications__button__icon"
-                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
-                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
-                    </svg>
-                </button>
-
-                <!-- <ul class="header__menu__popup-menu text-center" id="pp-menu-1"> -->
-                <ul class="pp-menu absolute bg-light t-4 r-0 p-1 brd-8 box-shadow ov-h list-none text-center">
-                    <!-- Show messages -->
-                       
-                    <?php
-                        $msgs = array_filter($_SESSION, function($key) {
-                            return \App\Core\Helpers::str_contains($key, 'success') || \App\Core\Helpers::str_contains($key, 'error');
-                        }, ARRAY_FILTER_USE_KEY);
-                        $msgs = array_keys($msgs);
-                        ?>
-
-                        <?= $_::render('incl.notifications', ['msgs' => $msgs ?? [], 'errs' => $errors ?? []]) ?>
-                    </ul>
+        <section class="header__menu">
+            <ul class="header__menu__list">
+                <li class="header__menu__list__item header__menu__list__item--notifications">
+                    <button class="pp-btn rtl header__menu__list__item--notifications__button">
+                        <svg class="header__menu__list__item--notifications__button__icon"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                        </svg>
+                        
+                        <!-- <ul class="header__menu__popup-menu text-center" id="pp-menu-1"> -->
+                        <ul class="pp-menu relative bg-light w-max r-0 p-1 brd-8 box-shadow ov-h list-none text-center">
+                            <!-- Show messages -->
+                            
+                            <?php
+                                $msgs = array_filter($_SESSION, function($key) {
+                                    return \App\Core\Helpers::str_contains($key, 'success') || \App\Core\Helpers::str_contains($key, 'error');
+                                }, ARRAY_FILTER_USE_KEY);
+                                $msgs = array_keys($msgs);
+                            ?>
+        
+                            <?= $_::render('incl.notifications', ['msgs' => $msgs ?? [], 'errs' => $errors ?? []]) ?>
+                        </ul>
+                    </button>
                 </li>
 
                 <li class="header__menu__list__item header__menu__list__item--separator"></li>
@@ -69,34 +59,84 @@
                         <?= ucfirst($user->firstname) ?? '' ?>
                     </span>
                     
-                    <figure class="pp-btn header__menu__list__item--profile__picture">
+                    <figure class="pp-btn rtl header__menu__list__item--profile__picture">
                         <img src=<?= $user->avatar !== null ? 'http://' . $_SERVER['HTTP_HOST'] . '/'. \App\Core\Helpers::getImageUrl($user->avatar) : 'https://picsum.photos/100/100.jpg' ?> />
+                        
+                        <ul class="pp-menu relative bg-light w-max r-0 p-1 brd-8 box-shadow ov-h list-none text-center">
+                            <li class="header__menu__popup-menu__item">
+                                <a href="/admin/profile" class="header__menu__popup-menu__item__link">
+                                    Mon profil
+                                </a>
+                            </li>
+
+                            <li class="header__menu__popup-menu__item">
+                                <a href="/logout" class="header__menu__popup-menu__item__link header__menu__popup-menu__item__link--danger">
+                                    Déconnexion
+                                </a>
+                            </li>
+                        </ul>
                     </figure>
-
-                    <ul class="pp-menu absolute bg-light t-4 r-0 p-1 brd-8 box-shadow ov-h list-none text-center">
-                        <li class="header__menu__popup-menu__item">
-                            <a href="/admin/profile" class="header__menu__popup-menu__item__link">
-                                Mon profil
-                            </a>
-                        </li>
-
-                        <li class="header__menu__popup-menu__item">
-                            <a href="/logout" class="header__menu__popup-menu__item__link header__menu__popup-menu__item__link--danger">
-                                Déconnexion
-                            </a>
-                        </li>
-                    </ul>
                 </li>
             </ul>
 
-        </section>
+            </section>
     </header>
 
     <div class="page-wrapper">
-        <aside class="menu">
+        <aside class="menu y-scroll-auto x-resize">
+            <section class="menu__section">
+                <ul class="menu__section__list">
+                    <!--Voir le site -->
+                    <li class="menu__section__list__item">
+                        <a href="/" class="menu__section__list__item__link">
+                            <span class="menu__section__list__item__icon">
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    viewBox="0 0 27.02 27.02" style="enable-background:new 0 0 27.02 27.02;" xml:space="preserve">
+                                    <path d="M3.674,24.876c0,0-0.024,0.604,0.566,0.604c0.734,0,6.811-0.008,6.811-0.008l0.01-5.581
+                                        c0,0-0.096-0.92,0.797-0.92h2.826c1.056,0,0.991,0.92,0.991,0.92l-0.012,5.563c0,0,5.762,0,6.667,0
+                                        c0.749,0,0.715-0.752,0.715-0.752V14.413l-9.396-8.358l-9.975,8.358C3.674,14.413,3.674,24.876,3.674,24.876z"/>
+                                    <path d="M0,13.635c0,0,0.847,1.561,2.694,0l11.038-9.338l10.349,9.28c2.138,1.542,2.939,0,2.939,0
+                                        L13.732,1.54L0,13.635z"/>
+                                    <polygon points="23.83,4.275 21.168,4.275 21.179,7.503 23.83,9.752 	"/>
+                                </svg>
+                            </span>
+                            <span class="menu__section__list__item__text">Voir le site</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Vue d'ensemble -->
+                    <li class="menu__section__list__item">
+                        <a href="/admin" class="menu__section__list__item__link">
+                            <span class="menu__section__list__item__icon">
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                    <path d="M176.792,0H59.208C26.561,0,0,26.561,0,59.208v117.584C0,209.439,26.561,236,59.208,236h117.584
+                                        C209.439,236,236,209.439,236,176.792V59.208C236,26.561,209.439,0,176.792,0z M196,176.792c0,10.591-8.617,19.208-19.208,19.208
+                                        H59.208C48.617,196,40,187.383,40,176.792V59.208C40,48.617,48.617,40,59.208,40h117.584C187.383,40,196,48.617,196,59.208
+                                        V176.792z"/>
+                                    <path d="M452,0H336c-33.084,0-60,26.916-60,60v116c0,33.084,26.916,60,60,60h116c33.084,0,60-26.916,60-60V60
+                                        C512,26.916,485.084,0,452,0z M472,176c0,11.028-8.972,20-20,20H336c-11.028,0-20-8.972-20-20V60c0-11.028,8.972-20,20-20h116
+                                        c11.028,0,20,8.972,20,20V176z"/>
+                                    <path d="M176.792,276H59.208C26.561,276,0,302.561,0,335.208v117.584C0,485.439,26.561,512,59.208,512h117.584
+                                        C209.439,512,236,485.439,236,452.792V335.208C236,302.561,209.439,276,176.792,276z M196,452.792
+                                        c0,10.591-8.617,19.208-19.208,19.208H59.208C48.617,472,40,463.383,40,452.792V335.208C40,324.617,48.617,316,59.208,316h117.584
+                                        c10.591,0,19.208,8.617,19.208,19.208V452.792z"/>
+                                    <path d="M452,276H336c-33.084,0-60,26.916-60,60v116c0,33.084,26.916,60,60,60h116c33.084,0,60-26.916,60-60V336
+                                        C512,302.916,485.084,276,452,276z M472,452c0,11.028-8.972,20-20,20H336c-11.028,0-20-8.972-20-20V336c0-11.028,8.972-20,20-20
+                                        h116c11.028,0,20,8.972,20,20V452z"/>
+                                </svg>
+                            </span>
+                            <span class="menu__section__list__item__text">Vue d'ensemble</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
             <section class="menu__section">
                 <span class="menu__section__title">Contenu</span>
+
                 <ul class="menu__section__list">
+                    <!-- Pages -->
                     <li class="menu__section__list__item">
                         <a href="/admin/pages" class="menu__section__list__item__link">
                             <span class="menu__section__list__item__icon">
@@ -109,6 +149,7 @@
                         </a>
                     </li>
 
+                    <!-- Produits -->
                     <li class="menu__section__list__item">
                         <a href="/admin/products" class="menu__section__list__item__link">
                             <span class="menu__section__list__item__icon">
@@ -121,6 +162,7 @@
                         </a>
                     </li>
 
+                    <!-- Menus -->
                     <li class="menu__section__list__item">
                         <a href="/admin/menus" class="menu__section__list__item__link">
                             <span class="menu__section__list__item__icon">
@@ -132,12 +174,8 @@
                             <span class="menu__section__list__item__text">Menus</span>
                         </a>
                     </li>
-                </ul>
-            </section>
-
-            <section class="menu__section">
-                <span class="menu__section__title">Data</span>
-                <ul class="menu__section__list">
+                
+                    <!-- Commandes -->
                     <li class="menu__section__list__item">
                         <a href="/admin/orders" class="menu__section__list__item__link">
                             <span class="menu__section__list__item__icon">
@@ -149,6 +187,13 @@
                             <span class="menu__section__list__item__text">Commandes</span>
                         </a>
                     </li>
+                </ul>
+            </section>
+
+            <section class="menu__section">
+                <span class="menu__section__title">Data</span>
+                <ul class="menu__section__list">
+                    <!-- Statistiques -->
                     <li class="menu__section__list__item">
                         <a href="" class="menu__section__list__item__link">
                             <span class="menu__section__list__item__icon">
@@ -165,20 +210,11 @@
                                     </g>
                                 </svg>
                             </span>
-                            <span class="menu__section__list__item__text">Statistics</span>
+                            <span class="menu__section__list__item__text">Statistiques</span>
                         </a>
                     </li>
-                    <li class="menu__section__list__item">
-                        <a href="" class="menu__section__list__item__link">
-                            <span class="menu__section__list__item__icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px">
-                                    <path d="M0 0h24v24H0V0z" fill="none" />
-                                    <path d="M10 10.02h5V21h-5zM17 21h3c1.1 0 2-.9 2-2v-9h-5v11zm3-18H5c-1.1 0-2 .9-2 2v3h19V5c0-1.1-.9-2-2-2zM3 19c0 1.1.9 2 2 2h3V10H3v9z" />
-                                </svg>
-                            </span>
-                            <span class="menu__section__list__item__text">Tables</span>
-                        </a>
-                    </li>
+
+                    <!-- Utilisateurs -->
                     <li class="menu__section__list__item">
                         <a href="/admin/users" class="menu__section__list__item__link">
                             <span class="menu__section__list__item__icon">
@@ -194,8 +230,9 @@
                 </ul>
             </section>
 
-            <section class="menu__section menu__section--bottom">
+            <section class="menu__section">
                 <ul class="menu__section__list">
+                    <!-- Paramètres -->
                     <li class="menu__section__list__item">
                         <a href="" class="menu__section__list__item__link">
                             <span class="menu__section__list__item__icon">
@@ -206,14 +243,18 @@
                                     </g>
                                 </svg>
                             </span>
-                            <span class="menu__section__list__item__text">Settings</span>
+                            <span class="menu__section__list__item__text">Paramètres</span>
                         </a>
                     </li>
                 </ul>
             </section>
+            
+            <small class="flex flex-col align-center text-muted">
+                Icons from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+            </small>
         </aside>
 
-        <main>
+        <main class="menu y-scroll-auto">
             <?php include $this->view; ?>
         </main>
     </div>

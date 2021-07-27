@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/public/style/boostrip.css">
     <link rel="stylesheet" href="/public/style/style.css">
 
-    <title>Title</title>
+    <title><?= $_SESSION['title'] ?></title>
 </head>
 <body>
 <?php include $this->view ;?>

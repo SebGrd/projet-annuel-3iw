@@ -1,4 +1,4 @@
-<div class="">
+<div class="w-100">
   <section>
     <h2>Edition du menu : <?= $menu->getTitle() ?></h2>
   </section>

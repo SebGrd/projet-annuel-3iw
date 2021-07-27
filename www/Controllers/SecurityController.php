@@ -298,7 +298,7 @@ class SecurityController
 	public function profile()
 	{
 		$user = new User();
-		$view = new View('profile', Security::isAdmin() ? 'admin' : 'front');
+		$view = new View('profile', 'blank');
 
 		$form = $user->formEditProfile();
 
@@ -333,10 +333,7 @@ class SecurityController
 						Message::add('EDIT_PROFILE_SUCCESS');
 
 						$data = $user->find(['id' => $user->getId(), 'isDeleted' => 0], ['id' => 'ASC'], true);
-
-						// unset($_SESSION['userStore']);
 						$_SESSION['userStore'] = $data;
-						// $this->logout(1);
 					}
 				} else {
 					Message::add('EDIT_PROFILE_ERROR');
@@ -353,8 +350,4 @@ class SecurityController
 		$view->assign('form', $form);
 		$view->assign('user', (object) $data);
 	}
-
-	// public function deleteAccount() {
-	// 	$user = new User();
-	// }
 }

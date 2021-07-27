@@ -48,6 +48,13 @@ class Router {
 	private $routesPath = 'routes.yml';
 
 	/**
+     *  Title of the current route
+     *
+     * @var string
+     */
+	private $title;
+
+	/**
      * Controller of the current route
      *
      * @var string
@@ -73,10 +80,13 @@ class Router {
 		if (file_exists($this->routesPath)) {
 			$this->routes = yaml_parse_file($this->routesPath);
 
+			print_r($this->getTitle());
+
 			if (!empty($this->routes[$this->uri])
 					&& $this->routes[$this->uri]['controller']
 					&& $this->routes[$this->uri]['action']
 					&& $this->routes[$this->uri]['access']) {
+				$this->setTitle($this->routes[$this->uri]['title'] ?? APPNAME);
 				$this->setController($this->routes[$this->uri]['controller']);
 				$this->setAction($this->routes[$this->uri]['action']);
 				$this->setAccess($this->routes[$this->uri]['access']);
@@ -97,6 +107,7 @@ class Router {
 		$c = $this->getController();
 		$a = $this->getAction();
 		$ac = $this->getAccess();
+		$t = $this->getTitle();
 
 		if (file_exists("Controllers/$c.php")) {
 			include "Controllers/$c.php";
@@ -118,6 +129,7 @@ class Router {
 						if (SETUP_TERMINATED !== 'true' && $this->uri !== '/setup') header('location:setup', 303);
 					}
 
+					$_SESSION['title'] = APPNAME . " • $t";
 					$cObjet->$a();
 				} else {
 					(new MainController)->notFound("Action <b>$a</b> introuvable");
@@ -132,6 +144,14 @@ class Router {
 
 	public function setUri($uri) {
 		$this->uri = trim(mb_strtolower($uri));
+	}
+
+	public function getTitle() {
+		return $this->title;
+	}
+
+	public function setTitle($title) {
+		$this->title = $title;
 	}
 
 	public function getController() {

@@ -15,6 +15,8 @@ $constantMaker = new ConstantMaker();
 $uriExploded = explode('?', $_SERVER['REQUEST_URI']);
 $uri = $uriExploded[0];
 
+// $_SESSION['title'] = 'HEY';
+
 // Get the current route properties
 $router = new Router($uri);
 

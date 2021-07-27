@@ -42,7 +42,9 @@ class MenuController
                         $menu->setDescription($description);
                         $menu->setImage($image !== false ? $image : null);
                         $menu->save();
+
     					Message::add('NEW_MENU_SUCCESS');
+                        header('location: /admin/menus');
                     }
                 }
             } else {
@@ -124,6 +126,7 @@ class MenuController
 			if (empty($errors)) {
                 $menu->save();
                 Message::add('EDIT_MENU_SUCCESS');
+                header('location: /admin/menus');
             } else {
                 $view->assign('errors', $errors);
             }

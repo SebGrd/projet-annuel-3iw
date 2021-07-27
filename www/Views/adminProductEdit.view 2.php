@@ -1,4 +1,4 @@
-<div class="">
+<div class="container">
   <section>
     <h2>Edition du produit : <?= $product->getName() ?></h2>
   </section>
