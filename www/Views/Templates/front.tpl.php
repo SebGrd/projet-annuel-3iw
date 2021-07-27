@@ -11,10 +11,10 @@
 
 	<h1>Front template</h1>	
 
-	<main>
-		<?php include $this->view; ?>
-	</main>
-
-	<?= $_::render('incl.scripts'); ?>
+	<div class="page-wrapper">
+        <main class="menu y-scroll-auto">
+            <?php include $this->view; ?>
+        </main>
+    </div>
 </body>
 </html>

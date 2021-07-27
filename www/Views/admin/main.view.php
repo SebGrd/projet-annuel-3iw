@@ -1,6 +1,4 @@
-<section>
-	<h2 class="ml-1">Vue d'ensemble</h2>
-</section>
+<h2 class="ml-1">Vue d'ensemble</h2>
 
 <div class="main flex flex-col justify-between">
 	<?php if (isset($session)): ?>
