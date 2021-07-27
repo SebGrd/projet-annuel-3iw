@@ -25,10 +25,10 @@
                 <nav class="header__menu__nav" id="header-nav">
                     <ul class="header__menu__nav__list">
                         <li class="header__menu__nav__list__item">
-                            <a href="" class="header__menu__nav__list__item__link">Nos produits</a>
+                            <a href="/products" class="header__menu__nav__list__item__link">Nos produits</a>
                         </li>
                         <li class="header__menu__nav__list__item">
-                            <a href="" class="header__menu__nav__list__item__link">Le restaurant</a>
+                            <a href="/restaurant" class="header__menu__nav__list__item__link">Le restaurant</a>
                         </li>
                     </ul>
                 </nav>

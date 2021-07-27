@@ -94,6 +94,11 @@
   action: show
   access: guest;user;admin
 
+/products:
+  controller: PageController
+  action: products
+  access: guest;user;admin
+
 # PageController routes
 /admin/pages:
   controller: PageController
