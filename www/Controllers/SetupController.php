@@ -8,10 +8,12 @@ use App\Core\PHPMailer\PHPMailer;
 use App\Models\User;
 use App\Core\ConstantMaker;
 
-class SetupController {
+class SetupController
+{
 
-  public function default() {
-		$view = new View('install', 'blank');
+  public function default()
+  {
+    $view = new View('install', 'blank');
     $first_step = $this->formTables();
     $second_step = $this->formSMTP();
     $third_step = $this->formSite();
@@ -27,7 +29,7 @@ class SetupController {
       $dbhost = str_replace(['http://', 'https://', '/'], '', $dbhost);
       $dbport = htmlspecialchars(strip_tags($_POST['dbport']));
       $prefix = htmlspecialchars(strip_tags($_POST['prefix']));
-      $envs = ['DBHOST'=>$dbhost, 'DBNAME'=>$dbname, 'DBUSER'=>$username, 'DBPWD'=>$password, 'DBPORT'=>$dbport, 'DBPREFIXE'=>$prefix, 'SALT'=>$this->generateRandomString(20)];
+      $envs = ['DBHOST' => $dbhost, 'DBNAME' => $dbname, 'DBUSER' => $username, 'DBPWD' => $password, 'DBPORT' => $dbport, 'DBPREFIXE' => $prefix, 'SALT' => $this->generateRandomString(20)];
 
       // Save the new constants
       $this->saveDotenv($envs);
@@ -36,7 +38,7 @@ class SetupController {
 
       try {
         $this->pdo = new \PDO(DBDRIVER . ':dbname=' . $dbname . ';host=' . $dbhost . ';port=' . $dbport, $username, $password);
-  
+
         if (ENV == 'dev') {
           $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
           $this->pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
@@ -65,7 +67,7 @@ class SetupController {
       $smtpHost = str_replace(['http://', 'https://', '/'], '', $smtpHost);
       $smtpPort = htmlspecialchars(strip_tags($_POST['smtpPort']));
       $secure = htmlspecialchars(strip_tags($_POST['secure']));
-      $envs = ['MAIL_HOST'=>$smtpHost, 'MAIL_PORT'=>$smtpPort, 'MAIL_USERNAME'=>$username, 'MAIL_PASSWORD'=>$password, 'MAIL_SENDER'=>$email, 'MAIL_NAME'=>$name];
+      $envs = ['MAIL_HOST' => $smtpHost, 'MAIL_PORT' => $smtpPort, 'MAIL_USERNAME' => $username, 'MAIL_PASSWORD' => $password, 'MAIL_SENDER' => $email, 'MAIL_NAME' => $name];
 
       try {
         $mail = new PHPMailer(true);
@@ -89,9 +91,8 @@ class SetupController {
           unset($_POST);
           $_SESSION['step'] = 3;
         }
-
       } catch (\Exception $e) {
-        $view->assign('errors', ['Connexion au serveur SMTP impossible, verifiez vos informations de connexion.']); 
+        $view->assign('errors', ['Connexion au serveur SMTP impossible, verifiez vos informations de connexion.']);
       }
     }
 
@@ -104,8 +105,8 @@ class SetupController {
       $siteTitle = htmlspecialchars(strip_tags($_POST['siteTitle']));
       $indexVisibility = isset($_POST['indexVisibility']) ? 'true' : 'false';
 
-      $envs = ['APPNAME'=>$siteTitle, 'INDEX_VISIBILITY'=>$indexVisibility, 'SETUP_TERMINATED'=>'true'];
-      $hashed_password = crypt($password, '$5$rounds=6666$'.SALT.'$');
+      $envs = ['APPNAME' => $siteTitle, 'INDEX_VISIBILITY' => $indexVisibility, 'SETUP_TERMINATED' => 'true'];
+      $hashed_password = crypt($password, '$5$rounds=6666$' . SALT . '$');
 
       $user = new User();
       $user->setEmail($email);
@@ -113,12 +114,14 @@ class SetupController {
       $user->setLastname($lastname);
       $user->setPwd($hashed_password);
       $user->setRole('admin');
+      $user->setStatus(1);
       $user->save();
 
       $view->assign('success', 'Vous allez maintenant être redirigé sur la page de connexion.');
       $this->saveDotenv($envs);
-      // Define the new constants
+
       $cst = new ConstantMaker();
+
       unset($_POST);
       header('Refresh:3; url=/login', true, 303);
     }
@@ -136,18 +139,20 @@ class SetupController {
     }
   }
 
-  public function saveDotenv(array $envs) {
+  public function saveDotenv(array $envs)
+  {
     $file = dirname(__DIR__, 1) . '/.env.' . ENV;
     $fp = fopen($file, 'a+');
     foreach ($envs as $key => $env) {
-      fwrite($fp, $key.'='.$env."\n");
+      fwrite($fp, $key . '=' . $env . "\n");
     }
     fwrite($fp, "\n");
     fclose($fp);
     return true;
   }
 
-  function generateRandomString($length = 10) {
+  function generateRandomString($length = 10)
+  {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
@@ -157,256 +162,258 @@ class SetupController {
     return $randomString;
   }
 
-  public function formTables() {
+  public function formTables()
+  {
     return [
-      'config'=>[
-        'method'=>'POST',
-        'action'=>'',
-        'id'=>'formTables',
-        'class'=>'form_builder',
-        'submit'=>'Enregistrer'
+      'config' => [
+        'method' => 'POST',
+        'action' => '',
+        'id' => 'formTables',
+        'class' => 'form_builder',
+        'submit' => 'Enregistrer'
       ],
-      'inputs'=>[
-        'dbname'=>[
-          'type'=>'text',
-          'label'=>'Nom de la base de données',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'dbname',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Le nom de la base de données que vous souhaitez utiliser.',
-          'error'=>'Le nom de la base de données obligatoire',
-          'value'=>"",
-          'required'=>true
+      'inputs' => [
+        'dbname' => [
+          'type' => 'text',
+          'label' => 'Nom de la base de données',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'dbname',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Le nom de la base de données que vous souhaitez utiliser.',
+          'error' => 'Le nom de la base de données obligatoire',
+          'value' => "",
+          'required' => true
         ],
-        'username'=>[ 
-          'type'=>'text',
-          'label'=>'Identifiant',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'username',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Votre identifiant.',
-          'error'=>'Identifiant obligatoire',
-          'required'=>true
+        'username' => [
+          'type' => 'text',
+          'label' => 'Identifiant',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'username',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Votre identifiant.',
+          'error' => 'Identifiant obligatoire',
+          'required' => true
         ],
-        'password'=>[
-          'type'=>'password',
-          'label'=>'Mot de passe',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'password',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Votre mot de passe.',
-          'error'=>'Mot de passe obligatoire',
-          'required'=>true
+        'password' => [
+          'type' => 'password',
+          'label' => 'Mot de passe',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'password',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Votre mot de passe.',
+          'error' => 'Mot de passe obligatoire',
+          'required' => true
         ],
-        'dbhost'=>[
-          'type'=>'text',
-          'label'=>'Hôte de la base de données',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'dbhost',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Url de la base de données, si localhost ne fonctionne pas.',
-          'error'=>'Adresse hôte obligatoire',
-          'required'=>true
+        'dbhost' => [
+          'type' => 'text',
+          'label' => 'Hôte de la base de données',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'dbhost',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Url de la base de données, si localhost ne fonctionne pas.',
+          'error' => 'Adresse hôte obligatoire',
+          'required' => true
         ],
-        'dbport'=>[
-          'type'=>'text',
-          'label'=>'Port de la base de données',
-          'minLength'=>2,
-          'maxLength'=>5,
-          'id'=>'dbport',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Port de la base de données, par défaut 3306.',
-          'value'=>'3306',
-          'error'=>'Adresse hôte obligatoire',
-          'required'=>true
+        'dbport' => [
+          'type' => 'text',
+          'label' => 'Port de la base de données',
+          'minLength' => 2,
+          'maxLength' => 5,
+          'id' => 'dbport',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Port de la base de données, par défaut 3306.',
+          'value' => '3306',
+          'error' => 'Adresse hôte obligatoire',
+          'required' => true
         ],
-        'prefix'=>[
-          'type'=>'text',
-          'label'=>'Préfix de table',
-          'minLength'=>1,
-          'maxLength'=>20,
-          'id'=>'prefix',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Si vous souhaitez lancer plusieurs instances sur la même base de données, changez le préfix.',
-          'error'=>'Adresse hôte obligatoire',
-          'value'=>'gojs_',
-          'required'=>true
+        'prefix' => [
+          'type' => 'text',
+          'label' => 'Préfix de table',
+          'minLength' => 1,
+          'maxLength' => 20,
+          'id' => 'prefix',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Si vous souhaitez lancer plusieurs instances sur la même base de données, changez le préfix.',
+          'error' => 'Adresse hôte obligatoire',
+          'value' => 'gojs_',
+          'required' => true
         ]
       ]
     ];
   }
 
-  public function formSMTP() {
+  public function formSMTP()
+  {
     return [
-      'config'=>[
-        'method'=>'POST',
-        'action'=>'',
-        'id'=>'formSMTP',
-        'class'=>'form_builder',
-        'submit'=>'Enregistrer'
+      'config' => [
+        'method' => 'POST',
+        'action' => '',
+        'id' => 'formSMTP',
+        'class' => 'form_builder',
+        'submit' => 'Enregistrer'
       ],
-      'inputs'=>[
-        'smtpHost'=>[
-          'type'=>'text',
-          'label'=>'Hôte du serveur SMTP',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'smtpHost',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Url du serveur SMTP que vous souhaitez utiliser.',
-          'error'=>'Url du serveur SMTP obligatoire',
-          'value'=>"",
-          'required'=>true
+      'inputs' => [
+        'smtpHost' => [
+          'type' => 'text',
+          'label' => 'Hôte du serveur SMTP',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'smtpHost',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Url du serveur SMTP que vous souhaitez utiliser.',
+          'error' => 'Url du serveur SMTP obligatoire',
+          'value' => "",
+          'required' => true
         ],
-        'smtpPort'=>[
-          'type'=>'text',
-          'label'=>'Port du serveur SMTP',
-          'minLength'=>2,
-          'maxLength'=>5,
-          'id'=>'smtpPort',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Port du serveur SMTP.',
-          'error'=>'Port SMTP obligatoire',
-          'required'=>true
+        'smtpPort' => [
+          'type' => 'text',
+          'label' => 'Port du serveur SMTP',
+          'minLength' => 2,
+          'maxLength' => 5,
+          'id' => 'smtpPort',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Port du serveur SMTP.',
+          'error' => 'Port SMTP obligatoire',
+          'required' => true
         ],
-        'username'=>[ 
-          'type'=>'text',
-          'label'=>'Identifiant',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'username',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Votre identifiant.',
-          'error'=>'Identifiant obligatoire',
-          'required'=>true
+        'username' => [
+          'type' => 'text',
+          'label' => 'Identifiant',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'username',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Votre identifiant.',
+          'error' => 'Identifiant obligatoire',
+          'required' => true
         ],
-        'password'=>[
-          'type'=>'password',
-          'label'=>'Mot de passe',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'password',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Votre mot de passe.',
-          'error'=>'Mot de passe obligatoire',
-          'required'=>true
+        'password' => [
+          'type' => 'password',
+          'label' => 'Mot de passe',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'password',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Votre mot de passe.',
+          'error' => 'Mot de passe obligatoire',
+          'required' => true
         ],
-        'email'=>[
-          'type'=>'email',
-          'label'=>'Email',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'email',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Votre email.',
-          'error'=>'Email obligatoire',
-          'required'=>true
+        'email' => [
+          'type' => 'email',
+          'label' => 'Email',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'email',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Votre email.',
+          'error' => 'Email obligatoire',
+          'required' => true
         ],
-        'name'=>[
-          'type'=>'text',
-          'label'=>'Nom',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'name',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Nom affiché.',
-          'error'=>'Nom obligatoire',
-          'required'=>true
+        'name' => [
+          'type' => 'text',
+          'label' => 'Nom',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'name',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Nom affiché.',
+          'error' => 'Nom obligatoire',
+          'required' => true
         ],
-        'secure'=>[
-          'type'=>'select',
-          'label'=>'Utiliser TLS ou SSL (optionnel)',
-          'id'=>'secure',
-          'class'=>'form_input w-2',
-          'options'=>['aucun', 'tls', 'ssl'],
-          'error'=>'Port SMTP obligatoire',
-          'required'=>true
+        'secure' => [
+          'type' => 'select',
+          'label' => 'Utiliser TLS ou SSL (optionnel)',
+          'id' => 'secure',
+          'class' => 'form_input w-2',
+          'options' => ['aucun', 'tls', 'ssl'],
+          'error' => 'Port SMTP obligatoire',
+          'required' => true
         ],
       ]
     ];
   }
 
-  public function formSite() {
+  public function formSite()
+  {
     return [
-      'config'=>[
-        'method'=>'POST',
-        'action'=>'',
-        'id'=>'formSite',
-        'class'=>'form_builder',
-        'submit'=>'Enregistrer'
+      'config' => [
+        'method' => 'POST',
+        'action' => '',
+        'id' => 'formSite',
+        'class' => 'form_builder',
+        'submit' => 'Enregistrer'
       ],
-      'inputs'=>[
-        'siteTitle'=>[
-          'type'=>'text',
-          'label'=>'Titre du site',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'siteTitle',
-          'class'=>'form_input w-2',
-          'placeholder'=>'',
-          'error'=>'Titre obligatoire.',
-          'value'=>"",
-          'required'=>true
+      'inputs' => [
+        'siteTitle' => [
+          'type' => 'text',
+          'label' => 'Titre du site',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'siteTitle',
+          'class' => 'form_input w-2',
+          'placeholder' => '',
+          'error' => 'Titre obligatoire.',
+          'value' => "",
+          'required' => true
         ],
-        'firstname'=>[
-          'type'=>'text',
-          'label'=>'Prénom',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'firstname',
-          'class'=>'form_input w-2',
-          'placeholder'=>'',
-          'error'=>'Prénom obligatoire.',
-          'value'=>"",
-          'required'=>true
+        'firstname' => [
+          'type' => 'text',
+          'label' => 'Prénom',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'firstname',
+          'class' => 'form_input w-2',
+          'placeholder' => '',
+          'error' => 'Prénom obligatoire.',
+          'value' => "",
+          'required' => true
         ],
-        'lastname'=>[
-          'type'=>'text',
-          'label'=>'Nom',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'lastname',
-          'class'=>'form_input w-2',
-          'placeholder'=>'',
-          'error'=>'Nom obligatoire.',
-          'value'=>"",
-          'required'=>true
+        'lastname' => [
+          'type' => 'text',
+          'label' => 'Nom',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'lastname',
+          'class' => 'form_input w-2',
+          'placeholder' => '',
+          'error' => 'Nom obligatoire.',
+          'value' => "",
+          'required' => true
         ],
-        'email'=>[
-          'type'=>'email',
-          'label'=>'Email',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'email',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Votre email.',
-          'error'=>'Email obligatoire',
-          'required'=>true
+        'email' => [
+          'type' => 'email',
+          'label' => 'Email',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'email',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Votre email.',
+          'error' => 'Email obligatoire',
+          'required' => true
         ],
-        'password'=>[
-          'type'=>'password',
-          'label'=>'Mot de passe',
-          'minLength'=>2,
-          'maxLength'=>255,
-          'id'=>'password',
-          'class'=>'form_input w-2',
-          'placeholder'=>'Votre mot de passe.',
-          'error'=>'Mot de passe obligatoire',
-          'required'=>true
+        'password' => [
+          'type' => 'password',
+          'label' => 'Mot de passe',
+          'minLength' => 2,
+          'maxLength' => 255,
+          'id' => 'password',
+          'class' => 'form_input w-2',
+          'placeholder' => 'Votre mot de passe.',
+          'error' => 'Mot de passe obligatoire',
+          'required' => true
         ],
-        'indexVisibility'=>[
-          'type'=>'checkbox',
-          'name'=>'indexVisibility',
-          'label'=>'Visibilité des moteurs de recherche',
-          'class'=>'form_input',
-          'value'=>'1'
+        'indexVisibility' => [
+          'type' => 'checkbox',
+          'name' => 'indexVisibility',
+          'label' => 'Visibilité des moteurs de recherche',
+          'class' => 'form_input',
+          'value' => 'on'
         ],
       ]
     ];
   }
-
 }

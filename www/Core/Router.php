@@ -1,108 +1,112 @@
 <?php
+
 namespace App\Core;
 
 use App\Controllers\MainController;
 
-class Router {
+class Router
+{
 	/**
-     * The path to the 'home' route
-     *
-     * This is used to redirect users after login.
-     *
-     * @var string
-     */
-    public const HOME = '/';
+	 * The path to the 'home' route
+	 *
+	 * This is used to redirect users after login.
+	 *
+	 * @var string
+	 */
+	public const HOME = '/';
 
 	/**
-     * Path to the 'login' route
-     *
-     * This is used to redirect users logging out or accessing unauthorized routes.
-     *
-     * @var string
-     */
-    public const LOGIN = '/login';
+	 * Path to the 'login' route
+	 *
+	 * This is used to redirect users logging out or accessing unauthorized routes.
+	 *
+	 * @var string
+	 */
+	public const LOGIN = '/login';
 
 	/**
-     * All the routes from `routes.yml` in the root folder.
-     *
-     * @var array
-     */
+	 * All the routes from `routes.yml` in the root folder.
+	 *
+	 * @var array
+	 */
 	private $routes = [];
 
 	/**
-     * Path to the 'home' route
-     *
-     * This is used to redirect users after login.
-     *
-     * @var string
-     */
+	 * Path to the 'home' route
+	 *
+	 * This is used to redirect users after login.
+	 *
+	 * @var string
+	 */
 	private $uri;
 
 	/**
-     * Path to the routes configuration
-     *
-     * Contains `controller`, `route` and `access` for each route.
-     *
-     * @var string
-     */
+	 * Path to the routes configuration
+	 *
+	 * Contains `controller`, `route` and `access` for each route.
+	 *
+	 * @var string
+	 */
 	private $routesPath = 'routes.yml';
 
 	/**
-     *  Title of the current route
-     *
-     * @var string
-     */
+	 *  Title of the current route
+	 *
+	 * @var string
+	 */
 	private $title;
 
 	/**
-     * Controller of the current route
-     *
-     * @var string
-     */
+	 * Controller of the current route
+	 *
+	 * @var string
+	 */
 	private $controller;
 
 	/**
-     *	Action of the current route
-     *
-     * @var string
-     */
+	 *	Action of the current route
+	 *
+	 * @var string
+	 */
 	private $action;
 
 	/**
-     *  Access of the current route
-     *
-     * @var string
-     */
+	 *  Access of the current route
+	 *
+	 * @var string
+	 */
 	private $access;
 
-	public function __construct($uri) {
+	public function __construct($uri)
+	{
 		$this->setUri($uri);
 		if (file_exists($this->routesPath)) {
 			$this->routes = yaml_parse_file($this->routesPath);
 
 			print_r($this->getTitle());
 
-			if (!empty($this->routes[$this->uri])
-					&& $this->routes[$this->uri]['controller']
-					&& $this->routes[$this->uri]['action']
-					&& $this->routes[$this->uri]['access']) {
+			if (
+				!empty($this->routes[$this->uri])
+				&& $this->routes[$this->uri]['controller']
+				&& $this->routes[$this->uri]['action']
+				&& $this->routes[$this->uri]['access']
+			) {
 				$this->setTitle($this->routes[$this->uri]['title'] ?? APPNAME);
 				$this->setController($this->routes[$this->uri]['controller']);
 				$this->setAction($this->routes[$this->uri]['action']);
 				$this->setAccess($this->routes[$this->uri]['access']);
 
 				$this->checkCurrentRoute();
-
 			} else {
 				(new MainController)->notFound("Route <b><code>$uri</code></b> introuvable");
 			}
-
 		} else {
 			(new MainController)->notFound("Fichier <b><code>{$this->routesPath}</code></b> introuvable dans la racine");
 		}
 	}
 
-	public function checkCurrentRoute() {
+	public function checkCurrentRoute()
+	{
 		$m = "App\\Controllers\\MainController";
 		$c = $this->getController();
 		$a = $this->getAction();
@@ -121,15 +125,20 @@ class Router {
 					$roles = explode(';', $ac);
 					$authorized = Security::isAuthorized($roles);
 
-					if (!$authorized) { header('location: /login'); }
+					if (!$authorized) {
+						header('location: /login');
+					}
 
 					if (!defined('SETUP_TERMINATED') && $this->uri !== '/setup') {
 						header('location:setup', 303);
 					} else if (defined('SETUP_TERMINATED')) {
 						if (SETUP_TERMINATED !== 'true' && $this->uri !== '/setup') header('location:setup', 303);
 					}
-
-					$_SESSION['title'] = APPNAME . " • $t";
+					if (defined('APPNAME')) {
+						$_SESSION['title'] = APPNAME . " • $t";
+					} else {
+						$_SESSION['title'] = 'CMS' . " • $t";
+					}
 					$cObjet->$a();
 				} else {
 					(new MainController)->notFound("Action <b>$a</b> introuvable");
@@ -142,54 +151,66 @@ class Router {
 		}
 	}
 
-	public function setUri($uri) {
+	public function setUri($uri)
+	{
 		$this->uri = trim(mb_strtolower($uri));
 	}
 
-	public function getTitle() {
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
-	public function setTitle($title) {
+	public function setTitle($title)
+	{
 		$this->title = $title;
 	}
 
-	public function getController() {
+	public function getController()
+	{
 		return $this->controller;
 	}
 
-	public function setController($controller) {
+	public function setController($controller)
+	{
 		$this->controller = $controller;
 	}
-	
-	public function getAction() {
+
+	public function getAction()
+	{
 		return $this->action;
 	}
-	
-	public function setAction($action) {
+
+	public function setAction($action)
+	{
 		$this->action = $action;
 	}
-	
-	public function getAccess() {
+
+	public function getAccess()
+	{
 		return $this->access;
 	}
 
-	public function setAccess($access) {
+	public function setAccess($access)
+	{
 		$this->access = $access;
 	}
 
 	// Returns root URL
-    public static function getRootURL() {
-        return "{$_SERVER['REQUEST_SCHEME']}://{$_SERVER['HTTP_HOST']}";
-    }
+	public static function getRootURL()
+	{
+		return "{$_SERVER['REQUEST_SCHEME']}://{$_SERVER['HTTP_HOST']}";
+	}
 
 	// Returns current route
-    public static function getCurrentRoute() {
-        return $_SERVER['REQUEST_URI'];
-    }
+	public static function getCurrentRoute()
+	{
+		return $_SERVER['REQUEST_URI'];
+	}
 
-    // Returns current URL
-    public static function getCurrentURL() {
-        return self::getRootURL() . self::getCurrentRoute();
-    }
+	// Returns current URL
+	public static function getCurrentURL()
+	{
+		return self::getRootURL() . self::getCurrentRoute();
+	}
 }

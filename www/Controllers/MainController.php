@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 use App\Core\View;
-use App\Core\Database;
 
 class MainController {
 	public function home() {

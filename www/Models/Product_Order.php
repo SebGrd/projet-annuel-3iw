@@ -22,7 +22,7 @@ class Product_Order extends Database {
 	}
 
 	/**
-	 * @param null $id
+	 * @param int $id
 	 */
 	public function setId($id) {
 		$this->id = $id;
@@ -36,7 +36,7 @@ class Product_Order extends Database {
 	}
 
 	/**
-	 * @param null $order_id
+	 * @param int $order_id
 	 */
 	public function setOrder_id($order_id) {
 		$this->order_id = $order_id;
@@ -50,7 +50,7 @@ class Product_Order extends Database {
 	}
 
 	/**
-	 * @param null $product_id
+	 * @param int $product_id
 	 */
 	public function setProduct_id($product_id) {
 		$this->product_id = $product_id;
@@ -64,7 +64,7 @@ class Product_Order extends Database {
 	}
 
 	/**
-	 * @param null $product_quantity
+	 * @param int $product_quantity
 	 */
 	public function setProduct_quantity($product_quantity) {
 		$this->product_quantity = $product_quantity;

@@ -1,47 +1,44 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Core\View;
 use App\Core\FormValidator;
 use App\Models\Product;
-use App\Core\ConstantMaker;
 use App\Core\Helpers;
 use App\Core\Message;
 
 class ProductController
 {
-    public function __construct() {
-		$constantMaker = new ConstantMaker();
-    }
-
-    public function main() {
+    public function main()
+    {
         $view = new View('products.main', 'admin');
-		$menu = new Product();
     }
 
-    public function newProduct() {
+    public function newProduct()
+    {
         $view = new View('products.new', 'admin');
-		$product = new Product();
+        $product = new Product();
 
         $form = $product->formProduct();
 
         if (!empty($_POST)) {
-			$errors = FormValidator::check($form, $_POST);
-            
-			if (empty($errors)) {
+            $errors = FormValidator::check($form, $_POST);
+
+            if (empty($errors)) {
                 $name = htmlspecialchars(strip_tags($_POST['name']));
                 $description = htmlspecialchars(strip_tags($_POST['description']));
                 $quantity = htmlspecialchars(strip_tags($_POST['quantity']));
                 $price = Helpers::tofloat(htmlspecialchars(strip_tags($_POST['price'])));
-    
+
                 $product->find(['name' => $name]);
-    
+
                 if ($product->getId()) {
                     $view->assign('errors', ['Le produit ' . $name . ' existe déjà']);
                 } else {
 
                     $image = Helpers::upload('products');
-    
+
                     if (isset($image['error'])) {
                         $view->assign('errors', [$image['error']]);
                     } else {
@@ -58,20 +55,21 @@ class ProductController
                 $view->assign('errors', $errors);
                 Message::add('NEW_PRODUCT_ERROR');
             }
-		}
+        }
 
-		$view->assign('form', $form);
+        $view->assign('form', $form);
     }
 
-    public function editProduct() {
+    public function editProduct()
+    {
         $view = new View('products.edit', 'admin');
-		$product = new Product();
-        $id = htmlspecialchars( strip_tags( $_GET['id'] ) );
+        $product = new Product();
+        $id = htmlspecialchars(strip_tags($_GET['id']));
 
         // $form = $product->formProduct();
         // $view->assign('form', $form);
 
-        if ( empty( $_GET['id'] ) ) {
+        if (empty($_GET['id'])) {
             // Redirect to page 404 if query is malformed
             header('Location:/404');
             die;
@@ -100,7 +98,7 @@ class ProductController
             }
 
             if (!$product) {
-                  // Redirect to page 404 if product is not found
+                // Redirect to page 404 if product is not found
                 header('Location:/404');
                 die;
             }
@@ -111,7 +109,7 @@ class ProductController
                 $quantity = htmlspecialchars(strip_tags($_POST['quantity']));
                 $price = Helpers::tofloat(htmlspecialchars(strip_tags($_POST['price'])));
                 $image = Helpers::upload('products');
-    
+
                 if (isset($image['error'])) {
                     $view->assign('errors', [$image['error']]);
                 } else {
@@ -127,7 +125,7 @@ class ProductController
 
             if (!empty($_POST)) {
                 $errors = FormValidator::check($form, $_POST);
-                
+
                 if (empty($errors)) {
                     $product->save();
                     $view->assign('success', "Le produit $name a bien été mis à jour");

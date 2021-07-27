@@ -10,25 +10,26 @@ use App\Models\Menu;
 
 class MenuController
 {
-    public function main() {
+    public function main()
+    {
         $view = new View('menus.main', 'admin');
-		$menu = new Menu();
     }
 
-    public function newMenu() {
+    public function newMenu()
+    {
         $view = new View('menus.new', 'admin');
-		$menu = new Menu();
+        $menu = new Menu();
         $form = $menu->formMenu();
 
         if (!empty($_POST)) {
-			$errors = FormValidator::check($form, $_POST);
-            
-			if (empty($errors)) {
+            $errors = FormValidator::check($form, $_POST);
+
+            if (empty($errors)) {
                 $title = htmlspecialchars(strip_tags($_POST['title']));
                 $description = htmlspecialchars(strip_tags($_POST['description']));
-    
+
                 $menu->find(['title' => $title]);
-    
+
                 if ($menu->getId()) {
                     $view->assign('errors', ["Le menu $title existe déjà"]);
                 } else {
@@ -43,21 +44,22 @@ class MenuController
                         $menu->setImage($image !== false ? $image : null);
                         $menu->save();
 
-    					Message::add('NEW_MENU_SUCCESS');
+                        Message::add('NEW_MENU_SUCCESS');
                         header('location: /admin/menus');
                     }
                 }
             } else {
                 $view->assign('errors', $errors);
             }
-		}
+        }
 
-		$view->assign('form', $form);
+        $view->assign('form', $form);
     }
 
-    public function editMenu() {
+    public function editMenu()
+    {
         $view = new View('menus.edit', 'admin');
-		$menu = new Menu();
+        $menu = new Menu();
 
         if (empty($_GET['id'])) {
             // Redirect to page 404 if query is malformed
@@ -91,19 +93,19 @@ class MenuController
                 header('location: /404');
                 die;
             }
-    
+
             if (!$menu) {
                 // Redirect to page 404 if menu is not found
                 header('location: /404');
                 die;
             }
-    
+
             if (!empty($_POST)) {
                 $title = htmlspecialchars(strip_tags($_POST['title']));
                 $description = htmlspecialchars(strip_tags($_POST['description']));
-    
+
                 $image = Helpers::upload('menus');
-    
+
                 if (isset($image['error'])) {
                     $view->assign('errors', [$image['error']]);
                 } else {
@@ -121,26 +123,27 @@ class MenuController
         $view->assign('form', $form);
 
         if (!empty($_POST)) {
-			$errors = FormValidator::check($form, $_POST);
-            
-			if (empty($errors)) {
+            $errors = FormValidator::check($form, $_POST);
+
+            if (empty($errors)) {
                 $menu->save();
                 Message::add('EDIT_MENU_SUCCESS');
                 header('location: /admin/menus');
             } else {
                 $view->assign('errors', $errors);
             }
-		}
+        }
     }
 
-    public function deleteMenu() {
-		$menu = new Menu();
+    public function deleteMenu()
+    {
+        $menu = new Menu();
 
         if (empty($_GET['id'])) {
             // Redirect to page 404 if query is malformed
             header('location: /404');
             die;
-        } 
+        }
 
         if (!$menu) {
             // Redirect to page 404 if menu is not found

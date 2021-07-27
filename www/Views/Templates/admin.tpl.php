@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-
+<?php $user = new \App\Models\User; $user->find(['id' => $_SESSION['userStore']->id]) ?>
 <head>
     <?= $_::render('incl.style'); ?>
 	<?= $_::render('incl.scripts'); ?>

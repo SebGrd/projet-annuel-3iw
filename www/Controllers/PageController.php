@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Core\View;
 use App\Core\FormValidator;
 use App\Models\Menu;
@@ -11,12 +12,13 @@ use App\Models\Product;
 
 class PageController
 {
-    public function main() {
+    public function main()
+    {
         $view = new View('pages.main', 'admin');
-        $page = new Page();
     }
 
-    public function newPage() {
+    public function newPage()
+    {
         $view = new View('pages.new', 'admin');
         $page = new Page();
         $pageForm = $page->formPage();
@@ -28,12 +30,12 @@ class PageController
                 $html = htmlentities($_POST['html']);
 
                 $page->find(['title' => $title]);
-    
+
                 if ($page->getId()) {
                     $view->assign('errors', ["La page $title existe déjà."]);
                 } else {
                     $image = Helpers::upload('products');
-    
+
                     if (isset($image['error'])) {
                         $view->assign('errors', [$image['error']]);
                     } else {
@@ -41,7 +43,7 @@ class PageController
                         $page->setHtml($html);
                         $page->setImage($image !== false ? $image : null);
                         $page->save();
-                        
+
                         Message::add('NEW_PAGE_SUCCESS');
                         header('location: /admin/pages');
                     }
@@ -55,12 +57,13 @@ class PageController
         $view->assign('pageForm', $pageForm);
     }
 
-    public function editPage() {
+    public function editPage()
+    {
         $view = new View('pages.edit', 'admin');
-		$page = new Page();
-        $id = htmlspecialchars( strip_tags( $_GET['id'] ) );
+        $page = new Page();
+        $id = htmlspecialchars(strip_tags($_GET['id']));
 
-        if ( empty( $_GET['id'] ) ) {
+        if (empty($_GET['id'])) {
             // Redirect to page 404 if query is malformed
             header('Location:/404');
             die;
@@ -95,7 +98,7 @@ class PageController
                 $html = htmlentities($_POST['html']);
                 $active = isset($_POST['active']) && htmlspecialchars(strip_tags($_POST['active'])) === 'on' ? 1 : 0;
                 $image = Helpers::upload('pages');
-    
+
                 if (isset($image['error'])) {
                     $view->assign('errors', [$image['error']]);
                 } else {
@@ -112,7 +115,7 @@ class PageController
 
             if (!empty($_POST)) {
                 $errors = FormValidator::check($form, $_POST);
-                
+
                 if (empty($errors)) {
                     $page->save();
                     Message::add('EDIT_PAGE_SUCCESS');
@@ -125,47 +128,49 @@ class PageController
         }
     }
 
-    public function show() {
-		$view = new View('pages.show', 'front');
-		$page = new Page();
-		$id = htmlspecialchars( strip_tags( $_GET['id'] ) );
+    public function show()
+    {
+        $view = new View('pages.show', 'front');
+        $page = new Page();
+        $id = htmlspecialchars(strip_tags($_GET['id']));
 
-		if ( empty( $_GET['id'] ) ) {
-			// Redirect to page 404 if query is malformed
-			header('Location:/404');
-			die;
-		} else if (isset($_GET['id']) && isset($_GET['action'])) {
-			// Delete if action delete is send with id
+        if (empty($_GET['id'])) {
+            // Redirect to page 404 if query is malformed
+            header('Location:/404');
+            die;
+        } else if (isset($_GET['id']) && isset($_GET['action'])) {
+            // Delete if action delete is send with id
 
-			if (ctype_digit($id)) {
-				$page = $page->delete(['id' => $id]);
-				header('Location:/admin/pages');
-			} else {
-				// Redirect to page 404 if query is malformed
-				header('Location:/404');
-				die;
-			}
-		} else {
-			// Check if id is an integer
-			if (ctype_digit($id)) {
-				$page = $page->find(['id' => $id]);
-			} else {
-				// Redirect to page 404 if query is malformed
-				header('Location:/404');
-				die;
-			}
+            if (ctype_digit($id)) {
+                $page = $page->delete(['id' => $id]);
+                header('Location:/admin/pages');
+            } else {
+                // Redirect to page 404 if query is malformed
+                header('Location:/404');
+                die;
+            }
+        } else {
+            // Check if id is an integer
+            if (ctype_digit($id)) {
+                $page = $page->find(['id' => $id]);
+            } else {
+                // Redirect to page 404 if query is malformed
+                header('Location:/404');
+                die;
+            }
 
-			if (!$page) {
-				// Redirect to page 404 if page is not found
-				header('Location:/404');
-				die;
-			}
+            if (!$page) {
+                // Redirect to page 404 if page is not found
+                header('Location:/404');
+                die;
+            }
 
-			$view->assign('page', $page);
-		}
-	}
+            $view->assign('page', $page);
+        }
+    }
 
-	public function products() {
+    public function products()
+    {
         $view = new View('products', 'front');
         $product = new Product();
         $menu = new Menu();

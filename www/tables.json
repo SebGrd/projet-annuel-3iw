@@ -343,5 +343,25 @@
         "extra": "NOT NULL"
       }
     }
+  },
+  {
+    "name": "menu_product",
+    "fields": {
+      "0": {
+        "name": "id",
+        "type": "int",
+        "extra": "PRIMARY KEY.NOT NULL.AUTO_INCREMENT"
+      },
+      "1": {
+        "name": "menu_id",
+        "type": "int",
+        "extra": "NOT NULL"
+      },
+      "2": {
+        "name": "product_id",
+        "type": "int",
+        "extra": "NOT NULL"
+      }
+    }
   }
 ]
