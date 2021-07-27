@@ -7,12 +7,10 @@
 <body>
 	<?= $_::render('incl.header'); ?>
 
-	<h1>Front template</h1>	
-
 	<main>
 		<?php include $this->view; ?>
 	</main>
-
+    <?= $_::render('incl.footer'); ?>
 	<?= $_::render('incl.scripts'); ?>
 </body>
 </html>
