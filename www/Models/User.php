@@ -364,7 +364,8 @@ class User extends Database {
 				'action'=>'',
 				'id'=>'formProfile',
 				'class'=>'form_builder',
-				'submit'=>'Enregistrer'
+				'submit'=>'Enregistrer',
+				'enctype'=>'multipart/form-data'
 			],
 			'inputs'=>[
 				'firstname'=>[ 
@@ -411,17 +412,25 @@ class User extends Database {
 					'class'=>'form_input',
 					'placeholder'=>'',
 					'error'=>'Votre mot de passe doit faire au minimum 8 caractères',
-					'required'=>true
+					'required'=>false
 				],
-				'pwdConfirm'=>[ 
-					'type'=>'password',
-					'label'=>'Confirmation',
-					'confirm'=>'pwd',
-					'id'=>'pwdConfirm',
+				// 'pwdConfirm'=>[ 
+				// 	'type'=>'password',
+				// 	'label'=>'Confirmation',
+				// 	'confirm'=>'pwd',
+				// 	'id'=>'pwdConfirm',
+				// 	'class'=>'form_input',
+				// 	'placeholder'=>'',
+				// 	'error'=>'Votre mot de mot de passe de confirmation ne correspond pas',
+				// ],
+				'image'=>[
+					'type'=>'file',
+					'label'=>'Avatar',
+					'id'=>'upfile',
+					'name'=>'upfile',
 					'class'=>'form_input',
-					'placeholder'=>'',
-					'error'=>'Votre mot de mot de passe de confirmation ne correspond pas',
-					'required'=>true
+					'error'=>'Image invalide',
+					'required'=>false
 				]
 			]
 		];

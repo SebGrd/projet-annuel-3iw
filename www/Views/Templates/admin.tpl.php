@@ -56,11 +56,11 @@
             
                 <li class="header__menu__list__item header__menu__list__item--profile">
                     <span class="header__menu__list__item--profile__name">
-                        <?= $user->firstname ?? '' ?>
+                        <?= ucfirst($user->firstname) ?? '' ?>
                     </span>
                     
                     <figure class="pp-btn rtl header__menu__list__item--profile__picture">
-                        <img src="https://picsum.photos/100/100.jpg" alt="">
+                        <img src=<?= $user->avatar !== null ? 'http://' . $_SERVER['HTTP_HOST'] . '/'. \App\Core\Helpers::getImageUrl($user->avatar) : 'https://picsum.photos/100/100.jpg' ?> />
                         
                         <ul class="pp-menu relative bg-light w-max r-0 p-1 brd-8 box-shadow ov-h list-none text-center">
                             <li class="header__menu__popup-menu__item">

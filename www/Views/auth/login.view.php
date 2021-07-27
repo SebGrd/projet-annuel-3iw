@@ -13,7 +13,7 @@
                     <h2>Se connecter</h2>
 
                     <!-- Show messages -->
-                    <?= $_::render('incl.message', ['msgs' => ['register_success', 'login_error'], 'errs' => $errors ?? []]); ?>
+                    <?= $_::render('incl.message', ['msgs' => ['USER_VALIDATE_ACCOUNT_ERROR', 'register_success', 'login_error'], 'errs' => $errors ?? []]); ?>
 
                     <?= $_FB::render($form); ?>
 

@@ -6,6 +6,7 @@ use App\Core\FormValidator;
 use App\Core\Helpers;
 use App\Core\Message;
 use App\Core\View;
+use App\Core\Security;
 use App\Models\User;
 
 class UserController
@@ -56,7 +57,17 @@ class UserController
                         $subject = APPNAME . ' Création de votre compte';
                         $link = 'http://' . $_SERVER['HTTP_HOST'];
     
-                        $email = Helpers::mailer($from, $to, $subject, ['[appname]', '[firstname]', '[email]', '[link]'], [APPNAME, $_POST['firstname'], $to['email'], $link], true, 'registered');
+                        $token = array(
+                            'data' => array(
+                                'email' => $user->getEmail()
+                            )
+                        );
+    
+                        $jwt = Security::createJwt($token);
+    
+                        $confirm_link = $link . '/register?token=' . $jwt;
+    
+                        $email = Helpers::mailer($from, $to, $subject, ['[appname]', '[firstname]', '[email]', '[link]', '[confirm_link]'], [APPNAME, ucfirst($_POST['firstname']), $to['email'], $link, $confirm_link], true, 'registered');
                         if ($email['error']) {
                             $view->assign('errors', [$email['error_message']]);
                         }

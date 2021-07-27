@@ -162,4 +162,9 @@ class PageController
 			$view->assign('page', $page);
 		}
 	}
+
+	public function products() {
+        $view = new View('products', 'front');
+        $view->assign('products', [1, 2, 3]);
+    }
 }

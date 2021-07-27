@@ -84,6 +84,23 @@ body {
 	}
 }
 
+
+.container {
+	width: 100%;
+	padding-right: $gutter / 2;
+	padding-left: $gutter / 2;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+@each $breakpoint, $value in $breakpoints {
+	@media screen and (min-width: $value) {
+		.container{
+			max-width: map-get($containerWidth, $breakpoint);
+		}
+	}
+}
+
 .row {
 	display: flex;
 	flex-wrap: wrap;

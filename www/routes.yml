@@ -49,6 +49,11 @@
   action: profile
   access: user
 
+/delete-my-account:
+  controller: SecurityController
+  action: deleteAccount
+  access: user;admin
+
 # AdminController routes
 /admin:
   title: Dashboard
@@ -110,6 +115,11 @@
   title: Produit
   controller: PageController
   action: show
+  access: guest;user;admin
+
+/products:
+  controller: PageController
+  action: products
   access: guest;user;admin
 
 # PageController routes
