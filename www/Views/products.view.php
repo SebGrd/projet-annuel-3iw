@@ -1,29 +1,29 @@
 <section class="banner banner--app">
     <img class="banner__img" src="public/img/banner.webp" alt="">
 </section>
+<?php
+var_dump($products);
+var_dump($menus);
+?>
 <section class="app">
     <div class="container">
         <div class="row">
             <div class="col-5">
                 <aside class="app__sidemenu">
                     <ul class="app__sidemenu__list">
-                        <li class="app__sidemenu__list__item">
-                            <button class="app__sidemenu__list__item__button app__sidemenu__list__item__button--active"
-                                    data-id="1">Formules
-                            </button>
-                        </li>
-                        <li class="app__sidemenu__list__item">
-                            <button class="app__sidemenu__list__item__button" data-id="2">Entrée</button>
-                        </li>
-                        <li class="app__sidemenu__list__item">
-                            <button class="app__sidemenu__list__item__button" data-id="3">Plats</button>
-                        </li>
-                        <li class="app__sidemenu__list__item">
-                            <button class="app__sidemenu__list__item__button" data-id="4">Desserts</button>
-                        </li>
-                        <li class="app__sidemenu__list__item">
-                            <button class="app__sidemenu__list__item__button" data-id="5">Boissons</button>
-                        </li>
+                        <?php if (!empty($menus)) :?>
+                            <?php foreach ($menus as $key => $menu): ?>
+                                <li class="app__sidemenu__list__item">
+                                    <button class="app__sidemenu__list__item__button <?= ($key === 0) ? 'app__sidemenu__list__item__button--active' : '' ?>"
+                                            data-id="<?= $menu->getId() ?>"><?= $menu->getTitle() ?>
+                                    </button>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php else:?>
+                            <li class="app__sidemenu__list__item">
+                                <p>Pas de catégorie</p>
+                            </li>
+                        <?php endif;?>
                     </ul>
                 </aside>
             </div>
