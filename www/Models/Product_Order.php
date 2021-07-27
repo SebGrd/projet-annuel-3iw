@@ -8,6 +8,7 @@ class Product_Order extends Database {
 	private $id = null;
 	protected $order_id = null;
 	protected $product_id = null;
+	protected $product_quantity = null;
 
 	public function __construct(){
 		parent::__construct();
@@ -53,5 +54,19 @@ class Product_Order extends Database {
 	 */
 	public function setProduct_id($product_id) {
 		$this->product_id = $product_id;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getProduct_quantity() {
+		return $this->product_quantity;
+	}
+
+	/**
+	 * @param null $product_quantity
+	 */
+	public function setProduct_quantity($product_quantity) {
+		$this->product_quantity = $product_quantity;
 	}
 }

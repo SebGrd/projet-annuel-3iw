@@ -336,6 +336,11 @@
         "name": "product_id",
         "type": "int",
         "extra": "NOT NULL"
+      },
+      "3": {
+        "name": "product_quantity",
+        "type": "int",
+        "extra": "NOT NULL"
       }
     }
   }

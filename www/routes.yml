@@ -118,6 +118,7 @@
   access: guest;user;admin
 
 /products:
+  title: Produits
   controller: PageController
   action: products
   access: guest;user;admin
@@ -154,7 +155,7 @@
   action: main
   access: admin
 
-/order:
+/new-order:
   title: Commande
   controller: OrderController
   action: newOrder
