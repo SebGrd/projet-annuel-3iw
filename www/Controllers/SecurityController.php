@@ -6,7 +6,6 @@ use App\Core\FormValidator;
 use App\Core\Helpers;
 use App\Core\Message;
 use App\Core\Security;
-use App\Core\Session;
 use App\Core\View;
 use App\Models\User;
 
@@ -169,7 +168,7 @@ class SecurityController
 			}
 		}
 
-		if (!empty($_GET)) {
+		if (!empty($_GET['token'])) {
 			$token = htmlspecialchars(stripslashes($_GET['token']));
 			$decoded_token = Security::decodeJwt($token);
 			if (is_object($decoded_token)) {
@@ -198,6 +197,7 @@ class SecurityController
 		// If already logged in, delete the token cookie and head to login page
 		if (isset($_COOKIE['token'])) {
 			unset($_COOKIE['token']);
+			unset($_COOKIE['userStore']);
 			setcookie('token', null, -1, '/');
 		}
 
@@ -241,7 +241,7 @@ class SecurityController
 					$from = ['email' => MAIL_SENDER, 'name' => MAIL_NAME];
 					$to = ['email' => $_POST['email'], 'name' => ''];
 					$subject = 'Réinitialisation de mot de passe';
-					$link = 'http://localhost:8888/forgot-password?token=' . $passwordResetToken;
+					$link = 'http://localhost/forgot-password?token=' . $passwordResetToken;
 
 					$email = Helpers::mailer($from, $to, $subject, ['[appname]', '[email]', '[link]'], [APPNAME, $to['email'], $link], true, 'forgotPassword');
 					if ($email['error']) {
@@ -337,7 +337,6 @@ class SecurityController
 					}
 				} else {
 					Message::add('EDIT_PROFILE_ERROR');
-					$view->assign('errors', ['error' => 'Unexpected error']);
 				}
 			} else {
 				Message::add('EDIT_PROFILE_ERROR');
@@ -345,9 +344,59 @@ class SecurityController
 			}
 		}
 
+		if (isset($_GET['delete'])) {
+			$this->deleteAccount();
+		}
+
 		$data = $_SESSION['userStore'];
 
 		$view->assign('form', $form);
 		$view->assign('user', (object) $data);
+	}
+
+	public function deleteAccount() {
+		$user = new User();
+
+		if (!empty($_GET['token'])) {
+			$token = htmlspecialchars(stripslashes($_GET['token']));
+			$decoded_token = Security::decodeJwt($token);
+			if (is_object($decoded_token)) {
+				$user->find(['email' => $decoded_token->data->email]);
+				if ($user->getIsDeleted() === 0 && $user->getStatus() !== 0) {
+					$user->setIsDeleted(1);
+					$user->save();
+					$this->logout();
+					Message::add('USER_ACCOUNT_DISABLED');
+					header("Refresh:5; url=/login", true, 303);
+				} else {
+					header('location:login');
+				}
+			} else {
+				header('location:login');
+			}
+		} else {
+			$user->find(['id' => $_SESSION['userStore']->id]);
+
+			$token = [
+				'data' => [
+					'email' => $user->getEmail()
+				]
+			];
+			$deleteToken = Security::createJwt($token);
+
+			// Send email
+			$from = ['email' => MAIL_SENDER, 'name' => MAIL_NAME];
+			$to = ['email' => $user->getEmail(), 'name' => ''];
+			$subject = APPNAME . ' Suppression de votre compte';
+			$link = 'http://localhost/delete-my-account?token=' . $deleteToken;
+			$firstname = $user->getFirstname();
+
+			$email = Helpers::mailer($from, $to, $subject, ['[appname]', '[email]', '[link]', '[firstname]'], [APPNAME, $to['email'], $link, $firstname], true, 'deleteAccount');
+			if ($email['error']) {
+				header('location:login');
+			} else {
+				Message::add('USER_ACCOUNT_DISABLED_EMAIL');
+			}
+		}
 	}
 }

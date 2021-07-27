@@ -363,7 +363,7 @@ class User extends Database {
 				'method'=>'POST',
 				'action'=>'',
 				'id'=>'formProfile',
-				'class'=>'form_builder',
+				'class'=>'form_builder w-50',
 				'submit'=>'Enregistrer',
 				'enctype'=>'multipart/form-data'
 			],

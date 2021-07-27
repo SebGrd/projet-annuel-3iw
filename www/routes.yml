@@ -35,7 +35,7 @@
   title: Déconnexion
   controller: SecurityController
   action: logout
-  access: user;admin
+  access: user
 
 /forgot-password:
   title: Mot de passe oublié

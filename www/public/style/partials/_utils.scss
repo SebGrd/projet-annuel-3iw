@@ -246,7 +246,7 @@ $values: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto;
 
 /* 4 - BORDER */
 $value: 0;
-$maxValue: 20;
+$maxValue: 50;
 
 @while $value <= $maxValue {
 	// Border
@@ -282,7 +282,7 @@ $maxValue: 20;
 
 	// Border radius
 	.brd-#{$value} {
-		border-radius: $value * 1px;
+		border-radius: $value * 1%;
 	}
 
 	.brdt-#{$value} {
@@ -302,19 +302,19 @@ $maxValue: 20;
 	}
 
 	.brd-tl-#{$value} {
-		border-top-left-radius: $value * 1px;
+		border-top-left-radius: $value * 1%;
 	}
 
 	.brd-tr-#{$value} {
-		border-top-right-radius: $value * 1px;
+		border-top-right-radius: $value * 1%;
 	}
 
 	.brd-br-#{$value} {
-		border-bottom-right-radius: $value * 1px;
+		border-bottom-right-radius: $value * 1%;
 	}
 
 	.brd-bl-#{$value} {
-		border-bottom-left-radius: $value * 1px;
+		border-bottom-left-radius: $value * 1%;
 	}
 
 	// Increment the value
@@ -373,4 +373,8 @@ $maxValue: 20;
 
 .y-resize {
 	resize: horizontal;
+}
+
+.btn-font {
+	font: 400 13.3333px Arial;
 }

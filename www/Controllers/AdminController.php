@@ -21,9 +21,11 @@ class AdminController
         $page = new Page();
         $menu = new Menu();
         $product = new Product();
+        $user = new User();
 
         $view->assign('pages', $page->findAll([], [], true));
         $view->assign('menus', $menu->findAll([], [], true));
+        $view->assign('user', $user->find(['id'=>$_SESSION['userStore']->id], []));
         $view->assign('products', $product->findAll([], [], true));
     }
 }

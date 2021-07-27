@@ -12,7 +12,7 @@ class FormBuilder {
 			enctype='".($form["config"]["enctype"]??"")."'>";
 
 		foreach ($form['inputs'] as $name => $configInput) {
-			$html .= "<div class='form__field'>";
+			$html .= "<div class='form__field flex flex-col'>";
 			$html .= "<label class='form__field__label' for='".($configInput["id"]??"")."'>".($configInput["label"]??"")." </label>";
 
 			if ($configInput["type"] == "select"){

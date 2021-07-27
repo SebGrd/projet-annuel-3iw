@@ -6,6 +6,7 @@ use App\Core\FormValidator;
 use App\Models\Product;
 use App\Core\ConstantMaker;
 use App\Core\Helpers;
+use App\Core\Message;
 
 class ProductController
 {
@@ -50,11 +51,12 @@ class ProductController
                         $product->setPrice($price);
                         $product->setImage($image !== false ? $image : null);
                         $product->save();
-                        $view->assign('success', 'Le produit ' . $name . ' a été créé');
+                        Message::add('NEW_PRODUCT_SUCCESS');
                     }
                 }
             } else {
                 $view->assign('errors', $errors);
+                Message::add('NEW_PRODUCT_ERROR');
             }
 		}
 
@@ -129,8 +131,10 @@ class ProductController
                 if (empty($errors)) {
                     $product->save();
                     $view->assign('success', "Le produit $name a bien été mis à jour");
+                    Message::add('EDIT_PRODUCT_SUCCESS');
                 } else {
                     $view->assign('errors', $errors);
+                    Message::add('EDIT_PRODUCT_ERROR');
                 }
             }
         }

@@ -5,7 +5,7 @@
 	</section>
 	
 	<!-- Show messages -->
-	<?= $_::render('incl.message', ['msgs' => ['edit_page_success', 'edit_page_error'], 'errs' => $errors ?? []]); ?>
+	<?= $_::render('incl.message', ['msgs' => ['NEW_PRODUCT_SUCCESS', 'NEW_PRODUCT_ERROR'], 'errs' => $errors ?? []]); ?>
 
 	<div class="row">
 		<div class="col-6">

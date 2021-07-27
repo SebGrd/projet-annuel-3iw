@@ -13,7 +13,7 @@
 				<section class="flex flex-col align-center">
 					<div class="flex flex-col justify-center align-center w-100">
 						<?php if ($user->avatar !== null) { ?>
-							<img src=<?= 'http://' . $_SERVER['HTTP_HOST'] . '/' . \App\Core\Helpers::getImageUrl($user->avatar) ?> />
+							<img class="brd-50 w-30" src=<?= 'http://' . $_SERVER['HTTP_HOST'] . '/' . \App\Core\Helpers::getImageUrl($user->avatar) ?> />
 						<?php } ?>
 
 						<!-- Show messages -->
@@ -21,13 +21,14 @@
 
 						<!-- Render form -->
 						<?= $_FB::render($form); ?>
-
-						<div class="flex flex-col w-100 align-center mt-1">
-							<a href="/" class="col-12 btn btn-secondary auth__section__form__links__link">Retour à la page d'accueil</a>
+						</br>
+						</br>
+						<div class="flex flex-row w-50 align-center mt-1 justify-between form__field">
+							<a href="/" class="col-11 btn btn-secondary text-center btn-font">Retour</a>
+							<a href="/delete-my-account" class="col-11 btn btn-danger text-center btn-font">Supprimer mon compte</a>
 						</div>
 					</div>
 				</section>
-				<a href="/delete-my-account">Supprimer mon compte</a>
 			<?php
 			} else { ?>
 				Aucune donnée à afficher

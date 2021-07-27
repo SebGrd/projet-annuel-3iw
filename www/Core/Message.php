@@ -110,6 +110,14 @@ class Message {
 			'text' => 'Vous devez d\'abord valider votre email.',
 			'type' => 'danger'
 		],
+		'USER_ACCOUNT_DISABLED_EMAIL' => [
+			'text' => 'Un email de verification viens de vous être envoyé, cliquez sur le lien pour supprimer votre compte.',
+			'type' => 'success'
+		],
+		'USER_ACCOUNT_DISABLED' => [
+			'text' => 'Votre compte a été désactivé, il sera définitivement supprimé dans 72 heures. Redirection sur la page de connexion dans quelques instants.',
+			'type' => 'success'
+		],
 	];
 
 	public static function add(string $code): void {
