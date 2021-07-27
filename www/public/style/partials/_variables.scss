@@ -57,3 +57,17 @@ $breakpoints:
 	'xl' 1200px;
 
 $cols: 24;
+
+$smContainerWidth: 540px;
+$mdContainerWidth: 720px;
+$lgContainerWidth: 960px;
+$xlContainerWidth: 1140px;
+
+$containerWidth: (
+				"sm": $smContainerWidth,
+				"md": $mdContainerWidth,
+				"lg": $lgContainerWidth,
+				"xl": $xlContainerWidth
+) !default;
+
+$gutter: 15px;
