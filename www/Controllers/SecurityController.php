@@ -57,7 +57,8 @@ class SecurityController
 							'firstname' => $user->getFirstname(),
 							'lastname' => $user->getLastname(),
 							'email' => $user->getEmail(),
-							'role' => $user->getRole()
+							'role' => $user->getRole(),
+							'avatar' => $user->getAvatar()
 						)
 					);
 
@@ -305,24 +306,38 @@ class SecurityController
 			$errors = FormValidator::check($form, $_POST);
 
 			if (empty($errors)) {
-				$user->setId($_SESSION['userStore']->id);
+				$user->find(['id' => $_SESSION['userStore']->id]);
 
 				if ($user->getId()) {
-					$password = stripslashes($_POST['pwd']);
-					$hashed_password = crypt($password, '$5$rounds=6666$' . SALT . '$');
-					$user->setFirstname($_POST['firstname']);
-					$user->setLastname($_POST['lastname']);
-					$user->setEmail($_POST['email']);
-					$user->setPwd($hashed_password);
-					$user->save();
+					$image = Helpers::upload('users');
 
-					Message::add('EDIT_PROFILE_SUCCESS');
+					if (isset($image['error'])) {
+						$view->assign('errors', [$image['error']]);
+					} else {
+						$firstname = htmlspecialchars(stripslashes($_POST['firstname']));
+						$lastname = htmlspecialchars(stripslashes($_POST['lastname']));
+						$email = htmlspecialchars(stripslashes($_POST['email']));
+						if (isset($_POST['password'])) {
+							$password = htmlspecialchars(stripslashes($_POST['pwd']));
+							$hashed_password = crypt($password, '$5$rounds=6666$' . SALT . '$');
+							$user->setPwd($hashed_password);
+						}
+						$user->setFirstname($firstname);
+						$user->setLastname($lastname);
+						$user->setEmail($email);
+						if ($image !== false) {
+							$user->setAvatar($image);
+						}
+						$user->save();
 
-					$data = $user->find(['id' => $user->getId(), 'isDeleted' => 0], ['id' => 'ASC'], true);
+						Message::add('EDIT_PROFILE_SUCCESS');
 
-					unset($_SESSION['userStore']);
-					$_SESSION['userStore'] = $data;
-					$this->logout(1);
+						$data = $user->find(['id' => $user->getId(), 'isDeleted' => 0], ['id' => 'ASC'], true);
+
+						// unset($_SESSION['userStore']);
+						$_SESSION['userStore'] = $data;
+						// $this->logout(1);
+					}
 				} else {
 					Message::add('EDIT_PROFILE_ERROR');
 					$view->assign('errors', ['error' => 'Unexpected error']);
@@ -338,4 +353,8 @@ class SecurityController
 		$view->assign('form', $form);
 		$view->assign('user', (object) $data);
 	}
+
+	// public function deleteAccount() {
+	// 	$user = new User();
+	// }
 }

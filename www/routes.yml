@@ -41,6 +41,11 @@
   action: profile
   access: user
 
+/delete-my-account:
+  controller: SecurityController
+  action: deleteAccount
+  access: user;admin
+
 # AdminController routes
 /admin:
   controller: AdminController
