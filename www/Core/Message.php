@@ -102,6 +102,14 @@ class Message {
 			'text' => 'Upload de l\'image échouée !',
 			'type' => 'danger'
 		],
+		'USER_EMAIL_ACTIVATED' => [
+			'text' => 'Votre compte a été activé avec succès, vous allez être redirigé sur la page de connexion dans quelques instants.',
+			'type' => 'success'
+		],
+		'USER_VALIDATE_ACCOUNT_ERROR' => [
+			'text' => 'Vous devez d\'abord valider votre email.',
+			'type' => 'danger'
+		],
 	];
 
 	public static function add(string $code): void {

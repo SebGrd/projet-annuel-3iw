@@ -13,7 +13,7 @@
                     <h2>S'inscrire</h2>
 
                     <!-- Show messages -->
-                    <?= $_::render('incl.message', ['msgs' => ['register_error'], 'errs' => $errors ?? []]); ?>
+                    <?= $_::render('incl.message', ['msgs' => ['USER_EMAIL_ACTIVATED', 'register_error'], 'errs' => $errors ?? []]); ?>
 
                     <?= $_FB::render($form); ?>
                     <a href="/login" class="auth__section__form__link">Se connecter</a>
