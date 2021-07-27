@@ -128,7 +128,12 @@ class Database {
 				implode(',:', array_keys($columns)) . ' ); ');
 
 			$query->execute($columns);
-
+			// get id and search so it returns the last inserted object
+			$searchQuery = $this->pdo->prepare('SELECT * FROM ' . strtolower($this->table) . ' WHERE id=:id');
+            $lastInsertId = $this->pdo->lastInsertId();
+            $searchQuery->bindParam(':id', $lastInsertId);
+            $searchQuery->execute();
+            return $searchQuery->fetch(\PDO::FETCH_OBJ);
 		} else {
 			$setStr = [];
 			
