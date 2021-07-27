@@ -253,11 +253,16 @@
         "extra": "NULL.DEFAULT NULL"
       },
       "5": {
+        "name": "address_id",
+        "type": "int",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "6": {
         "name": "createdAt",
         "type": "datetime",
         "extra": "NOT NULL.DEFAULT current_timestamp"
       },
-      "6": {
+      "7": {
         "name": "updatedAt",
         "type": "datetime",
         "extra": "NULL.DEFAULT NULL"
