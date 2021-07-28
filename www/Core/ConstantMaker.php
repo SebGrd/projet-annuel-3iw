@@ -23,7 +23,7 @@ class ConstantMaker {
 		$this->parseEnv($this->envPath);
 
 		if (!empty($this->data['ENV'])) {
-			// .env.prod ou .env.dev
+			// .env.prod ou .dev
 			$this->parseEnv($this->envPath.'.'.$this->data['ENV']);
 		}
 		date_default_timezone_set( "Europe/Paris" );

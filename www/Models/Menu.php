@@ -132,23 +132,23 @@ class Menu extends Database {
 			'inputs'=>[
 				'title'=>[ 
 					'type'=>'text',
-					'label'=>'Nom du menu',
+					'label'=>'Nom de la catégorie',
 					'minLength'=>2,
 					'maxLength'=>50,
 					'id'=>'title',
 					'class'=>'form_input',
-					'error'=>'Le nom du menu doit faire entre 2 et 50 caractères',
+					'error'=>'Le nom de la catégorie doit faire entre 2 et 50 caractères',
 					'required'=>true,
 					'value'=>$this->title
 				],
 				'description'=>[ 
 					'type'=>'text',
-					'label'=>'Description du menu',
+					'label'=>'Description de la catégorie',
 					'minLength'=>2,
 					'maxLength'=>255,
 					'id'=>'description',
 					'class'=>'form_input',
-					'error'=>'La description du menu doit faire entre 2 et 255 caractères',
+					'error'=>'La description de la catégorie doit faire entre 2 et 255 caractères',
 					'required'=>false,
 					'value'=>$this->description
 				],
