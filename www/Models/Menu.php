@@ -8,7 +8,7 @@ class Menu extends Database {
 	private $id = null;
 	protected $title = '';
 	protected $description = '';
-	protected $image = '';
+	protected $image = null;
 	protected $createdAt = '';
 	protected $updatedAt = '';
 	protected $active = 1;

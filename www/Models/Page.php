@@ -18,7 +18,7 @@ class Page extends Database {
 		if ($this->id == null) {
 			$this->setCreatedAt();
 		}
-	$this->setUpdatedAt();
+	    $this->setUpdatedAt();
 	}
 
     /**
@@ -46,7 +46,7 @@ class Page extends Database {
     /**
      * @param mixed $title
      */
-    public function setTitle($title): void
+    public function setTitle($title)
     {
         $this->title = $title;
     }
@@ -62,7 +62,7 @@ class Page extends Database {
     /**
      * @param mixed $image
      */
-    public function setImage($image): void
+    public function setImage($image)
     {
         $this->image = $image;
     }
@@ -78,7 +78,7 @@ class Page extends Database {
     /**
      * @param mixed $html
      */
-    public function setHtml($html): void
+    public function setHtml($html)
     {
         $this->html = $html;
     }
@@ -133,7 +133,8 @@ class Page extends Database {
                 'action'=>'',
                 'id'=>'form_create_page',
                 'class'=>'form',
-                'submit'=>'Enregistrer'
+                'submit'=>'Enregistrer',
+				'enctype'=>'multipart/form-data'
             ],
             'inputs'=>[
                 'title'=>[
@@ -175,7 +176,8 @@ class Page extends Database {
                 'action'=>'',
                 'id'=>'form_create_page',
                 'class'=>'form',
-                'submit'=>"Mettre à jour"
+                'submit'=>"Mettre à jour",
+				'enctype'=>'multipart/form-data'
             ],
             'inputs'=>[
                 'title'=>[

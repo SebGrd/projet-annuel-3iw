@@ -35,6 +35,9 @@ class MenuController
                     Message::add('NEW_MENU_ERROR');
                 } else {
                     $image = Helpers::upload('menus');
+                    if ($image !== false) {
+                        $menu->setImage($image);
+                    }
 
                     if (isset($image['error'])) {
                         $view->assign('errors', [$image['error']]);
@@ -42,9 +45,8 @@ class MenuController
                         // Create and save the menu
                         $menu->setTitle($title);
                         $menu->setDescription($description);
-                        $menu->setImage($image !== false ? $image : null);
                         $menu->save();
-    					          Message::add('NEW_MENU_SUCCESS');
+                        Message::add('NEW_MENU_SUCCESS');
                     }
                 }
             } else {
@@ -105,6 +107,9 @@ class MenuController
                 $description = htmlspecialchars(strip_tags($_POST['description']));
 
                 $image = Helpers::upload('menus');
+                if ($image !== false) {
+                    $menu->setImage($image);
+                }
 
                 if (isset($image['error'])) {
                     $view->assign('errors', [$image['error']]);
@@ -112,7 +117,6 @@ class MenuController
                 } else {
                     $menu->setTitle($title);
                     $menu->setDescription($description);
-                    $menu->setImage($image !== false ? $image : null);
                 }
             }
         }
@@ -129,7 +133,6 @@ class MenuController
             if (empty($errors)) {
                 $menu->save();
                 Message::add('EDIT_MENU_SUCCESS');
-                header('location: /admin/menus');
             } else {
                 $view->assign('errors', $errors);
                 Message::add('EDIT_MENU_ERROR');

@@ -161,7 +161,9 @@ class UserController
                     $user->setLastname($lastname);
                     $user->setEmail($email);
                     $user->setRole($role);
-                    $user->setAvatar($image !== false ? $image : null);
+                    if ($image !== false) {
+                        $user->setAvatar($image);
+                    }
                 }
             }
         }

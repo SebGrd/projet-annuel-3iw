@@ -44,9 +44,13 @@ class SecurityController
 				$hashed_password = crypt($password, '$5$rounds=6666$' . SALT . '$');
 
 				// Search for user by email & password and return user object if found, else return null
-				$user->find(['email' => $email, 'pwd' => $hashed_password]);
+				$data = $user->find(['email' => $email, 'pwd' => $hashed_password]);
 
-				if ($user->getStatus() === 0) {
+				if (!$data) {
+					// Reject if email or password are wrong, we don't specify which one for security purposes
+					Message::add('LOGIN_ERROR');
+					$view->assign('errors', ['L\'email et/ou le mot de passe sont incorrects']);
+				} else if ($user->getStatus() === 0) {
 					Message::add('USER_VALIDATE_ACCOUNT_ERROR');
 				} else if ($user->getId() && $user->getIsDeleted() == false) {
 					// Create the jwt token
@@ -78,10 +82,6 @@ class SecurityController
 					// Add error message
 					Message::add('LOGIN_ERROR');
 					$view->assign('errors', ['Ce compte a été supprimé définitivement']);
-				} else {
-					// Reject if email or password are wrong, we don't specify which one for security purposes
-					Message::add('LOGIN_ERROR');
-					$view->assign('errors', ['L\'email et/ou le mot de passe sont incorrects']);
 				}
 			} else {
 				// Assign form validation errors if there are

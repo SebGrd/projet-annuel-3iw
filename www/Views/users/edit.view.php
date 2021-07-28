@@ -9,7 +9,7 @@
 		<?= $_::render('incl.message', ['msgs' => ['EDIT_USER_SUCCESS', 'EDIT_USER_ERROR'], 'errs' => $errors ?? []]); ?>
 
 		<?php if($user->getAvatar() !== null): ?>
-			<img src="../<?= $_::getImageUrl($user->getAvatar()) ?>" style="max-width: 100%; max-height: 150px;">
+			<img src="../<?= $_::getImageUrl($user->getAvatar()) ?>" style="max-width: 100%; max-height: 150px; class="brd-20">
 		<?php endif; ?>
 		
 		<?php $_FB::render($form); ?>

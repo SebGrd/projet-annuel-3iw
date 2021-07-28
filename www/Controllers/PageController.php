@@ -98,12 +98,14 @@ class PageController
                 $html = htmlentities($_POST['html']);
                 $active = isset($_POST['active']) && htmlspecialchars(strip_tags($_POST['active'])) === 'on' ? 1 : 0;
                 $image = Helpers::upload('pages');
+                if ($image !== false) {
+                    $page->setImage($image);
+                }
 
                 if (isset($image['error'])) {
                     $view->assign('errors', [$image['error']]);
                 } else {
                     $page->setTitle($title);
-                    $page->setImage($image !== false ? $image : null);
                     $page->setHtml($html);
                     $page->setActive($active);
                 }
@@ -119,7 +121,6 @@ class PageController
                 if (empty($errors)) {
                     $page->save();
                     Message::add('EDIT_PAGE_SUCCESS');
-                    header('location: /admin/pages');
                 } else {
                     $view->assign('errors', $errors);
                     Message::add('EDIT_PAGE_ERROR');

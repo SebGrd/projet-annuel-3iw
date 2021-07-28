@@ -65,9 +65,6 @@ class ProductController
         $product = new Product();
         $id = htmlspecialchars(strip_tags($_GET['id']));
 
-        // $form = $product->formProduct();
-        // $view->assign('form', $form);
-
         if (empty($_GET['id'])) {
             // Redirect to page 404 if query is malformed
             header('Location:/404');
@@ -107,7 +104,11 @@ class ProductController
                 $description = htmlspecialchars(strip_tags($_POST['description']));
                 $quantity = htmlspecialchars(strip_tags($_POST['quantity']));
                 $price = Helpers::tofloat(htmlspecialchars(strip_tags($_POST['price'])));
+
                 $image = Helpers::upload('products');
+                if ($image !== false) {
+                    $product->setImage($image);
+                }
 
                 if (isset($image['error'])) {
                     $view->assign('errors', [$image['error']]);
@@ -116,7 +117,6 @@ class ProductController
                     $product->setDescription($description);
                     $product->setQuantity($quantity);
                     $product->setPrice($price);
-                    $product->setImage($image !== false ? $image : null);
                 }
             }
 

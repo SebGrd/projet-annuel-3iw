@@ -49,7 +49,7 @@ class Message {
 		],
 		// PROFILE
 		'EDIT_PROFILE_SUCCESS' => [
-			'text' => 'Modification du profil réussie<br>Redirection vers la page de connexion.',
+			'text' => 'Modification du profil réussie',
 			'type' => 'success'
 		],
 		'EDIT_PROFILE_ERROR' => [
