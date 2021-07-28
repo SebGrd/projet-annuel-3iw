@@ -193,31 +193,26 @@
         "extra": "NULL.DEFAULT NULL"
       },
       "4": {
-        "name": "menu_id",
-        "type": "int",
-        "extra": "NULL.DEFAULT NULL"
-      },
-      "5": {
         "name": "description",
         "type": "varchar(255)",
         "extra": "NULL.DEFAULT NULL"
       },
-      "6": {
+      "5": {
         "name": "name",
         "type": "varchar(100)",
         "extra": "NOT NULL"
       },
-      "7": {
+      "6": {
         "name": "quantity",
         "type": "int",
         "extra": "NOT NULL.DEFAULT '0'"
       },
-      "8": {
+      "7": {
         "name": "createdAt",
         "type": "datetime",
         "extra": "NOT NULL.DEFAULT current_timestamp"
       },
-      "9": {
+      "8": {
         "name": "updatedAt",
         "type": "datetime",
         "extra": "NULL.DEFAULT NULL"

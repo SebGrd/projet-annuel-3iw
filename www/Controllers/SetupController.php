@@ -37,13 +37,6 @@ class SetupController
       $cst = new ConstantMaker();
 
       try {
-        $this->pdo = new \PDO(DBDRIVER . ':dbname=' . $dbname . ';host=' . $dbhost . ';port=' . $dbport, $username, $password);
-
-        if (ENV == 'dev') {
-          $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-          $this->pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
-        }
-
         // Create the tables and foreign keys
         $db = new Database;
         $db->createTables();
