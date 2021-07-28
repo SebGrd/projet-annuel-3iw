@@ -12,7 +12,6 @@ class Product extends Database {
 	protected $price = 0;
 	protected $rrp = 0;
 	protected $image = 1;
-	protected $menu_id = null;
 	protected $createdAt = '';
 	protected $updatedAt = '';
 
@@ -122,20 +121,6 @@ class Product extends Database {
 	 */
 	public function setImage($image) {
 		$this->image = $image;
-	}
-
-	/**
-	 * @return mixed
-	 */
-	public function getMenu_id() {
-		return $this->menu_id;
-	}
-
-	/**
-	 * @param mixed $menu_id
-	 */
-	public function setMenu_id($menu_id) {
-		$this->menu_id = $menu_id;
 	}
 
 	/**

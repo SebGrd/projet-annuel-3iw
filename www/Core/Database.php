@@ -128,6 +128,10 @@ class Database {
 				implode(',:', array_keys($columns)) . ' ); ');
 
             $success = $query->execute($columns);
+            if (ENV === 'dev' && !$success) {
+                print_r($query->errorInfo());
+            }
+            var_dump($success);
             if ($success) {
                 // get id and search so it returns the last inserted object
                 $searchQuery = $this->pdo->prepare('SELECT * FROM ' . strtolower($this->table) . ' WHERE id=:id');
