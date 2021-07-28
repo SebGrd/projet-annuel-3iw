@@ -31,7 +31,7 @@ class Database {
 	}
 
 	public function populate($arr) {
-		foreach ($arr as $key => $value) {
+        foreach ($arr as $key => $value) {
 			if (!in_array($key, ['pdo', 'table'])) {
 				$setter = 'set'.ucwords($key);
 				$this->$setter($arr[$key]);

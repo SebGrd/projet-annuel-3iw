@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Models\Address;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Product_Order;
@@ -51,8 +52,34 @@ class OrderController
                 $orderProduct->setProduct_quantity($item->quantity);
                 $orderProduct->save();
             }
+            header('Location: /order?order_id='.$order->id);
         } else {
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
+    }
+
+    public function order() {
+        $view = new View('order', 'front');
+        $orderId = $_GET['order_id'];
+
+        $Order = new Order();
+        $ProductOrder = new Product_Order();
+        $Product = new Product();
+        $Address = new Address();
+
+        $order = $Order->find(['id' => $orderId]);
+        if (empty($order) || $order->getUser_id() !== $_SESSION['userStore']->id) {
+            header('Location: /');
+            return;
+        }
+        $productsOrder = $ProductOrder->findAll(['order_id' => $orderId], [], true);
+        $products = array_map(function ($item) use ($Product) {
+            return
+                $Product->find(['id' => $item->getProduct_id()], [], true)
+                + ['product_quantity' => $item->getProduct_quantity()];
+        }, $productsOrder);
+        $view->assign('products', $products);
+        $view->assign('order', $order);
+        $view->assign('formAddress', $Address->formAddress());
     }
 }

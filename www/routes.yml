@@ -156,9 +156,15 @@
   access: admin
 
 /new-order:
-  title: Commande
+  title: processing
   controller: OrderController
   action: newOrder
+  access: user;admin
+
+/order:
+  title: Récapitulatif commande
+  controller: OrderController
+  action: order
   access: user;admin
 
 # UserController routes
