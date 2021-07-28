@@ -25,7 +25,6 @@ class Helpers {
 
 	public static function dump($dump) {
 		echo '<pre>' . print_r($dump) . '</pre>';
-		// TODO flex table
 	}
 	
 	public static function err($errors) {

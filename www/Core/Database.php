@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-use Reflector;
+use App\Core\Helpers;
 
 class Database {
 	private $pdo;
@@ -17,8 +17,41 @@ class Database {
 				$this->pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 			}
 		} catch (\Exception $e) {
-			// Unsafe -> Replace $message with a generic error message
-			die('SQL error: ' . $e->getMessage());
+			switch ($e->getCode()) {
+				// Invalid database name
+				case 1044:
+					$message = 'Vérifier la base de donnée utilisée.';
+					break;
+
+				// Invalid username
+				case 1698:
+					$message = 'Vérifier les identifiants utilisés.';
+					break;
+				
+				// Invalid password
+				case 1045:
+					$message = 'Vérifier les identifiants utilisés.';
+					break;
+
+				// Invalid hostname
+				case 2002:
+					$message = "Vérifier l'hôte utilisé.";
+					break;
+				
+				default:
+					$message = 'Erreur inattendue.';
+					break;
+			}
+
+			if (ENV == 'dev') {
+				$message .= "<br>
+				<div class='text-center text-warning mx-8'>
+					<code class=''>{$e->getMessage()}</code>
+				</div>";
+			}
+
+			Helpers::render('404', ['code' => 'SQL', 'error' => $message]);
+			// die();
 		}
 
 		$getCalledClassExploded = explode('\\', get_called_class());
@@ -26,7 +59,7 @@ class Database {
 	}
 
 	public function getModelName() {
-			$getCalledClassExploded = explode('\\', get_called_class());
+		$getCalledClassExploded = explode('\\', get_called_class());
 		return strtolower(end($getCalledClassExploded));
 	}
 
@@ -40,6 +73,7 @@ class Database {
 				$this->$setter(date('Y-m-d h:i:s'));
 			}
 		}
+		
 		return $this;
 	}
 

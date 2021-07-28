@@ -25,7 +25,7 @@ class AdminController
 
         $view->assign('pages', $page->findAll([], [], true));
         $view->assign('menus', $menu->findAll([], [], true));
-        $view->assign('user', $user->find(['id'=>$_SESSION['userStore']->id], []));
+        // $view->assign('user', $user->find(['id'=>$_SESSION['userStore']->id], []));
         $view->assign('products', $product->findAll([], [], true));
     }
 }

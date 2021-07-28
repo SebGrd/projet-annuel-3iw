@@ -11,7 +11,7 @@ class MainController {
 	}
 
 	public function notFound($error = 'Erreur') {
-		$view = new View('404', 'front');
+		$view = new View('404', 'blank');
 		$view->assign('error', $error);
 	}
 }

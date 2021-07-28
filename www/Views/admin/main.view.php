@@ -6,33 +6,29 @@
 		<?= $user->getId(); ?>
 	<?php endif; ?>
 
-	<div class="flex mr-4 text-center">
-        <a href="/admin/pages" class="col-12 m-1 btn btn-primary text-light flex flex-col justify-center">
-            <h1>Pages</h1>
+	<div class="flex flex-wrap justify-center text-center w-100">
+        <a href="/admin/pages" class="col flex flex-col justify-center btn btn-primary text-light min-w-20 m-1">
+            <h3>Pages</h3>
         </a>
         
-        <a href="/admin/products" class="col-12 m-1 btn btn-secondary text-dark flex flex-col justify-center">
-            <h1>Produits</h1>
+        <a href="/admin/products" class="col flex flex-col justify-center btn btn-secondary text-dark min-w-20 m-1">
+            <h3>Produits</h3>
         </a>
-    </div>
+        
+        <a href="/admin/menus" class="col flex flex-col justify-center btn btn-primary text-dark min-w-20 m-1">
+            <h3>Menus</h3>
+        </a>
 
-	<div class="flex mr-4 text-center">
-        <a href="/admin/menus" class="col-12 m-1 btn btn-secondary text-dark flex flex-col justify-center">
-            <h1>Menus</h1>
+        <a href="/admin/orders" class="col flex flex-col justify-center btn btn-secondary text-light min-w-20 m-1">
+            <h3>Commandes</h3>
         </a>
-        
-        <a href="/admin/orders" class="col-12 m-1 btn btn-primary text-light flex flex-col justify-center">
-            <h1>Commandes</h1>
-        </a>
-    </div>
 
-	<div class="flex mr-4 text-center">
-        <a href="/admin/stats" class="col-12 m-1 btn btn-primary text-dark flex flex-col justify-center">
-            <h1>Statistiques</h1>
+        <a href="/admin/stats" class="col flex flex-col justify-center btn btn-primary text-dark min-w-20 m-1">
+            <h3>Statistiques</h3>
         </a>
         
-        <a href="/admin/users" class="col-12 m-1 btn btn-secondary text-light flex flex-col justify-center">
-            <h1>Utilisateurs</h1>
+        <a href="/admin/users" class="col flex flex-col justify-center btn btn-secondary text-light min-w-20 m-1">
+            <h3>Utilisateurs</h3>
         </a>
     </div>
 </div>

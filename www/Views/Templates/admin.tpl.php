@@ -56,11 +56,11 @@
             
                 <li class="header__menu__list__item header__menu__list__item--profile">
                     <span class="header__menu__list__item--profile__name">
-                        <?= ucfirst($user->getFirstname()) ?? '' ?>
+                        <?= ucfirst($user->firstname) ?? '' ?>
                     </span>
                     
                     <figure class="pp-btn rtl header__menu__list__item--profile__picture">
-                        <img src=<?= $user->getAvatar() !== null ? 'http://' . $_SERVER['HTTP_HOST'] . '/'. \App\Core\Helpers::getImageUrl($user->getAvatar()) : 'https://picsum.photos/100/100.jpg' ?> />
+                        <img src=<?= $user->avatar !== null ? 'http://' . $_SERVER['HTTP_HOST'] . '/'. \App\Core\Helpers::getImageUrl($user->getAvatar()) : 'https://picsum.photos/100/100.jpg' ?> />
                         
                         <ul class="pp-menu relative bg-light w-max r-0 p-1 brd-8 box-shadow ov-h list-none text-center">
                             <li class="header__menu__popup-menu__item">
@@ -83,7 +83,7 @@
     </header>
 
     <div class="page-wrapper">
-        <aside class="menu y-scroll-auto x-resize">
+        <aside class="menu y-scroll-auto">
             <section class="menu__section">
                 <ul class="menu__section__list">
                     <!--Voir le site -->
