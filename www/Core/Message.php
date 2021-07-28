@@ -81,6 +81,14 @@ class Message {
 			'text' => 'Suppression de la page échouée',
 			'type' => 'danger'
 		],
+		'DELETE_PAGE_SUCCESS' => [
+			'text' => 'Suppression de la page réussie !',
+			'type' => 'success'
+		],
+		'DELETE_PAGE_ERROR' => [
+			'text' => 'Suppression de la page échouée !',
+			'type' => 'danger'
+		],
 		// MENU
 		'NEW_MENU_SUCCESS' => [
 			'text' => 'Création du menu réussie',
@@ -106,6 +114,14 @@ class Message {
 			'text' => 'Suppression du menu échouée',
 			'type' => 'danger'
 		],
+		'DELETE_MENU_SUCCESS' => [
+			'text' => 'Suppression du menu réussie !',
+			'type' => 'success'
+		],
+		'DELETE_MENU_ERROR' => [
+			'text' => 'Suppression du menu échouée !',
+			'type' => 'danger'
+		],
 		// PRODUCT
 		'NEW_PRODUCT_SUCCESS' => [
 			'text' => 'Création du produit réussie',
@@ -129,6 +145,14 @@ class Message {
 		],
 		'DELETE_PRODUCT_ERROR' => [
 			'text' => 'Suppression du produit échouée',
+			'type' => 'danger'
+		],
+		'DELETE_PRODUCT_SUCCESS' => [
+			'text' => 'Suppression du produit réussie !',
+			'type' => 'success'
+		],
+		'DELETE_PRODUCT_ERROR' => [
+			'text' => 'Suppression du produit échouée !',
 			'type' => 'danger'
 		],
 		// USER
@@ -168,6 +192,15 @@ class Message {
 		],
 		'RESET_PASSWORD_ERROR' => [
 			'text' => 'Envoi du mail de réinitialisation échouée',
+			'type' => 'danger'
+		],
+		// RESET PASSWORD
+		'RESET_PASSWORD_SUCCESS' => [
+			'text' => "Email de réinitialisation envoyée !",
+			'type' => 'success'
+		],
+		'RESET_PASSWORD_ERROR' => [
+			'text' => 'Envoi du mail de réinitialisation échouée !',
 			'type' => 'danger'
 		],
 		// ACCOUNT

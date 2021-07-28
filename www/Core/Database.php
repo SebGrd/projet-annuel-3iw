@@ -65,7 +65,8 @@ class Database
 		$this->table = strtolower(DBPREFIXE . end($getCalledClassExploded));
 	}
 
-	public function getModelName() {
+	public function getModelName()
+	{
 		$getCalledClassExploded = explode('\\', get_called_class());
 		return strtolower(end($getCalledClassExploded));
 	}
@@ -303,7 +304,11 @@ class Database
 			if (substr(trim($line), -1, 1) == ';') {
 				// Perform the query
 				try {
+<<<<<<< HEAD
 					$this->pdo->query($templine);
+=======
+					$query = $this->pdo->query($templine);
+>>>>>>> 27074ee... [fix] setup
 				} catch (\Exception $e) {
 				}
 				// Reset temp variable to empty
