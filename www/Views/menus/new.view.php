@@ -1,7 +1,7 @@
 <div class="admin_view">
 	<section>
 		<a href="/admin/menus" class="btn btn-dark">Annuler</a>
-		<h2>Créer un nouveau menu</h2>
+		<h2>Créer une nouvelle catégorie</h2>
 	</section>
 
 	<!-- Show messages -->
