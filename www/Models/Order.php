@@ -39,7 +39,7 @@ class Order extends Database {
 	 * @return mixed
 	 */
 	public function getStatus() {
-		return $this->title;
+		return $this->status;
 	}
 
 	/**

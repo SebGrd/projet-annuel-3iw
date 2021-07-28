@@ -11,7 +11,8 @@
 	<main>
 		<?php include $this->view; ?>
 	</main>
-	<?= $_::render('incl.scripts-front'); ?>
+    <?= $_::render('incl.footer'); ?>
+    <?= $_::render('incl.scripts-front'); ?>
 </body>
 
 </html>
