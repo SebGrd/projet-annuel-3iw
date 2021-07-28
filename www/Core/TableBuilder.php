@@ -51,7 +51,7 @@ class TableBuilder
         $html = '<tbody>';
         if (!empty($data)) {
             foreach ($data as $row) {
-                $html .= "<tr class='text-center'>";
+                $html .= "<tr>";
                 foreach ($titles as $title) {
                     if ($title->getName() === 'image' || $title->getName() === 'avatar') {
                         $url = $row->{'get' . ucfirst($title->getName())}() !== null ? Helpers::getImageUrl($row->{'get' . ucfirst($title->getName())}()) : '';

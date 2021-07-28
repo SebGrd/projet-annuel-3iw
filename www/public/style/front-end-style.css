@@ -211,9 +211,9 @@ body {
 }
 .header__cart__cart__list__item__price {
   font-weight: 600;
+  margin-left: 0.3rem;
 }
 .header__cart__cart__list__item__remove {
-  flex-grow: 1;
   text-align: right;
   min-width: 2rem;
 }
@@ -297,6 +297,7 @@ body {
   background: var(--theme-color);
   color: #F2F2F2;
   padding: 3rem 0;
+  margin-top: 5rem;
 }
 .footer__list {
   list-style: none;

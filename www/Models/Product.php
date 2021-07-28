@@ -166,7 +166,7 @@ class Product extends Database {
 		$this->updatedAt = date('Y-m-d H:i:s');
 	}
 
-	public function formProduct($product = null) {
+	public function formProduct() {
 		return [
 			'config'=>[
 				'method'=>'POST',
