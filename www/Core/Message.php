@@ -4,6 +4,31 @@ namespace App\Core;
 
 class Message {
 	const CODES = [
+		// SETUP
+		'SETUP_STEP1_SUCCESS' => [
+			'text' => 'Connexion à la base de données et création des tables réussies !',
+			'type' => 'success'
+		],
+		'SETUP_STEP1_ERROR' => [
+			'text' => 'Connexion à la base de données échouée !',
+			'type' => 'danger'
+		],
+		'SETUP_STEP2_SUCCESS' => [
+			'text' => 'Connexion au serveur SMTP réussie !',
+			'type' => 'success'
+		],
+		'SETUP_STEP2_ERROR' => [
+			'text' => 'Connexion au serveur SMTP échouée !',
+			'type' => 'danger'
+		],
+		'SETUP_STEP3_SUCCESS' => [
+			'text' => 'Inscription réussie !',
+			'type' => 'success'
+		],
+		'SETUP_STEP3_ERROR' => [
+			'text' => 'Connexion réussie !',
+			'type' => 'danger'
+		],
 		// REGISTER
 		'REGISTER_SUCCESS' => [
 			'text' => 'Inscription réussie !',
@@ -48,6 +73,14 @@ class Message {
 			'text' => 'Modification de la page échouée !',
 			'type' => 'danger'
 		],
+		'DELETE_PAGE_SUCCESS' => [
+			'text' => 'Suppression de la page réussie !',
+			'type' => 'success'
+		],
+		'DELETE_PAGE_ERROR' => [
+			'text' => 'Suppression de la page échouée !',
+			'type' => 'danger'
+		],
 		// MENU
 		'NEW_MENU_SUCCESS' => [
 			'text' => 'Création du menu réussie !',
@@ -63,6 +96,14 @@ class Message {
 		],
 		'EDIT_MENU_ERROR' => [
 			'text' => 'Modification du menu échouée !',
+			'type' => 'danger'
+		],
+		'DELETE_MENU_SUCCESS' => [
+			'text' => 'Suppression du menu réussie !',
+			'type' => 'success'
+		],
+		'DELETE_MENU_ERROR' => [
+			'text' => 'Suppression du menu échouée !',
 			'type' => 'danger'
 		],
 		// PRODUCT
@@ -82,6 +123,15 @@ class Message {
 			'text' => 'Modification du produit échouée !',
 			'type' => 'danger'
 		],
+		'DELETE_PRODUCT_SUCCESS' => [
+			'text' => 'Suppression du produit réussie !',
+			'type' => 'success'
+		],
+		'DELETE_PRODUCT_ERROR' => [
+			'text' => 'Suppression du produit échouée !',
+			'type' => 'danger'
+		],
+		// USER
 		'CREATE_USER_SUCCESS' => [
 			'text' => 'Création de l\'utilisateur réussie !',
 			'type' => 'success'
@@ -98,10 +148,29 @@ class Message {
 			'text' => 'Mise à jour de l\'utilisateur échouée !',
 			'type' => 'danger'
 		],
+		'DISABLE_USER_SUCCESS' => [
+			'text' => 'Désactivation du compte de l\'utilisateur réussie !',
+			'type' => 'success'
+		],
+		'DISABLE_USER_ERROR' => [
+			'text' => 'Désactivation du compte de l\'utilisateur échouée !',
+			'type' => 'danger'
+		],
+		// UPLOAD
 		'UPLOAD_FILE_ERROR' => [
 			'text' => 'Upload de l\'image échouée !',
 			'type' => 'danger'
 		],
+		// RESET PASSWORD
+		'RESET_PASSWORD_SUCCESS' => [
+			'text' => "Email de réinitialisation envoyée !",
+			'type' => 'success'
+		],
+		'RESET_PASSWORD_ERROR' => [
+			'text' => 'Envoi du mail de réinitialisation échouée !',
+			'type' => 'danger'
+		],
+		// ACCOUNT
 		'USER_EMAIL_ACTIVATED' => [
 			'text' => 'Votre compte a été activé avec succès, vous allez être redirigé sur la page de connexion dans quelques instants.',
 			'type' => 'success'

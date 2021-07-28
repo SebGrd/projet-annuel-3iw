@@ -199,7 +199,6 @@
   action: main
   access: admin
 
-# Other routes
 /admin/search:
   title: Résultats de recherche
   controller: SearchController

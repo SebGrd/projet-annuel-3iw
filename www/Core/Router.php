@@ -95,7 +95,7 @@ class Router
 
 				$this->checkCurrentRoute();
 			} else {
-				(new MainController)->notFound("Route <b><code>$uri</code></b> introuvable");
+				(new MainController)->notFound("Chemin <b><code>$uri</code></b> introuvable");
 			}
 		} else {
 			(new MainController)->notFound("Fichier <b><code>{$this->routesPath}</code></b> introuvable dans la racine");

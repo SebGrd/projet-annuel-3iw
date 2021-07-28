@@ -1,5 +1,5 @@
 <!-- Show list of messages if `$msgs` and/or `$errs` isn't empty -->
-<ul class="auth__section__form__list list-none text-center">
+<ul class="flex justify-center list-none text-center w-100 auth__section__form__list">
 	<!-- For each message -->
 	<?php foreach ($msgs as $msg): ?>
 		<!-- If it exists -->
@@ -14,7 +14,7 @@
 	<?php endforeach; ?>
 </ul>
 
-<ul class="auth__section__form__list list-none text-center" style="display: <?= empty($errs) ? 'none' : 'block' ?>">
+<ul class="flex justify-center list-none text-center w-100 auth__section__form__list" style="display: <?= empty($errs) ? 'none' : 'block' ?>">
 	<?php if (isset($errs)): ?>
 		<?php foreach ($errs as $err): ?>
 			<li class="col text-danger">

@@ -7,6 +7,7 @@ use App\Core\Database;
 use App\Core\PHPMailer\PHPMailer;
 use App\Models\User;
 use App\Core\ConstantMaker;
+use App\Core\Message;
 
 class SetupController
 {
@@ -42,11 +43,12 @@ class SetupController
         $db->createTables();
         $db->createForeignKeys();
 
-        $view->assign('success', 'Connexion à la base de données réussie, création des tables réussie.');
+        Message::add('SETUP_STEP1_SUCCESS');
         unset($_POST);
         $_SESSION['step'] = 2;
       } catch (\Exception $e) {
-        $view->assign('errors', ['Connexion à la base de données impossible, verifiez vos informations de connexion.']);
+        $view->assign('errors', ['Vérifiez vos informations de connexion.']);
+        Message::add('SETUP_STEP1_ERROR');
       }
     }
 
@@ -77,7 +79,7 @@ class SetupController
         $validCredentials = $mail->SmtpConnect();
 
         if ($validCredentials === true) {
-          $view->assign('success', 'Connexion au serveur SMTP réussi.');
+          Message::add('SETUP_STEP2_SUCCESS');
           $this->saveDotenv($envs);
           // Define the new constants
           $cst = new ConstantMaker();
@@ -85,7 +87,8 @@ class SetupController
           $_SESSION['step'] = 3;
         }
       } catch (\Exception $e) {
-        $view->assign('errors', ['Connexion au serveur SMTP impossible, verifiez vos informations de connexion.']);
+        $view->assign('errors', ['Vérifiez vos informations de connexion.']);
+        Message::add('SETUP_STEP2_ERROR');
       }
     }
 
@@ -110,13 +113,13 @@ class SetupController
       $user->setStatus(1);
       $user->save();
 
-      $view->assign('success', 'Vous allez maintenant être redirigé sur la page de connexion.');
+      Message::add('SETUP_STEP3_SUCCESS');
       $this->saveDotenv($envs);
 
       $cst = new ConstantMaker();
 
       unset($_POST);
-      header('Refresh:3; url=/login', true, 303);
+      header('Refresh:1; url=/login', true, 303);
     }
 
     switch ($_SESSION['step']) {

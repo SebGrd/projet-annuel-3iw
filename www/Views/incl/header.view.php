@@ -68,25 +68,29 @@
                 <div class="header__profile__menu header__profile__menu--hidden" id="profile-menu">
                     <ul class="header__profile__menu__list">
                         <?php if (!$_S::isConnected()): ?>
-                        <li class="header__profile__menu__list__item">
-                            <a class="header__profile__menu__list__item__link" href="/login">Se connecter</a>
-                        </li>
-                        <li class="header__profile__menu__list__item">
-                            <a class="header__profile__menu__list__item__link" href="/register">S'inscrire</a>
-                        </li>
+                            <li class="header__profile__menu__list__item">
+                                <a class="header__profile__menu__list__item__link" href="/login">Se connecter</a>
+                            </li>
+                            
+                            <li class="header__profile__menu__list__item">
+                                <a class="header__profile__menu__list__item__link" href="/register">S'inscrire</a>
+                            </li>
                         <?php endif; ?>
+
                         <?php if ($_S::isAdmin()): ?>
-                        <li class="header__profile__menu__list__item">
-                            <a class="header__profile__menu__list__item__link" href="/admin">Tableau de bord</a>
-                        </li>
+                            <li class="header__profile__menu__list__item">
+                                <a class="header__profile__menu__list__item__link" href="/admin">Tableau de bord</a>
+                            </li>
                         <?php endif; ?>
+
                         <?php if ($_S::isConnected()): ?>
-                        <li class="header__profile__menu__list__item">
-                            <a class="header__profile__menu__list__item__link" href="<?= $_S::isAdmin() ? '/admin' : '' ?>/profile">Mon profil</a>
-                        </li>
-                        <li class="header__profile__menu__list__item">
-                            <a class="header__profile__menu__list__item__link header__profile__menu__list__item__link--danger" href="/logout">Déconnexion</a>
-                        </li>
+                            <li class="header__profile__menu__list__item">
+                                <a class="header__profile__menu__list__item__link" href="<?= $_S::isAdmin() ? '/admin' : '' ?>/profile">Mon profil</a>
+                            </li>
+
+                            <li class="header__profile__menu__list__item">
+                                <a class="header__profile__menu__list__item__link header__profile__menu__list__item__link--danger" href="/logout">Déconnexion</a>
+                            </li>
                         <?php endif; ?>
                     </ul>
                 </div>

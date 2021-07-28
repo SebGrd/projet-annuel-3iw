@@ -180,6 +180,14 @@ $col: 1;
 				padding-right: 7.5px;
 			}
 
+			.flex-#{$size}-row {
+				flex-direction: row;
+			}
+
+			.flex-#{$size}-col {
+				flex-direction: column;
+			}
+
 			// Increment the value
 			$col: $col + 1;
 		}
