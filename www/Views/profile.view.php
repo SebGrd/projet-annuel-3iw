@@ -12,8 +12,8 @@
 				extract((array) $user) ?>
 				<section class="flex flex-col align-center">
 					<div class="flex flex-col justify-center align-center w-100">
-						<?php if ($user->avatar !== null) { ?>
-							<img class="brd-50 w-30" src=<?= 'http://' . $_SERVER['HTTP_HOST'] . '/' . $_::getImageUrl($user->avatar) ?> />
+						<?php if ($user->getAvatar() !== null) { ?>
+							<img class="brd-50 w-30" src=<?= 'http://' . $_SERVER['HTTP_HOST'] . '/' . $_::getImageUrl($user->getAvatar()) ?> />
 						<?php } ?>
 
 						<!-- Show messages -->

@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Order;
-use App\Core\FormValidator;
 
 class AdminController
 {
@@ -18,7 +17,7 @@ class AdminController
 		$menu = new Menu();
 		$product = new Product();
 		$user = new User();
-		$user = new Order();
+		$order = new Order();
 		
 		$view->assign('pages', count((array) $page->findAll([], [], true)));
 		$view->assign('menus', count((array) $menu->findAll([], [], true)));

@@ -38,7 +38,7 @@ class SecurityController
 			if (empty($errors)) {
 				// Format email & password
 				$email = htmlspecialchars(strip_tags(strtolower($_POST['email'])));
-				$password = stripslashes($_POST['pwd']);
+				$password = htmlspecialchars(stripslashes($_POST['pwd']));
 
 				// Hash password
 				$hashed_password = crypt($password, '$5$rounds=6666$' . SALT . '$');
@@ -353,10 +353,8 @@ class SecurityController
 			$this->deleteAccount();
 		}
 
-		$data = $_SESSION['userStore'];
-
 		$view->assign('form', $form);
-		$view->assign('user', (object) $data);
+		$view->assign('user', $user);
 	}
 
 	/**
