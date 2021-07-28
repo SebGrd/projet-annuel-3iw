@@ -205,3 +205,9 @@
   controller: SearchController
   action: main
   access: admin
+
+/sitemap.xml:
+  title: sitemap
+  controller: SitemapController
+  action: main
+  access: guest;user;admin

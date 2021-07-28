@@ -83,10 +83,7 @@ class Router
 		if (file_exists($this->routesPath)) {
 			$this->routes = yaml_parse_file($this->routesPath);
 
-			print_r($this->getTitle());
-
-			if (
-				!empty($this->routes[$this->uri])
+			if (!empty($this->routes[$this->uri])
 				&& $this->routes[$this->uri]['controller']
 				&& $this->routes[$this->uri]['action']
 				&& $this->routes[$this->uri]['access']
@@ -212,5 +209,10 @@ class Router
 	public static function getCurrentURL()
 	{
 		return self::getRootURL() . self::getCurrentRoute();
+	}
+
+	public function getRoutes()
+	{
+		return yaml_parse_file('routes.yml');
 	}
 }
