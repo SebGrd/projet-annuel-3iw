@@ -45,7 +45,11 @@ class MenuController
                         $menu->setImage($image !== false ? $image : null);
                         $menu->save();
 
+<<<<<<< HEAD
                         Message::add('NEW_MENU_SUCCESS');
+=======
+    					Message::add('NEW_MENU_SUCCESS');
+>>>>>>> 27074ee47d740f0900ed3f234223defdcbfcb113
                     }
                 }
             } else {

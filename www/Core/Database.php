@@ -308,7 +308,10 @@ class Database
 					$this->pdo->query($templine);
 =======
 					$query = $this->pdo->query($templine);
+<<<<<<< HEAD
 >>>>>>> 27074ee... [fix] setup
+=======
+>>>>>>> 27074ee47d740f0900ed3f234223defdcbfcb113
 				} catch (\Exception $e) {
 				}
 				// Reset temp variable to empty
