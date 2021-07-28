@@ -282,7 +282,7 @@ $maxValue: 50;
 
 	// Border radius
 	.brd-#{$value} {
-		border-radius: $value * 1%;
+		border-radius: $value * 1px;
 	}
 
 	.brdt-#{$value} {
@@ -302,19 +302,19 @@ $maxValue: 50;
 	}
 
 	.brd-tl-#{$value} {
-		border-top-left-radius: $value * 1%;
+		border-top-left-radius: $value * 1px;
 	}
 
 	.brd-tr-#{$value} {
-		border-top-right-radius: $value * 1%;
+		border-top-right-radius: $value * 1px;
 	}
 
 	.brd-br-#{$value} {
-		border-bottom-right-radius: $value * 1%;
+		border-bottom-right-radius: $value * 1px;
 	}
 
 	.brd-bl-#{$value} {
-		border-bottom-left-radius: $value * 1%;
+		border-bottom-left-radius: $value * 1px;
 	}
 
 	// Increment the value

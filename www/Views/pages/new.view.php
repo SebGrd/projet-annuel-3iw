@@ -1,4 +1,4 @@
-<div id="page-builder">
+<div id="page-builder" class="ml-1">
 	<section>
 		<a href="/admin/pages" class="btn btn-dark">Annuler</a>
 		<h2>Créer une nouvelle page</h2>

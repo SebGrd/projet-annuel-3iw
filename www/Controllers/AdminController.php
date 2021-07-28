@@ -7,25 +7,51 @@ use App\Models\Menu;
 use App\Models\User;
 use App\Models\Page;
 use App\Models\Product;
+use App\Models\Order;
 use App\Core\FormValidator;
 use App\Core\ConstantMaker;
 
 class AdminController
 {
-    public function __construct() {
-		$constantMaker = new ConstantMaker();
-    }
-    
-    public function main() {
-        $view = new View('admin.main', 'admin');
-        $page = new Page();
-        $menu = new Menu();
-        $product = new Product();
-        $user = new User();
+	public function main() {
+		$view = new View('admin.main', 'admin');
+		$page = new Page();
+		$menu = new Menu();
+		$product = new Product();
+		$user = new User();
+		$user = new Order();
+		
+		$view->assign('pages', (array) $page->findAll([], [], true));
+		$view->assign('menus', (array) $menu->findAll([], [], true));
+		$view->assign('products', (array) $product->findAll([], [], true));
+		$view->assign('users', (array) $user->findAll([], [], true));
+		$view->assign('orders', (array) $order->findAll([], [], true));
+	}
+	
+	/**
+	* Stats method
+	*
+	* Show the stats view
+	**/
+	public function stats() {
+		$view = new View('admin.stats', 'admin');
+		$page = new Page();
+		$menu = new Menu();
+		$product = new Product();
+		$user = new User();
+		$order = new Order();
 
-        $view->assign('pages', $page->findAll([], [], true));
-        $view->assign('menus', $menu->findAll([], [], true));
-        // $view->assign('user', $user->find(['id'=>$_SESSION['userStore']->id], []));
-        $view->assign('products', $product->findAll([], [], true));
-    }
+		$data = ['Pages' => $page, 'Menus' => $menu, 'Produits' => $product, 'Utilisateurs' => $user];
+		$arr = [];
+
+		foreach ($data as $key => $obj) {
+			$arr[] = ['obj' => $key, 'count' => count((array) $obj->findAll([], [], true))];
+		}
+
+		$view->assign('pages', (array) $page->findAll([], [], true));
+		$view->assign('menus', (array) $menu->findAll([], [], true));
+		$view->assign('products', (array) $product->findAll([], [], true));
+
+		$view->assign('countData', json_encode($arr));
+	}
 }

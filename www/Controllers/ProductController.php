@@ -37,7 +37,7 @@ class ProductController
                 $product->find(['name' => $name]);
     
                 if ($product->getId()) {
-                    $view->assign('errors', ['Le produit ' . $name . ' existe déjà']);
+                    $view->assign('errors', ["Le produit $name existe déjà"]);
                 } else {
 
                     $image = Helpers::upload('products');

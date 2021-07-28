@@ -359,6 +359,11 @@ class SecurityController
 		$view->assign('user', (object) $data);
 	}
 
+	/**
+	 * Delete account method
+	 *
+	 * Delete a user's account
+	 **/
 	public function deleteAccount() {
 		$user = new User();
 

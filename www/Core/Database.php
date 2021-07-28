@@ -18,18 +18,23 @@ class Database {
 			}
 		} catch (\Exception $e) {
 			switch ($e->getCode()) {
+				// Invalid table name
+				case 1005:
+					$message = 'Vérifier la base de donnée utilisée.';
+					break;
+
 				// Invalid database name
 				case 1044:
 					$message = 'Vérifier la base de donnée utilisée.';
 					break;
 
-				// Invalid username
-				case 1698:
-					$message = 'Vérifier les identifiants utilisés.';
-					break;
-				
 				// Invalid password
 				case 1045:
+					$message = 'Vérifier les identifiants utilisés.';
+					break;
+
+				// Invalid username
+				case 1698:
 					$message = 'Vérifier les identifiants utilisés.';
 					break;
 

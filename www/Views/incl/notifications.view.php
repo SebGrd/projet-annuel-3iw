@@ -1,4 +1,4 @@
-<?php if (empty($msgs)): ?>
+<?php if (empty($msgs) && empty($errs)): ?>
 	<li class="flex">
 		<span class="w-max text-secondary">
 			Aucune notification
