@@ -189,14 +189,8 @@
 # Other routes
 /admin/stats:
   title: Statistiques
-  controller: StatsController
-  action: main
-  access: admin
-
-/admin/settings:
-  title: Paramètres
-  controller: SettingsController
-  action: main
+  controller: AdminController
+  action: stats
   access: admin
 
 /admin/search:

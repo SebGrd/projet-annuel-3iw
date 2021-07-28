@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Order;
-
 class AdminController
 {
 	public function main() {

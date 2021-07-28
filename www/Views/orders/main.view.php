@@ -1,4 +1,4 @@
-<div class="">
+<div class="ml-1">
   <div class="flex justify-between align-center">
     <h2>Commandes</h2>
   </div>

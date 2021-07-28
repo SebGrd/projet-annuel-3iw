@@ -32,6 +32,7 @@ class MenuController
 
                 if ($menu->getId()) {
                     $view->assign('errors', ["Le menu $title existe déjà"]);
+                    Message::add('NEW_MENU_ERROR');
                 } else {
                     $image = Helpers::upload('menus');
 
@@ -45,11 +46,11 @@ class MenuController
                         $menu->save();
 
                         Message::add('NEW_MENU_SUCCESS');
-                        header('location: /admin/menus');
                     }
                 }
             } else {
                 $view->assign('errors', $errors);
+                Message::add('NEW_MENU_ERROR');
             }
         }
 
@@ -108,6 +109,7 @@ class MenuController
 
                 if (isset($image['error'])) {
                     $view->assign('errors', [$image['error']]);
+                    Message::add('EDIT_MENU_ERROR');
                 } else {
                     $menu->setTitle($title);
                     $menu->setDescription($description);
@@ -131,6 +133,7 @@ class MenuController
                 header('location: /admin/menus');
             } else {
                 $view->assign('errors', $errors);
+                Message::add('EDIT_MENU_ERROR');
             }
         }
     }
