@@ -8,7 +8,7 @@
 	<?= $_::render('incl.message', ['msgs' => ['NEW_MENU_SUCCESS', 'NEW_MENU_ERROR'], 'errs' => $errors ?? []]); ?>
 
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-24 col-lg-12">
 			<?php $_FB::render($form); ?>
 		</div>
 	</div>

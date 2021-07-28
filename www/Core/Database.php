@@ -178,7 +178,7 @@ class Database
 				implode(',:', array_keys($columns)) . ' ); ');
 
 			$success = $query->execute($columns);
-			if (ENV === 'dev' && !$success) {
+			if (ENV == 'dev' && $success === false) {
 				print_r($query->errorInfo());
 			}
 			if ($success) {

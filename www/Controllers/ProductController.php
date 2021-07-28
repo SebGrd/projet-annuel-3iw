@@ -7,6 +7,7 @@ use App\Core\FormValidator;
 use App\Models\Product;
 use App\Core\Helpers;
 use App\Core\Message;
+use App\Models\Menu_Product;
 
 class ProductController
 {
@@ -84,9 +85,11 @@ class ProductController
             // Check if id is an integer
             if (ctype_digit($id)) {
                 $product = $product->find(['id' => $id]);
-
+                $ProductMenu = new Menu_Product();
                 $form = $product->formProduct();
+                $menuForm = $ProductMenu->categoryForm($id);
                 $view->assign('form', $form);
+                $view->assign('formMenu', $menuForm);
             } else {
                 // Redirect to page 404 if query is malformed
                 header('Location:/404');
@@ -133,6 +136,21 @@ class ProductController
                     $view->assign('errors', $errors);
                     Message::add('EDIT_PRODUCT_ERROR');
                 }
+            }
+        }
+    }
+
+    // add the relation between products and menus in the table
+    public function updateMenuProduct() {
+        if (!empty($_POST)) {
+            $ProductMenu = new Menu_Product();
+            $productMenuForm = $ProductMenu->categoryForm($_POST['product_id']);
+            $errors = FormValidator::check($productMenuForm, $_POST);
+            if (empty($errors)) {
+                $ProductMenu->setProduct_id($_POST['product_id']);
+                $ProductMenu->setMenu_id($_POST['menu_id']);
+                $test = $ProductMenu->save();
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
             }
         }
     }

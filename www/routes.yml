@@ -111,6 +111,13 @@
   action: editProduct
   access: admin
 
+/admin/product-menu/update:
+  title: processing
+  controller: ProductController
+  action: updateMenuProduct
+  access: admin
+
+
 /product:
   title: Produit
   controller: PageController
