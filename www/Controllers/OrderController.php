@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Core\FormValidator;
+use App\Core\Message;
 use App\Core\View;
 use App\Models\Address;
 use App\Models\Order;
@@ -78,8 +80,51 @@ class OrderController
                 $Product->find(['id' => $item->getProduct_id()], [], true)
                 + ['product_quantity' => $item->getProduct_quantity()];
         }, $productsOrder);
+
+
         $view->assign('products', $products);
         $view->assign('order', $order);
         $view->assign('formAddress', $Address->formAddress());
+
+    }
+
+    public function validateOrder() {
+        if (!empty($_POST)){
+            $Address = new Address();
+            $Order = new Order();
+            $addressForm = $Address->formAddress();
+            $errors = FormValidator::check($addressForm, $_POST);
+            if (empty($errors)){
+                $Address->setUser_id($_SESSION['userStore']->id);
+                $Address->setName($_POST['name']);
+                $Address->setAddress($_POST['address']);
+                $Address->setAddress2($_POST['address2'] ?? '');
+                $Address->setDistrict($_POST['district']);
+                $Address->setCity($_POST['city']);
+                $Address->setPostal_code($_POST['postal_code']);
+                $Address->setPhone($_POST['phone']);
+                $address = $Address->save();
+                $order = $Order->find(['user_id' => $_SESSION['userStore']->id], ['id' => 'DESC']);
+                $order->setAddress_id($address->id);
+                $order->setStatus(1); // 1 = invoice paid
+                $order->save();
+                http_response_code(201);
+                echo json_encode(['order_id' => $order->getId()]);
+            } else {
+                http_response_code(400);
+                echo json_encode($errors);
+            }
+
+        }
+    }
+
+    public function confirmOrder() {
+        $view = new View('orderConfirmed', 'front');
+        $Order = new Order();
+        $Address = new Address();
+        $order = $Order->find(['user_id' => $_SESSION['userStore']->id, 'status' => 1], ['id' => 'DESC']);
+        $address = $Address->find(['id' => $order->getAddress_id()]);
+        $view->assign('order', $order);
+        $view->assign('address', $address);
     }
 }

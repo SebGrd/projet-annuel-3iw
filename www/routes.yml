@@ -167,6 +167,18 @@
   action: order
   access: user;admin
 
+/add-address:
+  title: processing
+  controller: OrderController
+  action: validateOrder
+  access: user;admin
+
+/pay:
+  title: Paiement
+  controller: OrderController
+  action: confirmOrder
+  access: user;admin
+
 # UserController routes
 /admin/users:
   title: Liste des utilisateurs

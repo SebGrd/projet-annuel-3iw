@@ -10,6 +10,7 @@ class Order extends Database {
 	protected $total_price = 0;
 	protected $product_count = 0;
 	protected $user_id = null;
+	protected $address_id = null;
 	protected $createdAt = '';
 	protected $updatedAt = '';
 
@@ -118,4 +119,20 @@ class Order extends Database {
 	public function setUpdatedAt() {
 		$this->updatedAt = date('Y-m-d H:i:s');
 	}
+
+    /**
+     * @return null
+     */
+    public function getAddress_id()
+    {
+        return $this->address_id;
+    }
+
+    /**
+     * @param null $address_id
+     */
+    public function setAddress_id($address_id): void
+    {
+        $this->address_id = $address_id;
+    }
 }

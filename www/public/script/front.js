@@ -175,3 +175,18 @@ const commandForm = document.querySelector('.invoice__step--form form');
 commandForm.addEventListener('submit', (e) => {
     e.preventDefault();
 })
+
+const payBtn = document.getElementById('pay-btn');
+payBtn.addEventListener('click', async () => {
+    const data = new URLSearchParams(new FormData(commandForm));
+    const res = await fetch('/add-address', {
+        method: 'POST',
+        body: data,
+    })
+    const json = await res.json();
+    if (res.status === 400) {
+        document.getElementById('form-errors').innerText = JSON.stringify(json);
+    } else if (res.status === 201) {
+        window.location.replace("/pay?order_id="+json.order_id);
+    }
+})

@@ -214,7 +214,7 @@ class Address extends Database {
                     'id'=>'address2',
                     'class'=>'form_input',
                     'error'=>'Le complement d\'addresse doit faire entre 2 et 255 caractères',
-                    'required'=>true,
+                    'required'=>false,
                     'value'=>$this->address2
                 ],
                 'district'=>[
