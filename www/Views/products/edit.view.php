@@ -1,4 +1,4 @@
-<div class="admin_view">
+<div class="ml-1 admin_view">
 	<section>
 		<a href="/admin/products" class="btn btn-dark">Annuler</a>
 		<h2>Modification du produit "<?= $product->getName() ?>"</h2>

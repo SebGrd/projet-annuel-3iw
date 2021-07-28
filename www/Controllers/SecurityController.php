@@ -77,16 +77,15 @@ class SecurityController
 				} else if ($user->getIsDeleted()) { // Reject if user is deleted
 					// Add error message
 					Message::add('LOGIN_ERROR');
-
 					$view->assign('errors', ['Ce compte a été supprimé définitivement']);
 				} else {
 					// Reject if email or password are wrong, we don't specify which one for security purposes
 					Message::add('LOGIN_ERROR');
-
 					$view->assign('errors', ['L\'email et/ou le mot de passe sont incorrects']);
 				}
 			} else {
 				// Assign form validation errors if there are
+				Message::add('LOGIN_ERROR');
 				$view->assign('errors', $errors);
 			}
 		}
@@ -220,7 +219,8 @@ class SecurityController
 
 		$formResetPassword = $user->formResetPassword();
 		$formNewPassword = $user->formNewPassword();
-
+		$view->assign('emailSent', false);
+		
 		if (!empty($_POST) && empty($_GET)) {
 			$errors = FormValidator::check($formResetPassword, $_POST);
 
@@ -245,13 +245,18 @@ class SecurityController
 
 					$email = Helpers::mailer($from, $to, $subject, ['[appname]', '[email]', '[link]'], [APPNAME, $to['email'], $link], true, 'forgotPassword');
 					if ($email['error']) {
-						$view->assign('errors', [$email['error_message']]);
+						if (ENV == 'dev') {
+							$view->assign('errors', [$email['error_message']]);
+						}
+						Message::add('RESET_PASSWORD_ERROR');
 					} else {
-						$view->assign('success', "Un email viens de vous être envoyé, cliquez sur le lien dans l'email pour réinitialiser votre mot de passe. \n vous pouvez fermer cette page.");
+						Message::add('RESET_PASSWORD_SUCCESS');
+						$view->assign('emailSent', true);
 					}
 				} else {
-					// On renvoie le même message pour eviter le brut force permettant de trouver des emails enregistré.
-					$view->assign('success', "Un email viens de vous être envoyé, cliquez sur le lien dans l'email pour réinitialiser votre mot de passe. \n vous pouvez fermer cette page.");
+					// Sending the same message prevents finding registered emails with brute force.
+					Message::add('RESET_PASSWORD_SUCCESS');
+					$view->assign('emailSent', true);
 				}
 			} else {
 				$view->assign('errors', $errors);
@@ -274,8 +279,8 @@ class SecurityController
 						$user->setPwd($hashed_password);
 						$user->setPwdResetToken('');
 						$user->save();
-						$view->assign('success', "Votre nouveau mot de passe a bien été enregistré, vous allez être redirigé sur la page de connexion dans quelques instants.");
-						header("Refresh:5; url=http://" . $_SERVER['HTTP_HOST'] . "/login", true, 303);
+						Message::add('NEW_PASSWORD_SUCCESS');
+						header("Refresh:1; url=http://" . $_SERVER['HTTP_HOST'] . "/login", true, 303);
 					} else {
 						$view->assign('errors', $errors);
 					}
@@ -354,6 +359,11 @@ class SecurityController
 		$view->assign('user', (object) $data);
 	}
 
+	/**
+	 * Delete account method
+	 *
+	 * Delete a user's account
+	 **/
 	public function deleteAccount() {
 		$user = new User();
 

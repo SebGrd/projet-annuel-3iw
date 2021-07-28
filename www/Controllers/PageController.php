@@ -32,7 +32,8 @@ class PageController
                 $page->find(['title' => $title]);
 
                 if ($page->getId()) {
-                    $view->assign('errors', ["La page $title existe déjà."]);
+                    $view->assign('errors', ["La page $title existe déjà"]);
+                    Message::add('NEW_PAGE_ERROR');
                 } else {
                     $image = Helpers::upload('products');
 
@@ -45,7 +46,6 @@ class PageController
                         $page->save();
 
                         Message::add('NEW_PAGE_SUCCESS');
-                        header('location: /admin/pages');
                     }
                 }
             } else {

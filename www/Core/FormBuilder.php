@@ -7,7 +7,7 @@ class FormBuilder {
 		$html = "<form 
 			method='".($form["config"]["method"]??"GET")."' 
 			id='".($form["config"]["id"]??"")."' 
-			class='".($form["config"]["class"]??"")."' 
+			class='w-100 px-1 ".($form["config"]["class"]??"")."' 
 			action='".($form["config"]["action"]??"")."'
 			enctype='".($form["config"]["enctype"]??"")."'>";
 

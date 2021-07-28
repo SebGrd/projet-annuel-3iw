@@ -51,10 +51,10 @@ $header-padding: 68px;
 
 $breakpoints:
 	'xs' 0px,
-	'sm' 480px,
-	'md' 768px,
-	'lg' 992px,
-	'xl' 1200px;
+	'sm' 540px,
+	'md' 720px,
+	'lg' 960px,
+	'xl' 1140px;
 
 $cols: 24;
 
@@ -64,10 +64,10 @@ $lgContainerWidth: 960px;
 $xlContainerWidth: 1140px;
 
 $containerWidth: (
-				"sm": $smContainerWidth,
-				"md": $mdContainerWidth,
-				"lg": $lgContainerWidth,
-				"xl": $xlContainerWidth
+	"sm": $smContainerWidth,
+	"md": $mdContainerWidth,
+	"lg": $lgContainerWidth,
+	"xl": $xlContainerWidth
 ) !default;
 
 $gutter: 15px;

@@ -1,31 +1,30 @@
-<main class="auth">
-	<div class="row h-full w-full">
-		<div class="col-14 row bg-primary text-light flex flex-wrap flex-col justify-center">
+<main class="auth y-scroll-auto">
+    <div class="flex flex-xs-col flex-sm-row align-center w-100 h-full">
+        <div class="col-sm-14 flex flex-col justify-center bg-primary text-light w-100 h-100">
 			<h1 class="text-center text-light">Modification du profil</h1>
 			<p class="text-center text-light">
-				Modifiez votre profil en utilisant les informations qui vous conviennent..
+				Modifiez votre profil en utilisant les informations qui vous conviennent.
 			</p>
 		</div>
 
-		<div class="col-10 flex flex-col justify-center">
+		<div class="col-sm-10 flex flex-col justify-center w-100 h-100">
 			<?php if (isset($user)) {
 				extract((array) $user) ?>
 				<section class="flex flex-col align-center">
 					<div class="flex flex-col justify-center align-center w-100">
 						<?php if ($user->avatar !== null) { ?>
-							<img class="brd-50 w-30" src=<?= 'http://' . $_SERVER['HTTP_HOST'] . '/' . \App\Core\Helpers::getImageUrl($user->avatar) ?> />
+							<img class="brd-50 w-30" src=<?= 'http://' . $_SERVER['HTTP_HOST'] . '/' . $_::getImageUrl($user->avatar) ?> />
 						<?php } ?>
 
 						<!-- Show messages -->
-						<?= $_::render('incl.message', ['msgs' => ['edit_profile_success', 'edit_profile_error'], 'errs' => $errors ?? []]); ?>
+						<?= $_::render('incl.message', ['msgs' => ['EDIT_PROFILE_SUCCESS', 'EDIT_PROFILE_ERROR'], 'errs' => $errors ?? []]); ?>
 
 						<!-- Render form -->
 						<?= $_FB::render($form); ?>
-						</br>
-						</br>
-						<div class="flex flex-row w-50 align-center mt-1 justify-between form__field">
-							<a href="/" class="col-11 btn btn-secondary text-center btn-font">Retour</a>
-							<a href="/delete-my-account" class="col-11 btn btn-danger text-center btn-font">Supprimer mon compte</a>
+					
+						<div class="flex align-center justify-around text-center btn-font w-100 mt-1 form__field">
+							<a href="/" class="col-11 btn btn-secondary">Retour</a>
+							<a href="/delete-my-account" class="col-11 btn btn-danger">Supprimer mon compte</a>
 						</div>
 					</div>
 				</section>
