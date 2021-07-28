@@ -193,31 +193,26 @@
         "extra": "NULL.DEFAULT NULL"
       },
       "4": {
-        "name": "menu_id",
-        "type": "int",
-        "extra": "NULL.DEFAULT NULL"
-      },
-      "5": {
         "name": "description",
         "type": "varchar(255)",
         "extra": "NULL.DEFAULT NULL"
       },
-      "6": {
+      "5": {
         "name": "name",
         "type": "varchar(100)",
         "extra": "NOT NULL"
       },
-      "7": {
+      "6": {
         "name": "quantity",
         "type": "int",
         "extra": "NOT NULL.DEFAULT '0'"
       },
-      "8": {
+      "7": {
         "name": "createdAt",
         "type": "datetime",
         "extra": "NOT NULL.DEFAULT current_timestamp"
       },
-      "9": {
+      "8": {
         "name": "updatedAt",
         "type": "datetime",
         "extra": "NULL.DEFAULT NULL"
@@ -253,11 +248,16 @@
         "extra": "NULL.DEFAULT NULL"
       },
       "5": {
+        "name": "address_id",
+        "type": "int",
+        "extra": "NULL.DEFAULT NULL"
+      },
+      "6": {
         "name": "createdAt",
         "type": "datetime",
         "extra": "NOT NULL.DEFAULT current_timestamp"
       },
-      "6": {
+      "7": {
         "name": "updatedAt",
         "type": "datetime",
         "extra": "NULL.DEFAULT NULL"
@@ -329,6 +329,31 @@
       },
       "1": {
         "name": "order_id",
+        "type": "int",
+        "extra": "NOT NULL"
+      },
+      "2": {
+        "name": "product_id",
+        "type": "int",
+        "extra": "NOT NULL"
+      },
+      "3": {
+        "name": "product_quantity",
+        "type": "int",
+        "extra": "NOT NULL"
+      }
+    }
+  },
+  {
+    "name": "menu_product",
+    "fields": {
+      "0": {
+        "name": "id",
+        "type": "int",
+        "extra": "PRIMARY KEY.NOT NULL.AUTO_INCREMENT"
+      },
+      "1": {
+        "name": "menu_id",
         "type": "int",
         "extra": "NOT NULL"
       },

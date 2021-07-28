@@ -244,9 +244,9 @@ body {
           }
           &__price{
             font-weight: 600;
+            margin-left: .3rem;
           }
           &__remove{
-            flex-grow: 1;
             text-align: right;
             min-width: 2rem;
             &__button{
@@ -272,6 +272,7 @@ body {
           color: $light;
           border: none;
           padding: .4rem .5rem;
+          cursor: pointer;
         }
       }
     }
@@ -342,7 +343,7 @@ body {
   background: var(--theme-color);
   color: $gray-200;
   padding: 3rem 0;
-
+  margin-top: 5rem;
   &__list {
     list-style: none;
     padding: 0;
@@ -502,6 +503,152 @@ body {
           height: 130px;
         }
       }
+    }
+  }
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  thead{
+    tr{
+      th{
+        text-align: left;
+        border: 1px solid $gray-300;
+        background: $gray-200;
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+  tbody{
+    tr{
+      td{
+        border: 1px solid $gray-300;
+        padding: 0.5rem 1rem;
+        &.gray{
+          background: $gray-200;
+        }
+        &.total{
+          font-weight: 600;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+
+.form{
+  &__field{
+    display: flex;
+    margin-bottom: 1rem;
+    @media (max-width: $md) {
+      flex-direction: column;
+      margin-bottom: .5rem;
+    }
+    &__label{
+      width: 200px;
+      font-weight: 600;
+    }
+    &__input{
+      flex-grow: 1;
+      height: 2rem;
+    }
+  }
+}
+
+.invoice{
+  &__steps{
+    margin-bottom: 1rem;
+    &__list{
+      display: flex;
+      align-items: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      &__item{
+        border-right: 2px solid $white;
+        padding: 0.5rem 2rem 0.5rem 1rem;
+        position: relative;
+        cursor: pointer;
+        &--active{
+          background: var(--theme-color);
+          color: $light;
+        }
+        &--current{
+          &:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 1rem 2rem 0;
+            border-color: transparent $white transparent transparent;
+          }
+          &:after{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 2rem 1rem;
+            border-color: transparent transparent $white transparent;
+          }
+        }
+      }
+    }
+  }
+  &__step{
+    &--form{
+      .form{
+        input[type=submit] {
+          display: none;
+        }
+      }
+    }
+    &--hidden{
+      display: none;
+    }
+    &__total{
+      font-size: 2rem;
+      font-weight: 600;
+      &__price{
+        font-weight: 900;
+      }
+      &__button{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background: $dark;
+        color: $light;
+        border: none;
+        padding: .5rem 1rem;
+        cursor: pointer;
+        font-size: 1.3rem;
+        &--blue{
+          background: #17295a;
+        }
+        svg{
+          margin-left: .7rem;
+        }
+      }
+    }
+  }
+  &__actions{
+    text-align: right;
+    margin-top: 1rem;
+    &__button{
+      display: inline-block;
+      background: $dark;
+      color: $light;
+      border: none;
+      padding: .5rem 1rem;
+      cursor: pointer;
+      font-size: 1rem;
     }
   }
 }

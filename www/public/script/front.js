@@ -123,3 +123,55 @@ const updateCart = () => {
 
 updateFormInput();
 updateCart();
+
+
+const nextStepBtn = document.getElementById('next-step');
+const steps = document.querySelectorAll('.invoice__step');
+const stepsDisplay = document.querySelectorAll('.invoice__steps__list__item');
+let stepNbr = 1;
+const updateSteps = () => {
+    steps.forEach((step) => {
+        step.classList.add('invoice__step--hidden')
+    })
+    const [ mainStep ] = [...steps].filter((step) => parseInt(step.dataset.step) === stepNbr)
+    mainStep.classList.remove('invoice__step--hidden');
+}
+const updateStepsDisplay = () => {
+    const pastStepDisplay = [...stepsDisplay].filter((step) => parseInt(step.dataset.step) <= stepNbr)
+    const [ currentStepDisplay ] = [...stepsDisplay].filter((step) => parseInt(step.dataset.step) === stepNbr)
+    stepsDisplay.forEach((stepsDisplay) => {
+        stepsDisplay.classList.remove('invoice__steps__list__item--active')
+    })
+    pastStepDisplay.forEach((pastStep) => {
+        pastStep.classList.add('invoice__steps__list__item--active')
+        pastStep.classList.remove('invoice__steps__list__item--current')
+    })
+    currentStepDisplay.classList.add('invoice__steps__list__item--active')
+    currentStepDisplay.classList.add('invoice__steps__list__item--current')
+    if (stepNbr === 3) {
+        nextStepBtn.style.display = 'none'
+    } else {
+        nextStepBtn.style.display = 'inline-block'
+    }
+}
+nextStepBtn.addEventListener('click', () => {
+    if (stepNbr !== 3) {
+        stepNbr++;
+        updateStepsDisplay();
+        updateSteps();
+    } else {
+        alert('oui')
+    }
+})
+stepsDisplay.forEach((stepsDisplay) => {
+    stepsDisplay.addEventListener('click', () => {
+        stepNbr = parseInt(stepsDisplay.dataset.step);
+        updateStepsDisplay();
+        updateSteps();
+    })
+})
+
+const commandForm = document.querySelector('.invoice__step--form form');
+commandForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+})

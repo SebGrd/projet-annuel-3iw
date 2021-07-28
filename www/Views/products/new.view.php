@@ -9,7 +9,7 @@
 
 	<div class="row">
 		<div class="col-6">
-			<?php $_FB::render($form); ?>
+			<?php \App\Core\FormBuilder::render($form); ?>
 		</div>
 	</div>
 </div>

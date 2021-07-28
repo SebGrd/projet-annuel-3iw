@@ -1,7 +1,7 @@
 <div class="ml-1 admin_view">
 	<section>
 		<a href="/admin/menus" class="btn btn-dark">Annuler</a>
-		<h2>Modification du menu "<?= $menu->getTitle() ?>"</h2>
+		<h2>Modification de la catégorie "<?= $menu->getTitle() ?>"</h2>
 	</section>
 
 	<!-- Show messages -->

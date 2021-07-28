@@ -8,14 +8,22 @@ class ConstantMaker {
 
 	public function __construct() {
 		if (!file_exists($this->envPath)) {
-			die("Environment file {$this->envPath} not found");
+			$envs = ['DBDRIVER'=>'mysql', 'ENV'=>'prod'];
+			$file = dirname(__DIR__, 1) . '/.env';
+			$fp = fopen($file, 'a+');
+			foreach ($envs as $key => $env) {
+				fwrite($fp, $key . '=' . $env . "\n");
+			}
+			fwrite($fp, "\n");
+			fclose($fp);
+			// die("Environment file {$this->envPath} not found");
 		}
 
 		// .env
 		$this->parseEnv($this->envPath);
 
 		if (!empty($this->data['ENV'])) {
-			// .env.prod ou .env.dev
+			// .env.prod ou .dev
 			$this->parseEnv($this->envPath.'.'.$this->data['ENV']);
 		}
 		date_default_timezone_set( "Europe/Paris" );

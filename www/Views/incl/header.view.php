@@ -53,7 +53,7 @@
                         <span class="header__cart__cart__total__title">Total:</span>
                         <span class="header__cart__cart__total__price" id="cart-total">0€</span>
                     </div>
-                    <form class="header__cart__cart__form" action="/order" method="post" id="cart-form">
+                    <form class="header__cart__cart__form" action="/new-order" method="post" id="cart-form">
                         <input type="hidden" id="cart-form-input" name="products">
                         <button class="header__cart__cart__form__button" type="submit">Commander</button>
                     </form>

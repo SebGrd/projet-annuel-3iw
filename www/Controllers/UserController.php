@@ -11,24 +11,25 @@ use App\Models\User;
 
 class UserController
 {
-    public function main() {
+    public function main()
+    {
         $view = new View('users.main', 'admin');
-        $menu = new User();
     }
 
-    public function newUser() {
+    public function newUser()
+    {
         $view = new View('users.new', 'admin');
-		$user = new User();
+        $user = new User();
         $form = $user->formCreateUser();
 
-		if (!empty($_POST)) {
-			$errors = FormValidator::check($form, $_POST);
+        if (!empty($_POST)) {
+            $errors = FormValidator::check($form, $_POST);
 
-			if (empty($errors)) {
-				$foundUser = $user->find(['email' => $_POST['email']]);
-				if (!$foundUser) {
-					$image = Helpers::upload('users');
-    
+            if (empty($errors)) {
+                $foundUser = $user->find(['email' => $_POST['email']]);
+                if (!$foundUser) {
+                    $image = Helpers::upload('users');
+
                     if (isset($image['error'])) {
                         $view->assign('errors', [$image['error']]);
                     } else {
@@ -39,9 +40,9 @@ class UserController
                         if ($role == 0) $role = 'user';
                         if ($role == 1) $role = 'admin';
                         $password = htmlspecialchars(stripslashes($_POST['pwd']));
-                        $hashed_password = crypt($password, '$5$rounds=6666$'.SALT.'$');
+                        $hashed_password = crypt($password, '$5$rounds=6666$' . SALT . '$');
                         $user->setPwd($hashed_password);
-        
+
                         // Set all the properties of user object
                         $user->setFirstname($firstname);
                         $user->setLastname($lastname);
@@ -56,47 +57,48 @@ class UserController
                         $to = ['email' => $_POST['email'], 'name' => $_POST['firstname']];
                         $subject = APPNAME . ' Création de votre compte';
                         $link = 'http://' . $_SERVER['HTTP_HOST'];
-    
+
                         $token = array(
                             'data' => array(
                                 'email' => $user->getEmail()
                             )
                         );
-    
+
                         $jwt = Security::createJwt($token);
-    
+
                         $confirm_link = $link . '/register?token=' . $jwt;
-    
+
                         $email = Helpers::mailer($from, $to, $subject, ['[appname]', '[firstname]', '[email]', '[link]', '[confirm_link]'], [APPNAME, ucfirst($_POST['firstname']), $to['email'], $link, $confirm_link], true, 'registered');
                         if ($email['error']) {
                             $view->assign('errors', [$email['error_message']]);
                         }
-    
+
                         // Add success message
                         Message::add('CREATE_USER_SUCCESS');
                     }
-					Message::add('UPLOAD_FILE_ERROR');
-				} else {
-					// Add error message
-					Message::add('CREATE_USER_ERROR');
+                    Message::add('UPLOAD_FILE_ERROR');
+                } else {
+                    // Add error message
+                    Message::add('CREATE_USER_ERROR');
 
-					// Reject since this email is already registered
-					$view->assign('errors', ['error' => 'Cet email est déjà enregistré.']);
-				}
-			} else {
-				// Add error message
-				Message::add('CREATE_USER_ERROR');
+                    // Reject since this email is already registered
+                    $view->assign('errors', ['error' => 'Cet email est déjà enregistré.']);
+                }
+            } else {
+                // Add error message
+                Message::add('CREATE_USER_ERROR');
 
-				$view->assign('errors', $errors);
-			}
-		}
+                $view->assign('errors', $errors);
+            }
+        }
 
-		$view->assign('form', $form);
+        $view->assign('form', $form);
     }
 
-    public function editUser() {
+    public function editUser()
+    {
         $view = new View('users.edit', 'admin');
-		$user = new User();
+        $user = new User();
 
         if (empty($_GET['id'])) {
             // Redirect to page 404 if query is malformed
@@ -129,16 +131,16 @@ class UserController
                 header('location: /404');
                 die;
             }
-    
+
             if (!$user) {
                 // Redirect to page 404 if user is not found
                 header('location: /404');
                 die;
             }
-    
-            if (!empty($_POST)) {  
+
+            if (!empty($_POST)) {
                 $image = Helpers::upload('users');
-    
+
                 if (isset($image['error'])) {
                     $view->assign('errors', [$image['error']]);
                 } else {
@@ -150,10 +152,10 @@ class UserController
                     if ($role == 1) $role = 'admin';
                     if (isset($_POST['password'])) {
                         $password = htmlspecialchars(stripslashes($_POST['pwd']));
-                        $hashed_password = crypt($password, '$5$rounds=6666$'.SALT.'$');
-                        $user->setPwd($hashed_password);                
+                        $hashed_password = crypt($password, '$5$rounds=6666$' . SALT . '$');
+                        $user->setPwd($hashed_password);
                     }
-    
+
                     // Set all the properties of user object
                     $user->setFirstname($firstname);
                     $user->setLastname($lastname);
@@ -171,15 +173,15 @@ class UserController
         $view->assign('form', $form);
 
         if (!empty($_POST)) {
-			$errors = FormValidator::check($form, $_POST);
-            
-			if (empty($errors)) {
+            $errors = FormValidator::check($form, $_POST);
+
+            if (empty($errors)) {
                 $user->save();
                 Message::add('EDIT_USER_SUCCESS');
             } else {
                 Message::add('EDIT_USER_ERROR');
                 $view->assign('errors', $errors);
             }
-		}
+        }
     }
 }

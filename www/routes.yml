@@ -118,6 +118,7 @@
   access: guest;user;admin
 
 /products:
+  title: Produits
   controller: PageController
   action: products
   access: guest;user;admin
@@ -154,10 +155,16 @@
   action: main
   access: admin
 
-/order:
-  title: Commande
+/new-order:
+  title: processing
   controller: OrderController
   action: newOrder
+  access: user;admin
+
+/order:
+  title: Récapitulatif commande
+  controller: OrderController
+  action: order
   access: user;admin
 
 # UserController routes
@@ -191,3 +198,9 @@
   controller: AdminController
   action: search
   access: admin
+
+/sitemap.xml:
+  title: sitemap
+  controller: SitemapController
+  action: main
+  access: guest;user;admin
