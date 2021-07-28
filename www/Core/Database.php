@@ -63,7 +63,8 @@ class Database {
 		$this->table = strtolower(DBPREFIXE . end($getCalledClassExploded));
 	}
 
-	public function getModelName() {
+	public function getModelName()
+	{
 		$getCalledClassExploded = explode('\\', get_called_class());
 		return strtolower(end($getCalledClassExploded));
 	}
@@ -247,7 +248,6 @@ class Database {
 				$sql = "CREATE TABLE IF NOT EXISTS `". DBPREFIXE . strtolower($tableName) ."` ("
 				. implode(", ", $fields) . ")";
 				$query = $this->pdo->query($sql);
-				$query->execute();
 			} catch (\PDOException $e) {
 				print_r('Erreur lors de la création des tables, ' . $e->getMessage());
 			}
@@ -278,7 +278,6 @@ class Database {
 				// Perform the query
 				try {
 					$query = $this->pdo->query($templine);
-					$query->execute();
 				} catch (\Exception $e) {
 				}
 				// Reset temp variable to empty
