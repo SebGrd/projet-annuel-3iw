@@ -32,7 +32,6 @@ class ProductController
                 $price = Helpers::tofloat(htmlspecialchars(strip_tags($_POST['price'])));
 
                 $product->find(['name' => $name]);
-
                 if ($product->getId()) {
                     $view->assign('errors', ['Le produit ' . $name . ' existe déjà']);
                 } else {
@@ -48,6 +47,7 @@ class ProductController
                         $product->setPrice($price);
                         $product->setImage($image !== false ? $image : null);
                         $product->save();
+
                         Message::add('NEW_PRODUCT_SUCCESS');
                     }
                 }
@@ -56,7 +56,6 @@ class ProductController
                 Message::add('NEW_PRODUCT_ERROR');
             }
         }
-
         $view->assign('form', $form);
     }
 
