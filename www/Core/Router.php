@@ -92,7 +92,6 @@ class Router {
 				$this->setAccess($this->routes[$this->uri]['access']);
 
 				$this->checkCurrentRoute();
-
 			} else {
 				(new MainController)->notFound("Chemin <b><code>$uri</code></b> introuvable");
 			}

@@ -21,11 +21,11 @@ class AdminController
 		$user = new User();
 		$user = new Order();
 		
-		$view->assign('pages', (array) $page->findAll([], [], true));
-		$view->assign('menus', (array) $menu->findAll([], [], true));
-		$view->assign('products', (array) $product->findAll([], [], true));
-		$view->assign('users', (array) $user->findAll([], [], true));
-		$view->assign('orders', (array) $order->findAll([], [], true));
+		$view->assign('pages', count((array) $page->findAll([], [], true)));
+		$view->assign('menus', count((array) $menu->findAll([], [], true)));
+		$view->assign('products', count((array) $product->findAll([], [], true)));
+		$view->assign('users', count((array) $user->findAll([], [], true)));
+		$view->assign('orders', count((array) $order->findAll([], [], true)));
 	}
 	
 	/**
@@ -41,16 +41,17 @@ class AdminController
 		$user = new User();
 		$order = new Order();
 
-		$data = ['Pages' => $page, 'Menus' => $menu, 'Produits' => $product, 'Utilisateurs' => $user];
+		$data = [
+			'Pages' => $page,
+			'Menus' => $menu,
+			'Produits' => $product,
+			'Utilisateurs' => $user
+		];
 		$arr = [];
 
 		foreach ($data as $key => $obj) {
 			$arr[] = ['obj' => $key, 'count' => count((array) $obj->findAll([], [], true))];
 		}
-
-		$view->assign('pages', (array) $page->findAll([], [], true));
-		$view->assign('menus', (array) $menu->findAll([], [], true));
-		$view->assign('products', (array) $product->findAll([], [], true));
 
 		$view->assign('countData', json_encode($arr));
 	}

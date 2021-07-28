@@ -8,6 +8,7 @@
 	<div class="flex flex-wrap justify-center text-center h-80">
 		<div class="col-24 text-center"><b>Base de données</b></div>
 		<div id="chart1" class="chart col-24 flex flex-col justify-center btn btn-light h-80"></div>
+		<div id="chart2" class="chart col-24 flex flex-col justify-center btn btn-light h-80"></div>
 	</div>
 </div>
 
@@ -28,19 +29,6 @@
 
 	// Add data
 	chart.data = <?php echo $countData; ?>;
-	// chart.data = [{
-	// 	"obj": "Lithuania",
-	// 	"count": 501.9
-	// }, {
-	// 	"obj": "Czech Republic",
-	// 	"count": 301.9
-	// }, {
-	// 	"obj": "Ireland",
-	// 	"count": 201.1
-	// }, {
-	// 	"obj": "Germany",
-	// 	"count": 165.8
-	// }];
 
 	// And, for a good measure, let's add a legend
 	chart.legend = new am4charts.Legend();

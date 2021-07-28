@@ -150,6 +150,8 @@ class MenuController
             header('location: /404');
             die;
         }
+
+        
         header('location: /admin/menus');
     }
 }
