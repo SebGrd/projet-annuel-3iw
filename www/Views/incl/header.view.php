@@ -27,9 +27,15 @@
                         <li class="header__menu__nav__list__item">
                             <a href="/products" class="header__menu__nav__list__item__link">Nos produits</a>
                         </li>
-                        <li class="header__menu__nav__list__item">
+                        <!-- <li class="header__menu__nav__list__item">
                             <a href="/restaurant" class="header__menu__nav__list__item__link">Le restaurant</a>
-                        </li>
+                        </li> -->
+                        <?php $pages = new \App\Models\Page; $pages->findAll([], [], true);
+                         foreach ($_SESSION['tabs'] as $page): ?>
+                            <li class="header__menu__nav__list__item">
+                                <a href="<?= "/page?id=" . $page->getId() ?>" class="header__menu__nav__list__item__link"><?= $page->getTitle() ?></a>
+                            </li>
+                        <?php endforeach; ?>
                     </ul>
                 </nav>
             </div>

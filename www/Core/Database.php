@@ -150,11 +150,10 @@ class Database
 		}
 
 		$query = $this->pdo->query($query . $whereClause . (!empty($order) ? $orderClause : ''));
-		$query->execute();
 		$data = $query->fetchAll(\PDO::FETCH_CLASS, $class);
-
+		$_SESSION['tabs'] = $data;
 		if ($data) {
-			return $return_type_array ? $data : $this->populate($data);
+			return $return_type_array ? (object) $data : $this->populate($data);
 		}
 		return false;
 	}
