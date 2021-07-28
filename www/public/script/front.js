@@ -16,6 +16,9 @@ const appLists = document.querySelectorAll('.app__products__list');
 
 appButtons.forEach((button) => {
     button.addEventListener('click', () => {
+        if(document.querySelector('.app__sidemenu__welcome')){
+            document.querySelector('.app__sidemenu__welcome').remove()
+        }
         appButtons.forEach((button) => {
             button.classList.remove('app__sidemenu__list__item__button--active')
         })
@@ -174,4 +177,19 @@ stepsDisplay.forEach((stepsDisplay) => {
 const commandForm = document.querySelector('.invoice__step--form form');
 commandForm.addEventListener('submit', (e) => {
     e.preventDefault();
+})
+
+const payBtn = document.getElementById('pay-btn');
+payBtn.addEventListener('click', async () => {
+    const data = new URLSearchParams(new FormData(commandForm));
+    const res = await fetch('/add-address', {
+        method: 'POST',
+        body: data,
+    })
+    const json = await res.json();
+    if (res.status === 400) {
+        document.getElementById('form-errors').innerText = JSON.stringify(json);
+    } else if (res.status === 201) {
+        window.location.replace("/pay?order_id="+json.order_id);
+    }
 })

@@ -111,6 +111,13 @@
   action: editProduct
   access: admin
 
+/admin/product-menu/update:
+  title: processing
+  controller: ProductController
+  action: updateMenuProduct
+  access: admin
+
+
 /product:
   title: Produit
   controller: PageController
@@ -165,6 +172,18 @@
   title: Récapitulatif commande
   controller: OrderController
   action: order
+  access: user;admin
+
+/add-address:
+  title: processing
+  controller: OrderController
+  action: validateOrder
+  access: user;admin
+
+/pay:
+  title: Paiement
+  controller: OrderController
+  action: confirmOrder
   access: user;admin
 
 # UserController routes

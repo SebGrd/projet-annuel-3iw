@@ -13,6 +13,7 @@
 		</br>
 		</br>
 
-		<?php $_FB::render($form); ?>
+        <?php $_FB::render($form); ?>
+        <?php $_FB::render($formMenu); ?>
 	</section>
 </div>

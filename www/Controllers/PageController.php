@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Core\FormValidator;
 use App\Models\Menu;
+use App\Models\Menu_Product;
 use App\Models\Page;
 use App\Core\Helpers;
 use App\Core\Message;
@@ -173,9 +174,33 @@ class PageController
     public function products()
     {
         $view = new View('products', 'front');
-        $product = new Product();
-        $menu = new Menu();
-        $view->assign('products', $product->findAll([], [], true));
-        $view->assign('menus', $menu->findAll([], [], true));
+        $Product = new Product();
+        $Menu = new Menu();
+        $MenuProduct = new Menu_Product();
+
+        $menuProducts = $MenuProduct->findAll([], [], true);
+        $products = $Product->findAll([], [], true);
+        $menus = $Menu->findAll([], [], true);
+
+        $data = [];
+
+        foreach ($menuProducts as $menuProduct) {
+            foreach ($products as $product) {
+                if ($product->getId() === $menuProduct->getProduct_id()){
+                    if(!isset($data[$menuProduct->getMenu_id()])){
+                        $data[$menuProduct->getMenu_id()] = [];
+                        array_push($data[$menuProduct->getMenu_id()], $product);
+                    } elseif (isset($data[$menuProduct->getMenu_id()])) {
+                        array_push($data[$menuProduct->getMenu_id()], $product);
+                    }
+                }
+            }
+        }
+
+
+
+        $view->assign('products', $products);
+        $view->assign('menus', $menus);
+        $view->assign('menuProducts', $data);
     }
 }
