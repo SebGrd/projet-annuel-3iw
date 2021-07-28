@@ -193,10 +193,10 @@
   action: stats
   access: admin
 
-/admin/search:
-  title: Résultats de recherche
-  controller: AdminController
-  action: search
+/admin/settings:
+  title: Paramètres
+  controller: SetupController
+  action: editSettings
   access: admin
 
 /sitemap.xml:

@@ -363,5 +363,35 @@
         "extra": "NOT NULL"
       }
     }
+  },
+  {
+    "name": "settings",
+    "fields": {
+      "0": {
+        "name": "id",
+        "type": "int",
+        "extra": "PRIMARY KEY.NOT NULL.AUTO_INCREMENT"
+      },
+      "1": {
+        "name": "appName",
+        "type": "varchar(255)",
+        "extra": "NOT NULL"
+      },
+      "2": {
+        "name": "visibility",
+        "type": "int",
+        "extra": "NOT NULL.DEFAULT 1"
+      },
+      "3": {
+        "name": "createdAt",
+        "type": "datetime",
+        "extra": "NOT NULL.DEFAULT current_timestamp"
+      },
+      "4": {
+        "name": "updatedAt",
+        "type": "datetime",
+        "extra": "NOT NULL.DEFAULT current_timestamp"
+      }
+    }
   }
 ]

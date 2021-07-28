@@ -13,7 +13,7 @@
                     <h2>Configuration</h2>
 
                     <!-- Show messages -->
-                    <?= $_::render('incl.message', ['msgs' => [], 'errs' => $errors ?? []]); ?>
+                    <?= $_::render('incl.message', ['msgs' => ['SETUP_STEP1_SUCCESS', 'SETUP_STEP1_ERROR', 'SETUP_STEP2_SUCCESS', 'SETUP_STEP2_ERROR', 'SETUP_STEP3_SUCCESS', 'SETUP_STEP3_ERROR'], 'errs' => $errors ?? []]); ?>
 
                     <?= $_FB::render($form) ?>
                 </div>

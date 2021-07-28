@@ -222,7 +222,7 @@
                 <ul class="menu__section__list">
                     <!-- Paramètres -->
                     <li class="menu__section__list__item">
-                        <a href="" class="menu__section__list__item__link">
+                        <a href="/admin/settings" class="menu__section__list__item__link">
                             <span class="menu__section__list__item__icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="black" width="18px" height="18px">
                                     <g>

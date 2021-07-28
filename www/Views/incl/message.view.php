@@ -4,7 +4,7 @@
 	<?php foreach ($msgs as $msg): ?>
 		<!-- If it exists -->
 		<?php if ($_SS::exist($msg)): ?>
-			<li class="col-12 <?= $_SS::load($msg)['class']; ?>">
+			<li class="col-24 <?= $_SS::load($msg)['class']; ?>">
 				<!-- Show it then unset it right after so it disappears after a refresh -->
 				<?= $_SS::flash($msg)['text']; ?>
 			</li>
